@@ -21,7 +21,6 @@ Error, there are just 37 groups of class number 10
 gap> G := OneSmallClassNrGroup( [ 4..11 ], IsSolvableGroup, IsNilpotentGroup, false, DerivedLength, [ 3, 4 ], IsSupersolvableGroup );;
 gap> Size( G );
 54
-#
 gap> NrConjugacyClasses( G );
 10
 gap> H := OneSmallClassNrGroup( [ 4..11 ], IsSolvableGroup, IsNilpotentGroup, false, DerivedLength, [ 4 ], IsSupersolvableGroup );
