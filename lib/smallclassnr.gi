@@ -1,45 +1,57 @@
 ###############################################################################
 ##
-## SmallClassNrGroupsAvailable( n )
+## SmallClassNrGroupsAvailable( k )
 ##
 InstallGlobalFunction(
     SmallClassNrGroupsAvailable,
-    function( n )
-        return IsBound( SMALL_CLASS_NR_DATA[n] );
+    function( k )
+        return IsBound( SMALL_CLASS_NR_DATA[k] );
     end
 );
 
 
 ###############################################################################
 ##
-## NrSmallClassNrGroups( n )
+## NrSmallClassNrGroups( k )
 ##
 InstallGlobalFunction(
     NrSmallClassNrGroups,
-    function( n )
-        if not SmallClassNrGroupsAvailable( n ) then
-            return fail;
+    function( k )
+        if not SmallClassNrGroupsAvailable( k ) then
+            Error(
+                "the library of groups of class number ",
+                k, " is not available"
+            );
         fi;
-        return Length( SMALL_CLASS_NR_DATA[n] );
+        return Length( SMALL_CLASS_NR_DATA[k] );
     end
 );
 
 
 ###############################################################################
 ##
-## SmallClassNrGroup( k, n )
+## SmallClassNrGroup( k, i )
 ##
 InstallGlobalFunction(
     SmallClassNrGroup,
-    function( k, n )
+    function( k, i )
         local data, G;
-        if not ( 
-            SmallClassNrGroupsAvailable( k ) and
-            n in [ 1..Length( SMALL_CLASS_NR_DATA[k] ) ]
-        ) then
-            return fail;
+        if not SmallClassNrGroupsAvailable( k ) then
+            Error(
+                "the library of groups of class number ",
+                k, " is not available"
+            );
+        elif not i in [ 1..Length( SMALL_CLASS_NR_DATA[k] ) ] then
+            if Length( SMALL_CLASS_NR_DATA[k] ) = 1 then
+                Error( "there is just 1 group of class number ", k );
+            else
+                Error(
+                    "there are just ", Length( SMALL_CLASS_NR_DATA[k] ),
+                    " groups of class number ", k
+                );
+            fi;
         fi;
-        data := SMALL_CLASS_NR_DATA[k][n];
+        data := SMALL_CLASS_NR_DATA[k][i];
         if IsInt( data[2] ) then
             G := PcGroupCode( data[2], data[1] );
         else
@@ -58,7 +70,7 @@ InstallGlobalFunction(
 InstallGlobalFunction(
     SelectSmallClassNrGroups,
     function( L, onlyOne, arg... )
-        local kGs, fnc, vls, grp, i, kG, G;
+        local kGs, fnc, vls, grp, kG, i, G;
         
         kGs := [];
         fnc := [];
@@ -70,9 +82,14 @@ InstallGlobalFunction(
         else
             Add( kGs, L );
         fi;
-        if not ForAll( kGs, SmallClassNrGroupsAvailable ) then
-            return fail;
-        fi;
+        for kG in kGs do
+            if not SmallClassNrGroupsAvailable( kG ) then
+                Error(
+                    "the library of groups of class number ",
+                    kG, " is not available"
+                );
+            fi;
+        od;
         
         for i in [ 1..Length( arg ) ] do
             if IsFunction( arg[i] ) then
