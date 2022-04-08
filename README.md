@@ -1,5 +1,5 @@
-[![Build Status](https://github.com/sTertooy/SmallClassNr/workflows/CI/badge.svg?branch=master)](https://github.com/sTertooy/SmallClassNr/actions?query=workflow%3ACI+branch%3Amaster)
-[![Code Coverage](https://codecov.io/gh/sTertooy/SmallClassNr/branch/master/graph/badge.svg)](https://codecov.io/gh/sTertooy/SmallClassNr)
+[![Build Status](https://github.com/sTertooy/SmallClassNr/workflows/CI/badge.svg?branch=main)](https://github.com/sTertooy/SmallClassNr/actions?query=workflow%3ACI+branch%3Amain)
+[![Code Coverage](https://codecov.io/gh/sTertooy/SmallClassNr/branch/main/graph/badge.svg)](https://codecov.io/gh/sTertooy/SmallClassNr)
 
 The GAP 4 package SmallClassNr
 ====================================
@@ -12,10 +12,10 @@ About
 ------------
 
 The SmallClassNr package provides access to all groups with small class number.
-Currently, the package contains the groups of class number <= 14. The groups of
-class number <= 12 were classified by A. Vera López and J. Vera López, while
-the groups of class number 13 and 14 were classified by A. Vera López and J.
-Sangroniz.
+Currently, the package contains the groups of class number at most 14. The
+groups of class number at most 12 were classified by A. Vera López and J. Vera
+López, while the groups of class number 13 and 14 were classified by A. Vera
+López and J. Sangroniz.
 
 This package requires GAP version 4.9 or later, with the following packages
 (and their dependencies) installed:
