@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  - push
+  - pull_request
+  - workflow_dispatch
+
+jobs:
+  test:
+    name: GAP ${{ matrix.gap-branch }}
+    runs-on: ubuntu-latest
+    if: ${{ !(github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - gap-branch: master
+          - gap-branch: stable-4.11
+            no-coverage: true
+          - gap-branch: stable-4.10
+            no-coverage: true
+          - gap-branch: stable-4.9
+            no-coverage: true
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+      - name: 'Setup GAP'
+        uses: gap-actions/setup-gap@v2
+        with:
+          GAPBRANCH: ${{ matrix.gap-branch }}
+      - name: 'Add package to GAP'
+        uses: gap-actions/build-pkg@v1
+      - name: 'Run package tests with only necessary packages loaded'
+        uses: sTertooy/run-pkg-tests@v2
+        with:
+          GAP_FLAGS: '-A'
+          NO_COVERAGE: true
+          ONLY_NEEDED: true
+      - name: 'Run package tests with default + suggested packages loaded'
+        uses: sTertooy/run-pkg-tests@v2
+        with:
+          NO_COVERAGE: ${{ matrix.no-coverage }}
+      - name: 'Run package tests with all packages loaded'
+        uses: sTertooy/run-pkg-tests@v2
+        with:
+          NO_COVERAGE: true
+          ALL_PACKAGES: true
+      - name: 'Run GAP tests with only necessary packages loaded'
+        uses: sTertooy/pkg-install-test@v1
+        with:
+          ONLY_NEEDED: true
+      - name: 'Run GAP tests with suggested packages loaded'
+        uses: sTertooy/pkg-install-test@v1
+      - name: 'Process coverage'
+        uses: gap-actions/process-coverage@v2
+        if: ${{ !matrix.no-coverage }}
+      - name: 'Upload coverage'
+        uses: codecov/codecov-action@v2
+        if: ${{ !matrix.no-coverage }}
+        with:
+          files: ./gap-coverage.json
+          fail_ci_if_error: true
+
+  manual:
+    name: Manual
+    runs-on: ubuntu-latest
+    if: ${{ !(github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) }}
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+      - name: 'Setup GAP'
+        uses: gap-actions/setup-gap@v2
+        with:
+          GAP_PKGS_TO_BUILD: ''
+      - name: 'Build documentation'
+        uses: gap-actions/build-pkg-docs@v1
+        with:
+          use-latex: 'true'
+      - name: 'Upload documentation'
+        uses: actions/upload-artifact@v3
+        with:
+          name: manual
+          path: ./doc/manual.pdf
+          if-no-files-found: error
