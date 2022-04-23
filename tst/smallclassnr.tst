@@ -29,8 +29,9 @@ gap> NrConjugacyClasses( G );
 10
 gap> H := OneSmallClassNrGroup( [ 4..11 ], IsSolvableGroup, IsNilpotentGroup, false, DerivedLength, [ 4 ], IsSupersolvableGroup );
 fail
-gap> OneSmallClassNrGroup( 14, IsSolvableGroup, false, IsSL  );
-Group([ (1,2,4,8)(3,6,12,9)(5,10)(7,14,13,11), (8,12)(9,13)(10,14)(11,15) ])
+gap> SL42 := OneSmallClassNrGroup( 14, IsSolvableGroup, false, IsSL  );;
+gap> IsomorphismGroups( SL42, SL(4,2) ) <> fail;
+true
 gap> OneSmallClassNrGroup( 15, IsSolvableGroup, false, IsSL  );
 Error, the library of groups of class number 15 is not available
 gap> AlternatingDegree( OneSmallClassNrGroup( 14, IsSolvableGroup, false, IsAlternatingGroup ) );
