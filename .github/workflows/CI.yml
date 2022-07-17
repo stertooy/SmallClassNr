@@ -25,6 +25,10 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v3
+      - name: 'Install Singular'
+        run: |
+          sudo apt-get update
+          sudo apt-get install singular
       - name: 'Setup GAP'
         uses: gap-actions/setup-gap@v2
         with:
