@@ -1,0 +1,40 @@
+name: "Test GAP installation (quick)"
+
+on:
+  - workflow_dispatch
+
+jobs:
+  test:
+    name: "Test on GAP-${{ matrix.gap-branch }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - gap-branch: "master"
+            packages: "alnuth autpgrp polycyclic"
+          - gap-branch: "4.11"
+          - gap-branch: "4.10"
+          - gap-branch: "4.9"
+          
+    container:
+      image: ghcr.io/stertooy/gda-image:${{ matrix.gap-branch }}-slim
+      
+    steps:
+    
+      - name: "Checkout"
+        uses: actions/checkout@v3
+        
+      - name: "Add extra packages to GAP"
+        uses: sTertooy/gda-extra-pkg@v1
+        with:
+          PACKAGES: ${{ matrix.packages }}
+        
+      - name: "Run GAP tests with necessary packages"
+        uses: sTertooy/gda-test-gap@v1
+        with:
+          ONLY_NEEDED: true
+          
+      - name: "Run GAP tests with suggested packages"
+        uses: sTertooy/gda-test-gap@v1
+        
