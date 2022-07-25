@@ -28,19 +28,19 @@ jobs:
         uses: actions/checkout@v3
         
       - name: "Run package tests with necessary packages"
-        uses: sTertooy/gda-test-pkg@v0.9.1
+        uses: sTertooy/gda-test-pkg@v1
         with:
           GAP_FLAGS: "-A"
           COVERAGE: ${{ matrix.coverage }}
           ONLY_NEEDED: true
           
       - name: "Run package tests with suggested packages"
-        uses: sTertooy/gda-test-pkg@v0.9.1
+        uses: sTertooy/gda-test-pkg@v1
         with:
           COVERAGE: ${{ matrix.coverage }}
         
       - name: "Process coverage"
-        uses: stertooy/gda-coverage@v0.9.1
+        uses: stertooy/gda-coverage@v1
         if: ${{ matrix.coverage }}
         
       - name: "Upload coverage"
@@ -63,7 +63,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: "Build manual"
-        uses: stertooy/gda-manual@v0.9.3
+        uses: stertooy/gda-manual@v1
         
       - name: "Upload manual"
         uses: actions/upload-artifact@v3
