@@ -14,7 +14,6 @@ jobs:
       matrix:
         include:
           - gap-branch: "master"
-            packages: "Alnuth autpgrp polycyclic"
             coverage: true
           - gap-branch: "4.11"
           - gap-branch: "4.10"
@@ -27,14 +26,6 @@ jobs:
     
       - name: "Checkout"
         uses: actions/checkout@v3
-
-      - name: "Add extra packages to GAP"
-        uses: sTertooy/gda-extra-pkg@v0.9.5
-        with:
-          PACKAGES: ${{ matrix.packages }}
-          
-      - name: "Build package"
-        uses: sTertooy/gda-build-pkg@v0.9.1
         
       - name: "Run package tests with necessary packages"
         uses: sTertooy/gda-test-pkg@v0.9.1
@@ -47,19 +38,6 @@ jobs:
         uses: sTertooy/gda-test-pkg@v0.9.1
         with:
           COVERAGE: ${{ matrix.coverage }}
-          
-      - name: "Run package tests with all packages"
-        uses: sTertooy/gda-test-pkg@v0.9.1
-        with:
-          ALL_PACKAGES: true
-          
-      - name: "Run GAP tests with necessary packages"
-        uses: sTertooy/gda-test-gap@v0.9.1
-        with:
-          ONLY_NEEDED: true
-          
-      - name: "Run GAP tests with suggested packages"
-        uses: sTertooy/gda-test-gap@v0.9.1
         
       - name: "Process coverage"
         uses: stertooy/gda-coverage@v0.9.1
