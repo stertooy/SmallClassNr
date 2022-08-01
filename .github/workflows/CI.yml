@@ -5,6 +5,7 @@ on:
   - workflow_dispatch
 
 jobs:
+
   test:
     name: "Test on GAP-${{ matrix.gap-branch }}"
     runs-on: ubuntu-latest
