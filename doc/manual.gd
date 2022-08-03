@@ -13,13 +13,13 @@
 #! <P/>
 #! These groups were classified in the following papers:
 #! <List>
-#! <Item> $k(G) \leq 5$, Miller (<Cite Key='mill11-a' />), Burnside (<Cite Key='burn11-a' />, Note A) </Item>
-#! <Item> $k(G) = 6,7$ Poland (<Cite Key='pola68-a' />) </Item>
-#! <Item> $k(G) = 8$ Kosvintsev (<Cite Key='kosv74-a' />) </Item>
-#! <Item> $k(G) = 9$ Odincov and Starostin (<Cite Key='os76-a' />) </Item>
-#! <Item> $k(G) = 10,11$ Vera López and Vera López (<Cite Key='ll85-a' />) </Item>
-#! <Item> $k(G) = 12$ Vera López and Vera López (<Cite Key='ll86-a' />) </Item>
-#! <Item> $k(G) = 13, 14$ Vera Lopez, Sangroniz (<Cite Key='vs07-a' />) </Item>
+#! <Item> $k(G) \leq 5$, by Miller in <Cite Key='mill11-a' /> and independently by Burnside in <Cite Key='burn11-a' / </Item>
+#! <Item> $k(G) = 6,7$, by Poland in <Cite Key='pola68-a' /></Item>
+#! <Item> $k(G) = 8$, by Kosvintsev in <Cite Key='kosv74-a' /></Item>
+#! <Item> $k(G) = 9$, by Odincov and Starostin in <Cite Key='os76-a' /></Item>
+#! <Item> $k(G) = 10,11$, by Vera López and Vera López in <Cite Key='ll85-a' /></Item>
+#! <Item> $k(G) = 12$, by Vera López and Vera López in <Cite Key='ll86-a' /></Item>
+#! <Item> $k(G) = 13, 14$, by Vera López and Sangroniz in <Cite Key='vs07-a' /></Item>
 #! </List>
 
 
