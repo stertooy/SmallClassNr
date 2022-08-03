@@ -28,7 +28,7 @@ Persons := [
 
 SourceRepository := rec(
     Type := "git",
-    URL := "https://github.com/sTertooy/SmallClassNr",
+    URL := "https://github.com/stertooy/SmallClassNr",
 ),
 
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
