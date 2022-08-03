@@ -8,18 +8,18 @@
 #! @ChapterLabel preface
 #! @ChapterTitle Preface
 
-#! The **class number** $k(G)$ of a group $G$ is the number of conjugacy classes of $G$. In 1903, Landau proved in <Cite key='land03-a' /> that for every $n \in \mathbb{N}$, there are only finitely many groups with exactly $n$ conjugacy classes.
+#! The **class number** $k(G)$ of a group $G$ is the number of conjugacy classes of $G$. In 1903, Landau proved in <Cite Key='land03-a' /> that for every $n \in \mathbb{N}$, there are only finitely many groups with exactly $n$ conjugacy classes.
 #! The <B>SmallClassNr</B> package provides access to the groups with class number at most $14$.
 #! <P/>
 #! These groups were classified in the following papers:
 #! <List>
-#! <Item> $k(G) \leq 5$, Miller (<Cite key='mill11-a' />), Burnside (<Cite key='burn11-a' />, Note A) </Item>
-#! <Item> $k(G) = 6,7$ Poland (<Cite key='pola68-a' />) </Item>
-#! <Item> $k(G) = 8$ Kosvintsev (<Cite key='kosv74-a' />) </Item>
-#! <Item> $k(G) = 9$ Odincov and Starostin (<Cite key='os76-a' />) </Item>
-#! <Item> $k(G) = 10,11$ Vera López and Vera López (<Cite key='ll85-a' />) </Item>
-#! <Item> $k(G) = 12$ Vera López and Vera López (<Cite key='ll86-a' />) </Item>
-#! <Item> $k(G) = 13, 14$ Vera Lopez, Sangroniz (<Cite key='vs07-a' />) </Item>
+#! <Item> $k(G) \leq 5$, Miller (<Cite Key='mill11-a' />), Burnside (<Cite Key='burn11-a' />, Note A) </Item>
+#! <Item> $k(G) = 6,7$ Poland (<Cite Key='pola68-a' />) </Item>
+#! <Item> $k(G) = 8$ Kosvintsev (<Cite Key='kosv74-a' />) </Item>
+#! <Item> $k(G) = 9$ Odincov and Starostin (<Cite Key='os76-a' />) </Item>
+#! <Item> $k(G) = 10,11$ Vera López and Vera López (<Cite Key='ll85-a' />) </Item>
+#! <Item> $k(G) = 12$ Vera López and Vera López (<Cite Key='ll86-a' />) </Item>
+#! <Item> $k(G) = 13, 14$ Vera Lopez, Sangroniz (<Cite Key='vs07-a' />) </Item>
 #! </List>
 
 
