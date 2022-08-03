@@ -12,14 +12,15 @@
 #! The <B>SmallClassNr</B> package provides access to the groups with class number at most $14$.
 #! <P/>
 #! These groups were classified in the following papers:
-#! <ListBullet/> $k(G) \leq 5$, Miller (<Cite key='mill11-a' />), Burnside (<Cite key='burn11-a' />, Note A)
-#! <ListBullet/> $k(G) = 6,7$ Poland (<Cite key='pola68-a' />)
-#! <ListBullet/> $k(G) = 8$ Kosvintsev (<Cite key='kosv74-a' />)
-#! <ListBullet/> $k(G) = 9$ Odincov and Starostin (<Cite key='os76-a' />)
-#! <ListBullet/> $k(G) = 10,11$ Vera López and Vera López (<Cite key='ll85-a' />)
-#! <ListBullet/> $k(G) = 12$ Vera López and Vera López (<Cite key='ll86-a' />)
-#! <ListBullet/> $k(G) = 13, 14$ Vera Lopez, Sangroniz (<Cite key='vs07-a' />)
-
+#! <List>
+#! <Item> $k(G) \leq 5$, Miller (<Cite key='mill11-a' />), Burnside (<Cite key='burn11-a' />, Note A) </Item>
+#! <Item> $k(G) = 6,7$ Poland (<Cite key='pola68-a' />) </Item>
+#! <Item> $k(G) = 8$ Kosvintsev (<Cite key='kosv74-a' />) </Item>
+#! <Item> $k(G) = 9$ Odincov and Starostin (<Cite key='os76-a' />) </Item>
+#! <Item> $k(G) = 10,11$ Vera López and Vera López (<Cite key='ll85-a' />) </Item>
+#! <Item> $k(G) = 12$ Vera López and Vera López (<Cite key='ll86-a' />) </Item>
+#! <Item> $k(G) = 13, 14$ Vera Lopez, Sangroniz (<Cite key='vs07-a' />) </Item>
+#! </List>
 
 
 #####
