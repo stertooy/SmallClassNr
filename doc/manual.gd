@@ -16,8 +16,8 @@
 #! <ListBullet/> $k(G) = 6,7$ Poland (<Cite key='pola68-a' />)
 #! <ListBullet/> $k(G) = 8$ Kosvintsev (<Cite key='kosv74-a' />)
 #! <ListBullet/> $k(G) = 9$ Odincov and Starostin (<Cite key='os76-a' />)
-#! <ListBullet/> $k(G) = 10,11$ Vera López and Vera López (<Cite key='ll85-a' />
-#! <ListBullet/ >$k(G) = 12$ Vera López and Vera López (<Cite key='ll86-a' />
+#! <ListBullet/> $k(G) = 10,11$ Vera López and Vera López (<Cite key='ll85-a' />)
+#! <ListBullet/> $k(G) = 12$ Vera López and Vera López (<Cite key='ll86-a' />)
 #! <ListBullet/> $k(G) = 13, 14$ Vera Lopez, Sangroniz (<Cite key='vs07-a' />)
 
 
