@@ -13,7 +13,7 @@
 #! <P/>
 #! These groups were classified in the following papers:
 #! <List>
-#! <Item> $k(G) \leq 5$, by Miller in <Cite Key='mill11-a' /> and independently by Burnside in <Cite Key='burn11-a' / </Item>
+#! <Item> $k(G) \leq 5$, by Miller in <Cite Key='mill11-a' /> and independently by Burnside in <Cite Key='burn11-a' /></Item>
 #! <Item> $k(G) = 6,7$, by Poland in <Cite Key='pola68-a' /></Item>
 #! <Item> $k(G) = 8$, by Kosvintsev in <Cite Key='kosv74-a' /></Item>
 #! <Item> $k(G) = 9$, by Odincov and Starostin in <Cite Key='os76-a' /></Item>
