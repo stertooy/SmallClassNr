@@ -8,17 +8,15 @@
 #! @ChapterLabel preface
 #! @ChapterTitle Preface
 
-#! The **class number** $k(G)$ of a group $G$ is the number of conjugacy classes of $G$. In 1903, Landau proved (E. Landau, Ùber die Klassenzahl der binaren quadratischen Formen von negativer Discri-
-minante, Math. Ann., 56 (1903), 671-676.) that $n \in \mathbb{N}$, there are only finitely many groups with exactly \(n\) conjugacy classes.
+#! The **class number** $k(G)$ of a group $G$ is the number of conjugacy classes of $G$. In 1903, Landau proved in <Cite key='land03-a' /> that for every $n \in \mathbb{N}$, there are only finitely many groups with exactly $n$ conjugacy classes.
 #! At the present time, all groups with $k(G) \leq 14$ have been classified, in the following papers:
-#! <ListBullet/>$k(G) \leq 5$, Miller , Burnside (W. Burnside, Theory of Groups of Finite Order, 2nd ed., 1911, Note A.)
-#! <ListBullet/>$k(G) = 6,7$ J. Poland (FINITE GROUPS WITH A GIVEN NUMBER
-OF CONJUGATE CLASSES)
-#! <ListBullet/>$k(G) = 8$ Kosvintsev ( Over the theory of groups with properties given over the centralizers of involutions)
-#! <ListBullet/>$k(G) = 9$ Odincov Starostin (Finite groups with 9 classes of conjugate elements Ural. Gos. Univ. Mat. Zap, 1976)
-#! <ListBullet/>$k(G) = 10,11$ Vera Lopez, Vera Lopez
-#! <ListBullet/>$k(G) = 12$ Vera Lopez, Vera Lopez
-#! <ListBullet/>$k(G) = 13, 14$ Vera Lopez, Sangroniz
+#! <ListBullet/> $k(G) \leq 5$, Miller (<Cite key='mill11-a' />), Burnside (<Cite key='burn11-a' />, Note A)
+#! <ListBullet/> $k(G) = 6,7$ J. Poland (<Cite key='pola68-a' />)
+#! <ListBullet/> $k(G) = 8$ Kosvintsev ( Over the theory of groups with properties given over the centralizers of involutions)
+#! <ListBullet/> $k(G) = 9$ Odincov Starostin (Finite groups with 9 classes of conjugate elements Ural. Gos. Univ. Mat. Zap, 1976)
+#! <ListBullet/> $k(G) = 10,11$ Vera Lopez, Vera Lopez
+#! <ListBullet/ >$k(G) = 12$ Vera Lopez, Vera Lopez
+#! <ListBullet/> $k(G) = 13, 14$ Vera Lopez, Sangroniz
 #! <P/>
 #! This package provides access to this classification.
 
