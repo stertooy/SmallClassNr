@@ -17,7 +17,7 @@ jobs:
           - gap-branch: "4.9"
           
     container:
-      image: ghcr.io/stertooy/gda-image:${{ matrix.gap-branch }}-slim
+      image: ghcr.io/stertooy/gda-image:${{ matrix.gap-branch }}-min
       
     steps:
     
