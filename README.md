@@ -17,6 +17,7 @@ Currently, the package contains the groups of class number at most 14.
 This package requires GAP version 4.9 or later, with the following packages
 (and their dependencies) installed:
 - GAPDoc ( version >= 1.6.1 )
+
 The following package is optional, but is recommended to compile the documentation:
 - AutoDoc ( version >= 2018.02.14 )
 
