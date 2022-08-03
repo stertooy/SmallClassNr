@@ -11,7 +11,7 @@
 #! The **class number** $k(G)$ of a group $G$ is the number of conjugacy classes of $G$. In 1903, Landau proved (E. Landau, Ùber die Klassenzahl der binaren quadratischen Formen von negativer Discri-
 minante, Math. Ann., 56 (1903), 671-676.) that $n \in \mathbb{N}$, there are only finitely many groups with exactly \(n\) conjugacy classes.
 #! At the present time, all groups with $k(G) \leq 14$ have been classified, in the following papers:
-#! <ListBullet/>$k(G) \leq 5$, Miller (Archiv der Math. und Phys., vol. 17 (1910), p. 199.) , Burnside (W. Burnside, Theory of Groups of Finite Order, 2nd ed., 1911, Note A.)
+#! <ListBullet/>$k(G) \leq 5$, Miller , Burnside (W. Burnside, Theory of Groups of Finite Order, 2nd ed., 1911, Note A.)
 #! <ListBullet/>$k(G) = 6,7$ J. Poland (FINITE GROUPS WITH A GIVEN NUMBER
 OF CONJUGATE CLASSES)
 #! <ListBullet/>$k(G) = 8$ Kosvintsev ( Over the theory of groups with properties given over the centralizers of involutions)
@@ -19,6 +19,8 @@ OF CONJUGATE CLASSES)
 #! <ListBullet/>$k(G) = 10,11$ Vera Lopez, Vera Lopez
 #! <ListBullet/>$k(G) = 12$ Vera Lopez, Vera Lopez
 #! <ListBullet/>$k(G) = 13, 14$ Vera Lopez, Sangroniz
+#! <P/>
+#! This package provides access to this classification.
 
 #! The methods in this package are based on algorithms and theorems from <Cite Key='fels00-1' />, <Cite Key='eick04-1' />, <Cite Key='roma16-1' />, <Cite Key='dt20-1' />, <Cite Key='tert21-2' /> and <Cite Key='tert21-1' />.
 
