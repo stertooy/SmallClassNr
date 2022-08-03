@@ -75,3 +75,42 @@ SmallClassNrGroupsAvailable( 15 );
 #! @Arguments k, arg
 DeclareGlobalFunction( "AllSmallClassNrGroups" );
 #! @EndGroup
+
+#! @BeginExample
+AllSmallClassNrGroups( [3..4] );
+#! [ <pc group of size 3 with 1 generator>, <pc group of size 6 with 2 generators>,
+#!   <pc group of size 4 with 2 generators>, <pc group of size 4 with 2 generators>,
+#!   <pc group of size 10 with 2 generators>, <pc group of size 12 with 3 generators> ]
+AllSmallClassNrGroups( 6, IsSolvable, true, IsNilpotent, false );
+#! [ <pc group of size 12 with 3 generators>, <pc group of size 12 with 3 generators>,
+#!   <pc group of size 18 with 3 generators>, <pc group of size 18 with 3 generators>,
+#!   <pc group of size 36 with 4 generators>, <pc group of size 72 with 5 generators> ]
+#! @EndExample
+
+#! @BeginGroup OneSmallClassNrGroupGroup
+#! @Description
+#! Returns one group with class number <A>k</A> (or in range <A>L</A>) and certain properties as specified by <A>arg</A>.
+#! @Arguments k, arg
+DeclareGlobalFunction( "OneSmallClassNrGroup" );
+#! @EndGroup
+
+#! @BeginExample
+H := OneSmallClassNrGroup( 6, IsAbelian );
+#! <pc group of size 6 with 2 generators>
+IsCyclic( H );
+#! true
+OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );
+#! <pc group of size 28 with 3 generators>
+#! @EndExample
+
+#! @BeginGroup NrSmallClassNrGroupsGroup
+#! @Description
+#! Returns the number of groups with class number <A>k</A>.
+#! @Arguments k
+DeclareGlobalFunction( "NrSmallClassNrGroups" );
+#! @EndGroup
+
+#! @BeginExample
+NrSmallClassNrGroups( 14 );
+#! 92
+#! @EndExample
