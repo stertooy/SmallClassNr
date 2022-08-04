@@ -1,5 +1,5 @@
-[![Build Status](https://github.com/sTertooy/SmallClassNr/workflows/CI/badge.svg?branch=main)](https://github.com/sTertooy/SmallClassNr/actions?query=workflow%3ACI+branch%3Amain)
-[![Code Coverage](https://codecov.io/gh/sTertooy/SmallClassNr/branch/main/graph/badge.svg)](https://codecov.io/gh/sTertooy/SmallClassNr)
+[![Build Status](https://github.com/stertooy/SmallClassNr/workflows/CI/badge.svg?branch=main)](https://github.com/stertooy/SmallClassNr/actions?query=workflow%3ACI+branch%3Amain)
+[![Code Coverage](https://codecov.io/gh/stertooy/SmallClassNr/branch/main/graph/badge.svg)](https://codecov.io/gh/stertooy/SmallClassNr)
 
 The GAP 4 package SmallClassNr
 ====================================
@@ -34,8 +34,8 @@ the SmallClassNr package using the following command:
 	─────────────────────────────────────────────────────────────────────────────
 	Loading  SmallClassNr 1.0.0 (Library of groups with small class number)
 	by Sam Tertooy (https://stertooy.github.io/).
-	Homepage: https://sTertooy.github.io/SmallClassNr/
-	Report issues at https://github.com/sTertooy/SmallClassNr/issues
+	Homepage: https://stertooy.github.io/SmallClassNr/
+	Report issues at https://github.com/stertooy/SmallClassNr/issues
 	─────────────────────────────────────────────────────────────────────────────
 	true
 
@@ -49,7 +49,7 @@ Support
 -------
 
 Please report any problems you may encounter using SmallClassNr at
-<https://github.com/sTertooy/SmallClassNr>
+<https://github.com/stertooy/SmallClassNr>
 
 
 
