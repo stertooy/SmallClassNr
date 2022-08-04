@@ -70,7 +70,7 @@ SmallClassNrGroupsAvailable( 15 );
 
 #! @BeginGroup AllSmallClassNrGroupsGroup
 #! @Description
-#! Returns all groups with certain properties as specified by <A>arg</A>. The first argument must be a number <A>k</A> or a range <A>L</A>. If only this argument is given, then this function returns all groups with the specified class number(s).
+#! Returns all groups with certain properties as specified by <A>arg</A>. The first argument must be a number (or range of numbers) <A>k</A>. If only this argument is given, then this function returns all groups with the specified class number(s).
 #! One can also give additional arguments which must come in pairs: a function and a value (or list of possible values). This function returns those groups with the specified class number(s) having those properties specified by the remaining functions and their values.
 #! @Arguments k, arg
 DeclareGlobalFunction( "AllSmallClassNrGroups" );
@@ -89,7 +89,7 @@ AllSmallClassNrGroups( 6, IsSolvable, true, IsNilpotent, false );
 
 #! @BeginGroup OneSmallClassNrGroupGroup
 #! @Description
-#! Returns one group with class number <A>k</A> (or in range <A>L</A>) and certain properties as specified by <A>arg</A>.
+#! Returns one group with class number (in the range) <A>k</A> and certain properties as specified by <A>arg</A>.
 #! @Arguments k, arg
 DeclareGlobalFunction( "OneSmallClassNrGroup" );
 #! @EndGroup
