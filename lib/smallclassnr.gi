@@ -1,5 +1,68 @@
 ###############################################################################
 ##
+## SelectSmallClassNrGroups@( L, onlyOne, arg... )
+##
+SelectSmallClassNrGroups@ := function( L, onlyOne, arg... )
+    local kGs, fnc, vls, grp, kG, i, G;
+    
+    kGs := [];
+    fnc := [];
+    vls := [];
+    grp := [];
+    
+    if IsList( L ) then
+        Append( kGs, L );
+    else
+        Add( kGs, L );
+    fi;
+    for kG in kGs do
+        if not SmallClassNrGroupsAvailable( kG ) then
+            Error(
+                "the library of groups of class number ",
+                kG, " is not available"
+            );
+        fi;
+    od;
+    
+    for i in [ 1..Length( arg ) ] do
+        if IsFunction( arg[i] ) then
+            if Length( fnc ) > Length( vls ) then
+                Add( vls, [ true ] );
+            fi;
+            Add( fnc, arg[i] );
+        elif Length( fnc ) > Length( vls ) and IsList( arg[i] ) then
+            Add( vls, arg[i] );
+        elif Length( fnc ) > Length( vls ) then
+            Add( vls, [ arg[i] ] );
+        fi;
+    od;
+    if Length( fnc ) > Length( vls ) then
+        Add( vls, [ true ] );
+    fi;
+    
+    for kG in kGs do
+        for i in [ 1..NrSmallClassNrGroups( kG ) ] do
+            G := SmallClassNrGroup( kG, i );
+            if ForAll(
+                [ 1..Length( fnc ) ],
+                j -> fnc[j]( G ) in vls[j]
+            ) then
+                if onlyOne then
+                    return G;
+                fi;
+                Add( grp, G );
+            fi;
+        od;
+    od;
+    if onlyOne then
+        return fail;
+    fi;
+    return grp;
+end;
+
+
+###############################################################################
+##
 ## SmallClassNrGroupsAvailable( k )
 ##
 InstallGlobalFunction(
@@ -65,72 +128,6 @@ InstallGlobalFunction(
 
 ###############################################################################
 ##
-## SelectSmallClassNrGroups( L, onlyOne, arg... )
-##
-InstallGlobalFunction(
-    SelectSmallClassNrGroups,
-    function( L, onlyOne, arg... )
-        local kGs, fnc, vls, grp, kG, i, G;
-        
-        kGs := [];
-        fnc := [];
-        vls := [];
-        grp := [];
-        
-        if IsList( L ) then
-            Append( kGs, L );
-        else
-            Add( kGs, L );
-        fi;
-        for kG in kGs do
-            if not SmallClassNrGroupsAvailable( kG ) then
-                Error(
-                    "the library of groups of class number ",
-                    kG, " is not available"
-                );
-            fi;
-        od;
-        
-        for i in [ 1..Length( arg ) ] do
-            if IsFunction( arg[i] ) then
-                if Length( fnc ) > Length( vls ) then
-                    Add( vls, [ true ] );
-                fi;
-                Add( fnc, arg[i] );
-            elif Length( fnc ) > Length( vls ) and IsList( arg[i] ) then
-                Add( vls, arg[i] );
-            elif Length( fnc ) > Length( vls ) then
-                Add( vls, [ arg[i] ] );
-            fi;
-        od;
-        if Length( fnc ) > Length( vls ) then
-            Add( vls, [ true ] );
-        fi;
-        
-        for kG in kGs do
-            for i in [ 1..NrSmallClassNrGroups( kG ) ] do
-                G := SmallClassNrGroup( kG, i );
-                if ForAll(
-                    [ 1..Length( fnc ) ],
-                    j -> fnc[j]( G ) in vls[j]
-                ) then
-                    if onlyOne then
-                        return G;
-                    fi;
-                    Add( grp, G );
-                fi;
-            od;
-        od;
-        if onlyOne then
-            return fail;
-        fi;
-        return grp;
-    end
-);
-
-
-###############################################################################
-##
 ## AllSmallClassNrGroups( L, arg1... )
 ##
 InstallGlobalFunction(
@@ -139,7 +136,7 @@ InstallGlobalFunction(
         local arg2;
         arg2 := [ L, false ];
         Append( arg2, arg1 );
-        return CallFuncList( SelectSmallClassNrGroups, arg2 );
+        return CallFuncList( SelectSmallClassNrGroups@, arg2 );
     end
 );
 
@@ -154,6 +151,6 @@ InstallGlobalFunction(
         local arg2;
         arg2 := [ L, true ];
         Append( arg2, arg1 );
-        return CallFuncList( SelectSmallClassNrGroups, arg2 );
+        return CallFuncList( SelectSmallClassNrGroups@, arg2 );
     end
 );

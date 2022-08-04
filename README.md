@@ -11,15 +11,15 @@ by Sam Tertooy <sam.tertooy@kuleuven.be>
 About
 ------------
 
-The SmallClassNr package provides access to all groups with small class number.
-Currently, the package contains the groups of class number at most 14. The
-groups of class number at most 12 were classified by A. Vera López and J. Vera
-López, while the groups of class number 13 and 14 were classified by A. Vera
-López and J. Sangroniz.
+The <B>SmallClassNr</B> package provides access to groups with small class number.
+Currently, the package contains the groups of class number at most 14.
 
 This package requires GAP version 4.9 or later, with the following packages
 (and their dependencies) installed:
 - GAPDoc ( version >= 1.6.1 )
+
+The following package is optional, but is recommended to compile the documentation:
+- AutoDoc ( version >= 2018.02.14 )
 
 
 
