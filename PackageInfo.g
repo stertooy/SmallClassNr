@@ -2,8 +2,8 @@ SetPackageInfo( rec(
 
 PackageName := "SmallClassNr",
 Subtitle := "Library of groups with small class number",
-Version := "1.0.0",
-Date := "04/08/2022",
+Version := "1.1.0",
+Date := "01/09/2022",
 License := "GPL-2.0-or-later",
 
 Persons := [
