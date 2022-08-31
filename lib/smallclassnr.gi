@@ -111,7 +111,7 @@ end;
 ## IsDoneIterator@( itr )
 ##
 IsDoneIterator@ := function( itr )
-    local nxt, G;
+    local nxt;
     if not IsBool( itr!.nxt ) then
         return IsBool( itr!.nxt[2] );
     fi;
