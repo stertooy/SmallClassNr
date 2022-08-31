@@ -100,9 +100,6 @@ NextIterator@ := function( itr )
         nxt := NextSmallClassNrGroup@( itr );
         itr!.pos := nxt[1];
         G := nxt[2];
-        if IsBool( G ) then
-            itr!.fin := true;
-        fi;
     fi;
     itr!.nxt := fail;
     return G;
@@ -115,14 +112,10 @@ end;
 ##
 IsDoneIterator@ := function( itr )
     local nxt, G;
-    if itr!.fin then
-        return true;
-    fi;
     nxt := NextSmallClassNrGroup@( itr );
     itr!.pos := nxt[1];
     G := nxt[2];
     if IsBool( G ) then
-        itr!.fin := true;
         return true;
     fi;
     itr!.nxt := G;
@@ -140,8 +133,7 @@ ShallowCopy@ := function( itr )
         fnc := itr!.fnc,
         vls := itr!.vls,
         pos := itr!.pos,
-        nxt := itr!.nxt,
-        fin := itr!.fin
+        nxt := itr!.nxt
     );
 end;
 
@@ -227,7 +219,6 @@ InstallGlobalFunction(
             vls := kfv[3],
             pos := [1,1],
             nxt := fail,
-            fin := false,
             IsDoneIterator := IsDoneIterator@,
             NextIterator := NextIterator@,
             ShallowCopy := ShallowCopy@
