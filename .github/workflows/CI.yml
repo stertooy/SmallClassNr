@@ -16,6 +16,7 @@ jobs:
         include:
           - gap-branch: "master"
             coverage: true
+          - gap-branch: "4.12"
           - gap-branch: "4.11"
           - gap-branch: "4.10"
           - gap-branch: "4.9"
@@ -48,9 +49,7 @@ jobs:
         uses: codecov/codecov-action@v3
         if: ${{ matrix.coverage }}
         with:
-          file: ./gap-coverage.json
           fail_ci_if_error: true
-          root_dir: ${GITHUB_WORKSPACE}
 
   manual:
     name: "Build manual"
