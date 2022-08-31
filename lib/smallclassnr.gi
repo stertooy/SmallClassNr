@@ -1,63 +1,148 @@
 ###############################################################################
 ##
-## SelectSmallClassNrGroups@( L, onlyOne, arg... )
+## ConditionList@( arg... )
 ##
-SelectSmallClassNrGroups@ := function( L, onlyOne, arg... )
-    local kGs, fnc, vls, grp, kG, i, G;
-    
-    kGs := [];
+ConditionList@ := function( arg... )
+    local fnc, vls, i;
     fnc := [];
     vls := [];
-    grp := [];
+    i := 1;
+    while i <= Length( arg ) do
+
+        # Add function
+        if IsFunction( arg[i] ) then
+            Add( fnc, arg[i] );
+            i := i+1;
+        else
+            Add( fnc, NrConjugacyClasses );
+        fi;
+
+        # Add matching value
+        if not IsBound( arg[i] ) or IsFunction( arg[i] ) then
+            Add( vls, [ true ] );
+        elif IsList( arg[i] ) then
+            Add( vls, arg[i] );
+            i := i+1;
+        else
+            Add( vls, [ arg[i] ] );
+            i := i+1;
+        fi;
+
+    od;
     
-    if IsList( L ) then
-        Append( kGs, L );
-    else
-        Add( kGs, L );
-    fi;
-    for kG in kGs do
+    return [ fnc, vls ];
+end;
+
+
+###############################################################################
+##
+## ExtractClassNumbers@( arg... )
+##
+ExtractClassNumbers@ := function( fnc, vls )
+    local pos, kGs;
+    pos := Position( fnc, NrConjugacyClasses );
+    kGs := PositiveIntegers;
+    while pos <> fail do
+        Remove( fnc, pos );
+        kGs := Intersection( kGs, Remove( vls, pos ) );
+        pos := Position( fnc, NrConjugacyClasses );
+    od;
+    return [ kGs, fnc, vls ];
+end;
+
+
+###############################################################################
+##
+## NextSmallClassNrGroup@( itr )
+##
+NextSmallClassNrGroup@ := function( itr )
+    local kGs, fnc, vls, pos, i, j, kG, G;
+    kGs := itr!.kGs;
+    fnc := itr!.fnc;
+    vls := itr!.vls;
+    pos := itr!.pos;
+    i := pos[1];
+    j := pos[2];
+    while i <= Length( kGs ) do
+        kG := kGs[i];
         if not SmallClassNrGroupsAvailable( kG ) then
             Error(
                 "the library of groups of class number ",
                 kG, " is not available"
             );
         fi;
-    od;
-    
-    for i in [ 1..Length( arg ) ] do
-        if IsFunction( arg[i] ) then
-            if Length( fnc ) > Length( vls ) then
-                Add( vls, [ true ] );
-            fi;
-            Add( fnc, arg[i] );
-        elif Length( fnc ) > Length( vls ) and IsList( arg[i] ) then
-            Add( vls, arg[i] );
-        elif Length( fnc ) > Length( vls ) then
-            Add( vls, [ arg[i] ] );
-        fi;
-    od;
-    if Length( fnc ) > Length( vls ) then
-        Add( vls, [ true ] );
-    fi;
-    
-    for kG in kGs do
-        for i in [ 1..NrSmallClassNrGroups( kG ) ] do
-            G := SmallClassNrGroup( kG, i );
+        while j <= NrSmallClassNrGroups( kG ) do
+            G := SmallClassNrGroup( kG, j );
             if ForAll(
                 [ 1..Length( fnc ) ],
-                j -> fnc[j]( G ) in vls[j]
+                k -> fnc[k]( G ) in vls[k]
             ) then
-                if onlyOne then
-                    return G;
-                fi;
-                Add( grp, G );
+                return [ [ i, j+1 ], G ];
             fi;
+            j := j + 1;
         od;
+        i := i+1;
+        j := 1;
     od;
-    if onlyOne then
-        return fail;
+    return [ [ i, j ], fail ];
+end;
+
+
+###############################################################################
+##
+## NextIterator@( itr )
+##
+NextIterator@ := function( itr )
+    local G, nxt;
+    if not IsBool( itr!.nxt ) then
+        G := itr!.nxt;
+    else
+        nxt := NextSmallClassNrGroup@( itr );
+        itr!.pos := nxt[1];
+        G := nxt[2];
+        if IsBool( G ) then
+            itr!.fin := true;
+        fi;
     fi;
-    return grp;
+    itr!.nxt := fail;
+    return G;
+end;
+
+
+###############################################################################
+##
+## IsDoneIterator@( itr )
+##
+IsDoneIterator@ := function( itr )
+    local nxt, G;
+    if itr!.fin then
+        return true;
+    fi;
+    nxt := NextSmallClassNrGroup@( itr );
+    itr!.pos := nxt[1];
+    G := nxt[2];
+    if IsBool( G ) then
+        itr!.fin := true;
+        return true;
+    fi;
+    itr!.nxt := G;
+    return false;
+end;
+
+
+###############################################################################
+##
+## ShallowCopy@( itr )
+##
+ShallowCopy@ := function( itr )
+    return rec(
+        kGs := itr!.kGs,
+        fnc := itr!.fnc,
+        vls := itr!.vls,
+        pos := itr!.pos,
+        nxt := itr!.nxt,
+        fin := itr!.fin
+    );
 end;
 
 
@@ -128,29 +213,49 @@ InstallGlobalFunction(
 
 ###############################################################################
 ##
-## AllSmallClassNrGroups( L, arg1... )
+## IteratorSmallClassNrGroups( arg... )
 ##
 InstallGlobalFunction(
-    AllSmallClassNrGroups,
-    function( L, arg1... )
-        local arg2;
-        arg2 := [ L, false ];
-        Append( arg2, arg1 );
-        return CallFuncList( SelectSmallClassNrGroups@, arg2 );
+    IteratorSmallClassNrGroups,
+    function( arg... )
+        local con, kfv, kGs, fnc, vls, itr;
+        con := CallFuncList( ConditionList@, arg );
+        kfv := CallFuncList( ExtractClassNumbers@, con );
+        itr := rec(
+            kGs := kfv[1],
+            fnc := kfv[2],
+            vls := kfv[3],
+            pos := [1,1],
+            nxt := fail,
+            fin := false,
+            IsDoneIterator := IsDoneIterator@,
+            NextIterator := NextIterator@,
+            ShallowCopy := ShallowCopy@
+        );
+        return IteratorByFunctions( itr );
     end
 );
 
 
 ###############################################################################
 ##
-## AllSmallClassNrGroups( L, arg1... )
+## AllSmallClassNrGroups( arg... )
+##
+InstallGlobalFunction(
+    AllSmallClassNrGroups,
+    function( arg... )
+        return List( CallFuncList( IteratorSmallClassNrGroups, arg ) );
+    end
+);
+
+
+###############################################################################
+##
+## OneSmallClassNrGroup( arg... )
 ##
 InstallGlobalFunction(
     OneSmallClassNrGroup,
-    function( L, arg1... )
-        local arg2;
-        arg2 := [ L, true ];
-        Append( arg2, arg1 );
-        return CallFuncList( SelectSmallClassNrGroups@, arg2 );
+    function( arg... )
+        return NextIterator( CallFuncList( IteratorSmallClassNrGroups, arg ) );
     end
 );

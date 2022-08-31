@@ -5,6 +5,6 @@
 DeclareGlobalFunction( "SmallClassNrGroupsAvailable" );
 DeclareGlobalFunction( "NrSmallClassNrGroups" );
 DeclareGlobalFunction( "SmallClassNrGroup" );
-DeclareGlobalFunction( "SelectSmallClassNrGroups" );
+DeclareGlobalFunction( "IteratorSmallClassNrGroups" );
 DeclareGlobalFunction( "AllSmallClassNrGroups" );
 DeclareGlobalFunction( "OneSmallClassNrGroup" );
