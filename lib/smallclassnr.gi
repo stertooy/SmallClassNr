@@ -93,15 +93,15 @@ end;
 ## NextIterator@( itr )
 ##
 NextIterator@ := function( itr )
-    local G, nxt;
-    if not IsBool( itr!.nxt ) then
-        G := itr!.nxt;
-    else
-        nxt := NextSmallClassNrGroup@( itr );
-        itr!.pos := nxt[1];
-        G := nxt[2];
+    local G;
+    if IsBool( itr!.nxt ) then
+        itr!.nxt := NextSmallClassNrGroup@( itr );
     fi;
-    itr!.nxt := fail;
+    itr!.pos := itr!.nxt[1];
+    G := itr!.nxt[2];
+    if not IsBool( G ) then
+        itr!.nxt := fail;
+    fi;
     return G;
 end;
 
@@ -112,13 +112,14 @@ end;
 ##
 IsDoneIterator@ := function( itr )
     local nxt, G;
+    if not IsBool( itr!.nxt ) then
+        return IsBool( itr!.nxt[2] );
+    fi;
     nxt := NextSmallClassNrGroup@( itr );
-    itr!.pos := nxt[1];
-    G := nxt[2];
-    if IsBool( G ) then
+    itr!.nxt := nxt;
+    if IsBool( nxt[2] ) then
         return true;
     fi;
-    itr!.nxt := G;
     return false;
 end;
 
