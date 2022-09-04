@@ -70,9 +70,8 @@ SmallClassNrGroupsAvailable( 15 );
 
 #! @BeginGroup AllSmallClassNrGroupsGroup
 #! @Description
-#! Returns all groups with certain properties as specified by <A>arg</A>. The first argument must be a number (or range of numbers) <A>k</A>. If only this argument is given, then this function returns all groups with the specified class number(s).
-#! One can also give additional arguments which must come in pairs: a function and a value (or list of possible values). This function returns those groups with the specified class number(s) having those properties specified by the remaining functions and their values.
-#! @Arguments k, arg
+#! Returns all groups with certain properties as specified by <A>arg</A>. The arguments must come in pairs consisting of a function and a value (or list of possible values). At least one of the functions must be <K>NrConjugacyClasses</K>. Missing functions will be interpreted as <K>NrConjugacyClasses</K>, missing values as <K>true</K>.
+#! @Arguments arg
 DeclareGlobalFunction( "AllSmallClassNrGroups" );
 #! @EndGroup
 
@@ -81,7 +80,7 @@ AllSmallClassNrGroups( [3..4] );
 #! [ <pc group of size 3 with 1 generator>, <pc group of size 6 with 2 generators>,
 #!   <pc group of size 4 with 2 generators>, <pc group of size 4 with 2 generators>,
 #!   <pc group of size 10 with 2 generators>, <pc group of size 12 with 3 generators> ]
-AllSmallClassNrGroups( 6, IsSolvable, true, IsNilpotent, false );
+AllSmallClassNrGroups( IsSolvable, true, IsNilpotent, false, NrConjugacyClasses, 6 );
 #! [ <pc group of size 12 with 3 generators>, <pc group of size 12 with 3 generators>,
 #!   <pc group of size 18 with 3 generators>, <pc group of size 18 with 3 generators>,
 #!   <pc group of size 36 with 4 generators>, <pc group of size 72 with 5 generators> ]
@@ -89,9 +88,25 @@ AllSmallClassNrGroups( 6, IsSolvable, true, IsNilpotent, false );
 
 #! @BeginGroup OneSmallClassNrGroupGroup
 #! @Description
-#! Returns one group with class number (in the range) <A>k</A> and certain properties as specified by <A>arg</A>.
-#! @Arguments k, arg
+#! Returns one group with certain properties as specified by <A>arg</A>. The arguments must come in pairs consisting of a function and a value (or list of possible values). At least one of the functions must be <K>NrConjugacyClasses</K>. Missing functions will be interpreted as <K>NrConjugacyClasses</K>, missing values as <K>true</K>.
+#! @Arguments arg
 DeclareGlobalFunction( "OneSmallClassNrGroup" );
+#! @EndGroup
+
+#! @BeginExample
+H := OneSmallClassNrGroup( 6, IsAbelian );
+#! <pc group of size 6 with 2 generators>
+IsCyclic( H );
+#! true
+OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );
+#! <pc group of size 28 with 3 generators>
+#! @EndExample
+
+#! @BeginGroup IteratorSmallClassNrGroupsGroup
+#! @Description
+#! Returns an iterator that iterates over the groups with properties as specified by <A>arg</A>. The arguments must come in pairs consisting of a function and a value (or list of possible values). At least one of the functions must be <K>NrConjugacyClasses</K>. Missing functions will be interpreted as <K>NrConjugacyClasses</K>, missing values as <K>true</K>.
+#! @Arguments arg
+DeclareGlobalFunction( "IteratorSmallClassNrGroups" );
 #! @EndGroup
 
 #! @BeginExample

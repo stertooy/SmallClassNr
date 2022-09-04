@@ -36,7 +36,7 @@ end;
 
 ###############################################################################
 ##
-## ExtractClassNumbers@( arg... )
+## ExtractClassNumbers@( fnc, vls )
 ##
 ExtractClassNumbers@ := function( fnc, vls )
     local pos, kGs;
