@@ -8,8 +8,8 @@
 #! @ChapterLabel preface
 #! @ChapterTitle Preface
 
-#! The **class number** $k(G)$ of a group $G$ is the number of conjugacy classes of $G$. In 1903, Landau proved in <Cite Key='land03-a' /> that for every $n \in \mathbb{N}$, there are only finitely many groups with exactly $n$ conjugacy classes.
-#! The <B>SmallClassNr</B> package provides access to the groups with class number at most $14$.
+#! The **class number** $k(G)$ of a group $G$ is the number of conjugacy classes of $G$. In 1903, Landau proved in <Cite Key='land03-a' /> that for every $n \in \mathbb{N}$, there are only finitely many finite groups with exactly $n$ conjugacy classes.
+#! The <B>SmallClassNr</B> package provides access to the finite groups with class number at most $14$.
 #! <P/>
 #! These groups were classified in the following papers:
 #! <List>
@@ -42,7 +42,7 @@
 
 #! @BeginGroup SmallClassNrGroupGroup
 #! @Description
-#! Returns the <A>i</A>-th group of of class number <A>k</A> in the library. If the group is solvable, it is given as a PcGroup, otherwise it will be given as a permutation group.
+#! Returns the <A>i</A>-th finite group of class number <A>k</A> in the library. If the group is solvable, it is given as a PcGroup, otherwise it will be given as a permutation group.
 #! @Arguments k, i
 DeclareGlobalFunction( "SmallClassNrGroup" );
 #! @EndGroup
@@ -56,7 +56,7 @@ IsDihedralGroup( G );
 
 #! @BeginGroup SmallClassNrGroupsAvailableGroup
 #! @Description
-#! Returns <K>true</K> if the groups of class number <A>k</A> are available in the library, and <K>false</K> otherwise.
+#! Returns <K>true</K> if the finite groups of class number <A>k</A> are available in the library, and <K>false</K> otherwise.
 #! @Arguments k
 DeclareGlobalFunction( "SmallClassNrGroupsAvailable" );
 #! @EndGroup
@@ -70,7 +70,7 @@ SmallClassNrGroupsAvailable( 15 );
 
 #! @BeginGroup AllSmallClassNrGroupsGroup
 #! @Description
-#! Returns all groups with certain properties as specified by <A>arg</A>. The arguments must come in pairs consisting of a function and a value (or list of possible values). At least one of the functions must be <K>NrConjugacyClasses</K>. Missing functions will be interpreted as <K>NrConjugacyClasses</K>, missing values as <K>true</K>.
+#! Returns all finite groups with certain properties as specified by <A>arg</A>. The arguments must come in pairs consisting of a function and a value (or list of possible values). At least one of the functions must be <K>NrConjugacyClasses</K>. Missing functions will be interpreted as <K>NrConjugacyClasses</K>, missing values as <K>true</K>.
 #! @Arguments arg
 DeclareGlobalFunction( "AllSmallClassNrGroups" );
 #! @EndGroup
@@ -88,7 +88,7 @@ AllSmallClassNrGroups( IsSolvable, true, IsNilpotent, false, NrConjugacyClasses,
 
 #! @BeginGroup OneSmallClassNrGroupGroup
 #! @Description
-#! Returns one group with certain properties as specified by <A>arg</A>. The arguments must come in pairs consisting of a function and a value (or list of possible values). At least one of the functions must be <K>NrConjugacyClasses</K>. Missing functions will be interpreted as <K>NrConjugacyClasses</K>, missing values as <K>true</K>.
+#! Returns one finite group with certain properties as specified by <A>arg</A>. The arguments must come in pairs consisting of a function and a value (or list of possible values). At least one of the functions must be <K>NrConjugacyClasses</K>. Missing functions will be interpreted as <K>NrConjugacyClasses</K>, missing values as <K>true</K>.
 #! @Arguments arg
 DeclareGlobalFunction( "OneSmallClassNrGroup" );
 #! @EndGroup
@@ -104,7 +104,7 @@ OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );
 
 #! @BeginGroup IteratorSmallClassNrGroupsGroup
 #! @Description
-#! Returns an iterator that iterates over the groups with properties as specified by <A>arg</A>. The arguments must come in pairs consisting of a function and a value (or list of possible values). At least one of the functions must be <K>NrConjugacyClasses</K>. Missing functions will be interpreted as <K>NrConjugacyClasses</K>, missing values as <K>true</K>.
+#! Returns an iterator that iterates over the finite groups with properties as specified by <A>arg</A>. The arguments must come in pairs consisting of a function and a value (or list of possible values). At least one of the functions must be <K>NrConjugacyClasses</K>. Missing functions will be interpreted as <K>NrConjugacyClasses</K>, missing values as <K>true</K>.
 #! @Arguments arg
 DeclareGlobalFunction( "IteratorSmallClassNrGroups" );
 #! @EndGroup
@@ -120,7 +120,7 @@ OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );
 
 #! @BeginGroup NrSmallClassNrGroupsGroup
 #! @Description
-#! Returns the number of groups with class number <A>k</A>.
+#! Returns the number of finite groups with class number <A>k</A>.
 #! @Arguments k
 DeclareGlobalFunction( "NrSmallClassNrGroups" );
 #! @EndGroup
@@ -129,3 +129,4 @@ DeclareGlobalFunction( "NrSmallClassNrGroups" );
 NrSmallClassNrGroups( 14 );
 #! 92
 #! @EndExample
+

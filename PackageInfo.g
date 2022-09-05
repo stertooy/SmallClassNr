@@ -3,7 +3,7 @@ SetPackageInfo( rec(
 PackageName := "SmallClassNr",
 Subtitle := "Library of groups with small class number",
 Version := "1.1.0",
-Date := "01/09/2022",
+Date := "05/09/2022",
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -45,7 +45,7 @@ ArchiveFormats := ".tar.gz",
 
 Status := "dev",
 
-AbstractHTML   :=  "Library of groups with small class number.",
+AbstractHTML   :=  "Library of finite groups with small class number.",
 
 PackageDoc := rec(
     BookName  := ~.PackageName,
@@ -80,9 +80,9 @@ Keywords := [
 AutoDoc := rec(
     TitlePage := rec(
         Abstract := """
-            The <B>SmallClassNr</B> package provides access to groups with
-            small class number. Currently, the package contains the groups of
-            class number at most 14.
+            The <B>SmallClassNr</B> package provides access to finite groups
+            with small class number. Currently, the package contains the finite
+            groups of class number at most 14.
         """,
         Acknowledgements := """
             This documentation was created using the <B>GAPDoc</B> and
