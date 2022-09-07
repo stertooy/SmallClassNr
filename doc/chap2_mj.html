@@ -54,6 +54,8 @@
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallClassNrGroup( 6, 4 );</span>
 &lt;pc group of size 18 with 3 generators&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NrConjugacyClasses( G );</span>
+6
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsDihedralGroup( G );</span>
 true
 </pre></div>
@@ -82,14 +84,25 @@ false
 
 
 <div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AllSmallClassNrGroups( [3..4] );</span>
-[ &lt;pc group of size 3 with 1 generator&gt;, &lt;pc group of size 6 with 2 generators&gt;,
-  &lt;pc group of size 4 with 2 generators&gt;, &lt;pc group of size 4 with 2 generators&gt;,
-  &lt;pc group of size 10 with 2 generators&gt;, &lt;pc group of size 12 with 3 generators&gt; ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AllSmallClassNrGroups( IsSolvable, true, IsNilpotent, false, NrConjugacyClasses, 6 );</span>
-[ &lt;pc group of size 12 with 3 generators&gt;, &lt;pc group of size 12 with 3 generators&gt;,
-  &lt;pc group of size 18 with 3 generators&gt;, &lt;pc group of size 18 with 3 generators&gt;,
-  &lt;pc group of size 36 with 4 generators&gt;, &lt;pc group of size 72 with 5 generators&gt; ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L1 := AllSmallClassNrGroups( [3..5], IsNilpotent );</span>
+[ &lt;pc group of size 3 with 1 generator&gt;,
+  &lt;pc group of size 4 with 2 generators&gt;,
+  &lt;pc group of size 4 with 2 generators&gt;,
+  &lt;pc group of size 5 with 1 generator&gt;,
+  &lt;pc group of size 8 with 3 generators&gt;,
+  &lt;pc group of size 8 with 3 generators&gt; ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List( L1, NrConjugacyClasses );</span>
+[ 3, 4, 4, 5, 5, 5 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L2 := AllSmallClassNrGroups( IsSolvable, true, NrConjugacyClasses, 6 );</span>
+[ &lt;pc group of size 6 with 2 generators&gt;,
+  &lt;pc group of size 12 with 3 generators&gt;,
+  &lt;pc group of size 12 with 3 generators&gt;,
+  &lt;pc group of size 18 with 3 generators&gt;,
+  &lt;pc group of size 18 with 3 generators&gt;,
+  &lt;pc group of size 36 with 4 generators&gt;,
+  &lt;pc group of size 72 with 5 generators&gt; ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ForAll( L2, G -&gt; IsSolvable( G ) and NrConjugacyClasses( G ) = 6 );</span>
+true
 </pre></div>
 
 <p><a id="X7AD22E3083C09796" name="X7AD22E3083C09796"></a></p>
@@ -105,8 +118,10 @@ false
 &lt;pc group of size 6 with 2 generators&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsCyclic( H );</span>
 true
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K := OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );</span>
 &lt;pc group of size 28 with 3 generators&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NrConjugacyClasses( K ) = 10 and IsSolvable( K ) and not IsNilpotent( K );</span>
+true
 </pre></div>
 
 <p><a id="X7D2BB4B379563D9A" name="X7D2BB4B379563D9A"></a></p>
@@ -118,12 +133,17 @@ true
 
 
 <div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">H := OneSmallClassNrGroup( 6, IsAbelian );</span>
-&lt;pc group of size 6 with 2 generators&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsCyclic( H );</span>
-true
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );</span>
-&lt;pc group of size 28 with 3 generators&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">iter := IteratorSmallClassNrGroups( IsSolvable, false, 11 );</span>
+&lt;iterator&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">for G in iter do Print( Size( G ), "\n" ); od;</span>
+336
+720
+720
+1344
+1344
+1512
+2448
+29120
 </pre></div>
 
 <p><a id="X84004D087859AF4F" name="X84004D087859AF4F"></a></p>

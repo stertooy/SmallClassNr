@@ -15,6 +15,8 @@
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallClassNrGroup( 6, 4 );[127X[104X
     [4X[28X<pc group of size 18 with 3 generators>[128X[104X
+    [4X[25Xgap>[125X [27XNrConjugacyClasses( G );[127X[104X
+    [4X[28X6[128X[104X
     [4X[25Xgap>[125X [27XIsDihedralGroup( G );[127X[104X
     [4X[28Xtrue[128X[104X
   [4X[32X[104X
@@ -44,14 +46,25 @@
   [9XNrConjugacyClasses[109X, missing values as [9Xtrue[109X.[133X
   
   [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27XAllSmallClassNrGroups( [3..4] );[127X[104X
-    [4X[28X[ <pc group of size 3 with 1 generator>, <pc group of size 6 with 2 generators>,[128X[104X
-    [4X[28X  <pc group of size 4 with 2 generators>, <pc group of size 4 with 2 generators>,[128X[104X
-    [4X[28X  <pc group of size 10 with 2 generators>, <pc group of size 12 with 3 generators> ][128X[104X
-    [4X[25Xgap>[125X [27XAllSmallClassNrGroups( IsSolvable, true, IsNilpotent, false, NrConjugacyClasses, 6 );[127X[104X
-    [4X[28X[ <pc group of size 12 with 3 generators>, <pc group of size 12 with 3 generators>,[128X[104X
-    [4X[28X  <pc group of size 18 with 3 generators>, <pc group of size 18 with 3 generators>,[128X[104X
-    [4X[28X  <pc group of size 36 with 4 generators>, <pc group of size 72 with 5 generators> ][128X[104X
+    [4X[25Xgap>[125X [27XL1 := AllSmallClassNrGroups( [3..5], IsNilpotent );[127X[104X
+    [4X[28X[ <pc group of size 3 with 1 generator>,[128X[104X
+    [4X[28X  <pc group of size 4 with 2 generators>,[128X[104X
+    [4X[28X  <pc group of size 4 with 2 generators>,[128X[104X
+    [4X[28X  <pc group of size 5 with 1 generator>,[128X[104X
+    [4X[28X  <pc group of size 8 with 3 generators>,[128X[104X
+    [4X[28X  <pc group of size 8 with 3 generators> ][128X[104X
+    [4X[25Xgap>[125X [27XList( L1, NrConjugacyClasses );[127X[104X
+    [4X[28X[ 3, 4, 4, 5, 5, 5 ][128X[104X
+    [4X[25Xgap>[125X [27XL2 := AllSmallClassNrGroups( IsSolvable, true, NrConjugacyClasses, 6 );[127X[104X
+    [4X[28X[ <pc group of size 6 with 2 generators>,[128X[104X
+    [4X[28X  <pc group of size 12 with 3 generators>,[128X[104X
+    [4X[28X  <pc group of size 12 with 3 generators>,[128X[104X
+    [4X[28X  <pc group of size 18 with 3 generators>,[128X[104X
+    [4X[28X  <pc group of size 18 with 3 generators>,[128X[104X
+    [4X[28X  <pc group of size 36 with 4 generators>,[128X[104X
+    [4X[28X  <pc group of size 72 with 5 generators> ][128X[104X
+    [4X[25Xgap>[125X [27XForAll( L2, G -> IsSolvable( G ) and NrConjugacyClasses( G ) = 6 );[127X[104X
+    [4X[28Xtrue[128X[104X
   [4X[32X[104X
   
   [1X2.1-4 OneSmallClassNrGroup[101X
@@ -69,8 +82,10 @@
     [4X[28X<pc group of size 6 with 2 generators>[128X[104X
     [4X[25Xgap>[125X [27XIsCyclic( H );[127X[104X
     [4X[28Xtrue[128X[104X
-    [4X[25Xgap>[125X [27XOneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );[127X[104X
+    [4X[25Xgap>[125X [27XK := OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );[127X[104X
     [4X[28X<pc group of size 28 with 3 generators>[128X[104X
+    [4X[25Xgap>[125X [27XNrConjugacyClasses( K ) = 10 and IsSolvable( K ) and not IsNilpotent( K );[127X[104X
+    [4X[28Xtrue[128X[104X
   [4X[32X[104X
   
   [1X2.1-5 IteratorSmallClassNrGroups[101X
@@ -84,12 +99,17 @@
   [9XNrConjugacyClasses[109X, missing values as [9Xtrue[109X.[133X
   
   [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27XH := OneSmallClassNrGroup( 6, IsAbelian );[127X[104X
-    [4X[28X<pc group of size 6 with 2 generators>[128X[104X
-    [4X[25Xgap>[125X [27XIsCyclic( H );[127X[104X
-    [4X[28Xtrue[128X[104X
-    [4X[25Xgap>[125X [27XOneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );[127X[104X
-    [4X[28X<pc group of size 28 with 3 generators>[128X[104X
+    [4X[25Xgap>[125X [27Xiter := IteratorSmallClassNrGroups( IsSolvable, false, 11 );[127X[104X
+    [4X[28X<iterator>[128X[104X
+    [4X[25Xgap>[125X [27Xfor G in iter do Print( Size( G ), "\n" ); od;[127X[104X
+    [4X[28X336[128X[104X
+    [4X[28X720[128X[104X
+    [4X[28X720[128X[104X
+    [4X[28X1344[128X[104X
+    [4X[28X1344[128X[104X
+    [4X[28X1512[128X[104X
+    [4X[28X2448[128X[104X
+    [4X[28X29120[128X[104X
   [4X[32X[104X
   
   [1X2.1-6 NrSmallClassNrGroups[101X
