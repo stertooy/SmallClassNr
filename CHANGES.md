@@ -1,7 +1,7 @@
 This file describes changes in the GAP package SmallClassNr.
 
 
-1.0.1 (05/09/2022)
+1.0.1 (07/09/2022)
 ------------------
 
 - Added IteratorSmallClassNrGroups
