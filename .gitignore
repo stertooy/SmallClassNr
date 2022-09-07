@@ -1,6 +1,1 @@
-/doc/*
-!/doc/manual.bib
-!/doc/manual.gd
-
-/gh-pages/
-/tmp/
+_site

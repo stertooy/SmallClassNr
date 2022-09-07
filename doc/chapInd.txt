@@ -1,0 +1,13 @@
+  
+  
+  [1XIndex[101X
+  
+  [2XAllSmallClassNrGroups[102X 2.1-3 
+  [2XIteratorSmallClassNrGroups[102X 2.1-5 
+  [2XNrSmallClassNrGroups[102X 2.1-6 
+  [2XOneSmallClassNrGroup[102X 2.1-4 
+  [2XSmallClassNrGroup[102X 2.1-1 
+  [2XSmallClassNrGroupsAvailable[102X 2.1-2 
+  
+  
+  -------------------------------------------------------

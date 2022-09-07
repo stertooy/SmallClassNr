@@ -1,0 +1,32 @@
+  
+  
+  [1XReferences[101X
+  
+  [[20XBur11[120X] [16XBurnside, W.[116X, [17XTheory of groups of finite order[117X, The University Press, Second edition (1911).
+  
+  [[20XKos74[120X]  [16XKosvintsev,  L.  F.[116X,  [17XOver the theory of groups with properties given over the centralizers of involutions[117X,
+  [18XSverdlovsk (Ural.), Summary thesis Doct[118X (1974).
+  
+  [[20XLan03[120X] [16XLandau, E.[116X, [17XÜber die Klassenzahl der binären quadratischen Formen von negativer Discriminante[117X, [18XMath Ann[118X, [19X56[119X,
+  4 (1903), 671--676.
+  
+  [[20XMil11[120X]  [16XMiller,  G.  A.[116X,  [17XGroups  involving  only a small number of sets of conjugate operators[117X, [18XArch. der Math. u.
+  Phys.[118X, [19X17[119X (1911), 199--204.
+  
+  [[20XOS76[120X]  [16XOdincov,  V.  A.  and Starostin, A. I.[116X, [17XFinite groups with 9 classes of conjugate elements[117X, [18XUral. Gos. Univ.
+  Mat. Zap[118X, [19X10[119X (1976), 114--134.
+  
+  [[20XPol68[120X] [16XPoland, J.[116X, [17XFinite Groups with a given Number of Conjugate Classes[117X, [18XCanadian J Math[118X, [19X20[119X (1968), 456--464.
+  
+  [[20XVLS07[120X]  [16XVera  López,  A.  and  Sangroniz,  J.[116X, [17XThe finite groups with thirteen and fourteen conjugacy classes[117X, [18XMath
+  Nachr[118X, [19X280[119X, 5-6 (2007), 676--694.
+  
+  [[20XVLVL85[120X]  [16XVera  López,  A.  and Vera López, J.[116X, [17XClassification of finite groups according to the number of conjugacy
+  classes[117X, [18XIsr J Math[118X, [19X51[119X, 4 (1985), 305--338.
+  
+  [[20XVLVL86[120X]  [16XVera  López,  A.  and Vera López, J.[116X, [17XClassification of finite groups according to the number of conjugacy
+  classes II[117X, [18XIsr J Math[118X, [19X56[119X, 2 (1986), 188--221.
+  
+  
+  
+  [32X
