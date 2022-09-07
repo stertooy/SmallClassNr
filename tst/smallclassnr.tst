@@ -38,4 +38,19 @@ gap> AlternatingDegree( OneSmallClassNrGroup( 14, IsSolvableGroup, false, IsAlte
 8
 
 #
+gap> itr := IteratorSmallClassNrGroups( [ 4..11 ], IsSolvableGroup, IsNilpotentGroup, false, DerivedLength, [ 3, 4 ], IsSupersolvableGroup );;
+gap> Size( NextIterator( itr ) );
+54
+gap> IsDoneIterator( itr );
+false
+gap> IsDoneIterator( itr );
+false
+gap> Size( NextIterator( itr ) );
+108
+gap> NextIterator( itr );
+fail
+gap> IsDoneIterator( itr );
+true
+
+#
 gap> STOP_TEST( "smallclassnr.tst" );

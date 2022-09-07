@@ -11,8 +11,8 @@ by Sam Tertooy <sam.tertooy@kuleuven.be>
 About
 ------------
 
-The <B>SmallClassNr</B> package provides access to groups with small class number.
-Currently, the package contains the groups of class number at most 14.
+The <B>SmallClassNr</B> package provides access to finite groups with small class
+number. Currently, the package contains the finite groups of class number at most 14.
 
 This package requires GAP version 4.9 or later, with the following packages
 (and their dependencies) installed:
@@ -32,7 +32,7 @@ the SmallClassNr package using the following command:
 
     gap> LoadPackage("SmallClassNr");
 	─────────────────────────────────────────────────────────────────────────────
-	Loading  SmallClassNr 1.0.0 (Library of groups with small class number)
+	Loading  SmallClassNr 1.1.0 (Library of groups with small class number)
 	by Sam Tertooy (https://stertooy.github.io/).
 	Homepage: https://stertooy.github.io/SmallClassNr/
 	Report issues at https://github.com/stertooy/SmallClassNr/issues
@@ -41,7 +41,7 @@ the SmallClassNr package using the following command:
 
 The manual may be compiled by running the 'makedoc.g' script, located in the
 package's main directory.  It is also available on the webpages of this
-package, at <https://stertooy.github.io/SmallClassNr/doc/chap0.html>
+package, at <https://stertooy.github.io/SmallClassNr/doc/chap0_mj.html>
 
 
 
