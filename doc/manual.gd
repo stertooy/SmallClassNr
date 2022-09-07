@@ -50,6 +50,8 @@ DeclareGlobalFunction( "SmallClassNrGroup" );
 #! @BeginExample
 G := SmallClassNrGroup( 6, 4 );
 #! <pc group of size 18 with 3 generators>
+NrConjugacyClasses( G );
+#! 6
 IsDihedralGroup( G );
 #! true
 #! @EndExample
@@ -76,14 +78,25 @@ DeclareGlobalFunction( "AllSmallClassNrGroups" );
 #! @EndGroup
 
 #! @BeginExample
-AllSmallClassNrGroups( [3..4] );
-#! [ <pc group of size 3 with 1 generator>, <pc group of size 6 with 2 generators>,
-#!   <pc group of size 4 with 2 generators>, <pc group of size 4 with 2 generators>,
-#!   <pc group of size 10 with 2 generators>, <pc group of size 12 with 3 generators> ]
-AllSmallClassNrGroups( IsSolvable, true, IsNilpotent, false, NrConjugacyClasses, 6 );
-#! [ <pc group of size 12 with 3 generators>, <pc group of size 12 with 3 generators>,
-#!   <pc group of size 18 with 3 generators>, <pc group of size 18 with 3 generators>,
-#!   <pc group of size 36 with 4 generators>, <pc group of size 72 with 5 generators> ]
+L1 := AllSmallClassNrGroups( [3..5], IsNilpotent );
+#! [ <pc group of size 3 with 1 generator>,
+#!   <pc group of size 4 with 2 generators>,
+#!   <pc group of size 4 with 2 generators>,
+#!   <pc group of size 5 with 1 generator>,
+#!   <pc group of size 8 with 3 generators>,
+#!   <pc group of size 8 with 3 generators> ]
+List( L1, NrConjugacyClasses );
+#! [ 3, 4, 4, 5, 5, 5 ]
+L2 := AllSmallClassNrGroups( IsSolvable, true, NrConjugacyClasses, 6 );
+#! [ <pc group of size 6 with 2 generators>,
+#!   <pc group of size 12 with 3 generators>,
+#!   <pc group of size 12 with 3 generators>,
+#!   <pc group of size 18 with 3 generators>,
+#!   <pc group of size 18 with 3 generators>,
+#!   <pc group of size 36 with 4 generators>,
+#!   <pc group of size 72 with 5 generators> ]
+ForAll( L2, G -> IsSolvable( G ) and NrConjugacyClasses( G ) = 6 );
+#! true
 #! @EndExample
 
 #! @BeginGroup OneSmallClassNrGroupGroup
@@ -98,8 +111,10 @@ H := OneSmallClassNrGroup( 6, IsAbelian );
 #! <pc group of size 6 with 2 generators>
 IsCyclic( H );
 #! true
-OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );
+K := OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );
 #! <pc group of size 28 with 3 generators>
+NrConjugacyClasses( K ) = 10 and IsSolvable( K ) and not IsNilpotent( K );
+#! true
 #! @EndExample
 
 #! @BeginGroup IteratorSmallClassNrGroupsGroup
@@ -110,12 +125,17 @@ DeclareGlobalFunction( "IteratorSmallClassNrGroups" );
 #! @EndGroup
 
 #! @BeginExample
-H := OneSmallClassNrGroup( 6, IsAbelian );
-#! <pc group of size 6 with 2 generators>
-IsCyclic( H );
-#! true
-OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );
-#! <pc group of size 28 with 3 generators>
+iter := IteratorSmallClassNrGroups( IsSolvable, false, 11 );
+#! <iterator>
+for G in iter do Print( Size( G ), "\n" ); od;
+#! 336
+#! 720
+#! 720
+#! 1344
+#! 1344
+#! 1512
+#! 2448
+#! 29120
 #! @EndExample
 
 #! @BeginGroup NrSmallClassNrGroupsGroup
@@ -129,4 +149,3 @@ DeclareGlobalFunction( "NrSmallClassNrGroups" );
 NrSmallClassNrGroups( 14 );
 #! 92
 #! @EndExample
-
