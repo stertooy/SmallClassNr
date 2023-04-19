@@ -1,7 +1,14 @@
 This file describes changes in the GAP package SmallClassNr.
 
+1.1.1 (19/04/2023)
+------------------
 
-1.0.1 (07/09/2022)
+- Removed GAPDoc and AutoDoc as dependencies
+- Small janitorial changes
+
+
+
+1.1.0 (07/09/2022)
 ------------------
 
 - Added IteratorSmallClassNrGroups

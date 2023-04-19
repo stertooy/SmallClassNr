@@ -1,48 +1,31 @@
-Please use one of the following samples
-to cite SmallClassNr version from this installation
+Please use one of the following samples to cite SmallClassNr version from this installation
+
 
 Text:
 
-[Ter22]  Tertooy,  S.,  SmallClassNr,  Library of groups with small class number, Version 1.1.0 (2022), GAP package,
-https://stertooy.github.io/SmallClassNr/.
+S. Tertooy, SmallClassNr, Library of groups with small class number, GAP package, Version 1.1.1, 2023, https://stertooy.github.io/SmallClassNr/.
 
-HTML:
 
-<p class='BibEntry'>
-[<span class='BibKey'>Ter22</span>]   <b class='BibAuthor'>Tertooy, S.</b>,
- <i class='BibTitle'>SmallClassNr, Library of groups with small class number,
-         Version 1.1.0</i>
- (<span class='BibYear'>2022</span>)<br />
-(<span class='BibNote'>GAP package</span>),
-<span class='BibHowpublished'><a href="https://stertooy.github.io/SmallClassNr/">https://stertooy.github.io/SmallClass\
-Nr/</a></span>.
-</p>
+BibLaTeX:
 
-BibXML:
+@Software{ SmallClassNr1.1.0,
+    author     = {Tertooy, Sam},
+    date       = {2023-04},
+    title      = {SmallClassNr},
+    subtitle   = {Library of groups with small class number},
+    version    = {1.1.1},
+    titleaddon = {GAP Package},
+    url        = {https://stertooy.github.io/SmallClassNr/},
+}
 
-<entry id="SmallClassNr1.1.0"><misc>
-  <author>
-    <name><first>Sam</first><last>Tertooy</last></name>
-  </author>
-  <title><C>SmallClassNr</C>, Library of groups with small class number,
-         <C>V</C>ersion 1.1.0</title>
-  <howpublished><URL>https://stertooy.github.io/SmallClassNr/</URL></howpublished>
-  <month>Sep</month>
-  <year>2022</year>
-  <note>GAP package</note>
-  <keywords>conjugacy; conjugacy class; class number</keywords>
-</misc></entry>
 
 BibTeX:
 
 @misc{ SmallClassNr1.1.0,
-  author =           {Tertooy, S.},
-  title =            {{SmallClassNr}, Library of groups with small class number, {V}ersion 1.1.0},
-  month =            {Sep},
-  year =             {2022},
-  note =             {GAP package},
-  howpublished =     {\href                                               {https://stertooy.github.io/SmallClassNr/}
-                      {\texttt{https://stertooy.github.io/}\discretionary {}{}{}\texttt{SmallClassNr/}}},
-  keywords =         {conjugacy; conjugacy class; class number},
-  printedkey =       {Ter22}
+  author =       {Tertooy, Sam},
+  year =         {2023},
+  month =        {Apr},
+  title =        {{SmallClassNr}, {L}ibrary of groups with small class number, {V}ersion 1.1.0},
+  note =         {GAP package},
+  howpublished = {\url{https://stertooy.github.io/SmallClassNr/}},
 }
