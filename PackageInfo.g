@@ -2,8 +2,8 @@ SetPackageInfo( rec(
 
 PackageName := "SmallClassNr",
 Subtitle := "Library of groups with small class number",
-Version := "1.1.0",
-Date := "07/09/2022",
+Version := "1.1.1",
+Date := "19/04/2022",
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -14,13 +14,13 @@ Persons := [
         LastName := "Tertooy",
         WWWHome := "https://stertooy.github.io/",
         Email := "sam.tertooy@kuleuven.be",
-        PostalAddress := Concatenation(
-            "Wiskunde\n",
-            "KU Leuven Campus Kulak Kortrijk\n",
-            "Etienne Sabbelaan 53\n",
-            "8500 Kortrijk\n",
-            "Belgium"
-        ),
+        PostalAddress := """
+            Wiskunde
+            KU Leuven Campus Kulak Kortrijk
+            Etienne Sabbelaan 53
+            8500 Kortrijk
+            Belgium
+        """,
         Place := "Kortrijk",
         Institution := "KU Leuven Campus Kulak Kortrijk",
     ),
@@ -32,9 +32,9 @@ SourceRepository := rec(
 ),
 
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
-PackageWWWHome  := "https://stertooy.github.io/SmallClassNr/",
-PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
-README_URL      := Concatenation( ~.PackageWWWHome, "README.md" ),
+PackageWWWHome  := Concatenation( "https://stertooy.github.io/", ~.PackageName ),
+PackageInfoURL  := Concatenation( ~.PackageWWWHome, "/PackageInfo.g" ),
+README_URL      := Concatenation( ~.PackageWWWHome, "/README.md" ),
 ArchiveURL      := Concatenation(
     ~.SourceRepository.URL,
     "/releases/download/v", ~.Version,
@@ -45,7 +45,7 @@ ArchiveFormats := ".tar.gz",
 
 Status := "dev",
 
-AbstractHTML   :=  "Library of finite groups with small class number.",
+AbstractHTML := "Library of finite groups with small class number.",
 
 PackageDoc := rec(
     BookName  := ~.PackageName,
@@ -58,12 +58,8 @@ PackageDoc := rec(
 
 Dependencies := rec(
     GAP := ">= 4.9",
-    NeededOtherPackages := [
-        [ "GAPDoc", "1.6.1" ]
-    ],
-    SuggestedOtherPackages := [
-        [ "AutoDoc", "2018.02.14" ]
-    ],
+    NeededOtherPackages := [ ],
+    SuggestedOtherPackages := [ ],
     ExternalConditions := [ ],
 ),
 
@@ -89,7 +85,7 @@ AutoDoc := rec(
             <B>AutoDoc</B> packages.
         """,
         Copyright := """
-            &copyright; 2022 Sam Tertooy <P/>
+            &copyright; 2022-2023 Sam Tertooy <P/>
             The <B>SmallClassNr</B> package is free software, it may be
             redistributed and/or modified under the terms and conditions of the
             <URL Text="GNU Public License Version 2">

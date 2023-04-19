@@ -6,10 +6,10 @@
                   [1X Library of groups with small class number [101X
   
   
-                                     1.1.0
+                                     1.1.1
   
   
-                                7 September 2022
+                                 19 April 2022
   
   
                                   Sam Tertooy
@@ -36,7 +36,7 @@
   
   -------------------------------------------------------
   [1XCopyright[101X
-  [33X[0;0Y© 2022 Sam Tertooy[133X
+  [33X[0;0Y© 2022-2023 Sam Tertooy[133X
   
   [33X[0;0YThe  [12XSmallClassNr[112X  package  is free software, it may be redistributed and/or
   modified  under the terms and conditions of the GNU Public License Version 2
