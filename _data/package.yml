@@ -1,7 +1,7 @@
 name: SmallClassNr
 version: "1.1.1"
 license: "GPL-2.0-or-later"
-date: 2022-04-19
+date: 2023-04-19
 description: |
     Library of groups with small class number
 
@@ -33,10 +33,10 @@ keywords: |
     conjugacy, conjugacy class, class number.
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>Ter22</span>]   <b class='BibAuthor'>Tertooy, S.</b>,
+    [<span class='BibKey'>Ter23</span>]   <b class='BibAuthor'>Tertooy, S.</b>,
      <i class='BibTitle'>SmallClassNr, Library of groups with small class number,
              Version 1.1.1</i>
-     (<span class='BibYear'>2022</span>)<br />
+     (<span class='BibYear'>2023</span>)<br />
     (<span class='BibNote'>GAP package</span>),
     <span class='BibHowpublished'><a href="https://stertooy.github.io/SmallClassNr">https://stertooy.github.io/SmallClassNr</a></span>.
     </p>
@@ -48,12 +48,12 @@ bibtex: |
       title =            {{SmallClassNr},  Library  of  groups  with small class
                           number, {V}ersion 1.1.1},
       month =            {Apr},
-      year =             {2022},
+      year =             {2023},
       note =             {GAP package},
       howpublished =     {\href        {https://stertooy.github.io/SmallClassNr}
                           {\texttt{https://stertooy.github.io/}\discretionary
                           {}{}{}\texttt{SmallClassNr}}},
       keywords =         {conjugacy; conjugacy class; class number},
-      printedkey =       {Ter22}
+      printedkey =       {Ter23}
     }
 
