@@ -1,5 +1,5 @@
-if fail = LoadPackage( "AutoDoc", ">= 2018.02.14" ) then
-    Info( InfoGAPDoc, 1, "#I AutoDoc 2018.02.14 or newer is required.\n" );
+if fail = LoadPackage( "AutoDoc", ">= 2022.07.10" ) then
+    Info( InfoGAPDoc, 1, "#I AutoDoc 2022.07.10 or newer is required.\n" );
     FORCE_QUIT_GAP( 1 );
 fi;
 
