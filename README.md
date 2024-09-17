@@ -18,7 +18,7 @@ The SmallClassNr package provides access to finite groups with small class
 number. Currently, the package contains the finite groups of class number at
 most 14.
 
-This package requires GAP version 4.9 or later.
+This package requires GAP version 4.11 or later.
 
 
 
