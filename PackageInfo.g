@@ -2,8 +2,8 @@ SetPackageInfo( rec(
 
 PackageName := "SmallClassNr",
 Subtitle := "Library of groups with small class number",
-Version := "1.1.1",
-Date := "19/04/2023",
+Version := "1.1.2",
+Date := "19/07/2024",
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -16,20 +16,21 @@ Persons := [
         Email := "sam.tertooy@kuleuven.be",
         PostalAddress := """
             Wiskunde
-            KU Leuven Campus Kulak Kortrijk
+            KU Leuven Kulak Kortrijk Campus
             Etienne Sabbelaan 53
             8500 Kortrijk
             Belgium
         """,
-        Place := "Kortrijk",
-        Institution := "KU Leuven Campus Kulak Kortrijk",
+        Place := "Kortrijk, Belgium",
+        Institution := "KU Leuven Kulak Kortrijk Campus",
     ),
 ],
 
 SourceRepository := rec(
     Type := "git",
-    URL := "https://github.com/stertooy/SmallClassNr",
+    URL := Concatenation( "https://github.com/stertooy/", ~.PackageName ),
 ),
+SupportEmail := "sam.tertooy@kuleuven.be",
 
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
 PackageWWWHome  := Concatenation( "https://stertooy.github.io/", ~.PackageName ),
@@ -57,10 +58,7 @@ PackageDoc := rec(
 ),
 
 Dependencies := rec(
-    GAP := ">= 4.9",
-    NeededOtherPackages := [ ],
-    SuggestedOtherPackages := [ ],
-    ExternalConditions := [ ],
+    GAP := ">= 4.11",
 ),
 
 AvailabilityTest := ReturnTrue,
@@ -85,7 +83,7 @@ AutoDoc := rec(
             <B>AutoDoc</B> packages.
         """,
         Copyright := """
-            &copyright; 2022-2023 Sam Tertooy <P/>
+            &copyright; 2022-2024 Sam Tertooy <P/>
             The <B>SmallClassNr</B> package is free software, it may be
             redistributed and/or modified under the terms and conditions of the
             <URL Text="GNU Public License Version 2">
