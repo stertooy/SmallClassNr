@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/stertooy/SmallClassNr/workflows/CI/badge.svg?branch=main)](https://github.com/stertooy/SmallClassNr/actions?query=workflow%3ACI+branch%3Amain)
+[![Build Status](https://github.com/sTertooy/SmallClassNr/actions/workflows/CI.yml/badge.svg)](https://github.com/stertooy/SmallClassNr/actions/workflows/CI.yml?query=branch%3Amain)
 [![Code Coverage](https://codecov.io/gh/stertooy/SmallClassNr/branch/main/graph/badge.svg)](https://codecov.io/gh/stertooy/SmallClassNr)
 [![License](https://img.shields.io/badge/license-GPLv2%2B-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Manual](https://img.shields.io/badge/docs-html-blue)](https://stertooy.github.io/SmallClassNr/doc/chap0_mj.html)
@@ -31,7 +31,7 @@ the SmallClassNr package using the following command:
 
     gap> LoadPackage("SmallClassNr");
 	─────────────────────────────────────────────────────────────────────────────
-	Loading  SmallClassNr 1.1.1 (Library of groups with small class number)
+	Loading  SmallClassNr 1.1.2 (Library of groups with small class number)
 	by Sam Tertooy (https://stertooy.github.io/).
 	Homepage: https://stertooy.github.io/SmallClassNr/
 	Report issues at https://github.com/stertooy/SmallClassNr/issues
