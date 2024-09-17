@@ -12,6 +12,8 @@ jobs:
       matrix:
         include:
           - gap-branch: "master"
+          - gap-branch: "4.13"
+          - gap-branch: "4.12"
           - gap-branch: "4.11"
           - gap-branch: "4.10"
           - gap-branch: "4.9"
@@ -22,7 +24,7 @@ jobs:
     steps:
     
       - name: "Checkout"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
           
-      - name: "Run GAP tests with suggested packages"
+      - name: "Run GAP tests with default packages"
         uses: sTertooy/gda-test-gap@v1
