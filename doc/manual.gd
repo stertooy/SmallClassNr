@@ -17,10 +17,17 @@
 #! <Item> $k(G) = 6,7$, by Poland in <Cite Key='pola68-a' /></Item>
 #! <Item> $k(G) = 8$, by Kosvintsev in <Cite Key='kosv74-a' /></Item>
 #! <Item> $k(G) = 9$, by Odincov and Starostin in <Cite Key='os76-a' /></Item>
-#! <Item> $k(G) = 10,11$, by Vera López and Vera López in <Cite Key='ll85-a' /></Item>
-#! <Item> $k(G) = 12$, by Vera López and Vera López in <Cite Key='ll86-a' /></Item>
+#! <Item> $k(G) = 10,11$, by Vera López and Vera López in <Cite Key='ll85-a' /> (1) </Item>
+#! <Item> $k(G) = 12$, by Vera López and Vera López in <Cite Key='ll86-a' /> (2) </Item>
 #! <Item> $k(G) = 13, 14$, by Vera López and Sangroniz in <Cite Key='vs07-a' /></Item>
 #! </List>
+#! <P/>
+#! <P/>
+#! (1) In <Cite Key='ll85-a' />, three distinct groups of the form $(C_5 \times C_5) \rtimes C_4$ order $100$ with class number $10$ are given.
+#! However, only two such groups exist, being the ones with <C>IdClassNr</C> equal to <C>[10,25]</C> and <C>[10,26]</C>.
+#! <P/>
+#! (2) In <Cite Key='ll86-a' />, only 48 groups with class number 12 are listed. The three missing groups are provided in the appendix of <Cite Key='vs07-a' />.
+#! These are the groups with <C>IdClassNr</C> equal to <C>[12,13]</C>, <C>[12,16]</C> and <C>[12,39]</C>.
 
 
 #####
@@ -42,8 +49,9 @@
 
 #! @BeginGroup SmallClassNrGroupGroup
 #! @Description
-#! Returns the <A>i</A>-th finite group of class number <A>k</A> in the library. If the group is solvable, it is given as a PcGroup, otherwise it will be given as a permutation group.
+#! Returns the <A>i</A>-th finite group of class number <A>k</A> in the library. Alternatively, the pair <C>[ <A>k</A>, <A>i</A>]</C> can be given as a single argument <A>id</A>. If the group is solvable, it is given as a PcGroup whose Pcgs is a SpecialPcgs. If the group is not solvable, it will be given as a permutation group of minimal permutation degree and with a minimal generating set.
 #! @Arguments k, i
+#! @Arguments id
 DeclareGlobalFunction( "SmallClassNrGroup" );
 #! @EndGroup
 
@@ -148,4 +156,20 @@ DeclareGlobalFunction( "NrSmallClassNrGroups" );
 #! @BeginExample
 NrSmallClassNrGroups( 14 );
 #! 92
+#! @EndExample
+
+#! @BeginGroup IdClassnrGroup
+#! @Description
+#! Returns the <B>SmallClassNr</B> ID of <A>G</A>, i.e. a pair <C>[<A>k</A>, <A>i</A>]</C> such that <A>G</A> is isomorphic to <C>SmallClassNrGroup( <A>k</A>, <A>i</A> )</C>.
+#! @Arguments k
+DeclareAttribute( "IdClassNr", IsGroup );
+#! @EndGroup
+
+#! @BeginExample
+IdClassNr( AlternatingGroup( 5 ) );
+#! [ 5, 8 ]
+A := SmallClassNrGroup( 5, 8 );
+#! Group([ (1,2,3), (1,4,5) ])
+IsAlternatingGroup( A );
+#! true
 #! @EndExample
