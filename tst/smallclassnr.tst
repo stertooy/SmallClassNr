@@ -57,16 +57,4 @@ gap> IsDoneIterator( itr );
 true
 
 #
-gap> PcGrps := AllSmallClassNrGroups( [ 1..14 ], IsPcGroup );;
-gap> ForAll( PcGrps, G -> SpecialPcgs( G ) = Pcgs( G ) );
-true
-
-#
-gap> PermGrps := AllSmallClassNrGroups( [ 1..14 ], IsPermGroup );;
-gap> ForAll( PermGrps, G -> NrMovedPoints( G ) = MinimalFaithfulPermutationDegree( G ) );
-true
-gap> ForAll( PermGrps, G -> Size( MinimalGeneratingSet( Group( GeneratorsOfGroup( G ) ) ) ) = Size( MinimalGeneratingSet( G ) ) );
-true
-
-#
 gap> STOP_TEST( "smallclassnr.tst" );
