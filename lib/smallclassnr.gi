@@ -175,8 +175,15 @@ InstallGlobalFunction(
 ##
 InstallGlobalFunction(
     SmallClassNrGroup,
-    function( k, i )
-        local data, G;
+    function( arg... )
+        local k, i, data, G, info, att, val, prop;
+        if IsList( arg[1] ) then
+            k := arg[1][1];
+            i := arg[1][2];
+        else
+            k := arg[1];
+            i := arg[2];
+        fi;
         if not SmallClassNrGroupsAvailable( k ) then
             Error(
                 "the library of groups of class number ",
@@ -193,12 +200,17 @@ InstallGlobalFunction(
             fi;
         fi;
         data := SMALL_CLASS_NR_DATA[k][i];
-        if IsInt( data[2] ) then
-            G := PcGroupCode( data[2], data[1] );
+        if IsInt( data[1] ) then
+            G := CallFuncList( PcGroupCode, data );
+            SpecialPcgs( G );
         else
-            G := Group( data[2] );
-            SetSize( G, data[1] );
+            G := Group( data );
+            SetNrMovedPoints( G, LargestMovedPoint( G ) );
+            SetSmallGeneratingSet( G, GeneratorsOfGroup( G ) );
+            SetMinimalGeneratingSet( G, GeneratorsOfGroup( G ) );
         fi;
+        SetNrConjugacyClasses( G, k );
+        SetIdClassNr( G, [ k, i ] );
         return G;
     end
 );
@@ -249,5 +261,22 @@ InstallGlobalFunction(
     OneSmallClassNrGroup,
     function( arg... )
         return NextIterator( CallFuncList( IteratorSmallClassNrGroups, arg ) );
+    end
+);
+
+
+###############################################################################
+##
+## IdClassNr( G )
+##
+InstallMethod(
+    IdClassNr,
+    "generic method",
+    [ IsGroup ],
+    function( G )
+        return IdClassNr( First( 
+            AllSmallClassNrGroups( NrConjugacyClasses( G ), Size, Size( G ) ),
+            H -> IsomorphismGroups( G, H ) <> fail )
+        );
     end
 );
