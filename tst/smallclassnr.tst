@@ -14,6 +14,8 @@ Error, the library of groups of class number 15 is not available
 #
 gap> IsPSL( SmallClassNrGroup( 10, 37 ) );
 true
+gap> IsAlternatingGroup( SmallClassNrGroup( [ 5, 8 ] ) );
+true
 gap> SmallClassNrGroup( 2, 2 );
 Error, there is just 1 group of class number 2
 gap> SmallClassNrGroup( 10, 38 );
