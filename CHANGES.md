@@ -15,6 +15,7 @@ This file describes changes in the GAP package SmallClassNr.
     SmallGeneratingSet and a MinimalGeneratingSet
   * The size of PermGroups is no longer automatically set
 
+- Manual slightly expanded
 - Small janitorial changes
 
 
