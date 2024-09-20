@@ -14,11 +14,17 @@ Error, the library of groups of class number 15 is not available
 #
 gap> IsPSL( SmallClassNrGroup( 10, 37 ) );
 true
+gap> IsAlternatingGroup( SmallClassNrGroup( [ 5, 8 ] ) );
+true
 gap> SmallClassNrGroup( 2, 2 );
 Error, there is just 1 group of class number 2
 gap> SmallClassNrGroup( 10, 38 );
 Error, there are just 37 groups of class number 10
 gap> SmallClassNrGroup( 15, 15 );
+Error, the library of groups of class number 15 is not available
+gap> IdClassNr( AlternatingGroup( 5 ) );
+[ 5, 8 ]
+gap> IdClassNr( PcGroupCode( 8322, 24 ) );
 Error, the library of groups of class number 15 is not available
 
 #
@@ -50,6 +56,18 @@ gap> Size( NextIterator( itr ) );
 gap> NextIterator( itr );
 fail
 gap> IsDoneIterator( itr );
+true
+
+#
+gap> PcGrps := AllSmallClassNrGroups( [ 1..14 ], IsPcGroup );;
+gap> ForAll( PcGrps, G -> IsSpecialPcgs( Pcgs( G ) ) );
+true
+
+#
+gap> PermGrps := AllSmallClassNrGroups( [ 1..14 ], IsPermGroup );;
+gap> ForAll( PermGrps, G -> NrMovedPoints( G ) = MinimalFaithfulPermutationDegree( G ) );
+true
+gap> ForAll( PermGrps, G -> Size( MinimalGeneratingSet( Group( GeneratorsOfGroup( G ) ) ) ) = Size( GeneratorsOfGroup( G ) ) );
 true
 
 #
