@@ -6,10 +6,10 @@
                   [1X Library of groups with small class number [101X
   
   
-                                     1.1.1
+                                     1.2.0
   
   
-                                 19 April 2023
+                               21 September 2024
   
   
                                   Sam Tertooy
@@ -20,7 +20,7 @@
       Email:    [7Xmailto:sam.tertooy@kuleuven.be[107X
       Homepage: [7Xhttps://stertooy.github.io/[107X
       Address:  [33X[0;14YWiskunde[133X
-                [33X[0;14YKU Leuven Campus Kulak Kortrijk[133X
+                [33X[0;14YKU Leuven Kulak Kortrijk Campus[133X
                 [33X[0;14YEtienne Sabbelaan 53[133X
                 [33X[0;14Y8500 Kortrijk[133X
                 [33X[0;14YBelgium[133X
@@ -36,7 +36,7 @@
   
   -------------------------------------------------------
   [1XCopyright[101X
-  [33X[0;0Y© 2022-2023 Sam Tertooy[133X
+  [33X[0;0Y© 2022-2024 Sam Tertooy[133X
   
   [33X[0;0YThe  [12XSmallClassNr[112X  package  is free software, it may be redistributed and/or
   modified  under the terms and conditions of the GNU Public License Version 2
@@ -63,6 +63,7 @@
       2.1-4 OneSmallClassNrGroup
       2.1-5 IteratorSmallClassNrGroups
       2.1-6 NrSmallClassNrGroups
+      2.1-7 IdClassNr
   
   
   [32X

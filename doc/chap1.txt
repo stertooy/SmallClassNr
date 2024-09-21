@@ -18,9 +18,17 @@
   
   [30X    [33X[0;6Y[23Xk(G) = 9[123X, by Odincov and Starostin in [OS76][133X
   
-  [30X    [33X[0;6Y[23Xk(G) = 10,11[123X, by Vera López and Vera López in [VLVL85][133X
+  [30X    [33X[0;6Y[23Xk(G) = 10,11[123X, by Vera López and Vera López in [VLVL85] (1)[133X
   
-  [30X    [33X[0;6Y[23Xk(G) = 12[123X, by Vera López and Vera López in [VLVL86][133X
+  [30X    [33X[0;6Y[23Xk(G) = 12[123X, by Vera López and Vera López in [VLVL86] (2)[133X
   
   [30X    [33X[0;6Y[23Xk(G) = 13, 14[123X, by Vera López and Sangroniz in [VLS07][133X
+  
+  [33X[0;0Y(1)  In [VLVL85], three distinct groups of the form [23X(C_5 \times C_5) \rtimes
+  C_4[123X  order [23X100[123X with class number [23X10[123X are given. However, only two such groups
+  exist, being the ones with [10XIdClassNr[110X equal to [10X[10,25][110X and [10X[10,26][110X.[133X
+  
+  [33X[0;0Y(2)  In  [VLVL86], only 48 groups with class number 12 are listed. The three
+  missing groups are provided in the appendix of [VLS07]. These are the groups
+  with [10XIdClassNr[110X equal to [10X[12,13][110X, [10X[12,16][110X and [10X[12,39][110X.[133X
   

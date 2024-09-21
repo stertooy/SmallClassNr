@@ -3,6 +3,7 @@
   [1XIndex[101X
   
   [2XAllSmallClassNrGroups[102X 2.1-3 
+  [2XIdClassNr[102X, for IsGroup 2.1-7 
   [2XIteratorSmallClassNrGroups[102X 2.1-5 
   [2XNrSmallClassNrGroups[102X 2.1-6 
   [2XOneSmallClassNrGroup[102X 2.1-4 
