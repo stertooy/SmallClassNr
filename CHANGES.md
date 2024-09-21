@@ -1,7 +1,7 @@
 This file describes changes in the GAP package SmallClassNr.
 
 
-1.2.0 (20/09/2024)
+1.2.0 (21/09/2024)
 ------------------
 
 - Added IdClassNr attribute
