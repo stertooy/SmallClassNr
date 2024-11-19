@@ -1,7 +1,14 @@
 This file describes changes in the GAP package SmallClassNr.
 
 
-1.2.0 (21/09/2024)
+1.2.1 (21/09/2024)
+------------------
+
+- Small janitorial changes
+
+
+
+1.2.0 (2024-09-21)
 ------------------
 
 - Added IdClassNr attribute
@@ -21,7 +28,7 @@ This file describes changes in the GAP package SmallClassNr.
 
 
 
-1.1.1 (19/04/2023)
+1.1.1 (2023-04-19)
 ------------------
 
 - Removed GAPDoc and AutoDoc as dependencies
@@ -29,16 +36,14 @@ This file describes changes in the GAP package SmallClassNr.
 
 
 
-1.1.0 (07/09/2022)
+1.1.0 (2022-09-07)
 ------------------
 
 - Added IteratorSmallClassNrGroups
 - More freedom in supplying arguments to AllSmallClassNrGroups and
   OneSmallClassNrGroup
 
-
-
-1.0.0 (04/08/2022)
+1.0.0 (2022-08-04)
 ------------------
 
 - Initial release
