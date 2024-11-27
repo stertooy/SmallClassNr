@@ -1,7 +1,7 @@
 name: SmallClassNr
-version: "1.2.0"
+version: "1.2.1"
 license: "GPL-2.0-or-later"
-date: 2024-09-21
+date: 2024-11-27
 description: |
     Library of groups with small class number
 
@@ -21,22 +21,21 @@ packageinfo: https://stertooy.github.io/SmallClassNr/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/stertooy/SmallClassNr/releases/download/v1.2.0/SmallClassNr-1.2.0.tar.gz
+      url: https://github.com/stertooy/SmallClassNr/releases/download/v1.2.1/SmallClassNr-1.2.1.tar.gz
 
 abstract: |
     Library of finite groups with small class number.
 
-status: dev
 doc-html: doc/chap0_mj.html
 doc-pdf: doc/manual.pdf
 keywords: |
     conjugacy, conjugacy class, class number.
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>Ter24</span>]   <b class='BibAuthor'>Tertooy, S.</b>,
+    [<span class='BibKey'>Ter27</span>]   <b class='BibAuthor'>Tertooy, S.</b>,
      <i class='BibTitle'>SmallClassNr, Library of groups with small class number,
-             Version 1.2.0</i>
-     (<span class='BibYear'>2024</span>)<br />
+             Version 1.2.1</i>
+     (<span class='BibYear'>1-27</span>)<br />
     (<span class='BibNote'>GAP package</span>),
     <span class='BibHowpublished'><a href="https://stertooy.github.io/SmallClassNr">https://stertooy.github.io/SmallClassNr</a></span>.
     </p>
@@ -46,14 +45,14 @@ bibtex: |
     @misc{ SmallClassNr,
       author =           {Tertooy, S.},
       title =            {{SmallClassNr},  Library  of  groups  with small class
-                          number, {V}ersion 1.2.0},
-      month =            {Sep},
-      year =             {2024},
+                          number, {V}ersion 1.2.1},
+      month =            {4\texttt{\symbol{45}}},
+      year =             {1\texttt{\symbol{45}}27},
       note =             {GAP package},
       howpublished =     {\href        {https://stertooy.github.io/SmallClassNr}
                           {\texttt{https://stertooy.github.io/}\discretionary
                           {}{}{}\texttt{SmallClassNr}}},
       keywords =         {conjugacy; conjugacy class; class number},
-      printedkey =       {Ter24}
+      printedkey =       {Ter27}
     }
 
