@@ -44,8 +44,6 @@ ArchiveURL      := Concatenation(
 
 ArchiveFormats := ".tar.gz",
 
-Status := "dev",
-
 AbstractHTML := "Library of finite groups with small class number.",
 
 PackageDoc := rec(
