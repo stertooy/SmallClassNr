@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "SmallClassNr"
+authors:
+- family-names: "Tertooy"
+  given-names: "Sam"
+preferred-citation:
+  type: software
+  title: "SmallClassNr"
+  authors:
+    - family-names: "Tertooy"
+      given-names: "Sam"
+  version: 1.2.1
+  notes: "GAP Package"
+  month: 11
+  year: 2024
+  url: "https://stertooy.github.io/SmallClassNr/"
