@@ -44,14 +44,11 @@ citeas: |
 bibtex: |
     @misc{ SmallClassNr,
       author =           {Tertooy, S.},
-      title =            {{SmallClassNr},  Library  of  groups  with small class
-                          number, {V}ersion 1.2.1},
+      title =            {{SmallClassNr}, {Library of groups with small class number}, {V}ersion 1.2.1},
       month =            {4\texttt{\symbol{45}}},
       year =             {1\texttt{\symbol{45}}27},
       note =             {GAP package},
-      howpublished =     {\href        {https://stertooy.github.io/SmallClassNr}
-                          {\texttt{https://stertooy.github.io/}\discretionary
-                          {}{}{}\texttt{SmallClassNr}}},
+      howpublished =     {\href {https://stertooy.github.io/SmallClassNr} {\texttt{https://stertooy.github.io/}\discretionary {}{}{}\texttt{SmallClassNr}}},
       keywords =         {conjugacy; conjugacy class; class number},
       printedkey =       {Ter27}
     }
