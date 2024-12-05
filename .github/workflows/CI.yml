@@ -16,7 +16,7 @@ jobs:
         include:
           - gap-version: "master"
             coverage: true
-          - gap-version: "4.14.0-beta1"
+          - gap-version: "4.14.0"
           - gap-version: "4.13.1"
           - gap-version: "4.13.0"
           - gap-version: "4.12.2"
