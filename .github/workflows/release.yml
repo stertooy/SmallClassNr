@@ -1,0 +1,27 @@
+name: Release
+on:
+  - workflow_dispatch
+permissions: write-all
+
+jobs:
+  release:
+    name: "Release GAP Package"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+      - name: "Setup Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: "Setup GAP"
+        uses: gap-actions/setup-gap@v2
+        with:
+          GAPBRANCH: master
+      - name: "Build GAP Package"
+        uses: gap-actions/build-pkg@v1
+      - name: "Release GAP Package"
+        uses: stertooy/ReleaseTools@v0.0.10
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
