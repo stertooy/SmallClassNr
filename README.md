@@ -3,6 +3,7 @@
 [![License](https://img.shields.io/badge/license-GPLv2%2B-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Manual](https://img.shields.io/badge/docs-html-blue)](https://stertooy.github.io/SmallClassNr/doc/chap0_mj.html)
 [![Release](https://img.shields.io/github/release/stertooy/smallclassnr.svg)](https://github.com/stertooy/smallclassnr/releases)
+[![DOI](https://img.shields.io/badge/DOI-10/nvzr-blue)](https://doi.org/10/nvzr)
 
 The GAP 4 package SmallClassNr
 ====================================
