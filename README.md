@@ -30,13 +30,13 @@ other folder where you have write permission. You can verify if GAP recognizes
 the SmallClassNr package using the following command:
 
     gap> LoadPackage("SmallClassNr");
-	─────────────────────────────────────────────────────────────────────────────
-	Loading  SmallClassNr 1.2.1 (Library of groups with small class number)
-	by Sam Tertooy (https://stertooy.github.io/).
-	Homepage: https://stertooy.github.io/SmallClassNr/
-	Report issues at https://github.com/stertooy/SmallClassNr/issues
-	─────────────────────────────────────────────────────────────────────────────
-	true
+    ─────────────────────────────────────────────────────────────────────────────
+    Loading  SmallClassNr 1.2.2 (Library of groups with small class number)
+    by Sam Tertooy (https://stertooy.github.io/).
+    Homepage: https://stertooy.github.io/SmallClassNr/
+    Report issues at https://github.com/stertooy/SmallClassNr/issues
+    ─────────────────────────────────────────────────────────────────────────────
+    true
 
 The manual may be compiled by running the 'makedoc.g' script, located in the
 package's main directory.  It is also available on the webpages of this

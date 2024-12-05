@@ -6,10 +6,10 @@
                   [1X Library of groups with small class number [101X
   
   
-                                     1.2.1
+                                     1.2.2
   
   
-                                27 November 2024
+                                5 December 2024
   
   
                                   Sam Tertooy
