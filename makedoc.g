@@ -1,14 +1,22 @@
-if fail = LoadPackage( "AutoDoc", ">= 2019.09.04" ) then
-    Info( InfoGAPDoc, 1, "#I AutoDoc 2019.09.04 or newer is required.\n" );
-    FORCE_QUIT_GAP( 1 );
+pkgName := "SmallClassNr";
+
+tst := DirectoriesPackageLibrary( pkgName, "tst" )[1];
+info := PackageInfo( pkgName )[1];
+
+if (
+    LoadPackage( pkgName, false ) = fail or
+    LoadPackage( "AutoDoc", false ) = fail
+) then
+    Info( InfoGAPDoc, 1, "#I Could not load required package(s).\n" );
+    ForceQuitGap( 1 );
 fi;
 
-if not IsPackageLoaded( "SmallClassNr" ) then
-    SetPackagePath( "SmallClassNr", "./" );
-    if fail = LoadPackage( "SmallClassNr" ) then
-        Info( InfoGAPDoc, 1, "#I Could not load the package.\n" );
-        FORCE_QUIT_GAP( 1 );
-    fi;
+if IsBound( info.Extensions ) then
+    for ext in info.Extensions do
+        for pkgver in ext.needed do
+            LoadPackage( pkgver[1], pkgver[2], false );
+        od;
+    od;
 fi;
 
 AutoDoc( rec(
@@ -19,7 +27,10 @@ AutoDoc( rec(
         bib := "manual.bib"
     ),
     gapdoc := rec(
-        main := "manual.xml"
+        main := "manual.xml",
+        LaTeXOptions := rec(
+            LateExtraPreamble := "\\usepackage{amsmath}"
+        )
     ),
     extract_examples := rec(
         units := "Chapter"
@@ -28,34 +39,39 @@ AutoDoc( rec(
 
 if not ValidatePackageInfo( "PackageInfo.g" ) then
     Info( InfoGAPDoc, 1, "#I One or more files could not be created.\n" );
-    FORCE_QUIT_GAP( 1 );
+    ForceQuitGap( 1 );
 else
     Info( InfoGAPDoc, 1, "#I Manual files sucessfully created.\n" );
 fi;
 
-errorFound := false;
+correct := true;
 Info( InfoGAPDoc, 1, "#I Testing examples found in manual.\n" );
 
-for i in [1..99] do
-    filename := Concatenation(
-        "tst/smallclassnr",
-        ReplacedString( String( i, 2 ), " ", "0" ),
-        ".tst"
-    );
-    if not IsExistingFile( filename ) then break; fi;
-    errorFound := errorFound or not Test(
-        filename,
-        rec( compareFunction := "uptowhitespace" )
-    );
-    RemoveFile( filename );
+lpkgName := LowercaseString( pkgName );
+lpkgName := ReplacedString( lpkgName, " ", "_" );
+
+for file in AsSortedList( DirectoryContents( tst ) ) do
+    if (
+        StartsWith( file, lpkgName ) and
+        EndsWith( file, ".tst" ) and
+        Length( file ) - Length( lpkgName ) >= 6 and
+        ForAll( file{[1 + Length( lpkgName ) .. Length( file ) - 4]}, IsDigitChar )
+    ) then
+        Info( InfoGAPDoc, 1, Concatenation( "#I  Now testing file ", file, "\n" ) );
+        correct := correct and Test(
+            Filename( tst, file ),
+            rec( compareFunction := "uptowhitespace" )
+        );
+        RemoveFile( Filename( tst, file ) );
+    fi;
 od;
 
-if errorFound then
+if not correct then
     Info( InfoGAPDoc, 1, "#I One or more examples are incorrect.\n" );
-    FORCE_QUIT_GAP( 1 );
+    ForceQuitGap( 1 );
 else
-    Info( InfoGAPDoc, 1, "#I All tests passed.\n" );
+    Info( InfoGAPDoc, 1, "#I All tests passed - manual should be correct.\n" );
 fi;
 
 Info( InfoGAPDoc, 1, "#I Documentation successfully created.\n" );
-QUIT_GAP( 0 );
+QuitGap( 0 );
