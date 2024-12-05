@@ -1,6 +1,13 @@
 This file describes changes in the GAP package SmallClassNr.
 
 
+1.2.2 (2024-12-05)
+------------------
+
+- Small janitorial changes
+
+
+
 1.2.1 (2024-11-27)
 ------------------
 
