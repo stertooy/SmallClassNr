@@ -1,17 +1,32 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
-title: "SmallClassNr"
+message: If you use this software, please cite it as below.
 authors:
-- family-names: "Tertooy"
-  given-names: "Sam"
+  - family-names: Tertooy
+    given-names: Sam
+    email: sam.tertooy@kuleuven.be
+    orcid: https://orcid.org/0000-0002-5750-9153
+    affiliation: KU Leuven, Kulak Kortrijk Campus
+    country: BE
+    website: https://stertooy.github.io/
+title: SmallClassNr
+type: software
+abstract: Library of finite groups with small class number
+version: 1.2.2
+date-released: 2024-12-05
+license: GPL-2.0-or-later
+repository-code: https://github.com/stertooy/SmallClassNr/
+url: https://stertooy.github.io/SmallClassNr/
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.14283158
 preferred-citation:
   type: software
-  title: "SmallClassNr"
+  title: SmallClassNr
   authors:
-    - family-names: "Tertooy"
-      given-names: "Sam"
+    - family-names: Tertooy
+      given-names: Sam
   version: 1.2.2
-  notes: "GAP Package"
+  notes: GAP Package
   month: 12
   year: 2024
-  url: "https://stertooy.github.io/SmallClassNr/"
+  url: https://stertooy.github.io/SmallClassNr/
