@@ -19,9 +19,7 @@ date-released: 2024-12-05
 license: GPL-2.0-or-later
 repository-code: https://github.com/stertooy/SmallClassNr/
 url: https://stertooy.github.io/SmallClassNr/
-identifiers:
-  - type: doi
-    value: 10.5281/zenodo.14283158
+doi: 10.5281/zenodo.14283158
 preferred-citation:
   type: software
   title: SmallClassNr
