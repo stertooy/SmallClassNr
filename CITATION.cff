@@ -22,12 +22,12 @@ url: https://stertooy.github.io/SmallClassNr/
 doi: 10.5281/zenodo.14283158
 preferred-citation:
   type: software
-  title: SmallClassNr
+  title: SmallClassNr, Library of finite groups with small class number
   authors:
     - family-names: Tertooy
       given-names: Sam
   version: 1.2.2
-  notes: GAP Package
+  notes: GAP package
   month: 12
   year: 2024
   url: https://stertooy.github.io/SmallClassNr/
