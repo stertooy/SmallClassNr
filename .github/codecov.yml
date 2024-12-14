@@ -1,0 +1,27 @@
+coverage:
+  precision: 2
+  round: down
+  range: "70...100"
+
+  status:
+    project:
+      default:
+        target: 100%
+        threshold: 5%
+    patch: off
+    changes: off
+
+comment:
+  layout: "condensed_header, diff, condensed_files, condensed_footer"
+  behavior: default
+
+codecov:
+  require_ci_to_pass: false
+
+fixes:
+  - "tmp/gaproot/pkg/*/::"
+
+ignore:
+  - "*.g"
+  - "tst/**"
+  - "doc/**"
