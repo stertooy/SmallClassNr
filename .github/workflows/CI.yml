@@ -49,39 +49,34 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
 
-  manual:
-    name: "Build manual"
+  validation:
+    name: "Validate manual & metadata"
     runs-on: ubuntu-latest
-    if: ${{ !(github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) }}
-    
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name 
+
     container:
       image: ghcr.io/stertooy/gda-image:tex-min
-    
+
     steps:
+
       - name: "Checkout"
         uses: actions/checkout@v4
 
+      - name: "Validate CITATION.cff"
+        uses: citation-file-format/cffconvert-github-action@2.0.0
+        with:
+          args: "--validate"
+
       - name: "Build manual"
         uses: stertooy/gda-manual@v1
-        
+
+      - name: "Validate PackageInfo.g"
+        shell: bash
+        run: gap -c "QuitGap(ValidatePackageInfo(\"PackageInfo.g\"));"
+
       - name: "Upload manual"
         uses: actions/upload-artifact@v4
         with:
           name: "Manual"
           path: ./doc/manual.pdf
           if-no-files-found: error
-
-  citation:
-    name: "Validate citation"
-    runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name 
-
-    steps:
-
-      - name: "Checkout"
-        uses: actions/checkout@v4
-
-      - name: "Validate citation"
-        uses: citation-file-format/cffconvert-github-action@2.0.0
-        with:
-          args: "--validate"
