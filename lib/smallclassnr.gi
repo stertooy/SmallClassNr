@@ -266,6 +266,7 @@ InstallGlobalFunction(
             n := Length( SMALL_CLASS_NR_DATA[k] );
         else
             n := 0;
+            iter := CallFuncList( IteratorSmallClassNrGroups, arg );
             while not IsDoneIterator( iter ) do
                 n := n+1;
                 NextIterator( iter );
