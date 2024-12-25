@@ -71,15 +71,15 @@ NextSmallClassNrGroup@ := function( itr )
                 kG, " is not available"
             );
         fi;
-        while j <= NrSmallClassNrGroups( kG ) do
+        while j <= Length( SMALL_CLASS_NR_DATA[kG] ) do
             G := SmallClassNrGroup( kG, j );
+            j := j + 1;
             if ForAll(
                 [ 1..Length( fnc ) ],
                 k -> fnc[k]( G ) in vls[k]
             ) then
-                return [ [ i, j+1 ], G ];
+                return [ [ i, j ], G ];
             fi;
-            j := j + 1;
         od;
         i := i+1;
         j := 1;
