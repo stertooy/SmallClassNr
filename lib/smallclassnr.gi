@@ -255,7 +255,7 @@ InstallGlobalFunction(
     NrSmallClassNrGroups,
     function( arg... )
         local k, n, iter;
-        if Length( arg ) = 1 then
+        if Length( arg ) = 1 and IsInt( arg[1] ) then
             k := arg[1];
             if not SmallClassNrGroupsAvailable( k ) then
                 Error(
