@@ -8,6 +8,10 @@ gap> Collected( List( grps, NrConjugacyClasses ) );
 #
 gap> NrSmallClassNrGroups( 10 );
 37
+gap> NrSmallClassNrGroups( [1..7] );
+36
+gap> NrSmallClassNrGroups( [13..14], IsNilpotentGroup, false );
+114
 gap> NrSmallClassNrGroups( 15 );
 Error, the library of groups of class number 15 is not available
 
