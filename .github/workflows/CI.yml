@@ -47,7 +47,6 @@ jobs:
         if: ${{ matrix.coverage }}
         with:
           fail_ci_if_error: true
-          verbose: true
 
   validation:
     name: "Validate manual & metadata"
