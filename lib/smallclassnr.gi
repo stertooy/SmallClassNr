@@ -254,18 +254,21 @@ InstallGlobalFunction(
 InstallGlobalFunction(
     NrSmallClassNrGroups,
     function( arg... )
-        local k, n, iter;
-        if Length( arg ) = 1 and IsInt( arg[1] ) then
-            k := arg[1];
-            if not SmallClassNrGroupsAvailable( k ) then
-                Error(
-                    "the library of groups of class number ",
-                    k, " is not available"
-                );
-            fi;
-            n := Length( SMALL_CLASS_NR_DATA[k] );
+        local con, kfv, n, iter;
+        con := CallFuncList( ConditionList@, arg );
+        kfv := CallFuncList( ExtractClassNumbers@, con );
+        n := 0;
+        if IsEmpty( kfv[2] ) then
+            for k in kfv[1] do
+                if not SmallClassNrGroupsAvailable( k ) then
+                    Error(
+                        "the library of groups of class number ",
+                        k, " is not available"
+                    );
+                fi;
+                n := n + Length( SMALL_CLASS_NR_DATA[k] );
+            od;
         else
-            n := 0;
             iter := CallFuncList( IteratorSmallClassNrGroups, arg );
             while not IsDoneIterator( iter ) do
                 n := n+1;
