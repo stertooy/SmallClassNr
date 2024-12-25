@@ -125,6 +125,20 @@ NrConjugacyClasses( K ) = 10 and IsSolvable( K ) and not IsNilpotent( K );
 #! true
 #! @EndExample
 
+#! @BeginGroup NrSmallClassNrGroupsGroup
+#! @Description
+#! Returns the number of finite groups with certain properties as specified by <A>arg</A>. The arguments must come in pairs consisting of a function and a value (or list of possible values). At least one of the functions must be <K>NrConjugacyClasses</K>. Missing functions will be interpreted as <K>NrConjugacyClasses</K>, missing values as <K>true</K>.
+#! @Arguments arg
+DeclareGlobalFunction( "NrSmallClassNrGroups" );
+#! @EndGroup
+
+#! @BeginExample
+NrSmallClassNrGroups( 14 );
+#! 93
+NrSmallClassNrGroups( [1..6] );
+#! 24
+#! @EndExample
+
 #! @BeginGroup IteratorSmallClassNrGroupsGroup
 #! @Description
 #! Returns an iterator that iterates over the finite groups with properties as specified by <A>arg</A>. The arguments must come in pairs consisting of a function and a value (or list of possible values). At least one of the functions must be <K>NrConjugacyClasses</K>. Missing functions will be interpreted as <K>NrConjugacyClasses</K>, missing values as <K>true</K>.
@@ -144,18 +158,6 @@ for G in iter do Print( Size( G ), "\n" ); od;
 #! 1512
 #! 2448
 #! 29120
-#! @EndExample
-
-#! @BeginGroup NrSmallClassNrGroupsGroup
-#! @Description
-#! Returns the number of finite groups with class number <A>k</A>.
-#! @Arguments k
-DeclareGlobalFunction( "NrSmallClassNrGroups" );
-#! @EndGroup
-
-#! @BeginExample
-NrSmallClassNrGroups( 14 );
-#! 92
 #! @EndExample
 
 #! @BeginGroup IdClassnrGroup
