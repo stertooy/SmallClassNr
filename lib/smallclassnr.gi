@@ -254,7 +254,7 @@ InstallGlobalFunction(
 InstallGlobalFunction(
     NrSmallClassNrGroups,
     function( arg... )
-        local con, kfv, n, iter;
+        local con, kfv, n, k, iter;
         con := CallFuncList( ConditionList@, arg );
         kfv := CallFuncList( ExtractClassNumbers@, con );
         n := 0;
