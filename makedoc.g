@@ -1,7 +1,6 @@
-pkgName := "SmallClassNr";
-
-tst := DirectoriesPackageLibrary( pkgName, "tst" )[1];
-info := PackageInfo( pkgName )[1];
+Read( "PackageInfo.g" );
+info := GAPInfo.PackageInfoCurrent;
+pkgName := info.PackageName;
 
 if (
     LoadPackage( pkgName, false ) = fail or
@@ -20,57 +19,41 @@ if IsBound( info.Extensions ) then
 fi;
 
 AutoDoc( rec(
-    autodoc := rec(
-        files := [ "doc/manual.gd" ]
-    ),
-    scaffold := rec(
-        bib := "manual.bib"
-    ),
+    autodoc := rec( scan_dirs := [ "doc" ] ),
     gapdoc := rec(
-        main := "manual.xml",
-        LaTeXOptions := rec(
-            LateExtraPreamble := "\\usepackage{amsmath}"
-        )
+        LaTeXOptions := rec( LateExtraPreamble := "\\usepackage{amsmath}" )
     ),
-    extract_examples := rec(
-        units := "Chapter"
-    )
+    extract_examples := rec( units := "File" )
 ));
 
-if not ValidatePackageInfo( "PackageInfo.g" ) then
+if not ForAll(
+    [ "doc/manual.six", "doc/manual.pdf", "doc/chap0.html" ],
+    IsReadableFile
+) then
     Info( InfoGAPDoc, 1, "#I One or more files could not be created.\n" );
     ForceQuitGap( 1 );
 else
     Info( InfoGAPDoc, 1, "#I Manual files sucessfully created.\n" );
 fi;
 
-correct := true;
-Info( InfoGAPDoc, 1, "#I Testing examples found in manual.\n" );
+tstFile := Concatenation(
+    "tst/",
+    ReplacedString( LowercaseString( pkgName ), " ", "_" ),
+    "01.tst"
+);
 
-lpkgName := LowercaseString( pkgName );
-lpkgName := ReplacedString( lpkgName, " ", "_" );
-
-for file in AsSortedList( DirectoryContents( tst ) ) do
-    if (
-        StartsWith( file, lpkgName ) and
-        EndsWith( file, ".tst" ) and
-        Length( file ) - Length( lpkgName ) >= 6 and
-        ForAll( file{[1 + Length( lpkgName ) .. Length( file ) - 4]}, IsDigitChar )
-    ) then
-        Info( InfoGAPDoc, 1, Concatenation( "#I  Now testing file ", file, "\n" ) );
-        correct := correct and Test(
-            Filename( tst, file ),
-            rec( compareFunction := "uptowhitespace" )
-        );
-        RemoveFile( Filename( tst, file ) );
+if IsReadableFile( tstFile ) then
+    Info( InfoGAPDoc, 1, "#I Testing examples found in manual.\n" );
+    correct := Test( tstFile, rec( compareFunction := "uptowhitespace" ) );
+    RemoveFile( tstFile );
+    if correct then
+        Info( InfoGAPDoc, 1, "#I All examples are correct.\n" );
+    else
+        Info( InfoGAPDoc, 1, "#I One or more examples are incorrect.\n" );
+        ForceQuitGap( 1 );
     fi;
-od;
-
-if not correct then
-    Info( InfoGAPDoc, 1, "#I One or more examples are incorrect.\n" );
-    ForceQuitGap( 1 );
 else
-    Info( InfoGAPDoc, 1, "#I All tests passed - manual should be correct.\n" );
+    Info( InfoGAPDoc, 1, "#I No examples found in manual.\n" );
 fi;
 
 Info( InfoGAPDoc, 1, "#I Documentation successfully created.\n" );
