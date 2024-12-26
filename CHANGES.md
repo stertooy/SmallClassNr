@@ -1,13 +1,14 @@
 This file describes changes in the GAP package SmallClassNr.
 
 
-1.3.0 (2024-12-25)
+1.3.0 (2024-12-26)
 ------------------
 
 - Added missing group with 14 conjugacy classes of order 104 (reported by
   Thomas Breuer)
 - NrSmallClassNrGroups can now take extra parameters, like the functions
   OneSmallClassNrGroup and AllSmallClassNrGroups
+- Janitorial changes
 
 
 
