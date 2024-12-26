@@ -135,8 +135,10 @@ DeclareGlobalFunction( "NrSmallClassNrGroups" );
 #! @BeginExample
 NrSmallClassNrGroups( 14 );
 #! 93
-NrSmallClassNrGroups( [1..6] );
-#! 24
+NrSmallClassNrGroups( [3..5], IsNilpotentGroup );
+#! 6
+NrSmallClassnrGroups( IsSolvable, true, NrConjugacyClasses, 6 );
+#! 7
 #! @EndExample
 
 #! @BeginGroup IteratorSmallClassNrGroupsGroup
