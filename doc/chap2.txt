@@ -90,7 +90,26 @@
     [4X[28Xtrue[128X[104X
   [4X[32X[104X
   
-  [1X2.1-5 IteratorSmallClassNrGroups[101X
+  [1X2.1-5 NrSmallClassNrGroups[101X
+  
+  [33X[1;0Y[29X[2XNrSmallClassNrGroups[102X( [3Xarg[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  the number of finite groups with certain properties as specified by
+  [3Xarg[103X.  The  arguments must come in pairs consisting of a function and a value
+  (or  list  of  possible  values).  At  least  one  of  the functions must be
+  [9XNrConjugacyClasses[109X.    Missing    functions    will    be   interpreted   as
+  [9XNrConjugacyClasses[109X, missing values as [9Xtrue[109X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XNrSmallClassNrGroups( 14 );[127X[104X
+    [4X[28X93[128X[104X
+    [4X[25Xgap>[125X [27XNrSmallClassNrGroups( [3..5], IsNilpotentGroup );[127X[104X
+    [4X[28X6[128X[104X
+    [4X[25Xgap>[125X [27XNrSmallClassNrGroups( IsSolvable, true, NrConjugacyClasses, 6 );[127X[104X
+    [4X[28X7[128X[104X
+  [4X[32X[104X
+  
+  [1X2.1-6 IteratorSmallClassNrGroups[101X
   
   [33X[1;0Y[29X[2XIteratorSmallClassNrGroups[102X( [3Xarg[103X ) [32X function[133X
   
@@ -112,17 +131,6 @@
     [4X[28X1512[128X[104X
     [4X[28X2448[128X[104X
     [4X[28X29120[128X[104X
-  [4X[32X[104X
-  
-  [1X2.1-6 NrSmallClassNrGroups[101X
-  
-  [33X[1;0Y[29X[2XNrSmallClassNrGroups[102X( [3Xk[103X ) [32X function[133X
-  
-  [33X[0;0YReturns the number of finite groups with class number [3Xk[103X.[133X
-  
-  [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27XNrSmallClassNrGroups( 14 );[127X[104X
-    [4X[28X92[128X[104X
   [4X[32X[104X
   
   [1X2.1-7 IdClassNr[101X
