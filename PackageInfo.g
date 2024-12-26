@@ -2,8 +2,8 @@ SetPackageInfo( rec(
 
 PackageName := "SmallClassNr",
 Subtitle := "Library of groups with small class number",
-Version := "1.2.2",
-Date := "05/12/2024",
+Version := "1.3.0",
+Date := "26/12/2024",
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -16,13 +16,13 @@ Persons := [
         Email := "sam.tertooy@kuleuven.be",
         PostalAddress := """
             Wiskunde
-            KU Leuven Kulak Kortrijk Campus
+            KU Leuven, Kulak Kortrijk Campus
             Etienne Sabbelaan 53
             8500 Kortrijk
             Belgium
         """,
         Place := "Kortrijk, Belgium",
-        Institution := "KU Leuven Kulak Kortrijk Campus",
+        Institution := "KU Leuven, Kulak Kortrijk Campus",
     ),
 ],
 
