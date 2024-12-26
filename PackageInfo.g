@@ -22,13 +22,13 @@ Persons := [
             Belgium
         """,
         Place := "Kortrijk, Belgium",
-        Institution := "KU Leuven, Kulak Kortrijk Campus",
+        Institution := "KU Leuven, Kulak Kortrijk Campus"
     ),
 ],
 
 SourceRepository := rec(
     Type := "git",
-    URL := Concatenation( "https://github.com/stertooy/", ~.PackageName ),
+    URL := Concatenation( "https://github.com/stertooy/", ~.PackageName )
 ),
 SupportEmail := "sam.tertooy@kuleuven.be",
 
@@ -52,11 +52,11 @@ PackageDoc := rec(
     HTMLStart := "doc/chap0_mj.html",
     PDFFile   := "doc/manual.pdf",
     SixFile   := "doc/manual.six",
-    LongTitle := ~.Subtitle,
+    LongTitle := ~.Subtitle
 ),
 
 Dependencies := rec(
-    GAP := ">= 4.11",
+    GAP := ">= 4.11"
 ),
 
 AvailabilityTest := ReturnTrue,
@@ -89,6 +89,6 @@ AutoDoc := rec(
             (at your option) any later version.
         """
     )
-),
+)
 
 ));
