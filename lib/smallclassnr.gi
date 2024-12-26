@@ -71,15 +71,15 @@ NextSmallClassNrGroup@ := function( itr )
                 kG, " is not available"
             );
         fi;
-        while j <= NrSmallClassNrGroups( kG ) do
+        while j <= Length( SMALL_CLASS_NR_DATA[kG] ) do
             G := SmallClassNrGroup( kG, j );
+            j := j + 1;
             if ForAll(
                 [ 1..Length( fnc ) ],
                 k -> fnc[k]( G ) in vls[k]
             ) then
-                return [ [ i, j+1 ], G ];
+                return [ [ i, j ], G ];
             fi;
-            j := j + 1;
         od;
         i := i+1;
         j := 1;
@@ -147,24 +147,6 @@ InstallGlobalFunction(
     SmallClassNrGroupsAvailable,
     function( k )
         return IsBound( SMALL_CLASS_NR_DATA[k] );
-    end
-);
-
-
-###############################################################################
-##
-## NrSmallClassNrGroups( k )
-##
-InstallGlobalFunction(
-    NrSmallClassNrGroups,
-    function( k )
-        if not SmallClassNrGroupsAvailable( k ) then
-            Error(
-                "the library of groups of class number ",
-                k, " is not available"
-            );
-        fi;
-        return Length( SMALL_CLASS_NR_DATA[k] );
     end
 );
 
@@ -261,6 +243,39 @@ InstallGlobalFunction(
     OneSmallClassNrGroup,
     function( arg... )
         return NextIterator( CallFuncList( IteratorSmallClassNrGroups, arg ) );
+    end
+);
+
+
+###############################################################################
+##
+## NrSmallClassNrGroups( arg... )
+##
+InstallGlobalFunction(
+    NrSmallClassNrGroups,
+    function( arg... )
+        local con, kfv, n, k, iter;
+        con := CallFuncList( ConditionList@, arg );
+        kfv := CallFuncList( ExtractClassNumbers@, con );
+        n := 0;
+        if IsEmpty( kfv[2] ) then
+            for k in kfv[1] do
+                if not SmallClassNrGroupsAvailable( k ) then
+                    Error(
+                        "the library of groups of class number ",
+                        k, " is not available"
+                    );
+                fi;
+                n := n + Length( SMALL_CLASS_NR_DATA[k] );
+            od;
+        else
+            iter := CallFuncList( IteratorSmallClassNrGroups, arg );
+            while not IsDoneIterator( iter ) do
+                n := n+1;
+                NextIterator( iter );
+            od;
+        fi;
+        return n;
     end
 );
 

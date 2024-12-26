@@ -1,6 +1,6 @@
 /doc/*
-!/doc/manual.bib
-!/doc/manual.gd
+!/doc/*.bib
+!/doc/*.gd
 
 /gh-pages/
 /tmp/
