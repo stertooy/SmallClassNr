@@ -137,7 +137,7 @@ NrSmallClassNrGroups( 14 );
 #! 93
 NrSmallClassNrGroups( [3..5], IsNilpotentGroup );
 #! 6
-NrSmallClassnrGroups( IsSolvable, true, NrConjugacyClasses, 6 );
+NrSmallClassNrGroups( IsSolvable, true, NrConjugacyClasses, 6 );
 #! 7
 #! @EndExample
 
