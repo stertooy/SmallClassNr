@@ -14,8 +14,8 @@ authors:
 title: SmallClassNr
 type: software
 abstract: Library of finite groups with small class number
-version: 1.2.2
-date-released: 2024-12-05
+version: 1.3.0
+date-released: 2024-12-26
 license: GPL-2.0-or-later
 repository-code: https://github.com/stertooy/SmallClassNr/
 url: https://stertooy.github.io/SmallClassNr/
@@ -26,7 +26,7 @@ preferred-citation:
   authors:
     - family-names: Tertooy
       given-names: Sam
-  version: 1.2.2
+  version: 1.3.0
   notes: GAP package
   month: 12
   year: 2024
