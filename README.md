@@ -32,7 +32,7 @@ the SmallClassNr package using the following command:
 
     gap> LoadPackage("SmallClassNr");
     ─────────────────────────────────────────────────────────────────────────────
-    Loading  SmallClassNr 1.2.2 (Library of groups with small class number)
+    Loading  SmallClassNr 1.3.0 (Library of groups with small class number)
     by Sam Tertooy (https://stertooy.github.io/).
     Homepage: https://stertooy.github.io/SmallClassNr/
     Report issues at https://github.com/stertooy/SmallClassNr/issues
