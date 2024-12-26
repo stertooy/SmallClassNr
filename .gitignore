@@ -1,6 +1,6 @@
 /doc/*
-!/doc/SmallClassNr.bib
-!/doc/SmallClassNr.gd
+!/doc/*.bib
+!/doc/*.gd
 
 /gh-pages/
 /tmp/
