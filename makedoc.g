@@ -27,7 +27,7 @@ AutoDoc( rec(
             PackageManager := "<Package>PackageManager</Package>",
             BibLaTeX := "Bib&LaTeX;",
             ABBREV := "SCN",
-            packagename := info.packageName,
+            packagename := info.PackageName,
             PACKAGENAME := Concatenation(
                 "<Package>",
                 info.PackageName,
