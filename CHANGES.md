@@ -5,6 +5,7 @@ This file describes changes in the GAP package SmallClassNr.
 ------------------
 
 - Now requires GAP version >= 4.14
+- Improved manual
 - Janitorial changes
 
 
