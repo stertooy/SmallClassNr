@@ -26,6 +26,21 @@ jobs:
       - name: "Add custom GAP root"
         run: ln -f -s $PWD /tmp/gaproot/pkg/
 
+      - name: "Test 1"
+        continue-on-error: true
+        shell: bash
+        run: $GAP -c "QUIT;"
+
+      - name: "Test 3"
+        continue-on-error: true
+        shell: bash
+        run: $GAP -A -c "QUIT;"
+
+      - name: "Test 2"
+        continue-on-error: true
+        shell: bash
+        run: $GAP --bare -c "QUIT;"
+
       - name: "Run package tests"
         uses: gap-actions/run-pkg-tests@v3
         with:
