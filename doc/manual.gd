@@ -1,13 +1,13 @@
 ###############################################################################
 #! @Abstract
-#! The &SmallClassNr; package package provides access to finite groups with
+#! The &PACKAGENAME; package package provides access to finite groups with
 #! small class number. Currently, the package contains the finite groups of
 #! class number at most 14.
 
 #! @Copyright
 #! &copyright; 2022&ndash;&RELEASEYEAR; Sam Tertooy
 #! <P/>
-#! The &SmallClassNr; package is free software, it may be redistributed
+#! The &PACKAGENAME; package is free software, it may be redistributed
 #! and/or modified under the terms and conditions of the
 #! <URL Text="GNU Public License Version 2">
 #! https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html</URL> or
@@ -16,13 +16,13 @@
 #! @Acknowledgements
 #! This documentation was created using the &GAPDoc; and &AutoDoc; packages.
 
-#! @Chapter The SmallClassNr package
+#! @Chapter The &packagename; package
 
-#! This is the manual for the &GAP; 4 package &SmallClassNr; version
+#! This is the manual for the &GAP; 4 package &PACKAGENAME; version
 #! &VERSION;, developed by Sam Tertooy.
 
 #! @Section Installation
-#! You can download &SmallClassNr; as a .tar.gz archive
+#! You can download &PACKAGENAME; as a .tar.gz archive
 #! <URL Text='here'>&ARCHIVEURL;.tar.gz</URL>. After extracting, you should
 #! place it in a suitable <F>pkg</F> folder. For example, on a Debian-based
 #! Linux distribution (e.g. Ubuntu, Mint), you can place it in
@@ -34,7 +34,7 @@
 #! yourself:
 #! <Listing Type="Command">wget -qO- https://[...].tar.gz | tar xzf - --one-top-level=&dollar;HOME/.gap/pkg</Listing>
 #! If the &PackageManager; package is installed and loaded, you can install
-#! &SmallClassNr; from within a &GAP; session
+#! &PACKAGENAME; from within a &GAP; session
 #! using <Ref Func="InstallPackage" BookName="PackageManager" Style="Number"/>.
 #! @BeginLog
 InstallPackage( "https://[...].tar.gz" );
@@ -43,7 +43,7 @@ InstallPackage( "https://[...].tar.gz" );
 #! @EndLog
 
 #! @Section Loading
-#! Once installed, loading &SmallClassNr; can be done by using
+#! Once installed, loading &PACKAGENAME; can be done by using
 #! <Ref Func="LoadPackage" BookName="ref" Style="Number"/>.
 #! @BeginLog
 LoadPackage( "SmallClassNr" );
@@ -52,19 +52,19 @@ LoadPackage( "SmallClassNr" );
 #! @EndLog
 
 #! @Section Citing
-#! If you use the &SmallClassNr; package in your research, we would love to
+#! If you use the &PACKAGENAME; package in your research, we would love to
 #! hear about your work via an email to the address
 #! <Email>&SUPPORTEMAIL;</Email>.
-#! If you have used the &SmallClassNr; package in the preparation of a
+#! If you have used the &PACKAGENAME; package in the preparation of a
 #! paper and wish to refer to it, please cite it as described below.
 
 #! <P/>
 
 #! In &BibTeX;:
 #!<Listing Type="BibTeX">
-#!&AT;misc{TC&VERSION;,
+#!&AT;misc{&ABBREV;&VERSION;,
 #!    author =       {Tertooy, Sam},
-#!    title =        {{SmallClassNr,
+#!    title =        {{&packagename;,
 #!                    &SUBTITLE;,
 #!                    Version &VERSION;}},
 #!    note =         {GAP package},
@@ -73,9 +73,9 @@ LoadPackage( "SmallClassNr" );
 #!}</Listing><P/>
 #! In &BibLaTeX;:
 #!<Listing Type="BibLaTeX">
-#!&AT;software{TC&VERSION;,
+#!&AT;software{&ABBREV;&VERSION;,
 #!    author =   {Tertooy, Sam},
-#!    title =    {SmallClassNr},
+#!    title =    {&packagename;},
 #!    subtitle = {&SUBTITLE;},
 #!    version =  {&VERSION;},
 #!    note =     {GAP package},
@@ -87,13 +87,13 @@ LoadPackage( "SmallClassNr" );
 #! If you encounter any problems, please submit them to the
 #! <URL Text='issue tracker'>&ISSUEURL;</URL>.
 #! If you have any questions on the usage or functionality of
-#! &SmallClassNr;, you may contact me via email at
+#! &PACKAGENAME;, you may contact me via email at
 #! <Email>&SUPPORTEMAIL;</Email>.
 
 #! @Chapter Mathematical Background
 
 #! The **class number** $k(G)$ of a group $G$ is the number of conjugacy classes of $G$. In 1903, Landau proved in <Cite Key='land03-a' /> that for every $n \in \mathbb{N}$, there are only finitely many finite groups with exactly $n$ conjugacy classes.
-#! The <B>SmallClassNr</B> package provides access to the finite groups with class number at most $14$.
+#! The &PACKAGENAME; package provides access to the finite groups with class number at most $14$.
 #! <P/>
 #! These groups were classified in the following papers:
 #! <List>
