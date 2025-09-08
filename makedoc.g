@@ -25,12 +25,14 @@ AutoDoc( rec(
             AT := "@",
             AutoDoc := "<Package>AutoDoc</Package>",
             PackageManager := "<Package>PackageManager</Package>",
-            SmallClassNr := Concatenation(
+            BibLaTeX := "Bib&LaTeX;",
+            ABBREV := "SCN",
+            packagename := info.packageName,
+            PACKAGENAME := Concatenation(
                 "<Package>",
                 info.PackageName,
                 "</Package>"
             ),
-            BibLaTeX := "Bib&LaTeX;",
             RELEASEYEAR := String( info.Date{ [ 7 .. 10 ] } ),
             VERSION := info.Version,
             ARCHIVEURL := info.ArchiveURL,
