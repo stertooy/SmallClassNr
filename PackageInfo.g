@@ -73,28 +73,6 @@ Keywords := [
     "conjugacy",
     "conjugacy class",
     "class number"
-],
-
-AutoDoc := rec(
-    TitlePage := rec(
-        Abstract := """
-            The <B>SmallClassNr</B> package provides access to finite groups
-            with small class number. Currently, the package contains the finite
-            groups of class number at most 14.
-        """,
-        Acknowledgements := """
-            This documentation was created using the <B>GAPDoc</B> and
-            <B>AutoDoc</B> packages.
-        """,
-        Copyright := """
-            &copyright; 2022-2025 Sam Tertooy <P/>
-            The <B>SmallClassNr</B> package is free software, it may be
-            redistributed and/or modified under the terms and conditions of the
-            <URL Text="GNU Public License Version 2">
-            https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html</URL> or
-            (at your option) any later version.
-        """
-    )
-)
+]
 
 ));
