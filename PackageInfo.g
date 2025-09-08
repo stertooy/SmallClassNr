@@ -39,7 +39,7 @@ SourceRepository := rec(
 SupportEmail := ~.Persons[1].Email,
 
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
-PackageWWWHome  := Concatenation( "https://stertooy.github.io/", ~.PackageName ),
+PackageWWWHome  := Concatenation( ~.Persons[1].WWWHome, ~.PackageName ),
 PackageInfoURL  := Concatenation( ~.PackageWWWHome, "/PackageInfo.g" ),
 README_URL      := Concatenation( ~.PackageWWWHome, "/README.md" ),
 ArchiveURL      := Concatenation(
