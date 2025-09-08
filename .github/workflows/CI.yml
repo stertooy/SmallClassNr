@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.11.0", "4.11.1", "4.12.0", "4.12.1", "4.12.2", "4.13.0", "4.13.1", "4.14.0", "4.15.0-beta1", "master" ]
+        gap-version: [ "4.12.0", "4.12.1", "4.12.2", "4.13.0", "4.13.1", "4.14.0", "4.15.0-beta1", "master" ]
 
     container:
       image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-slim
@@ -25,21 +25,6 @@ jobs:
 
       - name: "Add custom GAP root"
         run: ln -f -s $PWD /tmp/gaproot/pkg/
-
-      - name: "Test 1"
-        continue-on-error: true
-        shell: bash
-        run: $GAP -c "QUIT;"
-
-      - name: "Test 2"
-        continue-on-error: true
-        shell: bash
-        run: $GAP -A -c "LoadAllPackages();QUIT;"
-
-      - name: "Test 3"
-        continue-on-error: true
-        shell: bash
-        run: $GAP -A -c 'LoadPackage("AtlasRep");QUIT;'
 
       - name: "Run package tests"
         uses: gap-actions/run-pkg-tests@v3
@@ -65,7 +50,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.11.0", "4.11.1", "4.12.0", "4.12.1", "4.12.2", "4.13.0", "4.13.1", "4.14.0", "4.15.0-beta1", "master" ]
+        gap-version: [ "4.12.0", "4.12.1", "4.12.2", "4.13.0", "4.13.1", "4.14.0", "4.15.0-beta1", "master" ]
 
     container:
       image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-slim
