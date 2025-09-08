@@ -2,8 +2,8 @@ SetPackageInfo( rec(
 
 PackageName := "SmallClassNr",
 Subtitle := "Library of groups with small class number",
-Version := "1.3.0",
-Date := "26/12/2024",
+Version := "1.3.1",
+Date := "09/09/2025",
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -12,6 +12,7 @@ Persons := [
         IsMaintainer := true,
         FirstNames := "Sam",
         LastName := "Tertooy",
+        GitHubUsername := "stertooy",
         WWWHome := "https://stertooy.github.io/",
         Email := "sam.tertooy@kuleuven.be",
         PostalAddress := """
@@ -28,12 +29,17 @@ Persons := [
 
 SourceRepository := rec(
     Type := "git",
-    URL := Concatenation( "https://github.com/stertooy/", ~.PackageName )
+    URL := Concatenation(
+        "https://github.com/",
+        ~.Persons[1].GitHubUsername,
+        "/",
+        ~.PackageName
+    )
 ),
-SupportEmail := "sam.tertooy@kuleuven.be",
+SupportEmail := ~.Persons[1].Email,
 
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
-PackageWWWHome  := Concatenation( "https://stertooy.github.io/", ~.PackageName ),
+PackageWWWHome  := Concatenation( ~.Persons[1].WWWHome, ~.PackageName ),
 PackageInfoURL  := Concatenation( ~.PackageWWWHome, "/PackageInfo.g" ),
 README_URL      := Concatenation( ~.PackageWWWHome, "/README.md" ),
 ArchiveURL      := Concatenation(
@@ -56,10 +62,10 @@ PackageDoc := rec(
 ),
 
 Dependencies := rec(
-    GAP := ">= 4.11"
+    GAP := ">= 4.14",
+    NeededOtherPackages := [],
+    SuggestedOtherPackages := []
 ),
-
-AvailabilityTest := ReturnTrue,
 
 TestFile := "tst/testall.g",
 
@@ -68,7 +74,7 @@ Keywords := [
     "conjugacy class",
     "class number"
 ],
-    
+
 AutoDoc := rec(
     TitlePage := rec(
         Abstract := """
@@ -81,7 +87,7 @@ AutoDoc := rec(
             <B>AutoDoc</B> packages.
         """,
         Copyright := """
-            &copyright; 2022-2024 Sam Tertooy <P/>
+            &copyright; 2022-2025 Sam Tertooy <P/>
             The <B>SmallClassNr</B> package is free software, it may be
             redistributed and/or modified under the terms and conditions of the
             <URL Text="GNU Public License Version 2">

@@ -1,35 +1,28 @@
-name: "Test GAP installation (complete)"
+name: "Run GAP tests"
 
 on:
   - workflow_dispatch
 
 jobs:
   test:
-    name: "Test on GAP-${{ matrix.gap-version }}"
+    name: "Test on GAP-${{ matrix.gap-version }} (mode = ${{ matrix.mode }})"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - gap-version: "master"
-          - gap-version: "4.14.0"
-          - gap-version: "4.13.1"
-          - gap-version: "4.13.0"
-          - gap-version: "4.12.2"
-          - gap-version: "4.12.1"
-          - gap-version: "4.12.0"
-          - gap-version: "4.11.1"
-          - gap-version: "4.11.0"
-          
+        gap-version: [ "master", "4.15.0-beta1", "4.14.0" ]
+        mode: [ "default", "onlyneeded" ]
+
     container:
-      image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-min
-      
+      image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-slim
+
     steps:
-    
+
       - name: "Checkout"
-        uses: actions/checkout@v4
-          
-      - name: "Run GAP tests with default packages"
-        uses: sTertooy/gda-test-gap@v1
+        uses: actions/checkout@v5
+
+      - name: "Run GAP tests"
+        uses: stertooy/run-gap-tests@v1
         with:
-          COMPLETE: true
+          complete: true
+          mode: ${{ matrix.mode }}

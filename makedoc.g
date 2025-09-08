@@ -19,17 +19,37 @@ if IsBound( info.Extensions ) then
 fi;
 
 AutoDoc( rec(
-    autodoc := rec( scan_dirs := [ "doc" ] ),
+    scaffold := rec(
+        bib := "manual.bib",
+        entities := rec(
+            AT := "@",
+            AutoDoc := "<Package>AutoDoc</Package>",
+            PackageManager := "<Package>PackageManager</Package>",
+            BibLaTeX := "Bib&LaTeX;",
+            ABBREV := "SCN",
+            packagename := info.PackageName,
+            PACKAGENAME := Concatenation(
+                "<Package>",
+                info.PackageName,
+                "</Package>"
+            ),
+            RELEASEYEAR := String( info.Date{ [ 7 .. 10 ] } ),
+            VERSION := info.Version,
+            ARCHIVEURL := info.ArchiveURL,
+            ISSUEURL := info.IssueTrackerURL,
+            HOMEURL := info.PackageWWWHome,
+            SUPPORTEMAIL := info.SupportEmail,
+            SUBTITLE := info.Subtitle
+        )
+    ),
+    autodoc := rec( files := [ "doc/manual.gd" ] ),
     gapdoc := rec(
         LaTeXOptions := rec( LateExtraPreamble := "\\usepackage{amsmath}" )
     ),
     extract_examples := rec( units := "File" )
 ));
 
-if not ForAll(
-    [ "doc/manual.six", "doc/manual.pdf", "doc/chap0.html" ],
-    IsReadableFile
-) then
+if not IsReadableFile( "doc/manual.six" ) then
     Info( InfoGAPDoc, 1, "#I One or more files could not be created.\n" );
     ForceQuitGap( 1 );
 else

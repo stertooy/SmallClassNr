@@ -1,11 +1,12 @@
 LoadPackage( "SmallClassNr" );
 
-TestDirectory(
-	DirectoriesPackageLibrary( "SmallClassNr", "tst" ),
-	rec(
-		exitGAP := true,
-		testOptions := rec( compareFunction := "uptowhitespace" )
-	)
+pass := TestDirectory(
+    DirectoriesPackageLibrary( "SmallClassNr", "tst" ),
+    rec(
+        exitGAP := false,
+        showProgress := true,
+        testOptions := rec( compareFunction := "uptowhitespace" )
+    )
 );
 
-FORCE_QUIT_GAP( 1 );
+FORCE_QUIT_GAP( pass );
