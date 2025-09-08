@@ -1,4 +1,4 @@
-name: CI
+name: Run CI tests
 on:
   - push
   - pull_request
@@ -6,69 +6,88 @@ on:
 
 jobs:
 
-  test:
-    name: "Test on GAP-${{ matrix.gap-version }}"
+  test-pkg:
+    name: "Test package with GAP-${{ matrix.gap-version }}"
     runs-on: ubuntu-latest
-    if: ${{ !(github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) }}
+
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - gap-version: "master"
-            coverage: true
-          - gap-version: "4.14.0"
-          - gap-version: "4.13.1"
-          - gap-version: "4.13.0"
-          - gap-version: "4.12.2"
-          - gap-version: "4.12.1"
-          - gap-version: "4.12.0"
-          - gap-version: "4.11.1"
-          - gap-version: "4.11.0"
-            
+        gap-version: [ "4.11.0", "4.11.1", "4.12.0", "4.12.1", "4.12.2", "4.13.0", "4.13.1", "4.14.0", "4.15.0-beta1", "master" ]
+
     container:
-      image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-min
+      image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-slim
 
     steps:
-    
+
       - name: "Checkout"
-        uses: actions/checkout@v4
-          
-      - name: "Run package tests with default packages"
-        uses: sTertooy/gda-test-pkg@v1
+        uses: actions/checkout@v5
+
+      - name: "Add custom GAP root"
+        run: ln -f -s $PWD /tmp/gaproot/pkg/
+
+      - name: "Run package tests"
+        uses: gap-actions/run-pkg-tests@v3
         with:
-          COVERAGE: ${{ matrix.coverage }}
-        
+          NO_COVERAGE: ${{ matrix.gap-version != 'master' && 'false' || '' }}
+          warnings-as-errors: true
+            
       - name: "Process coverage"
-        uses: stertooy/gda-coverage@v1
-        if: ${{ matrix.coverage }}
-        
+        uses: gap-actions/process-coverage@v2
+        if: ${{ matrix.gap-version == 'master' }}
+
       - name: "Upload coverage"
         uses: codecov/codecov-action@v5
-        if: ${{ matrix.coverage }}
+        if: ${{ matrix.gap-version == 'master' }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
 
-  validation:
-    name: "Validate manual & metadata"
+  test-gap:
+    name: "Test GAP-${{ matrix.gap-version }} with package, mode: ${{ matrix.mode }}"
     runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name 
+
+    strategy:
+      fail-fast: false
+      matrix:
+        gap-version: [ "4.11.0", "4.11.1", "4.12.0", "4.12.1", "4.12.2", "4.13.0", "4.13.1", "4.14.0", "4.15.0-beta1", "master" ]
 
     container:
-      image: ghcr.io/stertooy/gda-image:tex-min
+      image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-slim
 
     steps:
 
       - name: "Checkout"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
+      - name: "Add custom GAP root"
+        run: ln -f -s $PWD /tmp/gaproot/pkg/
+
+      - name: "Run GAP tests"
+        uses: stertooy/run-gap-tests@v1
+
+  validate:
+    name: "Validate manual & metadata"
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/stertooy/gda-image:master-full
+
+    steps:
+
+      - name: "Checkout"
+        uses: actions/checkout@v5
+
+      - name: "Add custom GAP root"
+        run: ln -f -s $PWD /tmp/gaproot/pkg/
 
       - name: "Validate CITATION.cff"
         uses: citation-file-format/cffconvert-github-action@2.0.0
         with:
           args: "--validate"
-
+          
       - name: "Build manual"
-        uses: stertooy/gda-manual@v1
+        uses: gap-actions/build-pkg-docs@v2
 
       - name: "Validate PackageInfo.g"
         shell: bash
@@ -80,3 +99,28 @@ jobs:
           name: "Manual"
           path: ./doc/manual.pdf
           if-no-files-found: error
+
+  lint:
+    name: "Lint"
+    runs-on: ubuntu-latest
+
+    steps:
+    
+      - name: "Checkout"
+        uses: actions/checkout@v5
+
+      - name: "Setup Python"
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+
+      - name: "Install gaplint"
+        shell: bash
+        run: pip install gaplint
+
+      - name: "Run gaplint"
+        shell: bash
+        run: |
+          shopt -s globstar extglob
+          FILES="*.g !(doc)/**/*.g*"
+          gaplint $FILES --config-file=.github/gaplint.yml
