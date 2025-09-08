@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.12.0", "4.12.1", "4.12.2", "4.13.0", "4.13.1", "4.14.0", "4.15.0-beta1", "master" ]
+        gap-version: [ "4.14.0", "4.15.0-beta1", "master" ]
 
     container:
       image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-slim
@@ -50,7 +50,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.12.0", "4.12.1", "4.12.2", "4.13.0", "4.13.1", "4.14.0", "4.15.0-beta1", "master" ]
+        gap-version: [ "4.14.0", "4.15.0-beta1", "master" ]
 
     container:
       image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-slim
