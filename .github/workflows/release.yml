@@ -27,7 +27,7 @@ jobs:
       - uses: gap-actions/build-pkg-docs@v2
         with:
           use-latex: true
-      - uses: gap-actions/release-pkg@v1
+      - uses: gap-actions/release-pkg@main # v1 is currently not compatible with setup-gap@v3
         with:
           dry-run: ${{ inputs.dry-run }}
           force: ${{ inputs.force }}
