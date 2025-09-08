@@ -31,15 +31,15 @@ jobs:
         shell: bash
         run: $GAP -c "QUIT;"
 
-      - name: "Test 3"
+      - name: "Test 2"
         continue-on-error: true
         shell: bash
         run: $GAP -A -c "LoadAllPackages();QUIT;"
 
-      - name: "Test 2"
+      - name: "Test 3"
         continue-on-error: true
         shell: bash
-        run: $GAP --bare -c "QUIT;"
+        run: $GAP -A -c 'LoadPackage("AtlasRep");QUIT;'
 
       - name: "Run package tests"
         uses: gap-actions/run-pkg-tests@v3
