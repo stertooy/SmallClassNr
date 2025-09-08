@@ -29,7 +29,7 @@ ConditionList@ := function( arg... )
         fi;
 
     od;
-    
+
     return [ fnc, vls ];
 end;
 
@@ -79,7 +79,7 @@ NextSmallClassNrGroup@ := function( itr )
                 return [ [ i, j ], G ];
             fi;
         od;
-        i := i+1;
+        i := i + 1;
         j := 1;
     od;
     return [ [ i, j ], fail ];
@@ -139,9 +139,7 @@ end;
 ##
 InstallGlobalFunction(
     SmallClassNrGroupsAvailable,
-    function( k )
-        return IsBound( SMALL_CLASS_NR_DATA[k] );
-    end
+    k -> IsBound( SMALL_CLASS_NR_DATA[k] )
 );
 
 ###############################################################################
@@ -277,9 +275,9 @@ InstallMethod(
     "generic method",
     [ IsGroup ],
     function( G )
-        return IdClassNr( First( 
+        return IdClassNr( First(
             AllSmallClassNrGroups( NrConjugacyClasses( G ), Size, Size( G ) ),
-            H -> IsomorphismGroups( G, H ) <> fail )
-        );
+            H -> IsomorphismGroups( G, H ) <> fail
+        ));
     end
 );
