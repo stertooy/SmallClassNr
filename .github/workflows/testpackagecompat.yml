@@ -1,0 +1,50 @@
+name: Run package compatibility tests
+
+on:
+  - workflow_dispatch
+
+jobs:
+  test-pkg:
+    name: "Test package with GAP-${{ matrix.gap-version }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        gap-version: [ "master", "4.15.0-beta1", "4.14.0" ]
+
+    container:
+      image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-full
+
+    steps:
+
+      - name: "Checkout"
+        uses: actions/checkout@v5
+
+      - name: "Run package tests"
+        uses: gap-actions/run-pkg-tests@v3
+        with:
+          load-all: true
+          warnings-as-errors: false
+          NO_COVERAGE: true
+
+  test-gap:
+    name: "Test GAP-${{ matrix.gap-version }} with package"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        gap-version: [ "master", "4.15.0-beta1", "4.14.0" ]
+
+    container:
+      image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-full
+
+    steps:
+
+      - name: "Checkout"
+        uses: actions/checkout@v5
+
+      - name: "Run GAP tests"
+        uses: stertooy/run-gap-tests@v1
+        with:
+          mode: 'loadall'
+          warnings-as-errors: false
