@@ -12,7 +12,7 @@ ConditionList@ := function( arg... )
         # Add function
         if IsFunction( arg[i] ) then
             Add( fnc, arg[i] );
-            i := i+1;
+            i := i + 1;
         else
             Add( fnc, NrConjugacyClasses );
         fi;
@@ -22,17 +22,16 @@ ConditionList@ := function( arg... )
             Add( vls, [ true ] );
         elif IsList( arg[i] ) then
             Add( vls, arg[i] );
-            i := i+1;
+            i := i + 1;
         else
             Add( vls, [ arg[i] ] );
-            i := i+1;
+            i := i + 1;
         fi;
 
     od;
     
     return [ fnc, vls ];
 end;
-
 
 ###############################################################################
 ##
@@ -49,7 +48,6 @@ ExtractClassNumbers@ := function( fnc, vls )
     od;
     return [ kGs, fnc, vls ];
 end;
-
 
 ###############################################################################
 ##
@@ -75,7 +73,7 @@ NextSmallClassNrGroup@ := function( itr )
             G := SmallClassNrGroup( kG, j );
             j := j + 1;
             if ForAll(
-                [ 1..Length( fnc ) ],
+                [ 1 .. Length( fnc ) ],
                 k -> fnc[k]( G ) in vls[k]
             ) then
                 return [ [ i, j ], G ];
@@ -86,7 +84,6 @@ NextSmallClassNrGroup@ := function( itr )
     od;
     return [ [ i, j ], fail ];
 end;
-
 
 ###############################################################################
 ##
@@ -105,7 +102,6 @@ NextIterator@ := function( itr )
     return G;
 end;
 
-
 ###############################################################################
 ##
 ## IsDoneIterator@( itr )
@@ -123,7 +119,6 @@ IsDoneIterator@ := function( itr )
     return false;
 end;
 
-
 ###############################################################################
 ##
 ## ShallowCopy@( itr )
@@ -138,7 +133,6 @@ ShallowCopy@ := function( itr )
     );
 end;
 
-
 ###############################################################################
 ##
 ## SmallClassNrGroupsAvailable( k )
@@ -150,7 +144,6 @@ InstallGlobalFunction(
     end
 );
 
-
 ###############################################################################
 ##
 ## SmallClassNrGroup( k, i )
@@ -158,7 +151,7 @@ InstallGlobalFunction(
 InstallGlobalFunction(
     SmallClassNrGroup,
     function( arg... )
-        local k, i, data, G, info, att, val, prop;
+        local k, i, data, G;
         if IsList( arg[1] ) then
             k := arg[1][1];
             i := arg[1][2];
@@ -171,7 +164,7 @@ InstallGlobalFunction(
                 "the library of groups of class number ",
                 k, " is not available"
             );
-        elif not i in [ 1..Length( SMALL_CLASS_NR_DATA[k] ) ] then
+        elif not i in [ 1 .. Length( SMALL_CLASS_NR_DATA[k] ) ] then
             if Length( SMALL_CLASS_NR_DATA[k] ) = 1 then
                 Error( "there is just 1 group of class number ", k );
             else
@@ -197,7 +190,6 @@ InstallGlobalFunction(
     end
 );
 
-
 ###############################################################################
 ##
 ## IteratorSmallClassNrGroups( arg... )
@@ -205,14 +197,14 @@ InstallGlobalFunction(
 InstallGlobalFunction(
     IteratorSmallClassNrGroups,
     function( arg... )
-        local con, kfv, kGs, fnc, vls, itr;
+        local con, kfv, itr;
         con := CallFuncList( ConditionList@, arg );
         kfv := CallFuncList( ExtractClassNumbers@, con );
         itr := rec(
             kGs := kfv[1],
             fnc := kfv[2],
             vls := kfv[3],
-            pos := [1,1],
+            pos := [ 1, 1 ],
             nxt := fail,
             IsDoneIterator := IsDoneIterator@,
             NextIterator := NextIterator@,
@@ -221,7 +213,6 @@ InstallGlobalFunction(
         return IteratorByFunctions( itr );
     end
 );
-
 
 ###############################################################################
 ##
@@ -234,7 +225,6 @@ InstallGlobalFunction(
     end
 );
 
-
 ###############################################################################
 ##
 ## OneSmallClassNrGroup( arg... )
@@ -245,7 +235,6 @@ InstallGlobalFunction(
         return NextIterator( CallFuncList( IteratorSmallClassNrGroups, arg ) );
     end
 );
-
 
 ###############################################################################
 ##
@@ -271,14 +260,13 @@ InstallGlobalFunction(
         else
             iter := CallFuncList( IteratorSmallClassNrGroups, arg );
             while not IsDoneIterator( iter ) do
-                n := n+1;
+                n := n + 1;
                 NextIterator( iter );
             od;
         fi;
         return n;
     end
 );
-
 
 ###############################################################################
 ##
