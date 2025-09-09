@@ -22,16 +22,21 @@ AutoDoc( rec(
     scaffold := rec(
         bib := "manual.bib",
         entities := rec(
-            AT := "@",
             AutoDoc := "<Package>AutoDoc</Package>",
             PackageManager := "<Package>PackageManager</Package>",
             BibLaTeX := "Bib&LaTeX;",
-            ABBREV := "SCN",
-            packagename := info.PackageName,
+            PackageName := pkgName,
             PACKAGENAME := Concatenation(
                 "<Package>",
-                info.PackageName,
+                pkgName,
                 "</Package>"
+            ),
+            ABBREV := "SCN",
+            AUTHOR := Concatenation(
+                info.Persons[1].FirstNames, " ", info.Persons[1].LastName
+            ),
+            AUTHORREVERSED := Concatenation(
+                info.Persons[1].LastName, ", ", info.Persons[1].FirstNames
             ),
             RELEASEYEAR := String( info.Date{ [ 7 .. 10 ] } ),
             VERSION := info.Version,
