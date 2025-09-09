@@ -16,9 +16,9 @@ gap> NrSmallClassNrGroups( 15 );
 Error, the library of groups of class number 15 is not available
 
 #
-gap> IsPSL( SmallClassNrGroup( 10, 37 ) );
-true
 gap> IsAlternatingGroup( SmallClassNrGroup( [ 5, 8 ] ) );
+true
+gap> IsSimpleGroup( SmallClassNrGroup( 10, 35 ) );
 true
 gap> SmallClassNrGroup( 2, 2 );
 Error, there is just 1 group of class number 2
@@ -28,6 +28,8 @@ gap> SmallClassNrGroup( 15, 15 );
 Error, the library of groups of class number 15 is not available
 gap> IdClassNr( AlternatingGroup( 5 ) );
 [ 5, 8 ]
+gap> IdClassNr( MathieuGroup( 11 ) );
+[ 10, 35 ]
 gap> IdClassNr( PcGroupCode( 8322, 24 ) );
 Error, the library of groups of class number 15 is not available
 
