@@ -15,7 +15,7 @@
 #! @Acknowledgements
 #! This documentation was created using the &GAPDoc; and &AutoDoc; packages.
 
-#! @Chapter The &packagename; package
+#! @Chapter The &PackageName; package
 
 #! This is the manual for the &GAP; 4 package &PACKAGENAME; version
 #! &VERSION;, developed by &AUTHOR;.
