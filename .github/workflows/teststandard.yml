@@ -5,13 +5,12 @@ on:
 
 jobs:
   test:
-    name: "Test on GAP-${{ matrix.gap-version }} (mode = ${{ matrix.mode }})"
+    name: "Test on GAP-${{ matrix.gap-version }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         gap-version: [ "master", "4.15.0-beta1", "4.14.0" ]
-        mode: [ "default", "onlyneeded" ]
 
     container:
       image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-slim
@@ -25,4 +24,3 @@ jobs:
         uses: stertooy/run-gap-tests@v1
         with:
           complete: true
-          mode: ${{ matrix.mode }}
