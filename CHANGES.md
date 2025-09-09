@@ -1,7 +1,7 @@
 This file describes changes in the GAP package SmallClassNr.
 
 
-1.3.1 (2025-09-09)
+1.4.0 (2025-09-09)
 ------------------
 
 - Now requires GAP version >= 4.14
