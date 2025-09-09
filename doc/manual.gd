@@ -89,8 +89,7 @@ LoadPackage( "SmallClassNr" );
 #! &PACKAGENAME;, you may contact me via email at
 #! <Email>&SUPPORTEMAIL;</Email>.
 
-#! @Chapter Mathematical Background
-
+#! @Chapter Classification
 #! The **class number** $k(G)$ of a group $G$ is the number of conjugacy classes of $G$. In 1903, Landau proved in <Cite Key='land03-a' /> that for every $n \in \mathbb{N}$, there are only finitely many finite groups with exactly $n$ conjugacy classes.
 #! The &PACKAGENAME; package provides access to the finite groups with class number at most $14$.
 #! <P/>
