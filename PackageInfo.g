@@ -1,94 +1,103 @@
+#############################################################################
+##  
+##  Demo PackageInfo.g for the GitHubPagesForGAP
+##
+
 SetPackageInfo( rec(
 
-PackageName := "SmallClassNr",
-Subtitle := "Library of groups with small class number",
-Version := "1.3.0",
-Date := "26/12/2024",
-License := "GPL-2.0-or-later",
+PackageName := "GitHubPagesForGAP",
+
+Subtitle := "A GitHub Pages generator for GAP packages",
+Version := "0.4",
+Date := "10/04/2025", # dd/mm/yyyy format
+License := "0BSD",
 
 Persons := [
-    rec(
-        IsAuthor := true,
-        IsMaintainer := true,
-        FirstNames := "Sam",
-        LastName := "Tertooy",
-        WWWHome := "https://stertooy.github.io/",
-        Email := "sam.tertooy@kuleuven.be",
-        PostalAddress := """
-            Wiskunde
-            KU Leuven, Kulak Kortrijk Campus
-            Etienne Sabbelaan 53
-            8500 Kortrijk
-            Belgium
-        """,
-        Place := "Kortrijk, Belgium",
-        Institution := "KU Leuven, Kulak Kortrijk Campus"
-    ),
+  rec(
+    LastName      := "Horn",
+    FirstNames    := "Max",
+    IsAuthor      := true,
+    IsMaintainer  := true,
+    Email         := "mhorn@rptu.de",
+    WWWHome       := "https://www.quendi.de/math",
+    GitHubUsername:= "fingolfin",
+    PostalAddress := Concatenation(
+                       "Fachbereich Mathematik\n",
+                       "RPTU Kaiserslautern-Landau\n",
+                       "Gottlieb-Daimler-Straße 48\n",
+                       "67663 Kaiserslautern\n",
+                       "Germany" ),
+    Place         := "Kaiserslautern, Germany",
+    Institution   := "RPTU Kaiserslautern-Landau"
+  ),
+
+  rec(
+    LastName      := "Thor",
+    FirstNames    := "A. U.",
+    IsAuthor      := true,
+    IsMaintainer  := false,
+    #Email         := "author@example.com",
+  ),
+
+  rec(
+    LastName      := "Itor",
+    FirstNames    := "Jan",
+    IsAuthor      := false,
+    IsMaintainer  := true,
+    #Email         := "janitor@example.com",
+  ),
 ],
 
-SourceRepository := rec(
-    Type := "git",
-    URL := Concatenation( "https://github.com/stertooy/", ~.PackageName )
-),
-SupportEmail := "sam.tertooy@kuleuven.be",
+Status := "other",
 
-IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
-PackageWWWHome  := Concatenation( "https://stertooy.github.io/", ~.PackageName ),
-PackageInfoURL  := Concatenation( ~.PackageWWWHome, "/PackageInfo.g" ),
-README_URL      := Concatenation( ~.PackageWWWHome, "/README.md" ),
-ArchiveURL      := Concatenation(
-    ~.SourceRepository.URL,
-    "/releases/download/v", ~.Version,
-    "/", ~.PackageName, "-", ~.Version
-),
+# The following are not strictly necessary in your own PackageInfo.g
+# (in the sense that update.g only looks at the usual fields
+# like PackageWWWHome, ArchiveURL etc.). But they are convenient
+# if you use exactly the scheme for your package website that we propose.
+GithubUser := "gap-system",
+GithubRepository := ~.PackageName,
+GithubWWW := Concatenation("https://github.com/", ~.GithubUser, "/", ~.GithubRepository),
 
-ArchiveFormats := ".tar.gz",
+PackageWWWHome := Concatenation("https://", ~.GithubUser, ".github.io/", ~.GithubRepository, "/"),
+README_URL     := Concatenation( ~.PackageWWWHome, "README.md" ),
+PackageInfoURL := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
+# The following assumes you are using the Github releases system. If not, adjust
+# it accordingly.
+ArchiveURL     := Concatenation(~.GithubWWW,
+                    "/releases/download/v", ~.Version, "/",
+                    ~.GithubRepository, "-", ~.Version),
 
-AbstractHTML := "Library of finite groups with small class number.",
+ArchiveFormats := ".tar.gz .tar.bz2",
+
+AbstractHTML := 
+  "This is a pseudo package that contains no actual\
+  <span class=\"pkgname\">GAP</span> code. Instead, it is a template for other\
+  GAP packages that allows to quickly setup GitHub Pages.",
 
 PackageDoc := rec(
-    BookName  := ~.PackageName,
-    ArchiveURLSubset := ["doc"],
-    HTMLStart := "doc/chap0_mj.html",
-    PDFFile   := "doc/manual.pdf",
-    SixFile   := "doc/manual.six",
-    LongTitle := ~.Subtitle
+  BookName  := "GitHubPagesForGAP",
+  ArchiveURLSubset := ["doc"],
+  HTMLStart := "doc/chap0.html",
+  PDFFile   := "doc/manual.pdf",
+  SixFile   := "doc/manual.six",
+  LongTitle := "A GitHub Pages generator for GAP packages",
 ),
 
+# The following dependencies are fake and for testing / demo purposes
 Dependencies := rec(
-    GAP := ">= 4.11"
+  GAP := ">=4.8.1",
+  NeededOtherPackages := [
+    ["GAPDoc", ">= 1.2"],
+    ["IO", ">= 4.1"],
+  ],
+  SuggestedOtherPackages := [["orb", ">= 4.2"]],
+  ExternalConditions := []
 ),
 
 AvailabilityTest := ReturnTrue,
 
-TestFile := "tst/testall.g",
-
-Keywords := [
-    "conjugacy",
-    "conjugacy class",
-    "class number"
-],
-    
-AutoDoc := rec(
-    TitlePage := rec(
-        Abstract := """
-            The <B>SmallClassNr</B> package provides access to finite groups
-            with small class number. Currently, the package contains the finite
-            groups of class number at most 14.
-        """,
-        Acknowledgements := """
-            This documentation was created using the <B>GAPDoc</B> and
-            <B>AutoDoc</B> packages.
-        """,
-        Copyright := """
-            &copyright; 2022-2024 Sam Tertooy <P/>
-            The <B>SmallClassNr</B> package is free software, it may be
-            redistributed and/or modified under the terms and conditions of the
-            <URL Text="GNU Public License Version 2">
-            https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html</URL> or
-            (at your option) any later version.
-        """
-    )
-)
+Keywords := ["GitHub Pages", "GAP"]
 
 ));
+
+
