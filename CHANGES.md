@@ -1,6 +1,13 @@
 This file describes changes in the GAP package SmallClassNr.
 
 
+1.4.1 (2025-09-13)
+------------------
+
+- Package tests no longer require the PrimGrp, SmallGrp and TransGrp packages
+
+
+
 1.4.0 (2025-09-09)
 ------------------
 

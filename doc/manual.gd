@@ -4,7 +4,7 @@
 #! class number at most 14.
 
 #! @Copyright
-#! &copyright; 2022&ndash;&RELEASEYEAR; Sam Tertooy
+#! &copyright; 2022&ndash;&RELEASEYEAR; &AUTHOR;
 #! <P/>
 #! The &PACKAGENAME; package is free software, it may be redistributed
 #! and/or modified under the terms and conditions of the
@@ -15,10 +15,10 @@
 #! @Acknowledgements
 #! This documentation was created using the &GAPDoc; and &AutoDoc; packages.
 
-#! @Chapter The &packagename; package
+#! @Chapter The &PackageName; package
 
 #! This is the manual for the &GAP; 4 package &PACKAGENAME; version
-#! &VERSION;, developed by Sam Tertooy.
+#! &VERSION;, developed by &AUTHOR;.
 
 #! @Section Installation
 #! You can download &PACKAGENAME; as a .tar.gz archive
@@ -61,9 +61,9 @@ LoadPackage( "SmallClassNr" );
 
 #! In &BibTeX;:
 #!<Listing Type="BibTeX">
-#!&AT;misc{&ABBREV;&VERSION;,
-#!    author =       {Tertooy, Sam},
-#!    title =        {{&packagename;,
+#!&#64;misc{&ABBREV;&VERSION;,
+#!    author =       {&AUTHORREVERSED;},
+#!    title =        {{&PackageName;,
 #!                    &SUBTITLE;,
 #!                    Version &VERSION;}},
 #!    note =         {GAP package},
@@ -72,9 +72,9 @@ LoadPackage( "SmallClassNr" );
 #!}</Listing><P/>
 #! In &BibLaTeX;:
 #!<Listing Type="BibLaTeX">
-#!&AT;software{&ABBREV;&VERSION;,
-#!    author =   {Tertooy, Sam},
-#!    title =    {&packagename;},
+#!&#64;software{&ABBREV;&VERSION;,
+#!    author =   {&AUTHORREVERSED;},
+#!    title =    {&PackageName;},
 #!    subtitle = {&SUBTITLE;},
 #!    version =  {&VERSION;},
 #!    note =     {GAP package},
