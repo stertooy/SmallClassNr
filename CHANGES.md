@@ -5,6 +5,7 @@ This file describes changes in the GAP package SmallClassNr.
 ------------------
 
 - Package tests no longer require the PrimGrp, SmallGrp and TransGrp packages
+- Janitorial changes
 
 
 
