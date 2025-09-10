@@ -1,145 +1,10 @@
 ###############################################################################
 ##
-## ConditionList@( arg... )
-##
-ConditionList@ := function( arg... )
-    local fnc, vls, i;
-    fnc := [];
-    vls := [];
-    i := 1;
-    while i <= Length( arg ) do
-
-        # Add function
-        if IsFunction( arg[i] ) then
-            Add( fnc, arg[i] );
-            i := i + 1;
-        else
-            Add( fnc, NrConjugacyClasses );
-        fi;
-
-        # Add matching value
-        if not IsBound( arg[i] ) or IsFunction( arg[i] ) then
-            Add( vls, [ true ] );
-        elif IsList( arg[i] ) then
-            Add( vls, arg[i] );
-            i := i + 1;
-        else
-            Add( vls, [ arg[i] ] );
-            i := i + 1;
-        fi;
-
-    od;
-
-    return [ fnc, vls ];
-end;
-
-###############################################################################
-##
-## ExtractClassNumbers@( fnc, vls )
-##
-ExtractClassNumbers@ := function( fnc, vls )
-    local pos, kGs;
-    pos := Position( fnc, NrConjugacyClasses );
-    kGs := PositiveIntegers;
-    while pos <> fail do
-        Remove( fnc, pos );
-        kGs := Intersection( kGs, Remove( vls, pos ) );
-        pos := Position( fnc, NrConjugacyClasses );
-    od;
-    return [ kGs, fnc, vls ];
-end;
-
-###############################################################################
-##
-## NextSmallClassNrGroup@( itr )
-##
-NextSmallClassNrGroup@ := function( itr )
-    local kGs, fnc, vls, pos, i, j, kG, G;
-    kGs := itr!.kGs;
-    fnc := itr!.fnc;
-    vls := itr!.vls;
-    pos := itr!.pos;
-    i := pos[1];
-    j := pos[2];
-    while i <= Length( kGs ) do
-        kG := kGs[i];
-        if not SmallClassNrGroupsAvailable( kG ) then
-            Error(
-                "the library of groups of class number ",
-                kG, " is not available"
-            );
-        fi;
-        while j <= Length( SMALL_CLASS_NR_DATA[kG] ) do
-            G := SmallClassNrGroup( kG, j );
-            j := j + 1;
-            if ForAll(
-                [ 1 .. Length( fnc ) ],
-                k -> fnc[k]( G ) in vls[k]
-            ) then
-                return [ [ i, j ], G ];
-            fi;
-        od;
-        i := i + 1;
-        j := 1;
-    od;
-    return [ [ i, j ], fail ];
-end;
-
-###############################################################################
-##
-## NextIterator@( itr )
-##
-NextIterator@ := function( itr )
-    local G;
-    if IsBool( itr!.nxt ) then
-        itr!.nxt := NextSmallClassNrGroup@( itr );
-    fi;
-    itr!.pos := itr!.nxt[1];
-    G := itr!.nxt[2];
-    if not IsBool( G ) then
-        itr!.nxt := fail;
-    fi;
-    return G;
-end;
-
-###############################################################################
-##
-## IsDoneIterator@( itr )
-##
-IsDoneIterator@ := function( itr )
-    local nxt;
-    if not IsBool( itr!.nxt ) then
-        return IsBool( itr!.nxt[2] );
-    fi;
-    nxt := NextSmallClassNrGroup@( itr );
-    itr!.nxt := nxt;
-    if IsBool( nxt[2] ) then
-        return true;
-    fi;
-    return false;
-end;
-
-###############################################################################
-##
-## ShallowCopy@( itr )
-##
-ShallowCopy@ := function( itr )
-    return rec(
-        kGs := itr!.kGs,
-        fnc := itr!.fnc,
-        vls := itr!.vls,
-        pos := itr!.pos,
-        nxt := itr!.nxt
-    );
-end;
-
-###############################################################################
-##
 ## SmallClassNrGroupsAvailable( k )
 ##
 InstallGlobalFunction(
     SmallClassNrGroupsAvailable,
-    k -> IsBound( SMALL_CLASS_NR_DATA[k] )
+    k -> IsBound( SCN_DATA[k] )
 );
 
 ###############################################################################
@@ -162,17 +27,17 @@ InstallGlobalFunction(
                 "the library of groups of class number ",
                 k, " is not available"
             );
-        elif not i in [ 1 .. Length( SMALL_CLASS_NR_DATA[k] ) ] then
-            if Length( SMALL_CLASS_NR_DATA[k] ) = 1 then
+        elif not i in [ 1 .. Length( SCN_DATA[k] ) ] then
+            if Length( SCN_DATA[k] ) = 1 then
                 Error( "there is just 1 group of class number ", k );
             else
                 Error(
-                    "there are just ", Length( SMALL_CLASS_NR_DATA[k] ),
+                    "there are just ", Length( SCN_DATA[k] ),
                     " groups of class number ", k
                 );
             fi;
         fi;
-        data := SMALL_CLASS_NR_DATA[k][i];
+        data := SCN_DATA[k][i];
         if IsInt( data[1] ) then
             G := CallFuncList( PcGroupCode, data );
             SpecialPcgs( G );
@@ -196,17 +61,17 @@ InstallGlobalFunction(
     IteratorSmallClassNrGroups,
     function( arg... )
         local con, kfv, itr;
-        con := CallFuncList( ConditionList@, arg );
-        kfv := CallFuncList( ExtractClassNumbers@, con );
+        con := CallFuncList( SCN_ConditionList, arg );
+        kfv := CallFuncList( SCN_ExtractClassNumbers, con );
         itr := rec(
             kGs := kfv[1],
             fnc := kfv[2],
             vls := kfv[3],
             pos := [ 1, 1 ],
             nxt := fail,
-            IsDoneIterator := IsDoneIterator@,
-            NextIterator := NextIterator@,
-            ShallowCopy := ShallowCopy@
+            IsDoneIterator := SCN_IsDoneIterator,
+            NextIterator := SCN_NextIterator,
+            ShallowCopy := SCN_ShallowCopy
         );
         return IteratorByFunctions( itr );
     end
@@ -242,8 +107,8 @@ InstallGlobalFunction(
     NrSmallClassNrGroups,
     function( arg... )
         local con, kfv, n, k, iter;
-        con := CallFuncList( ConditionList@, arg );
-        kfv := CallFuncList( ExtractClassNumbers@, con );
+        con := CallFuncList( SCN_ConditionList, arg );
+        kfv := CallFuncList( SCN_ExtractClassNumbers, con );
         n := 0;
         if IsEmpty( kfv[2] ) then
             for k in kfv[1] do
@@ -253,7 +118,7 @@ InstallGlobalFunction(
                         k, " is not available"
                     );
                 fi;
-                n := n + Length( SMALL_CLASS_NR_DATA[k] );
+                n := n + Length( SCN_DATA[k] );
             od;
         else
             iter := CallFuncList( IteratorSmallClassNrGroups, arg );
