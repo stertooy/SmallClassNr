@@ -140,11 +140,11 @@ BindGlobal(
 ##
 BindGlobal(
     "SCN_ShallowCopy",
-    its -> rec(
+    itr -> rec(
         kGs := itr!.kGs,
         fnc := itr!.fnc,
         vls := itr!.vls,
         pos := itr!.pos,
         nxt := itr!.nxt
-    );
+    )
 );
