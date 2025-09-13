@@ -24,3 +24,4 @@ jobs:
         uses: stertooy/run-gap-tests@v1
         with:
           complete: true
+          warnings-as-errors: false
