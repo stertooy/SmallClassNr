@@ -1,6 +1,6 @@
 #! @Abstract
-#! The &PACKAGENAME; package package provides access to finite groups with
-#! small class number. Currently, the package contains the finite groups of
+#! The &PACKAGENAME; package provides access to finite groups with
+#! small class number. Currently, it contains the finite groups of
 #! class number at most 14.
 
 #! @Copyright
