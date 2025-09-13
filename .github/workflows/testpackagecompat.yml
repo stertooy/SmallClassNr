@@ -21,11 +21,11 @@ jobs:
         uses: actions/checkout@v5
 
       - name: "Run package tests"
-        uses: gap-actions/run-pkg-tests@v3
+        uses: gap-actions/run-pkg-tests@v4
         with:
-          load-all: true
+          mode: 'loadall'
           warnings-as-errors: false
-          NO_COVERAGE: true
+          coverage: false
 
   test-gap:
     name: "Test GAP-${{ matrix.gap-version }} with package"
@@ -33,7 +33,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "master", "4.15.0-beta1", "4.14.0" ]
+        gap-version: [ "master", "4.15.0-beta2", "4.14.0" ]
 
     container:
       image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-full
