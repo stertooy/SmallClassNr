@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.14.0", "4.15.0-beta1", "master" ]
+        gap-version: [ "4.14.0", "4.15.0-beta2", "master" ]
 
     container:
       image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-slim
@@ -27,13 +27,13 @@ jobs:
         run: ln -f -s $PWD /tmp/gaproot/pkg/
 
       - name: "Run package tests"
-        uses: gap-actions/run-pkg-tests@v3
+        uses: gap-actions/run-pkg-tests@v4
         with:
-          NO_COVERAGE: ${{ matrix.gap-version != 'master' && 'false' || '' }}
+          coverage: ${{ matrix.gap-version == 'master' }}
           warnings-as-errors: true
             
       - name: "Process coverage"
-        uses: gap-actions/process-coverage@v2
+        uses: gap-actions/process-coverage@v3
         if: ${{ matrix.gap-version == 'master' }}
 
       - name: "Upload coverage"
@@ -50,7 +50,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.14.0", "4.15.0-beta1", "master" ]
+        gap-version: [ "4.14.0", "4.15.0-beta2", "master" ]
 
     container:
       image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-slim
