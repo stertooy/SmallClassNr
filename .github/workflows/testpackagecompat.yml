@@ -20,6 +20,9 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v5
 
+      - name: "Add custom GAP root"
+        run: ln -f -s $PWD /tmp/gaproot/pkg/
+
       - name: "Run package tests"
         uses: gap-actions/run-pkg-tests@v4
         with:
@@ -43,8 +46,32 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v5
 
+      - name: "Add custom GAP root"
+        run: ln -f -s $PWD /tmp/gaproot/pkg/
+
       - name: "Run GAP tests"
         uses: stertooy/run-gap-tests@v1
         with:
           mode: 'loadall'
           warnings-as-errors: false
+
+  test-additional:
+    name: "Additional tests"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+
+    container:
+      image: ghcr.io/stertooy/gda-image:master-slim
+
+    steps:
+
+      - name: "Checkout"
+        uses: actions/checkout@v5
+
+      - name: "Add custom GAP root"
+        run: ln -f -s $PWD /tmp/gaproot/pkg/
+
+      - name: "Verify that tests do not depend on PrimGrp/SmallGrp/TransGrp"
+        shell: bash
+        run: gap --bare -c 'LoadPackage("GAPDoc");TestPackage("SmallClassNr");'
