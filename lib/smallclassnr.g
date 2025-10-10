@@ -69,7 +69,7 @@ SCN.NextSmallClassNrGroup := function( itr )
                 kG, " is not available"
             );
         fi;
-        while j <= Length( SCN_DATA[kG] ) do
+        while j <= Length( SCN.DATA[kG] ) do
             G := SmallClassNrGroup( kG, j );
             j := j + 1;
             if ForAll(
@@ -92,7 +92,7 @@ end;
 SCN.NextIterator := function( itr )
     local G;
     if IsBool( itr!.nxt ) then
-        itr!.nxt := SCN_NextSmallClassNrGroup( itr );
+        itr!.nxt := SCN.NextSmallClassNrGroup( itr );
     fi;
     itr!.pos := itr!.nxt[1];
     G := itr!.nxt[2];
@@ -111,7 +111,7 @@ SCN.IsDoneIterator := function( itr )
     if not IsBool( itr!.nxt ) then
         return IsBool( itr!.nxt[2] );
     fi;
-    nxt := SCN_NextSmallClassNrGroup( itr );
+    nxt := SCN.NextSmallClassNrGroup( itr );
     itr!.nxt := nxt;
     if IsBool( nxt[2] ) then
         return true;
