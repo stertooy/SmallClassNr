@@ -2,10 +2,10 @@
 ##
 ## Declarations
 ##
-DeclareGlobalFunction( "SmallClassNrGroupsAvailable" );
-DeclareGlobalFunction( "NrSmallClassNrGroups" );
-DeclareGlobalFunction( "SmallClassNrGroup" );
-DeclareGlobalFunction( "IteratorSmallClassNrGroups" );
-DeclareGlobalFunction( "AllSmallClassNrGroups" );
-DeclareGlobalFunction( "OneSmallClassNrGroup" );
+DeclareGlobalName( "SmallClassNrGroupsAvailable" );
+DeclareGlobalName( "NrSmallClassNrGroups" );
+DeclareGlobalName( "SmallClassNrGroup" );
+DeclareGlobalName( "IteratorSmallClassNrGroups" );
+DeclareGlobalName( "AllSmallClassNrGroups" );
+DeclareGlobalName( "OneSmallClassNrGroup" );
 DeclareAttribute( "IdClassNr", IsGroup );
