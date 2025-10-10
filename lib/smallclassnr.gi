@@ -134,8 +134,8 @@ BindGlobal(
 ###############################################################################
 ##
 ## IdClassNr( G )
-BindGlobal(
-    "IdClassNr",
+InstallMethod(
+    IdClassNr,
     "generic method",
     [ IsGroup ],
     function( G )
