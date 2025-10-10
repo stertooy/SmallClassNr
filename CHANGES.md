@@ -1,6 +1,15 @@
 This file describes changes in the GAP package SmallClassNr.
 
 
+1.4.2 (2025-10-11)
+------------------
+
+- Update license text to latest version (by @jamesjer)
+- Update installation instructions in manual
+- Janitorial changes
+
+
+
 1.4.1 (2025-09-13)
 ------------------
 
