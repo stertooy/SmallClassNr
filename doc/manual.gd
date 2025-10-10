@@ -21,7 +21,19 @@
 #! &VERSION;, developed by &AUTHOR;.
 
 #! @Section Installation
-#! You can download &PACKAGENAME; as a .tar.gz archive
+#! If you are using &GAP; version 4.15.0 or newer, then &PACKAGENAME; should
+#! be installed by default.
+#! 
+#! If this is not the case, but the &PackageManager; package is installed and
+#! loaded, you can install &PACKAGENAME; from within a &GAP; session using
+#! <Ref Func="InstallPackage" BookName="PackageManager" Style="Number"/>.
+#! @BeginLog
+InstallPackage( "SmallClassNr" );
+#! ...
+#! true
+#! @EndLog
+#!
+#! Alternatively, you can download &PACKAGENAME; as a .tar.gz archive
 #! <URL Text='here'>&ARCHIVEURL;.tar.gz</URL>. After extracting, you should
 #! place it in a suitable <F>pkg</F> folder. For example, on a Debian-based
 #! Linux distribution (e.g. Ubuntu, Mint), you can place it in
@@ -31,15 +43,7 @@
 #!
 #! You can use the following command to efficiently install the package for
 #! yourself:
-#! <Listing Type="Command">wget -qO- https://[...].tar.gz | tar xzf - --one-top-level=&dollar;HOME/.gap/pkg</Listing>
-#! If the &PackageManager; package is installed and loaded, you can install
-#! &PACKAGENAME; from within a &GAP; session
-#! using <Ref Func="InstallPackage" BookName="PackageManager" Style="Number"/>.
-#! @BeginLog
-InstallPackage( "https://[...].tar.gz" );
-#! ...
-#! true
-#! @EndLog
+#! <Listing Type="Command">wget -qO - https://[...].tar.gz | tar xzf - --one-top-level=&dollar;HOME/.gap/pkg</Listing>
 
 #! @Section Loading
 #! Once installed, loading &PACKAGENAME; can be done by using
