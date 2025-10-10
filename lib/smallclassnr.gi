@@ -4,7 +4,7 @@
 ##
 InstallGlobalFunction(
     SmallClassNrGroupsAvailable,
-    k -> IsBound( SCN_DATA[k] )
+    k -> IsBound( SCN.DATA[k] )
 );
 
 ###############################################################################
@@ -27,17 +27,17 @@ InstallGlobalFunction(
                 "the library of groups of class number ",
                 k, " is not available"
             );
-        elif not i in [ 1 .. Length( SCN_DATA[k] ) ] then
-            if Length( SCN_DATA[k] ) = 1 then
+        elif not i in [ 1 .. Length( SCN.DATA[k] ) ] then
+            if Length( SCN.DATA[k] ) = 1 then
                 Error( "there is just 1 group of class number ", k );
             else
                 Error(
-                    "there are just ", Length( SCN_DATA[k] ),
+                    "there are just ", Length( SCN.DATA[k] ),
                     " groups of class number ", k
                 );
             fi;
         fi;
-        data := SCN_DATA[k][i];
+        data := SCN.DATA[k][i];
         if IsInt( data[1] ) then
             G := CallFuncList( PcGroupCode, data );
             SpecialPcgs( G );
@@ -61,17 +61,17 @@ InstallGlobalFunction(
     IteratorSmallClassNrGroups,
     function( arg... )
         local con, kfv, itr;
-        con := CallFuncList( SCN_ConditionList, arg );
-        kfv := CallFuncList( SCN_ExtractClassNumbers, con );
+        con := CallFuncList( SCN.ConditionList, arg );
+        kfv := CallFuncList( SCN.ExtractClassNumbers, con );
         itr := rec(
             kGs := kfv[1],
             fnc := kfv[2],
             vls := kfv[3],
             pos := [ 1, 1 ],
             nxt := fail,
-            IsDoneIterator := SCN_IsDoneIterator,
-            NextIterator := SCN_NextIterator,
-            ShallowCopy := SCN_ShallowCopy
+            IsDoneIterator := SCN.IsDoneIterator,
+            NextIterator := SCN.NextIterator,
+            ShallowCopy := SCN.ShallowCopy
         );
         return IteratorByFunctions( itr );
     end
@@ -107,8 +107,8 @@ InstallGlobalFunction(
     NrSmallClassNrGroups,
     function( arg... )
         local con, kfv, n, k, iter;
-        con := CallFuncList( SCN_ConditionList, arg );
-        kfv := CallFuncList( SCN_ExtractClassNumbers, con );
+        con := CallFuncList( SCN.ConditionList, arg );
+        kfv := CallFuncList( SCN.ExtractClassNumbers, con );
         n := 0;
         if IsEmpty( kfv[2] ) then
             for k in kfv[1] do
@@ -118,7 +118,7 @@ InstallGlobalFunction(
                         k, " is not available"
                     );
                 fi;
-                n := n + Length( SCN_DATA[k] );
+                n := n + Length( SCN.DATA[k] );
             od;
         else
             iter := CallFuncList( IteratorSmallClassNrGroups, arg );
