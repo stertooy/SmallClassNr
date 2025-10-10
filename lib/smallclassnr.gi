@@ -2,8 +2,8 @@
 ##
 ## SmallClassNrGroupsAvailable( k )
 ##
-InstallGlobalFunction(
-    SmallClassNrGroupsAvailable,
+BindGlobal(
+    "SmallClassNrGroupsAvailable",
     k -> IsBound( SCN.DATA[k] )
 );
 
@@ -11,8 +11,8 @@ InstallGlobalFunction(
 ##
 ## SmallClassNrGroup( k, i )
 ##
-InstallGlobalFunction(
-    SmallClassNrGroup,
+BindGlobal(
+    "SmallClassNrGroup",
     function( arg... )
         local k, i, data, G;
         if IsList( arg[1] ) then
@@ -57,8 +57,8 @@ InstallGlobalFunction(
 ##
 ## IteratorSmallClassNrGroups( arg... )
 ##
-InstallGlobalFunction(
-    IteratorSmallClassNrGroups,
+BindGlobal(
+    "IteratorSmallClassNrGroups",
     function( arg... )
         local con, kfv, itr;
         con := CallFuncList( SCN.ConditionList, arg );
@@ -81,8 +81,8 @@ InstallGlobalFunction(
 ##
 ## AllSmallClassNrGroups( arg... )
 ##
-InstallGlobalFunction(
-    AllSmallClassNrGroups,
+BindGlobal(
+    "AllSmallClassNrGroups",
     function( arg... )
         return List( CallFuncList( IteratorSmallClassNrGroups, arg ) );
     end
@@ -92,8 +92,8 @@ InstallGlobalFunction(
 ##
 ## OneSmallClassNrGroup( arg... )
 ##
-InstallGlobalFunction(
-    OneSmallClassNrGroup,
+BindGlobal(
+    "OneSmallClassNrGroup",
     function( arg... )
         return NextIterator( CallFuncList( IteratorSmallClassNrGroups, arg ) );
     end
@@ -103,8 +103,8 @@ InstallGlobalFunction(
 ##
 ## NrSmallClassNrGroups( arg... )
 ##
-InstallGlobalFunction(
-    NrSmallClassNrGroups,
+BindGlobal(
+    "NrSmallClassNrGroups",
     function( arg... )
         local con, kfv, n, k, iter;
         con := CallFuncList( SCN.ConditionList, arg );
@@ -134,9 +134,8 @@ InstallGlobalFunction(
 ###############################################################################
 ##
 ## IdClassNr( G )
-##
-InstallMethod(
-    IdClassNr,
+BindGlobal(
+    "IdClassNr",
     "generic method",
     [ IsGroup ],
     function( G )
