@@ -35,7 +35,8 @@ jobs:
         run: |
           {
             echo 'BODY<<EOF'
-            sed -n '/^[0-9]\+\.[0-9]\+\.[0-9]\+/{:a;n;/^[0-9]\+\.[0-9]\+\.[0-9]\+/q;/^[-]\+$/ba;/^-/p;ba}' CHANGES.md
+            echo "## What's Changed"
+            sed -n '/^[0-9]\+\.[0-9]\+\.[0-9]\+/{n;:a;n;/^[0-9]\+\.[0-9]\+\.[0-9]\+/q;p;ba}' CHANGES.md
             echo EOF
           } >> $GITHUB_ENV
       - name: "Make release"
