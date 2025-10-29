@@ -1,6 +1,14 @@
 name: Release
 
 on:
+  workflow_call:
+    inputs:
+      dry-run:
+        type: boolean
+        default: true
+      force:
+        type: boolean
+        default: false
   workflow_dispatch:
     inputs:
       dry-run:
@@ -21,15 +29,19 @@ jobs:
     name: "Release the GAP package"
     runs-on: ubuntu-latest
 
+    container:
+      image: ghcr.io/stertooy/gda-image:master-full
+
     steps:
+
       - name: "Checkout"
         uses: actions/checkout@v5
-      - name: "Setup GAP"
-        uses: gap-actions/setup-gap@v3
+
       - name: "Build manual"
         uses: gap-actions/build-pkg-docs@v2
         with:
           use-latex: true
+
       - name: "Copy changes"
         shell: bash
         run: |
@@ -39,12 +51,14 @@ jobs:
             sed -n '/^[0-9]\+\.[0-9]\+\.[0-9]\+/{n;:a;n;/^[0-9]\+\.[0-9]\+\.[0-9]\+/q;p;ba}' CHANGES.md
             echo EOF
           } >> $GITHUB_ENV
+
       - name: "Make release"
         uses: gap-actions/release-pkg@v1
         with:
           dry-run: ${{ inputs.dry-run }}
           body-text: ${{ env.BODY }} 
           force: ${{ inputs.force }}
-      - name: "Make archive"
+
+      - name: "Update GitHub Pages"
         uses: gap-actions/update-gh-pages@v1
         if: ${{ !inputs.dry-run }}
