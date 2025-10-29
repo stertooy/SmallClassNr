@@ -2,15 +2,16 @@ name: Test (GAP)
 on:
   workflow_call:
     inputs:
-      test-suite:
-        type: string
       gap-version:
         type: string
       mode:
+        default: 'default'
         type: string
       warnings-as-errors:
+        default: true
         type: boolean
       complete:
+        default: false
         type: boolean
 
 jobs:
