@@ -5,10 +5,13 @@ on:
       gap-version:
         type: string
       mode:
+        default: 'default'
         type: string
       warnings-as-errors:
+        default: true
         type: boolean
       coverage:
+        default: false
         type: boolean
 
 jobs:
