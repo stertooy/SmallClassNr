@@ -1,0 +1,52 @@
+name: Test (pkg)
+on:
+  workflow_call:
+    inputs:
+      gap-version:
+        type: string
+      mode:
+        default: 'default'
+        type: string
+      warnings-as-errors:
+        default: true
+        type: boolean
+      coverage:
+        default: false
+        type: boolean
+
+jobs:
+  test:
+    name: "Test package (GAP-version: ${{ inputs.gap-version }}, mode: ${{ inputs.mode }})"
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+    container:
+      image: ghcr.io/stertooy/gda-image:${{ inputs.gap-version }}-${{ inputs.mode == 'loadall' && 'full' || 'slim' }}
+
+    steps:
+
+      - name: "Checkout"
+        uses: actions/checkout@v5
+
+      - name: "Add custom GAP root"
+        run: ln -f -s $PWD /tmp/gaproot/pkg/
+
+      - name: "Run package tests"
+        uses: gap-actions/run-pkg-tests@v4
+        with:
+          coverage: ${{ inputs.coverage }}
+          mode: ${{ inputs.mode }}
+          warnings-as-errors: ${{ inputs.warnings-as-errors }}
+
+      - name: "Process coverage"
+        if: ${{ inputs.coverage }}
+        uses: gap-actions/process-coverage@v3
+
+      - name: "Upload coverage"
+        if: ${{ inputs.coverage }}
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true

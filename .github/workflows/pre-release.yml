@@ -1,0 +1,73 @@
+name: Pre-release
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        type: boolean
+        default: false
+
+jobs:
+
+  test-pkg:
+    name: "Test package (version: ${{ matrix.gap-version }}, mode: ${{ matrix.mode }})"
+    uses: ./.github/workflows/test-pkg.yml
+    with:
+      gap-version: ${{ matrix.gap-version }}
+      mode: ${{ matrix.mode }}
+      coverage: false
+      warnings-as-errors: ${{ matrix.mode != 'loadall' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        gap-version: [ "4.14.0", "4.15.0", "4.15.1", "master" ]
+        mode: [ "onlyneeded", "default", "loadall" ]
+
+  test-gap:
+    name: "Test GAP (version: ${{ matrix.gap-version }}, mode: ${{ matrix.mode }})"
+    uses: ./.github/workflows/test-gap.yml
+    with:
+      gap-version: ${{ matrix.gap-version }}
+      mode: ${{ matrix.mode }}
+      complete: ${{ matrix.mode != 'loadall' }}
+      warnings-as-errors: ${{ matrix.mode != 'loadall' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        gap-version: [ "4.14.0", "4.15.0", "4.15.1", "master" ]
+        mode: [ "onlyneeded", "default", "loadall" ]
+
+  deps:
+    name: "Test dependency conflicts"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+
+    container:
+      image: ghcr.io/stertooy/gda-image:master-slim
+
+    steps:
+
+      - name: "Checkout"
+        uses: actions/checkout@v5
+
+      - name: "Add custom GAP root"
+        run: ln -f -s $PWD /tmp/gaproot/pkg/
+
+      - name: "Verify that tests do not depend on PrimGrp/SmallGrp/TransGrp"
+        shell: bash
+        run: gap --bare -c 'LoadPackage("GAPDoc");TestPackage("SmallClassNr");'
+
+  lint:
+    name: "Run gaplint"
+    uses: ./.github/workflows/lint.yml
+
+  validate:
+    name: "Run validation"
+    uses: ./.github/workflows/validate.yml
+
+  release-test:
+    name: "Dry run of Release"
+    uses: ./.github/workflows/release.yml
+    with:
+      dry-run: true
+      force: ${{ inputs.force }}

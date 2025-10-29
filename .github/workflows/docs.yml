@@ -1,0 +1,37 @@
+name: Docs
+on:
+  - push
+  - pull_request
+  - workflow_call
+  - workflow_dispatch
+
+jobs:
+
+  validate:
+    name: "Create, test and upload manual"
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/stertooy/gda-image:master-full
+
+    steps:
+
+      - name: "Checkout"
+        uses: actions/checkout@v5
+
+      - name: "Add custom GAP root"
+        run: ln -f -s $PWD /tmp/gaproot/pkg/
+
+      - name: "Build manual"
+        uses: gap-actions/build-pkg-docs@v2
+
+      - name: "Validate PackageInfo.g"
+        shell: bash
+        run: gap -c "QuitGap(ValidatePackageInfo(\"PackageInfo.g\"));"
+
+      - name: "Upload manual"
+        uses: actions/upload-artifact@v5
+        with:
+          name: "Manual"
+          path: ./doc/manual.pdf
+          if-no-files-found: error
