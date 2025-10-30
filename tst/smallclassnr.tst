@@ -72,7 +72,7 @@ true
 #
 gap> PermGrps := AllSmallClassNrGroups( [ 1..14 ], IsPermGroup );;
 # MinimalFaithfulPermutationDegree takes long and relies on SmallGrp/TransGrp/PrimGrp
-gap> ForAll( PermGrps, G -> NrMovedPoints( G ) = NrMovedPoints( ImagesSource( SmallerDegreePermutationRepresentation( G ) ) );
+gap> ForAll( PermGrps, G -> NrMovedPoints( G ) = NrMovedPoints( ImagesSource( SmallerDegreePermutationRepresentation( G ) ) ) );
 true
 gap> ForAll( PermGrps, G -> Size( MinimalGeneratingSet( Group( GeneratorsOfGroup( G ) ) ) ) = Size( GeneratorsOfGroup( G ) ) );
 true
