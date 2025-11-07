@@ -4,7 +4,7 @@
 [![Manual](https://custom-icon-badges.demolab.com/badge/manual-html-blue?logo=browser&logoColor=white)](https://stertooy.github.io/SmallClassNr/doc/chap0_mj.html)
 [![Manual](https://custom-icon-badges.demolab.com/badge/manual-pdf-blue?logo=book&logoColor=white)](https://github.com/stertooy/SmallClassNr/releases/latest/download/manual.pdf)
 [![Release](https://custom-icon-badges.demolab.com/github/release/stertooy/smallclassnr.svg?logo=tag&logoColor=white?)](https://github.com/stertooy/smallclassnr/releases/latest)
-[![DOI](https://custom-icon-badges.demolab.com/badge/DOI-10/nv2g-blue?logo=doi&logoColor=white)](https://doi.org/10/nvzr)
+[![DOI](https://custom-icon-badges.demolab.com/badge/DOI-10/nvzr-blue?logo=doi&logoColor=white)](https://doi.org/10/nvzr)
 
 The GAP package SmallClassNr
 ====================================
