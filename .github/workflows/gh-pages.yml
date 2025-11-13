@@ -11,5 +11,5 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-gap@v3
+      - uses: gap-actions/setup-gap@v3
       - uses: gap-actions/update-gh-pages@v1
