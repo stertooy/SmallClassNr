@@ -9,9 +9,7 @@ jobs:
     name: Update GH pages
     runs-on: ubuntu-latest
 
-    container:
-      image: ghcr.io/stertooy/gda-image:master-full
-
     steps:
       - uses: actions/checkout@v5
+      - uses: actions/setup-gap@v3
       - uses: gap-actions/update-gh-pages@v1
