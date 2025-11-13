@@ -1,6 +1,13 @@
 This file describes changes in the GAP package SmallClassNr.
 
 
+1.4.3 (2025-11-13)
+------------------
+
+- Fix faulty URLs in the documentation
+
+
+
 1.4.2 (2025-10-11)
 ------------------
 
