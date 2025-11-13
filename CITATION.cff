@@ -3,8 +3,8 @@ message: If you use this GAP package, please cite it using the metadata from thi
 type: software
 title: SmallClassNr
 abstract: Library of finite groups with small class number
-version: 1.4.2
-date-released: 2025-10-11
+version: 1.4.3
+date-released: 2025-11-13
 license: GPL-2.0-or-later
 doi: 10.5281/zenodo.14283157
 authors:
