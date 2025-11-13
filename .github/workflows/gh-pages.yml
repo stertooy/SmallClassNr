@@ -1,0 +1,17 @@
+name: Update GH-pages
+on:
+  workflow_dispatch:
+
+permissions: write-all
+
+jobs:
+  update:
+    name: Update GH pages
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/stertooy/gda-image:master-full
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: gap-actions/update-gh-pages@v1
