@@ -55,7 +55,7 @@ jobs:
 
       - name: "Verify that tests do not depend on PrimGrp/SmallGrp/TransGrp"
         shell: bash
-        run: gap --bare -c 'LoadPackage("GAPDoc");TestPackage("SmallClassNr");'
+        run: gap --bare -c 'TestPackage("SmallClassNr");'
 
   lint:
     name: "Run gaplint"
