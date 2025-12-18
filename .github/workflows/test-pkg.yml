@@ -30,8 +30,9 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v5
 
-      - name: "Add custom GAP root"
-        run: ln -f -s $PWD /tmp/gaproot/pkg/
+#      - name: "Add custom GAP root"
+#        run: ln -f -s $PWD /tmp/gaproot/pkg/
+      - run: ls /tmp/gaproot/pkg/
 
       - name: "Run package tests"
         uses: gap-actions/run-pkg-tests@v4
@@ -43,6 +44,8 @@ jobs:
       - name: "Process coverage"
         if: ${{ inputs.coverage }}
         uses: gap-actions/process-coverage@v3
+        
+      - run: ls /tmp/gaproot/pkg/
 
       - name: "Upload coverage"
         if: ${{ inputs.coverage }}
