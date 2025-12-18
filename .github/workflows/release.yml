@@ -29,13 +29,16 @@ jobs:
     name: "Release the GAP package"
     runs-on: ubuntu-latest
 
+    container:
+      image: ghcr.io/stertooy/gda-image:master-full
+
     steps:
 
       - name: "Checkout"
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
-      - name: "Setup GAP"
-        uses: gap-actions/setup-gap@v3
+      - name: "Add custom GAP root"
+        run: ln -f -s $PWD /tmp/gaproot/pkg/
 
       - name: "Build manual"
         uses: gap-actions/build-pkg-docs@v2
