@@ -28,10 +28,19 @@ jobs:
     steps:
 
       - name: "Checkout"
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
 #      - name: "Add custom GAP root"
 #        run: ln -f -s $PWD /tmp/gaproot/pkg/
+      - run: ls /
+
+      - run: |
+          echo "HERPDERP" > $PWD/derp.txt
+          echo "Checking PWD"
+          ls $PWD
+          echo "Checking gaproot"
+          ls /tmp/gaproot/pkg
+
       - run: ls /tmp/gaproot/pkg/
 
       - name: "Run package tests"
