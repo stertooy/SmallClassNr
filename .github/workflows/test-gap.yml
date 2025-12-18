@@ -30,8 +30,8 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v5
 
-      - name: "Add custom GAP root"
-        run: ln -f -s $PWD /tmp/gaproot/pkg/
+#      - name: "Add custom GAP root"
+#        run: ln -f -s $PWD /tmp/gaproot/pkg/
 
       - name: "Run GAP tests"
         uses: stertooy/run-gap-tests@v1
