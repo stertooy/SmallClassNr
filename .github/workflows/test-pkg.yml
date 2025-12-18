@@ -27,8 +27,12 @@ jobs:
 
     steps:
 
+      - run: echo $PWD
+
       - name: "Checkout"
         uses: actions/checkout@v6
+
+      - run: echo $PWD
 
 #      - name: "Add custom GAP root"
 #        run: ln -f -s $PWD /tmp/gaproot/pkg/
