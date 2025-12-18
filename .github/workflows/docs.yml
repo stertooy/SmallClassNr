@@ -17,7 +17,7 @@ jobs:
     steps:
 
       - name: "Checkout"
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: "Add custom GAP root"
         run: ln -f -s $PWD /tmp/gaproot/pkg/
@@ -27,10 +27,10 @@ jobs:
 
       - name: "Validate PackageInfo.g"
         shell: bash
-        run: gap -c "QuitGap(ValidatePackageInfo(\"PackageInfo.g\"));"
+        run: gap -c 'QuitGap(ValidatePackageInfo("PackageInfo.g"));'
 
       - name: "Upload manual"
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: "Manual"
           path: ./doc/manual.pdf
