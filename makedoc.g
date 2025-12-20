@@ -1,10 +1,11 @@
 Read( "PackageInfo.g" );
 info := GAPInfo.PackageInfoCurrent;
 pkgName := info.PackageName;
+pkgVers := info.Version;
 
 if (
-    LoadPackage( pkgName, false ) = fail or
-    LoadPackage( "AutoDoc", false ) = fail
+    LoadPackage( pkgName, pkgVers, false ) = fail or
+    LoadPackage( "AutoDoc", "2025.12.19", false ) = fail
 ) then
     Info( InfoGAPDoc, 1, "#I Could not load required package(s).\n" );
     ForceQuitGap( 1 );
@@ -12,8 +13,8 @@ fi;
 
 if IsBound( info.Extensions ) then
     for ext in info.Extensions do
-        for pkgver in ext.needed do
-            LoadPackage( pkgver[1], pkgver[2], false );
+        for ver in ext.needed do
+            LoadPackage( ver[1], ver[2], false );
         od;
     od;
 fi;
@@ -39,7 +40,7 @@ AutoDoc( rec(
                 info.Persons[1].LastName, ", ", info.Persons[1].FirstNames
             ),
             RELEASEYEAR := String( info.Date{ [ 7 .. 10 ] } ),
-            VERSION := info.Version,
+            VERSION := pkgVers,
             ARCHIVEURL := info.ArchiveURL,
             ISSUEURL := info.IssueTrackerURL,
             HOMEURL := info.PackageWWWHome,
