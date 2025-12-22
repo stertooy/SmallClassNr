@@ -1,22 +1,27 @@
 Read( "PackageInfo.g" );
 info := GAPInfo.PackageInfoCurrent;
 pkgName := info.PackageName;
-
-if (
-    LoadPackage( pkgName, info.Version, true ) = fail or
-    LoadPackage( "AutoDoc", "2025.12.19", true ) = fail
-) then
-    Info( InfoGAPDoc, 1, "#I Could not load required package(s).\n" );
-    ForceQuitGap( 1 );
-fi;
-
+pkgsToLoad := [
+    [ pkgName, info.Version ],
+    [ "Autodoc", "2025.12.19" ]
+];
 if IsBound( info.Extensions ) then
     for ext in info.Extensions do
-        for ver in ext.needed do
-            LoadPackage( ver[1], ver[2], true );
-        od;
+        Append( pkgsToLoad, ext.needed );
     od;
 fi;
+err := false;
+for pkgToLoad in pkgsToLoad do
+    pkg := pkgToLoad[1];
+    ver := pkgToLoad[2];
+    if LoadPackage( pkg, ver, false ) = fail then
+        err := true;
+        Info( InfoGAPDoc, 1, "#I Could not load package '", pkg, "' with version >= ", ver, ".\n" );
+    else
+        Info( InfoGAPDoc, 1, "#I Loaded package '", pkg, "' with version >= ", ver, ".\n" );
+    fi;
+od;
+if err then ForceQuitGap( 1 ); fi;
 
 AutoDoc( rec(
     scaffold := rec(
