@@ -16,9 +16,13 @@ for pkgToLoad in pkgsToLoad do
     ver := pkgToLoad[2];
     if LoadPackage( pkg, ver, false ) = fail then
         err := true;
-        Info( InfoGAPDoc, 1, "#I Could not load package '", pkg, "' with version >= ", ver, ".\n" );
+        Info( InfoGAPDoc, 1, 
+            "#I Could not load '", pkg,"' with version >= ", ver, ".\n"
+        );
     else
-        Info( InfoGAPDoc, 1, "#I Loaded package '", pkg, "' with version >= ", ver, ".\n" );
+        Info( InfoGAPDoc, 1,
+            "#I Loaded '", pkg, "' with version >= ", ver, ".\n"
+        );
     fi;
 od;
 if err then ForceQuitGap( 1 ); fi;
