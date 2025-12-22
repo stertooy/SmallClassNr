@@ -3,8 +3,24 @@ info := GAPInfo.PackageInfoCurrent;
 pkgName := info.PackageName;
 pkgsToLoad := [
     [ pkgName, info.Version ],
+    [ "GAPDoc", "1.6.7" ],
     [ "Autodoc", "2025.12.19" ]
 ];
+if IsBound( info.Dependencies ) then
+    deps := info.Dependencies;
+    if IsBound( deps.NeededOtherPackages ) then
+        need := deps.NeededOtherPackages;
+        for pkg in need do
+            Append( pkgsToLoad, pkg );
+        od;
+    fi;
+    if IsBound( deps.SuggestedOtherPackages ) then
+        sugg := deps.SuggestedOtherPackages;
+        for pkg in sugg do
+            Append( pkgsToLoad, pkg );
+        od;
+    fi;
+fi;
 if IsBound( info.Extensions ) then
     for ext in info.Extensions do
         Append( pkgsToLoad, ext.needed );
@@ -14,7 +30,7 @@ err := false;
 for pkgToLoad in pkgsToLoad do
     pkg := pkgToLoad[1];
     ver := pkgToLoad[2];
-    if LoadPackage( pkg, ver, false ) = fail then
+    if LoadPackage( pkg:OnlyNeeded, ver, false ) = fail then
         err := true;
         Info( InfoGAPDoc, 1, 
             "#I Could not load '", pkg,"' with version >= ", ver, ".\n"
