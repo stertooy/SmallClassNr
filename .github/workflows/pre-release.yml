@@ -15,7 +15,7 @@ jobs:
       gap-version: ${{ matrix.gap-version }}
       mode: ${{ matrix.mode }}
       coverage: false
-      warnings-as-errors: ${{ matrix.mode != 'loadall' }}
+      warnings-as-errors: true #${{ matrix.mode != 'loadall' }}
     strategy:
       fail-fast: false
       matrix:
@@ -29,7 +29,7 @@ jobs:
       gap-version: ${{ matrix.gap-version }}
       mode: ${{ matrix.mode }}
       complete: ${{ matrix.mode != 'loadall' }}
-      warnings-as-errors: ${{ matrix.mode != 'loadall' }}
+      warnings-as-errors: true #${{ matrix.mode != 'loadall' }}
     strategy:
       fail-fast: false
       matrix:
