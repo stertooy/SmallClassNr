@@ -1,22 +1,32 @@
 Read( "PackageInfo.g" );
 info := GAPInfo.PackageInfoCurrent;
 pkgName := info.PackageName;
-
-if (
-    LoadPackage( pkgName, false ) = fail or
-    LoadPackage( "AutoDoc", false ) = fail
-) then
-    Info( InfoGAPDoc, 1, "#I Could not load required package(s).\n" );
-    ForceQuitGap( 1 );
-fi;
-
+pkgsToLoad := [
+    [ pkgName, info.Version ],
+    [ "GAPDoc", "1.6.7" ],
+    [ "Autodoc", "2025.12.19" ]
+];
 if IsBound( info.Extensions ) then
     for ext in info.Extensions do
-        for pkgver in ext.needed do
-            LoadPackage( pkgver[1], pkgver[2], false );
-        od;
+        Append( pkgsToLoad, ext.needed );
     od;
 fi;
+err := false;
+for pkgToLoad in pkgsToLoad do
+    pkg := pkgToLoad[1];
+    ver := pkgToLoad[2];
+    if LoadPackage( pkg, ver, false: OnlyNeeded ) = fail then
+        err := true;
+        Info( InfoGAPDoc, 1,
+            "#I Could not load '", pkg, "' with version >= ", ver, ".\n"
+        );
+    else
+        Info( InfoGAPDoc, 1,
+            "#I Loaded '", pkg, "' with version >= ", ver, ".\n"
+        );
+    fi;
+od;
+if err then ForceQuitGap( 1 ); fi;
 
 AutoDoc( rec(
     scaffold := rec(
@@ -38,8 +48,6 @@ AutoDoc( rec(
             AUTHORREVERSED := Concatenation(
                 info.Persons[1].LastName, ", ", info.Persons[1].FirstNames
             ),
-            RELEASEYEAR := String( info.Date{ [ 7 .. 10 ] } ),
-            VERSION := info.Version,
             ARCHIVEURL := info.ArchiveURL,
             ISSUEURL := info.IssueTrackerURL,
             HOMEURL := info.PackageWWWHome,
