@@ -30,8 +30,9 @@ jobs:
         run: gap -c 'QuitGap(ValidatePackageInfo("PackageInfo.g"));'
 
       - name: "Upload manual"
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: "Manual"
+          archive: false
           path: ./doc/manual.pdf
           if-no-files-found: error
