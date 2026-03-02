@@ -56,7 +56,7 @@ jobs:
           } >> $GITHUB_ENV
 
       - name: "Make release"
-        uses: stertooy/release-pkg@body-exp
+        uses: gap-actions/release-pkg@v1
         with:
           dry-run: ${{ inputs.dry-run }}
           body-text: ${{ env.BODY }} 
