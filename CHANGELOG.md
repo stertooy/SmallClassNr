@@ -1,4 +1,4 @@
-This file describes changes in the GAP package SmallClassNr.
+# CHANGELOG - GAP package SmallClassNr
 
 ## 1.4.3 (2025-11-13)
 
