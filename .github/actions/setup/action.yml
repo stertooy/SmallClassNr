@@ -1,0 +1,10 @@
+name: Setup
+description: "Setup GAPROOT and dependencies"
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: "Add custom GAP root"
+      shell: bash
+      run: ln -f -s $PWD /tmp/gaproot/pkg/
