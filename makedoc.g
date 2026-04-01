@@ -30,7 +30,7 @@ tstDir := DirectoryTemporary();
 Print( "#I Creating documentation with AutoDoc\n" );
 AutoDoc( rec(
     scaffold := rec(
-        bib := "manual.bib",
+        bib := "bibliography.bib",
         entities := rec(
             AutoDoc := "<Package>AutoDoc</Package>",
             PackageManager := "<Package>PackageManager</Package>",
@@ -55,7 +55,7 @@ AutoDoc( rec(
             SUBTITLE := info.Subtitle
         )
     ),
-    autodoc := rec( files := [ "doc/manual.gd" ] ),
+    autodoc := rec( scan_dirs := [ "doc", "lib", "examples" ] ),
     gapdoc := rec(
         LaTeXOptions := rec( LateExtraPreamble := "\\usepackage{amsmath}" )
     ),
