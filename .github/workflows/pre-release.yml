@@ -10,31 +10,43 @@ jobs:
 
   test-pkg:
     name: "Test package (version: ${{ matrix.gap-version }}, mode: ${{ matrix.mode }})"
-    uses: ./.github/workflows/test-pkg.yml
-    with:
-      gap-version: ${{ matrix.gap-version }}
-      mode: ${{ matrix.mode }}
-      coverage: false
-      warnings-as-errors: ${{ matrix.mode != 'loadall' }}
+    container:
+      image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-${{ matrix.mode == 'loadall' && 'full' || 'slim' }}
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         gap-version: [ "4.14.0", "4.15.0", "4.15.1", "master" ]
         mode: [ "onlyneeded", "default", "loadall" ]
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v6
+      - name: "Test package"
+        uses: ./.github/actions/test-pkg
+        with:
+          mode: ${{ matrix.mode }}
+          warnings-as-errors: ${{ matrix.mode != 'loadall' }}
+          coverage: false
 
   test-gap:
     name: "Test GAP (version: ${{ matrix.gap-version }}, mode: ${{ matrix.mode }})"
-    uses: ./.github/workflows/test-gap.yml
-    with:
-      gap-version: ${{ matrix.gap-version }}
-      mode: ${{ matrix.mode }}
-      complete: ${{ matrix.mode != 'loadall' }}
-      warnings-as-errors: ${{ matrix.mode != 'loadall' }}
+    container:
+      image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-${{ matrix.mode == 'loadall' && 'full' || 'slim' }}
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         gap-version: [ "4.14.0", "4.15.0", "4.15.1", "master" ]
         mode: [ "onlyneeded", "default", "loadall" ]
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v6
+      - name: "Test package"
+        uses: ./.github/actions/test-gap
+        with:
+          mode: ${{ matrix.mode }}
+          warnings-as-errors: ${{ matrix.mode != 'loadall' }}
+          complete: ${{ matrix.mode != 'loadall' }}
 
   deps:
     name: "Test dependency conflicts"
@@ -50,8 +62,8 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v6
 
-      - name: "Add custom GAP root"
-        run: ln -f -s $PWD /tmp/gaproot/pkg/
+      - name: "Setup"
+        uses: ./.github/actions/setup
 
       - name: "Verify that tests do not depend on GAPDoc/PrimGrp/SmallGrp/TransGrp"
         shell: bash

@@ -23,5 +23,6 @@ fixes:
 
 ignore:
   - "*.g"
-  - "tst/**"
   - "doc/**"
+  - "examples/**"
+  - "tst/**"
