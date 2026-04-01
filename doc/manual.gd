@@ -1,25 +1,3 @@
-#! @Chapter Classification
-#! The **class number** $k(G)$ of a group $G$ is the number of conjugacy classes of $G$. In 1903, Landau proved in <Cite Key='land03-a' /> that for every $n \in \mathbb{N}$, there are only finitely many finite groups with exactly $n$ conjugacy classes.
-#! The &PACKAGENAME; package provides access to the finite groups with class number at most $14$.
-#! <P/>
-#! These groups were classified in the following papers:
-#! <List>
-#! <Item> $k(G) \leq 5$, by Miller in <Cite Key='mill11-a' /> and independently by Burnside in <Cite Key='burn11-a' /></Item>
-#! <Item> $k(G) = 6,7$, by Poland in <Cite Key='pola68-a' /></Item>
-#! <Item> $k(G) = 8$, by Kosvintsev in <Cite Key='kosv74-a' /></Item>
-#! <Item> $k(G) = 9$, by Odincov and Starostin in <Cite Key='os76-a' /></Item>
-#! <Item> $k(G) = 10,11$, by Vera López and Vera López in <Cite Key='ll85-a' /> (1) </Item>
-#! <Item> $k(G) = 12$, by Vera López and Vera López in <Cite Key='ll86-a' /> (2) </Item>
-#! <Item> $k(G) = 13, 14$, by Vera López and Sangroniz in <Cite Key='vs07-a' /></Item>
-#! </List>
-#! <P/>
-#! <P/>
-#! (1) In <Cite Key='ll85-a' />, three distinct groups of the form $(C_5 \times C_5) \rtimes C_4$ order $100$ with class number $10$ are given.
-#! However, only two such groups exist, being the ones with <C>IdClassNr</C> equal to <C>[10,25]</C> and <C>[10,26]</C>.
-#! <P/>
-#! (2) In <Cite Key='ll86-a' />, only 48 groups with class number 12 are listed. The three missing groups are provided in the appendix of <Cite Key='vs07-a' />.
-#! These are the groups with <C>IdClassNr</C> equal to <C>[12,13]</C>, <C>[12,16]</C> and <C>[12,39]</C>.
-
 #! @Chapter The Small Class Number Library
 
 #! @Section Functions
