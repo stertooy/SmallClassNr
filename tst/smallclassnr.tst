@@ -69,11 +69,17 @@ gap> PcGrps := AllSmallClassNrGroups( [ 1..14 ], IsPcGroup );;
 gap> ForAll( PcGrps, G -> IsSpecialPcgs( Pcgs( G ) ) );
 true
 
-# Note: MinimalFaithfulPermutationDegree takes long and relies on SmallGrp/TransGrp/PrimGrp
+#
 gap> PermGrps := AllSmallClassNrGroups( [ 1..14 ], IsPermGroup );;
-gap> ForAll( PermGrps, G -> NrMovedPoints( G ) = NrMovedPoints( ImagesSource( SmallerDegreePermutationRepresentation( G ) ) ) );
-true
 gap> ForAll( PermGrps, G -> Size( MinimalGeneratingSet( Group( GeneratorsOfGroup( G ) ) ) ) = Size( GeneratorsOfGroup( G ) ) );
+true
+gap> LoadPackage( "SmallGrp", false: OnlyNeeded );
+true
+gap> LoadPackage( "TransGrp", false: OnlyNeeded );
+true
+gap> LoadPackage( "PrimGrp", false: OnlyNeeded );
+true
+gap> ForAll( PermGrps, G -> NrMovedPoints( G ) = NrMovedPoints( MinimalFaithfulPermutationDegree( G ) ) );
 true
 
 #
