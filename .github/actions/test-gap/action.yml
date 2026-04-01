@@ -1,0 +1,26 @@
+name: Test (GAP)
+description: "Test GAP"
+inputs:
+  mode:
+    default: 'default'
+    type: string
+  warnings-as-errors:
+    default: true
+    type: boolean
+  complete:
+    default: false
+    type: boolean
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: "Setup"
+      uses: ./.github/actions/setup
+
+    - name: "Run GAP tests"
+      uses: stertooy/run-gap-tests@v1
+      with:
+        complete: ${{ inputs.complete }}
+        mode: ${{ inputs.mode }}
+        warnings-as-errors: ${{ inputs.warnings-as-errors }}
