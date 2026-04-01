@@ -1,0 +1,84 @@
+@Chapter package
+@ChapterTitle The &PackageName; package
+
+This is the manual for the &GAP; 4 package &PACKAGENAME; version
+&VERSION;, developed by &AUTHOR;.
+
+@Section installation
+@SectionTitle Installation
+If you are using &GAP; version 4.15.0 or newer, then &PACKAGENAME; should
+be installed by default.
+
+If this is not the case, but the &PackageManager; package is installed and
+loaded, you can install &PACKAGENAME; from within a &GAP; session using
+<Ref Func="InstallPackage" BookName="PackageManager" Style="Number"/>.
+@BeginLog
+InstallPackage( "SmallClassNr" );
+#! ...
+#! true
+@EndLog
+
+Alternatively, you can download &PACKAGENAME; as a .tar.gz archive
+<URL Text='here'>&ARCHIVEURL;.tar.gz</URL>. After extracting, you should
+place it in a suitable <F>pkg</F> folder. For example, on a Debian-based
+Linux distribution (e.g. Ubuntu, Mint), you can place it in
+<F>&dollar;HOME/.gap/pkg</F> (recommended) which makes it available for just
+yourself, or in the &GAP; installation directory (<F>gap-X.Y.Z/pkg</F>)
+which makes it available for all users.
+
+You can use the following command to efficiently install the package for
+yourself:
+<Listing Type="Command">wget -qO - https://[...].tar.gz | tar xzf - --one-top-level=&dollar;HOME/.gap/pkg</Listing>
+
+
+@Section loading
+@SectionTitle Loading
+Once installed, loading &PACKAGENAME; can be done by using
+<Ref Func="LoadPackage" BookName="ref" Style="Number"/>.
+@BeginLog
+LoadPackage( "SmallClassNr" );
+#! ...
+#! true
+@EndLog
+
+
+@Section citing
+@SectionTitle Citing
+If you use the &PACKAGENAME; package in your research, we would love to
+hear about your work via an email to the address
+<Email>&SUPPORTEMAIL;</Email>.
+If you have used the &PACKAGENAME; package in the preparation of a
+paper and wish to refer to it, please cite it as described below.
+
+<P/>
+
+In &BibTeX;:
+<Listing Type="BibTeX">
+&#64;misc{&ABBREV;&VERSION;,
+   author =       {&AUTHORREVERSED;},
+   title =        {{&PackageName;,
+                    &SUBTITLE;,
+                    Version &VERSION;}},
+   note =         {GAP package},
+   year =         {&RELEASEYEAR;},
+   howpublished = {\url{&HOMEURL;}}
+}</Listing><P/>
+In &BibLaTeX;:
+<Listing Type="BibLaTeX">
+&#64;software{&ABBREV;&VERSION;,
+   author =   {&AUTHORREVERSED;},
+   title =    {&PackageName;},
+   subtitle = {&SUBTITLE;},
+   version =  {&VERSION;},
+   note =     {GAP package},
+   year =     {&RELEASEYEAR;},
+   url =      {&HOMEURL;}
+}</Listing>
+
+@Section support
+@SectionTitle Support
+If you encounter any problems, please submit them to the
+<URL Text='issue tracker'>&ISSUEURL;</URL>.
+If you have any questions on the usage or functionality of
+&PACKAGENAME;, you may contact me via email at
+<Email>&SUPPORTEMAIL;</Email>.
