@@ -1,0 +1,1 @@
+BindGlobal( "SCN", rec() );
