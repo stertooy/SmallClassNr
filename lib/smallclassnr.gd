@@ -1,7 +1,5 @@
-###############################################################################
-##
-## Declarations
-##
+DeclareGlobalName( "SCN" );
+
 DeclareGlobalName( "SmallClassNrGroupsAvailable" );
 DeclareGlobalName( "NrSmallClassNrGroups" );
 DeclareGlobalName( "SmallClassNrGroup" );
