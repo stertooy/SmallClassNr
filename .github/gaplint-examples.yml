@@ -1,0 +1,10 @@
+columns: 83
+indentation: 4
+disable:
+- W003
+- W004
+- W010
+- W012
+- W013
+- W014
+- W049
