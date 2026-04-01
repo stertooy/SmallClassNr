@@ -80,7 +80,7 @@ This file describes changes in the GAP package SmallClassNr.
 - More freedom in supplying arguments to AllSmallClassNrGroups and
   OneSmallClassNrGroup
 
-##1.0.0 (2022-08-04)
+## 1.0.0 (2022-08-04)
 
 ### Added
 - Initial release
