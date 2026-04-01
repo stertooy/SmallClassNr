@@ -79,7 +79,7 @@ gap> LoadPackage( "TransGrp", false: OnlyNeeded );
 true
 gap> LoadPackage( "PrimGrp", false: OnlyNeeded );
 true
-gap> ForAll( PermGrps, G -> NrMovedPoints( G ) = NrMovedPoints( MinimalFaithfulPermutationDegree( G ) ) );
+gap> ForAll( PermGrps, G -> NrMovedPoints( G ) = MinimalFaithfulPermutationDegree( G ) );
 true
 
 #
