@@ -1,4 +1,4 @@
-gap> START_TEST( "Testing SmallClassNr" );
+gap> START_TEST( "Testing SmallClassNr - basic functionality" );
 
 #
 gap> grps := AllSmallClassNrGroups( [ 1..14 ] );;
@@ -65,22 +65,4 @@ gap> IsDoneIterator( itr );
 true
 
 #
-gap> PcGrps := AllSmallClassNrGroups( [ 1..14 ], IsPcGroup );;
-gap> ForAll( PcGrps, G -> IsSpecialPcgs( Pcgs( G ) ) );
-true
-
-#
-gap> PermGrps := AllSmallClassNrGroups( [ 1..14 ], IsPermGroup );;
-gap> ForAll( PermGrps, G -> Size( MinimalGeneratingSet( Group( GeneratorsOfGroup( G ) ) ) ) = Size( GeneratorsOfGroup( G ) ) );
-true
-gap> LoadPackage( "SmallGrp", false: OnlyNeeded );
-true
-gap> LoadPackage( "TransGrp", false: OnlyNeeded );
-true
-gap> LoadPackage( "PrimGrp", false: OnlyNeeded );
-true
-gap> ForAll( PermGrps, G -> NrMovedPoints( G ) = MinimalFaithfulPermutationDegree( G ) );
-true
-
-#
-gap> STOP_TEST( "smallclassnr.tst" );
+gap> STOP_TEST( "basic.tst" );
