@@ -8,8 +8,16 @@ on:
 jobs:
 
   lint:
-    name: "Run gaplint"
+    name: "Run gaplint (${{ matrix.rules }})"
     runs-on: ubuntu-slim
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - files: "*.g lib/**/*.g*"
+            rules: "lib"
+          - files: "examples/**/*.g*"
+            rules: "examples"
 
     steps:
     
@@ -29,5 +37,5 @@ jobs:
         shell: bash
         run: |
           shopt -s globstar extglob
-          FILES="*.g !(doc)/**/*.g*"
-          gaplint $FILES --config-file=.github/gaplint.yml
+          FILES="${{ matrix.files }}"
+          gaplint $FILES --config-file=.github/gaplint-${{matrix.rules}}.yml
