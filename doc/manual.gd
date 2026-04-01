@@ -1,20 +1,3 @@
-#! @Abstract
-#! The &PACKAGENAME; package provides access to finite groups with
-#! small class number. Currently, it contains the finite groups of
-#! class number at most 14.
-
-#! @Copyright
-#! &copyright; 2022&ndash;&RELEASEYEAR; &AUTHOR;
-#! <P/>
-#! The &PACKAGENAME; package is free software, it may be redistributed
-#! and/or modified under the terms and conditions of the
-#! <URL Text="GNU Public License Version 2">
-#! https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html</URL> or
-#! (at your option) any later version.
-
-#! @Acknowledgements
-#! This documentation was created using the &GAPDoc; and &AutoDoc; packages.
-
 #! @Chapter The &PackageName; package
 
 #! This is the manual for the &GAP; 4 package &PACKAGENAME; version
