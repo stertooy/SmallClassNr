@@ -1,7 +1,7 @@
 #! @Chapter library
 #! @Section functions
 
-#! @Group smallclassnrgroup
+#! @BeginGroup smallclassnrgroup
 #! @Returns the <A>i</A>-th finite group of class number <A>k</A> in the
 #! library.
 #! @Description
@@ -13,6 +13,7 @@
 #! minimal permutation degree and with a minimal generating set.
 #! @Arguments k, i
 DeclareGlobalFunction( "SmallClassNrGroup" );
+#! @EndGroup smallclassnrgroup
 
 #! @Group smallclassnrgroupsavailable
 #! @Returns <K>true</K> if the finite groups of class number <A>k</A> are
