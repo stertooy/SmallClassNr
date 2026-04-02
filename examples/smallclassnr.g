@@ -10,7 +10,7 @@ IsDihedralGroup( G );
 #! true
 #! @EndExample
 
-#! @Group smallclassnrgroup
+#! @BeginGroup smallclassnrgroup
 #! @BeginExample
 G := SmallClassNrGroup( 6, 4 );
 #! <pc group of size 18 with 3 generators>
@@ -19,6 +19,7 @@ NrConjugacyClasses( G );
 IsDihedralGroup( G );
 #! true
 #! @EndExample
+#! @EndGroup
 
 #! @Group smallclassnrgroupsavailable
 #! @BeginExample
