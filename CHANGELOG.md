@@ -1,6 +1,6 @@
 # CHANGELOG - GAP package SmallClassNr
 
-## 1.4.4 (2026-04-02)
+## 1.4.4 (2026-04-04)
 
 ### Changed
 - Improvements to the documentation
