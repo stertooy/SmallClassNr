@@ -1,5 +1,17 @@
 @Chapter library
 @ChapterTitle The Small Class Number Library
 
-@Section functions
-@SectionTitle Functions
+@Section groupsbyids
+@SectionTitle Selecting groups by their ID's
+
+@Section groupsbyprops
+@SectionTitle Selecting groups by their properties
+
+For each of the functions in this section, the arguments <A>arg</A> must come in pairs
+consisting of a function and a value (or list of accepted values). At least one of the
+functions must be <K>NrConjugacyClasses</K>.
+Missing functions will be interpreted as <K>NrConjugacyClasses</K>, missing
+values as <K>true</K>.
+
+@Section availability
+@SectionTitle Availability of the library
