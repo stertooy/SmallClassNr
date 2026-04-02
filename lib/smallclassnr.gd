@@ -1,5 +1,6 @@
 #! @Chapter library
-#! @Section functions
+
+#! @Section groupsbyids
 
 #! @Returns the <A>i</A>-th finite group of class number <A>k</A> in the
 #! library.
@@ -14,59 +15,6 @@
 DeclareGlobalFunction( "SmallClassNrGroup" );
 #! @InsertChunk example_smallclassnrgroup
 
-#! @Returns <K>true</K> if the finite groups of class number <A>k</A> are
-#! available in the library, and <K>false</K> otherwise.
-#! @Arguments k
-DeclareGlobalFunction( "SmallClassNrGroupsAvailable" );
-#! @InsertChunk example_smallclassnrgroupsavailable
-
-#! @Returns all finite groups with certain properties as specified by
-#! <A>arg</A>.
-#! @Description
-#! The arguments must come in pairs consisting of a function and a value (or
-#! list of possible values). At least one of the functions must be
-#! <K>NrConjugacyClasses</K>.
-#! Missing functions will be interpreted as <K>NrConjugacyClasses</K>, missing
-#! values as <K>true</K>.
-#! @Arguments arg
-DeclareGlobalFunction( "AllSmallClassNrGroups" );
-#! @InsertChunk example_allsmallclassnrgroups
-
-#! @Returns one finite group with certain properties as specified by
-#! <A>arg</A>.
-#! @Description
-#! The arguments must come in pairs consisting of a function and a value (or
-#! list of possible values). At least one of the functions must be
-#! <C>NrConjugacyClasses</C>.
-#! Missing functions will be interpreted as <C>NrConjugacyClasses</C>, missing
-#! values as <K>true</K>.
-#! @Arguments arg
-DeclareGlobalFunction( "OneSmallClassNrGroup" );
-#! @InsertChunk example_onesmallclassnrgroup
-
-#! @Returns the number of finite groups with certain properties as specified by
-#! <A>arg</A>.
-#! @Description
-#! The arguments must come in pairs consisting of a function and a value (or
-#! list of possible values). At least one of the functions must be
-#! <C>NrConjugacyClasses</C>.
-#! Missing functions will be interpreted as <C>NrConjugacyClasses</C>, missing
-#! values as <K>true</K>.
-#! @Arguments arg
-DeclareGlobalFunction( "NrSmallClassNrGroups" );
-#! @InsertChunk example_nrsmallclassnrgroups
-
-#! @Returns an iterator that iterates over the finite groups with properties as
-#! specified by <A>arg</A>.
-#! The arguments must come in pairs consisting of a function and a value (or
-#! list of possible values). At least one of the functions must be
-#! <C>NrConjugacyClasses</C>.
-#! Missing functions will be interpreted as <C>NrConjugacyClasses</C>, missing
-#! values as <K>true</K>.
-#! @Arguments arg
-DeclareGlobalFunction( "IteratorSmallClassNrGroups" );
-#! @InsertChunk example_iteratorsmallclassnrgroups
-
 #! @Returns the &PACKAGENAME; ID of <A>G</A>, i.e. a pair
 #! <C>[ <A>k</A>, <A>i</A> ]</C> such that <A>G</A> is isomorphic to 
 #! <C>SmallClassNrGroup( <A>k</A>, <A>i</A> )</C>.
@@ -74,3 +22,37 @@ DeclareGlobalFunction( "IteratorSmallClassNrGroups" );
 #! @Arguments G
 DeclareAttribute( "IdClassNr", IsGroup );
 #! @InsertChunk example_idclassnr
+
+#! @Section groupsbyprops
+
+#! @Returns all finite groups with certain properties as specified by
+#! <A>arg</A>.
+#! @Arguments arg
+DeclareGlobalFunction( "AllSmallClassNrGroups" );
+#! @InsertChunk example_allsmallclassnrgroups
+
+#! @Returns one finite group with certain properties as specified by
+#! <A>arg</A>.
+#! @Arguments arg
+DeclareGlobalFunction( "OneSmallClassNrGroup" );
+#! @InsertChunk example_onesmallclassnrgroup
+
+#! @Returns the number of finite groups with certain properties as specified by
+#! <A>arg</A>.
+#! @Arguments arg
+DeclareGlobalFunction( "NrSmallClassNrGroups" );
+#! @InsertChunk example_nrsmallclassnrgroups
+
+#! @Returns an iterator that iterates over the finite groups with properties as
+#! specified by <A>arg</A>.
+#! @Arguments arg
+DeclareGlobalFunction( "IteratorSmallClassNrGroups" );
+#! @InsertChunk example_iteratorsmallclassnrgroups
+
+#! @Section availability
+
+#! @Returns <K>true</K> if the finite groups of class number <A>k</A> are
+#! available in the library, and <K>false</K> otherwise.
+#! @Arguments k
+DeclareGlobalFunction( "SmallClassNrGroupsAvailable" );
+#! @InsertChunk example_smallclassnrgroupsavailable
