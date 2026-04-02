@@ -1,5 +1,13 @@
 # CHANGELOG - GAP package SmallClassNr
 
+## 1.4.4 (2026-04-02)
+
+### Changed
+- Improvements to the documentation
+- Restored previously removed test checking MinimalFaithfulPermuationDegree
+  of PermGroups (dependent on the PrimGrp, SmallGrp and TransGrp packages)
+- Janitorial changes
+
 ## 1.4.3 (2025-11-13)
 
 ### Changed
