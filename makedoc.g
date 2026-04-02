@@ -31,6 +31,7 @@ Print( "#I Creating documentation with AutoDoc\n" );
 AutoDoc( rec(
     scaffold := rec(
         bib := "bibliography.bib",
+        bibstyle := "alphaurl",
         entities := rec(
             AutoDoc := "<Package>AutoDoc</Package>",
             PackageManager := "<Package>PackageManager</Package>",
