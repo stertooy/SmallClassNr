@@ -1,6 +1,15 @@
 #! @Chapter library
 #! @Section functions
 
+#! @BeginExample
+G := SmallClassNrGroup( 6, 4 );
+#! <pc group of size 18 with 3 generators>
+NrConjugacyClasses( G );
+#! 6
+IsDihedralGroup( G );
+#! true
+#! @EndExample
+
 #! @Group smallclassnrgroup
 #! @BeginExample
 G := SmallClassNrGroup( 6, 4 );
