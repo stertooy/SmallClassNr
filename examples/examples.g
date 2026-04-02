@@ -60,9 +60,7 @@ NrSmallClassNrGroups( [ 3 .. 5 ], IsNilpotentGroup );
 #! @BeginExample
 iter := IteratorSmallClassNrGroups( 12, IsSimpleGroup );
 #! <iterator>
-for G in iter do
-    Print( Size( G ), "\n" );
-od;
+for G in iter do Print( Size( G ), "\n" ); od;
 #! 3420
 #! 5616
 #! 443520
