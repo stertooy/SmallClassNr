@@ -2,8 +2,8 @@
 ##
 ## SmallClassNrGroupsAvailable( k )
 ##
-BindGlobal(
-    "SmallClassNrGroupsAvailable",
+InstallGlobalFunction(
+    SmallClassNrGroupsAvailable,
     k -> IsBound( SCN.DATA[k] )
 );
 
@@ -11,8 +11,8 @@ BindGlobal(
 ##
 ## SmallClassNrGroup( k, i )
 ##
-BindGlobal(
-    "SmallClassNrGroup",
+InstallGlobalFunction(
+    SmallClassNrGroup,
     function( arg... )
         local k, i, data, G;
         if IsList( arg[1] ) then
@@ -57,8 +57,8 @@ BindGlobal(
 ##
 ## IteratorSmallClassNrGroups( arg... )
 ##
-BindGlobal(
-    "IteratorSmallClassNrGroups",
+InstallGlobalFunction(
+    IteratorSmallClassNrGroups,
     function( arg... )
         local con, kfv, itr;
         con := CallFuncList( SCN.ConditionList, arg );
@@ -81,30 +81,28 @@ BindGlobal(
 ##
 ## AllSmallClassNrGroups( arg... )
 ##
-BindGlobal(
-    "AllSmallClassNrGroups",
-    function( arg... )
-        return List( CallFuncList( IteratorSmallClassNrGroups, arg ) );
-    end
+InstallGlobalFunction(
+    AllSmallClassNrGroups,
+    { arg... } -> 
+        return List( CallFuncList( IteratorSmallClassNrGroups, arg ) )
 );
 
 ###############################################################################
 ##
 ## OneSmallClassNrGroup( arg... )
 ##
-BindGlobal(
-    "OneSmallClassNrGroup",
-    function( arg... )
-        return NextIterator( CallFuncList( IteratorSmallClassNrGroups, arg ) );
-    end
+InstallGlobalFunction(
+    OneSmallClassNrGroup,
+    { arg... } -> 
+        return NextIterator( CallFuncList( IteratorSmallClassNrGroups, arg ) )
 );
 
 ###############################################################################
 ##
 ## NrSmallClassNrGroups( arg... )
 ##
-BindGlobal(
-    "NrSmallClassNrGroups",
+InstallGlobalFunction(
+    NrSmallClassNrGroups,
     function( arg... )
         local con, kfv, n, k, iter;
         con := CallFuncList( SCN.ConditionList, arg );
@@ -138,10 +136,8 @@ InstallMethod(
     IdClassNr,
     "generic method",
     [ IsGroup ],
-    function( G )
-        return IdClassNr( First(
-            AllSmallClassNrGroups( NrConjugacyClasses( G ), Size, Size( G ) ),
-            H -> IsomorphismGroups( G, H ) <> fail
-        ));
-    end
+    G -> IdClassNr( First(
+        AllSmallClassNrGroups( NrConjugacyClasses( G ), Size, Size( G ) ),
+        H -> IsomorphismGroups( G, H ) <> fail
+    ))
 );
