@@ -55,24 +55,24 @@ paper and wish to refer to it, please cite it as described below.
 In &BibTeX;:
 <Listing Type="BibTeX">
 &#64;misc{&ABBREV;&VERSION;,
-   author =       {&AUTHORREVERSED;},
-   title =        {{&PackageName;,
-                    &SUBTITLE;,
-                    Version &VERSION;}},
-   note =         {GAP package},
-   year =         {&RELEASEYEAR;},
-   howpublished = {\url{&HOMEURL;}}
+    author =       {&AUTHORREVERSED;},
+    title =        {{&PackageName;,
+                     &SUBTITLE;,
+                     Version &VERSION;}},
+    note =         {GAP package},
+    year =         {&RELEASEYEAR;},
+    howpublished = {\url{&HOMEURL;}}
 }</Listing><P/>
 In &BibLaTeX;:
 <Listing Type="BibLaTeX">
 &#64;software{&ABBREV;&VERSION;,
-   author =   {&AUTHORREVERSED;},
-   title =    {&PackageName;},
-   subtitle = {&SUBTITLE;},
-   version =  {&VERSION;},
-   note =     {GAP package},
-   year =     {&RELEASEYEAR;},
-   url =      {&HOMEURL;}
+    author =   {&AUTHORREVERSED;},
+    title =    {&PackageName;},
+    subtitle = {&SUBTITLE;},
+    version =  {&VERSION;},
+    note =     {GAP package},
+    year =     {&RELEASEYEAR;},
+    url =      {&HOMEURL;}
 }</Listing>
 
 @Section support
