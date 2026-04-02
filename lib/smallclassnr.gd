@@ -1,7 +1,6 @@
 #! @Chapter library
 #! @Section functions
 
-#! @BeginGroup smallclassnrgroup
 #! @Returns the <A>i</A>-th finite group of class number <A>k</A> in the
 #! library.
 #! @Description
@@ -13,15 +12,12 @@
 #! minimal permutation degree and with a minimal generating set.
 #! @Arguments k, i
 DeclareGlobalFunction( "SmallClassNrGroup" );
-#! @EndGroup
 
-#! @Group smallclassnrgroupsavailable
 #! @Returns <K>true</K> if the finite groups of class number <A>k</A> are
 #! available in the library, and <K>false</K> otherwise.
 #! @Arguments k
 DeclareGlobalFunction( "SmallClassNrGroupsAvailable" );
 
-#! @Group allsmallclassnrgroups
 #! @Returns all finite groups with certain properties as specified by
 #! <A>arg</A>.
 #! @Description
@@ -34,7 +30,6 @@ DeclareGlobalFunction( "SmallClassNrGroupsAvailable" );
 #! @Arguments arg
 DeclareGlobalFunction( "AllSmallClassNrGroups" );
 
-#! @Group onesmallclassnrgroup
 #! @Returns one finite group with certain properties as specified by
 #! <A>arg</A>.
 #! @Description
@@ -46,7 +41,6 @@ DeclareGlobalFunction( "AllSmallClassNrGroups" );
 #! @Arguments arg
 DeclareGlobalFunction( "OneSmallClassNrGroup" );
 
-#! @Group nrsmallclassnrgroups
 #! @Returns the number of finite groups with certain properties as specified by
 #! <A>arg</A>.
 #! @Description
@@ -58,7 +52,6 @@ DeclareGlobalFunction( "OneSmallClassNrGroup" );
 #! @Arguments arg
 DeclareGlobalFunction( "NrSmallClassNrGroups" );
 
-#! @Group iteratorsmallclassnrgroups
 #! @Returns an iterator that iterates over the finite groups with properties as
 #! specified by <A>arg</A>.
 #! The arguments must come in pairs consisting of a function and a value (or
@@ -69,7 +62,6 @@ DeclareGlobalFunction( "NrSmallClassNrGroups" );
 #! @Arguments arg
 DeclareGlobalFunction( "IteratorSmallClassNrGroups" );
 
-#! @Group idclassnr
 #! @Returns the &PACKAGENAME; ID of <A>G</A>, i.e. a pair
 #! <C>[ <A>k</A>, <A>i</A> ]</C> such that <A>G</A>#! is isomorphic to 
 #! <C>SmallClassNrGroup( <A>k</A>, <A>i</A> )</C>.
