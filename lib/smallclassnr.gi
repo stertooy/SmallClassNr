@@ -83,8 +83,7 @@ InstallGlobalFunction(
 ##
 InstallGlobalFunction(
     AllSmallClassNrGroups,
-    { arg... } -> 
-        return List( CallFuncList( IteratorSmallClassNrGroups, arg ) )
+    { arg... } ->  List( CallFuncList( IteratorSmallClassNrGroups, arg ) )
 );
 
 ###############################################################################
@@ -93,8 +92,9 @@ InstallGlobalFunction(
 ##
 InstallGlobalFunction(
     OneSmallClassNrGroup,
-    { arg... } -> 
-        return NextIterator( CallFuncList( IteratorSmallClassNrGroups, arg ) )
+    { arg... } -> NextIterator(
+        CallFuncList( IteratorSmallClassNrGroups, arg )
+    )
 );
 
 ###############################################################################
