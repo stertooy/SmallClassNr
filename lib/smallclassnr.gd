@@ -13,7 +13,7 @@
 #! minimal permutation degree and with a minimal generating set.
 #! @Arguments k, i
 DeclareGlobalFunction( "SmallClassNrGroup" );
-#! @EndGroup smallclassnrgroup
+#! @EndGroup
 
 #! @Group smallclassnrgroupsavailable
 #! @Returns <K>true</K> if the finite groups of class number <A>k</A> are
