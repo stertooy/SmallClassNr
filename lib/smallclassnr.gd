@@ -1,4 +1,5 @@
-#! @Section Functions
+#! @Chapter library
+#! @Section functions
 
 #! @Group smallclassnrgroup
 #! @Returns the <A>i</A>-th finite group of class number <A>k</A> in the
