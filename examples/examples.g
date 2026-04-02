@@ -23,7 +23,7 @@ SmallClassNrGroupsAvailable( 15 );
 
 #! @BeginChunk example_allsmallclassnrgroups
 #! @BeginExample
-L1 := AllSmallClassNrGroups( [3..5], IsNilpotent );
+L1 := AllSmallClassNrGroups( [ 3 .. 5 ], IsNilpotent );
 #! [ <pc group of size 3 with 1 generator>,
 #!   <pc group of size 4 with 2 generators>,
 #!   <pc group of size 4 with 2 generators>,
@@ -56,7 +56,7 @@ K := OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );
 #! @BeginExample
 NrSmallClassNrGroups( 14 );
 #! 93
-NrSmallClassNrGroups( [3..5], IsNilpotentGroup );
+NrSmallClassNrGroups( [ 3 .. 5 ], IsNilpotentGroup );
 #! 6
 NrSmallClassNrGroups( IsSolvable, true, NrConjugacyClasses, 6 );
 #! 7
