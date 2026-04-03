@@ -133,7 +133,7 @@ SCN.ShallowCopy := itr -> rec(
 
 ###############################################################################
 ##
-## ClassNrAvailable( k )
+## ClassAvailable( k )
 ##
 SCN.ClassNrAvailable := function( k )
     if not SmallClassNrGroupsAvailable( k ) then
@@ -146,9 +146,10 @@ SCN.ClassNrAvailable := function( k )
 
 ###############################################################################
 ##
-## GroupAvailable( k, i )
+## GroupIdAvailable( k, i )
 ##
-SCN.GroupAvailable := function( k, i )
+SCN.GroupIdAvailable := function( k, i )
+    SCN.ClassNrAvailable( k );
     if not i in [ 1 .. Length( SCN.Data.Gens[k] ) ] then
         if Length( SCN.Data.Gens[k] ) = 1 then
             Error( "there is just 1 group of class number ", k );
