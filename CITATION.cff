@@ -4,7 +4,7 @@ type: software
 title: SmallClassNr
 abstract: Library of finite groups with small class number
 version: 1.4.4
-date-released: 2025-12-20
+date-released: 2026-04-04
 license: GPL-2.0-or-later
 doi: 10.5281/zenodo.14283157
 authors:

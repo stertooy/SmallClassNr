@@ -9,4 +9,4 @@ pass := TestDirectory(
     )
 );
 
-FORCE_QUIT_GAP( pass );
+ForceQuitGap( pass );

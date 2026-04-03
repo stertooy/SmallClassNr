@@ -16,8 +16,8 @@ jobs:
         include:
           - files: "*.g lib/**/*.g*"
             rules: "lib"
-          #- files: "examples/**/*.g*"
-          #  rules: "examples"
+          - files: "examples/**/*.g*"
+            rules: "examples"
 
     steps:
     

@@ -3,7 +3,7 @@ SetPackageInfo( rec(
 PackageName := "SmallClassNr",
 Subtitle := "Library of finite groups with small class number",
 Version := "1.4.4",
-Date := "20/12/2025",
+Date := "04/04/2026",
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -64,7 +64,12 @@ PackageDoc := rec(
 Dependencies := rec(
     GAP := ">= 4.14",
     NeededOtherPackages := [],
-    SuggestedOtherPackages := []
+    SuggestedOtherPackages := [],
+    TestPackages := [
+        [ "primgrp",  "3.4.4" ],
+        [ "smallgrp", "1.5.4" ],
+        [ "transgrp", "3.6.5" ]
+    ]
 ),
 
 TestFile := "tst/testall.g",
