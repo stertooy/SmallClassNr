@@ -4,7 +4,7 @@
 ##
 InstallGlobalFunction(
     SmallClassNrGroupsAvailable,
-    k -> IsBound( SCN.DATA[k] )
+    k -> IsBound( SCN.Data.Gens[k] )
 );
 
 ###############################################################################
@@ -27,17 +27,17 @@ InstallGlobalFunction(
                 "the library of groups of class number ",
                 k, " is not available"
             );
-        elif not i in [ 1 .. Length( SCN.DATA[k] ) ] then
-            if Length( SCN.DATA[k] ) = 1 then
+        elif not i in [ 1 .. Length( SCN.Data.Gens[k] ) ] then
+            if Length( SCN.Data.Gens[k] ) = 1 then
                 Error( "there is just 1 group of class number ", k );
             else
                 Error(
-                    "there are just ", Length( SCN.DATA[k] ),
+                    "there are just ", Length( SCN.Data.Gens[k] ),
                     " groups of class number ", k
                 );
             fi;
         fi;
-        data := SCN.DATA[k][i];
+        data := SCN.Data.Gens[k][i];
         if IsInt( data[1] ) then
             G := CallFuncList( PcGroupCode, data );
             SpecialPcgs( G );
@@ -116,7 +116,7 @@ InstallGlobalFunction(
                         k, " is not available"
                     );
                 fi;
-                n := n + Length( SCN.DATA[k] );
+                n := n + Length( SCN.Data.Gens[k] );
             od;
         else
             iter := CallFuncList( IteratorSmallClassNrGroups, arg );
