@@ -69,7 +69,7 @@ SCN.NextSmallClassNrGroup := function( itr )
                 kG, " is not available"
             );
         fi;
-        while j <= Length( SCN.DATA[kG] ) do
+        while j <= Length( SCN.Data.Gens[kG] ) do
             G := SmallClassNrGroup( kG, j );
             j := j + 1;
             if ForAll(
