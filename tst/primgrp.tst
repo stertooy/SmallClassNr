@@ -10,4 +10,4 @@ gap> ForAll( [ 1 .. max ], k -> ForAll( [ 1 .. NrSmallClassNrGroups( k ) ], i ->
 true
 
 #
-gap> STOP_TEST( "Primgrp.tst" );
+gap> STOP_TEST( "primgrp.tst" );
