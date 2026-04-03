@@ -14,7 +14,7 @@ InstallGlobalFunction(
             i := arg[ 2 ];
         fi;
         SCN.GroupIdAvailable( k, i );
-        if not IsBound( SCN.Data.IdGroup[ k ][ i ] then
+        if not IsBound( SCN.Data.IdGroup[ k ][ i ] ) then
             return fail;
         fi;
         return SCN.Data.IdGroup[ k ][ i ];
@@ -37,7 +37,7 @@ InstallGlobalFunction(
             i := arg[ 2 ];
         fi;
         SCN.GroupIdAvailable( k, i );
-        if not IsBound( SCN.Data.PrimGrp[ k ][ i ] then
+        if not IsBound( SCN.Data.PrimGrp[ k ][ i ] ) then
             return fail;
         fi;
         return SCN.Data.PrimGrp[ k ][ i ];
@@ -60,7 +60,7 @@ InstallGlobalFunction(
             i := arg[ 2 ];
         fi;
         SCN.GroupIdAvailable( k, i );
-        if not IsBound( SCN.Data.TransGrp[ k ][ i ] then
+        if not IsBound( SCN.Data.TransGrp[ k ][ i ] ) then
             return fail;
         fi;
         return SCN.Data.TransGrp[ k ][ i ];
@@ -83,7 +83,7 @@ InstallGlobalFunction(
             i := arg[ 2 ];
         fi;
         SCN.GroupIdAvailable( k, i );
-        if not IsBound( SCN.Data.AtlasName[ k ][ i ] then
+        if not IsBound( SCN.Data.AtlasName[ k ][ i ] ) then
             return fail;
         fi;
         return SCN.Data.AtlasName[ k ][ i ];
