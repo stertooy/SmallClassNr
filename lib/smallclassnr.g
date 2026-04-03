@@ -1,5 +1,36 @@
 ###############################################################################
 ##
+## ClassAvailable( k )
+##
+SCN.ClassNrAvailable := function( k )
+    if not SmallClassNrGroupsAvailable( k ) then
+        Error(
+            "the library of groups of class number ",
+            k, " is not available"
+        );
+    fi;
+end;
+
+###############################################################################
+##
+## GroupIdAvailable( k, i )
+##
+SCN.GroupIdAvailable := function( k, i )
+    SCN.ClassNrAvailable( k );
+    if not i in [ 1 .. Length( SCN.Data.Gens[k] ) ] then
+        if Length( SCN.Data.Gens[k] ) = 1 then
+            Error( "there is just 1 group of class number ", k );
+        else
+            Error(
+                "there are just ", Length( SCN.Data.Gens[k] ),
+                " groups of class number ", k
+            );
+        fi;
+    fi;
+end;
+
+###############################################################################
+##
 ## ConditionList( arg... )
 ##
 SCN.ConditionList := function( arg... )
@@ -35,10 +66,10 @@ end;
 
 ###############################################################################
 ##
-## ExtractClassNumbers( fnc, vls )
+## ExtractClassNrsAndSizes( fnc, vls )
 ##
-SCN.ExtractClassNumbers := function( fnc, vls )
-    local pos, kGs;
+SCN.ExtractClassNrsAndSizes := function( fnc, vls )
+    local pos, kGs, sZs;
     pos := Position( fnc, NrConjugacyClasses );
     kGs := PositiveIntegers;
     while pos <> fail do
@@ -46,7 +77,14 @@ SCN.ExtractClassNumbers := function( fnc, vls )
         kGs := Intersection( kGs, Remove( vls, pos ) );
         pos := Position( fnc, NrConjugacyClasses );
     od;
-    return [ kGs, fnc, vls ];
+    pos := Position( fnc, Size );
+    sZs := PositiveIntegers;
+    while pos <> fail do
+        Remove( fnc, pos );
+        sZs := Intersection( sZs, Remove( vls, pos ) );
+        pos := Position( fnc, Size );
+    od;
+    return [ kGs, sZs, fnc, vls ];
 end;
 
 ###############################################################################
@@ -56,6 +94,7 @@ end;
 SCN.NextSmallClassNrGroup := function( itr )
     local kGs, fnc, vls, pos, i, j, kG, G;
     kGs := itr!.kGs;
+    sZs := itr!.sZs;
     fnc := itr!.fnc;
     vls := itr!.vls;
     pos := itr!.pos;
@@ -63,13 +102,11 @@ SCN.NextSmallClassNrGroup := function( itr )
     j := pos[2];
     while i <= Length( kGs ) do
         kG := kGs[i];
-        if not SmallClassNrGroupsAvailable( kG ) then
-            Error(
-                "the library of groups of class number ",
-                kG, " is not available"
-            );
-        fi;
+        SCN.ClassNrAvailable( kG );
         while j <= Length( SCN.Data.Gens[kG] ) do
+            if not SCN.Data.Size[kG][j] in sZs then
+                continue;
+            fi;
             G := SmallClassNrGroup( kG, j );
             j := j + 1;
             if ForAll(
@@ -125,39 +162,9 @@ end;
 ##
 SCN.ShallowCopy := itr -> rec(
     kGs := itr!.kGs,
+    sZs := itr!.sZs,
     fnc := itr!.fnc,
     vls := itr!.vls,
     pos := itr!.pos,
     nxt := itr!.nxt
 );
-
-###############################################################################
-##
-## ClassAvailable( k )
-##
-SCN.ClassNrAvailable := function( k )
-    if not SmallClassNrGroupsAvailable( k ) then
-        Error(
-            "the library of groups of class number ",
-            k, " is not available"
-        );
-    fi;
-end;
-
-###############################################################################
-##
-## GroupIdAvailable( k, i )
-##
-SCN.GroupIdAvailable := function( k, i )
-    SCN.ClassNrAvailable( k );
-    if not i in [ 1 .. Length( SCN.Data.Gens[k] ) ] then
-        if Length( SCN.Data.Gens[k] ) = 1 then
-            Error( "there is just 1 group of class number ", k );
-        else
-            Error(
-                "there are just ", Length( SCN.Data.Gens[k] ),
-                " groups of class number ", k
-            );
-        fi;
-    fi;
-end;
