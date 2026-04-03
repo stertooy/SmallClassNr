@@ -50,11 +50,12 @@ InstallGlobalFunction(
     function( arg... )
         local con, kfv, itr;
         con := CallFuncList( SCN.ConditionList, arg );
-        kfv := CallFuncList( SCN.ExtractClassNumbers, con );
+        kfv := CallFuncList( SCN.ExtractClassNrsAndSizes, con );
         itr := rec(
             kGs := kfv[1],
-            fnc := kfv[2],
-            vls := kfv[3],
+            sZs := kfv[2],
+            fnc := kfv[3],
+            vls := kfv[4],
             pos := [ 1, 1 ],
             nxt := fail,
             IsDoneIterator := SCN.IsDoneIterator,
