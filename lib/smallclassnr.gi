@@ -120,8 +120,27 @@ InstallMethod(
     IdClassNr,
     "generic method",
     [ IsGroup ],
-    G -> IdClassNr( First(
-        AllSmallClassNrGroups( NrConjugacyClasses( G ), Size, Size( G ) ),
-        H -> IsomorphismGroups( G, H ) <> fail
-    ))
+    function( G )
+        local kG, grps, H;
+        kG := NrConjugacyClasses( G );
+        SCN.ClassNrAvailable( kG );
+        grps := AllSmallClassNrGroups(
+            NrConjugacyClasses, kG,
+            Size,               Size( G )
+        );
+        if Length( grps ) = 1 then
+            return IdClassNr( First( grps ) );
+        fi;
+        if IsSolvableGroup( G ) and not IsPcGroup( G ) then
+            H := ImagesSource( IsomorphismPcGroup( G ) );
+        elif not IsSolvableGroup( G ) and not IsPermGroup( G ) then
+            H := ImagesSource( IsomorphismPermGroup( G ) );
+        else
+            H := G;
+        fi;
+        return IdClassNr( First(
+            grps,
+            K -> IsomorphismGroups( H, K ) <> fail
+        ));
+    end
 );
