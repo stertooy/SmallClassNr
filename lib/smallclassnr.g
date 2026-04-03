@@ -130,3 +130,33 @@ SCN.ShallowCopy := itr -> rec(
     pos := itr!.pos,
     nxt := itr!.nxt
 );
+
+###############################################################################
+##
+## ClassNrAvailable( k )
+##
+SCN.ClassNrAvailable := function( k )
+    if not SmallClassNrGroupsAvailable( k ) then
+        Error(
+            "the library of groups of class number ",
+            k, " is not available"
+        );
+    fi;
+);
+
+###############################################################################
+##
+## GroupAvailable( k, i )
+##
+SCN.GroupAvailable := function( k, i )
+    if not i in [ 1 .. Length( SCN.Data.Gens[k] ) ] then
+        if Length( SCN.Data.Gens[k] ) = 1 then
+            Error( "there is just 1 group of class number ", k );
+        else
+            Error(
+                "there are just ", Length( SCN.Data.Gens[k] ),
+                " groups of class number ", k
+            );
+        fi;
+    fi;
+);
