@@ -104,11 +104,11 @@ SCN.NextSmallClassNrGroup := function( itr )
         kG := kGs[i];
         SCN.ClassNrAvailable( kG );
         while j <= Length( SCN.Data.Gens[kG] ) do
-            if not SCN.Data.Size[kG][j] in sZs then
+            j := j + 1;
+            if not SCN.Data.Size[kG][j-1] in sZs then
                 continue;
             fi;
-            G := SmallClassNrGroup( kG, j );
-            j := j + 1;
+            G := SmallClassNrGroup( kG, j-1 );
             if ForAll(
                 [ 1 .. Length( fnc ) ],
                 k -> fnc[k]( G ) in vls[k]
