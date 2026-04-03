@@ -142,7 +142,7 @@ SCN.ClassNrAvailable := function( k )
             k, " is not available"
         );
     fi;
-);
+end;
 
 ###############################################################################
 ##
@@ -160,4 +160,4 @@ SCN.GroupIdAvailable := function( k, i )
             );
         fi;
     fi;
-);
+end;
