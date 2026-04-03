@@ -14,7 +14,7 @@ InstallGlobalFunction(
 InstallGlobalFunction(
     SmallClassNrGroup,
     function( arg... )
-        local k, i, data, G;
+        local k, i, data, size, G;
         if IsList( arg[1] ) then
             k := arg[1][1];
             i := arg[1][2];
@@ -24,11 +24,13 @@ InstallGlobalFunction(
         fi;
         SCN.GroupIdAvailable( k, i );
         data := SCN.Data.Gens[k][i];
-        if IsInt( data[1] ) then
-            G := CallFuncList( PcGroupCode, data );
+        size := SCN.Data.Size[k][i];
+        if IsInt( data ) then
+            G := PcGroupCode( data, size );
             SpecialPcgs( G );
         else
             G := Group( data );
+            SetSize( G, size );
             SetNrMovedPoints( G, LargestMovedPoint( G ) );
             SetSmallGeneratingSet( G, GeneratorsOfGroup( G ) );
             SetMinimalGeneratingSet( G, GeneratorsOfGroup( G ) );
