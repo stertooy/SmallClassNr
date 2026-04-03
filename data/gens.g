@@ -1,7 +1,7 @@
 SCN.Data.Gens := [];
-##
-##  [ Code, Size ] ( PcGroup ) or [ Generators ] ( PermGroup ),
-##
+
+# [ CodePcGroup, Size ] ( for PcGroups )
+# MinimalGeneratingSet ( for PermGroups )
 
 SCN.Data.Gens[1] := [
     [ 0, 1 ]
