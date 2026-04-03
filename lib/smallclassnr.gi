@@ -22,21 +22,7 @@ InstallGlobalFunction(
             k := arg[1];
             i := arg[2];
         fi;
-        if not SmallClassNrGroupsAvailable( k ) then
-            Error(
-                "the library of groups of class number ",
-                k, " is not available"
-            );
-        elif not i in [ 1 .. Length( SCN.Data.Gens[k] ) ] then
-            if Length( SCN.Data.Gens[k] ) = 1 then
-                Error( "there is just 1 group of class number ", k );
-            else
-                Error(
-                    "there are just ", Length( SCN.Data.Gens[k] ),
-                    " groups of class number ", k
-                );
-            fi;
-        fi;
+        SCN.GroupIdAvailable( k, i );
         data := SCN.Data.Gens[k][i];
         if IsInt( data[1] ) then
             G := CallFuncList( PcGroupCode, data );
@@ -110,12 +96,7 @@ InstallGlobalFunction(
         n := 0;
         if IsEmpty( kfv[2] ) then
             for k in kfv[1] do
-                if not SmallClassNrGroupsAvailable( k ) then
-                    Error(
-                        "the library of groups of class number ",
-                        k, " is not available"
-                    );
-                fi;
+                SCN.ClassNrAvailable( k );
                 n := n + Length( SCN.Data.Gens[k] );
             od;
         else
