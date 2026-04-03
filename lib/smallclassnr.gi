@@ -97,10 +97,10 @@ InstallGlobalFunction(
         con := CallFuncList( SCN.ConditionList, arg );
         kfv := CallFuncList( SCN.ExtractClassNrsAndSizes, con );
         n := 0;
-        if IsEmpty( kfv[2] ) and IsEmpty( kfv[3] ) then
+        if IsEmpty( kfv[3] ) then
             for k in kfv[1] do
                 SCN.ClassNrAvailable( k );
-                n := n + Length( SCN.Data.Gens[k] );
+                n := n + Number( SCN.Data.Size[k], x -> x in kfv[2] );
             od;
         else
             iter := CallFuncList( IteratorSmallClassNrGroups, arg );
