@@ -3,6 +3,7 @@ ReadPackage( "SmallClassNr", "lib/smallclassnr.g" );
 ReadPackage( "SmallClassNr", "lib/smallclassnr.gi" );
 ReadPackage( "SmallClassNr", "lib/convert.gi" );
 ReadPackage( "SmallClassNr", "data/gens.g" );
+ReadPackage( "SmallClassNr", "data/size.g" );
 ReadPackage( "SmallClassNr", "data/idgroup.g" );
 ReadPackage( "SmallClassNr", "data/primgrp.g" );
 ReadPackage( "SmallClassNr", "data/transgrp.g" );
