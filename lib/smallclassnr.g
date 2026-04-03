@@ -92,7 +92,7 @@ end;
 ## NextSmallClassNrGroup( itr )
 ##
 SCN.NextSmallClassNrGroup := function( itr )
-    local kGs, fnc, vls, pos, i, j, kG, G;
+    local kGs, sZs, fnc, vls, pos, i, j, kG, G;
     kGs := itr!.kGs;
     sZs := itr!.sZs;
     fnc := itr!.fnc;
