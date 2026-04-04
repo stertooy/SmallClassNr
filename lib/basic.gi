@@ -14,21 +14,25 @@ InstallGlobalFunction(
 InstallGlobalFunction(
     SmallClassNrGroup,
     function( arg... )
-        local k, i, gens, size, G;
+        local k, i, size, code, gens, G;
         k := Flat( arg )[ 1 ];
         i := Flat( arg )[ 2 ];
         SCN.GroupIdAvailable( k, i );
-        gens := SCN.Data.Gens[ k ][ i ];
         size := SCN.Data.Size[ k ][ i ];
-        if IsInt( gens ) then
-            G := PcGroupCode( gens, size );
+        if (
+            ValueOption( "AsPermGroup" ) <> true and
+            IsBound( SCN.Data.Code[ k ][ i ] )
+        ) then
+            code := SCN.Data.Code[ k ][ i ];
+            G := PcGroupCode( code, size );
             SpecialPcgs( G );
         else
+            gens := SCN.Data.Gens[ k ][ i ];
             G := Group( gens );
             SetSize( G, size );
             SetSmallGeneratingSet( G, gens );
             SetMinimalGeneratingSet( G, gens );
-            SetNrMovedPoints( G, LargestMovedPoint( G ) );
+            SetNrMovedPoints( G, LargestMovedPoint( G ) )
         fi;
         SetNrConjugacyClasses( G, k );
         SetIdClassNr( G, [ k, i ] );
