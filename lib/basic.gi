@@ -4,7 +4,7 @@
 ##
 InstallGlobalFunction(
     SmallClassNrGroupsAvailable,
-    k -> IsBound( SCN.Data.Gens[ k ] )
+    k -> IsBound( SCN.Data.Size[ k ] )
 );
 
 ###############################################################################
