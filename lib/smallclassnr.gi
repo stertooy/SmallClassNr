@@ -4,7 +4,7 @@
 ##
 InstallGlobalFunction(
     SmallClassNrGroupsAvailable,
-    k -> IsBound( SCN.Data.Gens[k] )
+    k -> IsBound( SCN.Data.Gens[ k ] )
 );
 
 ###############################################################################
@@ -47,10 +47,10 @@ InstallGlobalFunction(
         con := CallFuncList( SCN.ConditionList, arg );
         kfv := CallFuncList( SCN.ExtractClassNrsAndSizes, con );
         itr := rec(
-            kGs := kfv[1],
-            sZs := kfv[2],
-            fnc := kfv[3],
-            vls := kfv[4],
+            kGs := kfv[ 1 ],
+            sZs := kfv[ 2 ],
+            fnc := kfv[ 3 ],
+            vls := kfv[ 4 ],
             pos := [ 1, 1 ],
             nxt := fail,
             IsDoneIterator := SCN.IsDoneIterator,
@@ -92,13 +92,14 @@ InstallGlobalFunction(
         con := CallFuncList( SCN.ConditionList, arg );
         kfv := CallFuncList( SCN.ExtractClassNrsAndSizes, con );
         n := 0;
-        if IsEmpty( kfv[3] ) then
-            for k in kfv[1] do
+        if IsEmpty( kfv[ 3 ] ) then
+            for k in kfv[ 1 ] do
                 SCN.ClassNrAvailable( k );
-                if IsList( kfv[2] ) then
-                    n := n + Number( SCN.Data.Size[k], x -> x in kfv[2] );
+                size := SCN.Data.Size[ k ];
+                if IsList( kfv[ 2 ] ) then
+                    n := n + Number( soze, x -> x in kfv[2] );
                 else
-                    n := n + Length( SCN.Data.Size[k] );
+                    n := n + Length( size );
                 fi;
             od;
         else
