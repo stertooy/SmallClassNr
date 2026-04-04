@@ -1,14 +1,19 @@
 ###############################################################################
 ##
-## IdClassNrToOtherId( idname, id )
+## IdClassNrToOtherId( k, i, arg... )
 ##
-SCN.IdClassNrToIdGroup := function( idname, id )
-    local k, i;
-    k := Flat( id )[ 1 ];
-    i := Flat( id )[ 2 ];
+SCN.IdClassNrToIdGroup := function( k, i, arg... )
+    local id, name;
     SCN.GroupIdAvailable( k, i );
-    if not IsBound( SCN.Data.(idname)[ k ][ i ] ) then
-        return fail;
+    id := [];
+    for name in arg do
+        if not IsBound( SCN.Data.(name)[ k ][ i ] ) then
+            return fail;
+        fi;
+        Add( id, SCN.Data.(name)[ k ][ i ] );
+    od;
+    if Length( id ) = 1 then
+        id := First( id );
     fi;
-    return SCN.Data.(idname)[ k ][ i ];
+    return id;
 end;
