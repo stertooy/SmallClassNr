@@ -1,11 +1,16 @@
 # CHANGELOG - GAP package SmallClassNr
 
-## 1.4.4 (2026-04-04)
+## 1.5.0 (2026-04-04)
+
+### Added
+- Added functionality to convert `IdClassNr` to id's used by other group
+  libraries
+- Precomputed group sizes are now stored for all groups in the library, and are
+  used to more efficiently determine `IdClassNr` for a given group
 
 ### Changed
-- Improvements to the documentation
-- Restored previously removed test checking MinimalFaithfulPermuationDegree
-  of PermGroups (dependent on the PrimGrp, SmallGrp and TransGrp packages)
+- Improvemed the documentation
+- Expanded the test suite
 - Janitorial changes
 
 ## 1.4.3 (2025-11-13)
