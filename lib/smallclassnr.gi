@@ -95,7 +95,7 @@ InstallGlobalFunction(
                 SCN.ClassNrAvailable( k );
                 size := SCN.Data.Size[ k ];
                 if IsList( ksfv[ 2 ] ) then
-                    n := n + Number( soze, x -> x in ksfv[2] );
+                    n := n + Number( size, x -> x in ksfv[2] );
                 else
                     n := n + Length( size );
                 fi;
