@@ -2,27 +2,27 @@ SCN.Data.AtlasName := [];
 
 # AtlasRepInfoRecord.groupname
 
-SCN.Data.AtlasName[1] := [
+SCN.Data.AtlasName[ 1 ] := [
     ,
 ];
 
-SCN.Data.AtlasName[2] := [
+SCN.Data.AtlasName[ 2 ] := [
     ,
 ];
 
-SCN.Data.AtlasName[3] := [
-    ,
-    ,
-];
-
-SCN.Data.AtlasName[4] := [
-    ,
-    ,
+SCN.Data.AtlasName[ 3 ] := [
     ,
     ,
 ];
 
-SCN.Data.AtlasName[5] := [
+SCN.Data.AtlasName[ 4 ] := [
+    ,
+    ,
+    ,
+    ,
+];
+
+SCN.Data.AtlasName[ 5 ] := [
     ,
     ,
     ,
@@ -33,7 +33,7 @@ SCN.Data.AtlasName[5] := [
     "A5",
 ];
 
-SCN.Data.AtlasName[6] := [
+SCN.Data.AtlasName[ 6 ] := [
     ,
     ,
     ,
@@ -44,7 +44,7 @@ SCN.Data.AtlasName[6] := [
     "L3(2)",
 ];
 
-SCN.Data.AtlasName[7] := [
+SCN.Data.AtlasName[ 7 ] := [
     ,
     ,
     ,
@@ -59,7 +59,7 @@ SCN.Data.AtlasName[7] := [
     "A6",
 ];
 
-SCN.Data.AtlasName[8] := [
+SCN.Data.AtlasName[ 8 ] := [
     ,
     ,
     ,
@@ -83,7 +83,7 @@ SCN.Data.AtlasName[8] := [
     "A6.2_3",
 ];
 
-SCN.Data.AtlasName[9] := [
+SCN.Data.AtlasName[ 9 ] := [
     ,
     ,
     ,
@@ -112,7 +112,7 @@ SCN.Data.AtlasName[9] := [
     "A7",
 ];
 
-SCN.Data.AtlasName[10] := [
+SCN.Data.AtlasName[ 10 ] := [
     ,
     ,
     ,
@@ -152,7 +152,7 @@ SCN.Data.AtlasName[10] := [
     "L3(4)",
 ];
 
-SCN.Data.AtlasName[11] := [
+SCN.Data.AtlasName[ 11 ] := [
     ,
     ,
     ,
@@ -190,7 +190,7 @@ SCN.Data.AtlasName[11] := [
     "Sz(8)",
 ];
 
-SCN.Data.AtlasName[12] := [
+SCN.Data.AtlasName[ 12 ] := [
     ,
     ,
     ,
@@ -244,7 +244,7 @@ SCN.Data.AtlasName[12] := [
     "M22",
 ];
 
-SCN.Data.AtlasName[13] := [
+SCN.Data.AtlasName[ 13 ] := [
     ,
     ,
     ,
@@ -300,7 +300,7 @@ SCN.Data.AtlasName[13] := [
     ,
 ];
 
-SCN.Data.AtlasName[14] := [
+SCN.Data.AtlasName[ 14 ] := [
     ,
     ,
     ,
