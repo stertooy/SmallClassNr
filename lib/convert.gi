@@ -6,13 +6,8 @@ InstallGlobalFunction(
     IdClassNrToIdGroup,
     function( arg... )
         local k, i;
-        if IsList( arg[ 1 ] ) then
-            k := arg[ 1 ][ 1 ];
-            i := arg[ 1 ][ 2 ];
-        else
-            k := arg[ 1 ];
-            i := arg[ 2 ];
-        fi;
+        k := Flat( arg )[ 1 ];
+        i := Flat( arg )[ 2 ];
         SCN.GroupIdAvailable( k, i );
         if not IsBound( SCN.Data.IdGroup[ k ][ i ] ) then
             return fail;
@@ -29,13 +24,8 @@ InstallGlobalFunction(
     IdClassNrToPrimGrp,
     function( arg... )
         local k, i;
-        if IsList( arg[ 1 ] ) then
-            k := arg[ 1 ][ 1 ];
-            i := arg[ 1 ][ 2 ];
-        else
-            k := arg[ 1 ];
-            i := arg[ 2 ];
-        fi;
+        k := Flat( arg )[ 1 ];
+        i := Flat( arg )[ 2 ];
         SCN.GroupIdAvailable( k, i );
         if not IsBound( SCN.Data.PrimGrp[ k ][ i ] ) then
             return fail;
@@ -52,13 +42,8 @@ InstallGlobalFunction(
     IdClassNrToTransGrp,
     function( arg... )
         local k, i;
-        if IsList( arg[ 1 ] ) then
-            k := arg[ 1 ][ 1 ];
-            i := arg[ 1 ][ 2 ];
-        else
-            k := arg[ 1 ];
-            i := arg[ 2 ];
-        fi;
+        k := Flat( arg )[ 1 ];
+        i := Flat( arg )[ 2 ];
         SCN.GroupIdAvailable( k, i );
         if not IsBound( SCN.Data.TransGrp[ k ][ i ] ) then
             return fail;
@@ -75,13 +60,8 @@ InstallGlobalFunction(
     IdClassNrToAtlasName,
     function( arg... )
         local k, i;
-        if IsList( arg[ 1 ] ) then
-            k := arg[ 1 ][ 1 ];
-            i := arg[ 1 ][ 2 ];
-        else
-            k := arg[ 1 ];
-            i := arg[ 2 ];
-        fi;
+        k := Flat( arg )[ 1 ];
+        i := Flat( arg )[ 2 ];
         SCN.GroupIdAvailable( k, i );
         if not IsBound( SCN.Data.AtlasName[ k ][ i ] ) then
             return fail;
