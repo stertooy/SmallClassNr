@@ -75,7 +75,7 @@ SCN.NextSmallClassNrGroup := function( itr )
     while i <= Length( kGs ) do
         kG := kGs[i];
         SCN.ClassNrAvailable( kG );
-        while j <= Length( SCN.Data.Gens[ kG ] ) do
+        while j <= Length( SCN.Data.Size[ kG ] ) do
             j := j + 1;
             if not SCN.Data.Size[ kG ][ j - 1 ] in sZs then
                 continue;
