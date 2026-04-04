@@ -4,7 +4,16 @@
 ##
 InstallGlobalFunction(
     IdClassNrToIdGroup,
-    { arg... } -> SCN.IdClassNrToIdGroup( "IdGroup", arg )
+    { arg... } -> SCN.IdClassNrToOtherId( Flat( arg ), "Size", "IdGroup" )
+);
+
+###############################################################################
+##
+## IdClassNrToPerfGrp( k, i )
+##
+InstallGlobalFunction(
+    IdClassNrToPerfGroup,
+    { arg... } -> SCN.IdClassNrToOtherId( Flat( arg ), "Size", "PerfGrp" )
 );
 
 ###############################################################################
@@ -13,7 +22,7 @@ InstallGlobalFunction(
 ##
 InstallGlobalFunction(
     IdClassNrToPrimGrp,
-    { arg... } -> SCN.IdClassNrToIdGroup( "PrimGrp", arg )
+    { arg... } -> SCN.IdClassNrToOtherId( Flat( arg ), "PrimGrp" )
 );
 
 ###############################################################################
@@ -22,7 +31,7 @@ InstallGlobalFunction(
 ##
 InstallGlobalFunction(
     IdClassNrToTransGrp,
-    { arg... } -> SCN.IdClassNrToIdGroup( "TransGrp", arg )
+    { arg... } -> SCN.IdClassNrToOtherId( Flat( arg ), "TransGrp" )
 );
 
 ###############################################################################
@@ -31,5 +40,5 @@ InstallGlobalFunction(
 ##
 InstallGlobalFunction(
     IdClassNrToAtlasName,
-    { arg... } -> SCN.IdClassNrToIdGroup( "AtlasName", arg )
+    { arg... } -> SCN.IdClassNrToOtherId( Flat( arg ), "AtlasName" )
 );
