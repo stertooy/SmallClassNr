@@ -14,26 +14,21 @@ InstallGlobalFunction(
 InstallGlobalFunction(
     SmallClassNrGroup,
     function( arg... )
-        local k, i, data, size, G;
-        if IsList( arg[1] ) then
-            k := arg[1][1];
-            i := arg[1][2];
-        else
-            k := arg[1];
-            i := arg[2];
-        fi;
+        local k, i, gens, size, G;
+        k := Flat( arg )[ 1 ];
+        i := Flat( arg )[ 2 ];
         SCN.GroupIdAvailable( k, i );
-        data := SCN.Data.Gens[k][i];
-        size := SCN.Data.Size[k][i];
-        if IsInt( data ) then
-            G := PcGroupCode( data, size );
+        gens := SCN.Data.Gens[ k ][ i ];
+        size := SCN.Data.Size[ k ][ i ];
+        if IsInt( gens ) then
+            G := PcGroupCode( gens, size );
             SpecialPcgs( G );
         else
-            G := Group( data );
+            G := Group( gens );
             SetSize( G, size );
+            SetSmallGeneratingSet( G, gens );
+            SetMinimalGeneratingSet( G, gens );
             SetNrMovedPoints( G, LargestMovedPoint( G ) );
-            SetSmallGeneratingSet( G, GeneratorsOfGroup( G ) );
-            SetMinimalGeneratingSet( G, GeneratorsOfGroup( G ) );
         fi;
         SetNrConjugacyClasses( G, k );
         SetIdClassNr( G, [ k, i ] );
