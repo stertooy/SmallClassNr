@@ -2,10 +2,10 @@
 ##
 ## IdClassNrToOtherId( idname, arg... )
 ##
-SCN.IdClassNrToIdGroup := function( idname, arg... )
+SCN.IdClassNrToIdGroup := function( idname, id )
     local k, i;
-    k := Flat( arg )[ 1 ];
-    i := Flat( arg )[ 2 ];
+    k := Flat( id )[ 1 ];
+    i := Flat( id )[ 2 ];
     SCN.GroupIdAvailable( k, i );
     if not IsBound( SCN.Data.(idname)[ k ][ i ] ) then
         return fail;
