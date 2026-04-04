@@ -8,6 +8,8 @@ gap> Collected( List( grps, NrConjugacyClasses ) );
 #
 gap> NrSmallClassNrGroups( 10 );
 37
+gap> NrSmallClassNrGroups( 10, Size, 100 );
+3
 gap> NrSmallClassNrGroups( [1..7] );
 36
 gap> NrSmallClassNrGroups( [13..14], IsNilpotentGroup, false );
