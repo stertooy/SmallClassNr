@@ -87,7 +87,7 @@ InstallGlobalFunction(
 InstallGlobalFunction(
     NrSmallClassNrGroups,
     function( arg... )
-        local ksfv, n, k, iter;
+        local ksfv, n, k, size, iter;
         ksfv := CallFuncList( SCN.ExtractClassNrsAndSizes, arg );
         n := 0;
         if IsEmpty( ksfv[ 3 ] ) then
