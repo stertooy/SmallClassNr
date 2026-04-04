@@ -12,7 +12,7 @@ InstallGlobalFunction(
 ## IdClassNrToPerfGrp( k, i )
 ##
 InstallGlobalFunction(
-    IdClassNrToPerfGroup,
+    IdClassNrToPerfGrp,
     { arg... } -> SCN.IdClassNrToOtherId( Flat( arg ), "Size", "PerfGrp" )
 );
 
