@@ -3,7 +3,9 @@
 ## IdClassNrToOtherId( old_id, arg... )
 ##
 SCN.IdClassNrToOtherId := function( old_id, arg... )
-    local new_id, name;
+    local k, i, new_id, name;
+    k := old_id[ 1 ];
+    i := old_id[ 2 ];
     SCN.GroupIdAvailable( k, i );
     new_id := [];
     for name in arg do
