@@ -32,7 +32,7 @@ InstallGlobalFunction(
             SetSize( G, size );
             SetSmallGeneratingSet( G, gens );
             SetMinimalGeneratingSet( G, gens );
-            SetNrMovedPoints( G, LargestMovedPoint( G ) )
+            SetNrMovedPoints( G, LargestMovedPoint( G ) );
         fi;
         SetNrConjugacyClasses( G, k );
         SetIdClassNr( G, [ k, i ] );
