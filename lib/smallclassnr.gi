@@ -114,6 +114,7 @@ InstallGlobalFunction(
 ###############################################################################
 ##
 ## IdClassNr( G )
+##
 InstallMethod(
     IdClassNr,
     "generic method",
