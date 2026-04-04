@@ -50,7 +50,7 @@ InstallMethod(
         SCN.ClassNrAvailable( kG );
         grps := AllSmallClassNrGroups(
             NrConjugacyClasses, kG,
-            Size,               Size( G )
+            Size, Size( G )
         );
         if Length( grps ) = 1 then
             return IdClassNr( First( grps ) );
