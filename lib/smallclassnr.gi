@@ -43,21 +43,20 @@ InstallGlobalFunction(
 InstallGlobalFunction(
     IteratorSmallClassNrGroups,
     function( arg... )
-        local con, kfv, itr;
-        con := CallFuncList( SCN.ConditionList, arg );
-        kfv := CallFuncList( SCN.ExtractClassNrsAndSizes, con );
-        itr := rec(
-            kGs := kfv[ 1 ],
-            sZs := kfv[ 2 ],
-            fnc := kfv[ 3 ],
-            vls := kfv[ 4 ],
+        local ksfv, iter;
+        ksfv := CallFuncList( SCN.ExtractClassNrsAndSizes, arg );
+        iter := rec(
+            kGs := ksfv[ 1 ],
+            sZs := ksfv[ 2 ],
+            fnc := ksfv[ 3 ],
+            vls := ksfv[ 4 ],
             pos := [ 1, 1 ],
             nxt := fail,
             IsDoneIterator := SCN.IsDoneIterator,
             NextIterator := SCN.NextIterator,
             ShallowCopy := SCN.ShallowCopy
         );
-        return IteratorByFunctions( itr );
+        return IteratorByFunctions( iter );
     end
 );
 
@@ -88,16 +87,15 @@ InstallGlobalFunction(
 InstallGlobalFunction(
     NrSmallClassNrGroups,
     function( arg... )
-        local con, kfv, n, k, iter;
-        con := CallFuncList( SCN.ConditionList, arg );
-        kfv := CallFuncList( SCN.ExtractClassNrsAndSizes, con );
+        local ksfv, n, k, iter;
+        ksfv := CallFuncList( SCN.ExtractClassNrsAndSizes, arg );
         n := 0;
-        if IsEmpty( kfv[ 3 ] ) then
-            for k in kfv[ 1 ] do
+        if IsEmpty( ksfv[ 3 ] ) then
+            for k in ksfv[ 1 ] do
                 SCN.ClassNrAvailable( k );
                 size := SCN.Data.Size[ k ];
-                if IsList( kfv[ 2 ] ) then
-                    n := n + Number( soze, x -> x in kfv[2] );
+                if IsList( ksfv[ 2 ] ) then
+                    n := n + Number( soze, x -> x in ksfv[2] );
                 else
                     n := n + Length( size );
                 fi;
