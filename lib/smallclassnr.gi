@@ -95,7 +95,11 @@ InstallGlobalFunction(
         if IsEmpty( kfv[3] ) then
             for k in kfv[1] do
                 SCN.ClassNrAvailable( k );
-                n := n + Number( SCN.Data.Size[k], x -> x in kfv[2] );
+                if IsList( kfv[2] ) then
+                    n := n + Number( SCN.Data.Size[k], x -> x in kfv[2] );
+                else
+                    n := n + Length( SCN.Data.Size[k] );
+                fi;
             od;
         else
             iter := CallFuncList( IteratorSmallClassNrGroups, arg );
@@ -127,9 +131,9 @@ InstallMethod(
             return IdClassNr( First( grps ) );
         fi;
         if IsSolvableGroup( G ) and not IsPcGroup( G ) then
-            H := ImagesSource( IsomorphismPcGroup( G ) );
+            H := Range( IsomorphismPcGroup( G ) );
         elif not IsSolvableGroup( G ) and not IsPermGroup( G ) then
-            H := ImagesSource( IsomorphismPermGroup( G ) );
+            H := Range( IsomorphismPermGroup( G ) );
         else
             H := G;
         fi;
