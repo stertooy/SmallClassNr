@@ -4,16 +4,7 @@
 ##
 InstallGlobalFunction(
     IdClassNrToIdGroup,
-    function( arg... )
-        local k, i;
-        k := Flat( arg )[ 1 ];
-        i := Flat( arg )[ 2 ];
-        SCN.GroupIdAvailable( k, i );
-        if not IsBound( SCN.Data.IdGroup[ k ][ i ] ) then
-            return fail;
-        fi;
-        return SCN.Data.IdGroup[ k ][ i ];
-    end
+    { arg... } -> SCN.IdClassNrToIdGroup( "IdGroup", arg )
 );
 
 ###############################################################################
@@ -22,16 +13,7 @@ InstallGlobalFunction(
 ##
 InstallGlobalFunction(
     IdClassNrToPrimGrp,
-    function( arg... )
-        local k, i;
-        k := Flat( arg )[ 1 ];
-        i := Flat( arg )[ 2 ];
-        SCN.GroupIdAvailable( k, i );
-        if not IsBound( SCN.Data.PrimGrp[ k ][ i ] ) then
-            return fail;
-        fi;
-        return SCN.Data.PrimGrp[ k ][ i ];
-    end
+    { arg... } -> SCN.IdClassNrToIdGroup( "PrimGrp", arg )
 );
 
 ###############################################################################
@@ -40,16 +22,7 @@ InstallGlobalFunction(
 ##
 InstallGlobalFunction(
     IdClassNrToTransGrp,
-    function( arg... )
-        local k, i;
-        k := Flat( arg )[ 1 ];
-        i := Flat( arg )[ 2 ];
-        SCN.GroupIdAvailable( k, i );
-        if not IsBound( SCN.Data.TransGrp[ k ][ i ] ) then
-            return fail;
-        fi;
-        return SCN.Data.TransGrp[ k ][ i ];
-    end
+    { arg... } -> SCN.IdClassNrToIdGroup( "TransGrp", arg )
 );
 
 ###############################################################################
@@ -58,14 +31,5 @@ InstallGlobalFunction(
 ##
 InstallGlobalFunction(
     IdClassNrToAtlasName,
-    function( arg... )
-        local k, i;
-        k := Flat( arg )[ 1 ];
-        i := Flat( arg )[ 2 ];
-        SCN.GroupIdAvailable( k, i );
-        if not IsBound( SCN.Data.AtlasName[ k ][ i ] ) then
-            return fail;
-        fi;
-        return SCN.Data.AtlasName[ k ][ i ];
-    end
+    { arg... } -> SCN.IdClassNrToIdGroup( "AtlasName", arg )
 );
