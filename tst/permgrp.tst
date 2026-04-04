@@ -10,8 +10,8 @@ gap> check := func -> ForAll( [ 1 .. n ], i -> func( grps[ i ] ) = func( copy[ i
 #
 gap> check( Size );
 true
-
-#
+gap> check( NrMovedPoints );
+true
 gap> check( G -> Size( MinimalGeneratingSet( G ) ) );
 true
 
@@ -22,7 +22,7 @@ gap> LoadPackage( "TransGrp", false: OnlyNeeded );
 true
 gap> LoadPackage( "PrimGrp", false: OnlyNeeded );
 true
-gap> ForAll( PermGrps, G -> NrMovedPoints( G ) = MinimalFaithfulPermutationDegree( G ) );
+gap> ForAll( grps, G -> NrMovedPoints( G ) = MinimalFaithfulPermutationDegree( G ) );
 true
 
 #
