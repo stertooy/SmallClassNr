@@ -20,7 +20,7 @@ SCN.GroupIdAvailable := function( k, i )
     SCN.ClassNrAvailable( k );
     gens := SCN.Data.Gens[ k ];
     len := Length( gens );
-    if not i in [ 1 .. n ] then
+    if not i in [ 1 .. len ] then
         if len = 1 then
             Error( "there is just 1 group of class number ", k );
         else
