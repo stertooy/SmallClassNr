@@ -1,6 +1,6 @@
 ###############################################################################
 ##
-## IdClassNrToOtherId( idname, arg... )
+## IdClassNrToOtherId( idname, id )
 ##
 SCN.IdClassNrToIdGroup := function( idname, id )
     local k, i;
