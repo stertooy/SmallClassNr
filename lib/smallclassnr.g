@@ -16,15 +16,15 @@ end;
 ## GroupIdAvailable( k, i )
 ##
 SCN.GroupIdAvailable := function( k, i )
+    local gens, len;
     SCN.ClassNrAvailable( k );
-    if not i in [ 1 .. Length( SCN.Data.Gens[k] ) ] then
-        if Length( SCN.Data.Gens[k] ) = 1 then
+    gens := SCN.Data.Gens[ k ];
+    len := Length( gens );
+    if not i in [ 1 .. n ] then
+        if len = 1 then
             Error( "there is just 1 group of class number ", k );
         else
-            Error(
-                "there are just ", Length( SCN.Data.Gens[k] ),
-                " groups of class number ", k
-            );
+            Error( "there are just ", len, " groups of class number ", k );
         fi;
     fi;
 end;
@@ -98,20 +98,20 @@ SCN.NextSmallClassNrGroup := function( itr )
     fnc := itr!.fnc;
     vls := itr!.vls;
     pos := itr!.pos;
-    i := pos[1];
-    j := pos[2];
+    i := pos[ 1 ];
+    j := pos[ 2 ];
     while i <= Length( kGs ) do
         kG := kGs[i];
         SCN.ClassNrAvailable( kG );
-        while j <= Length( SCN.Data.Gens[kG] ) do
+        while j <= Length( SCN.Data.Gens[ kG ] ) do
             j := j + 1;
-            if not SCN.Data.Size[kG][j-1] in sZs then
+            if not SCN.Data.Size[ kG ][ j - 1 ] in sZs then
                 continue;
             fi;
-            G := SmallClassNrGroup( kG, j-1 );
+            G := SmallClassNrGroup( kG, j - 1 );
             if ForAll(
                 [ 1 .. Length( fnc ) ],
-                k -> fnc[k]( G ) in vls[k]
+                k -> fnc[ k ]( G ) in vls[ k ]
             ) then
                 return [ [ i, j ], G ];
             fi;
