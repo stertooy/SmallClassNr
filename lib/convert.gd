@@ -6,7 +6,7 @@
 #! is isomorphic to <C>SmallClassNrGroup(<A>k</A>, <A>i</A>)</C>.
 #! @Arguments k, i
 DeclareGlobalFunction( "IdClassNrToIdGroup" );
-# @InsertChunk example_smallclassnrgroup
+#! @InsertChunk example_smallgrp
 
 #! @Section perfgrp
 
@@ -15,7 +15,7 @@ DeclareGlobalFunction( "IdClassNrToIdGroup" );
 #! <C>SmallClassNrGroup(<A>k</A>, <A>i</A>)</C>.
 #! @Arguments k, i
 DeclareGlobalFunction( "IdClassNrToPerfGrp" );
-# @InsertChunk example_smallclassnrgroup
+#! @InsertChunk example_perfgrp
 
 #! @Section primgrp
 
@@ -24,7 +24,7 @@ DeclareGlobalFunction( "IdClassNrToPerfGrp" );
 #! <C>SmallClassNrGroup(<A>k</A>, <A>i</A>)</C>.
 #! @Arguments k, i
 DeclareGlobalFunction( "IdClassNrToPrimGrp" );
-# @InsertChunk example_smallclassnrgroup
+#! @InsertChunk example_primgrp
 
 #! @Section transgrp
 
@@ -33,7 +33,7 @@ DeclareGlobalFunction( "IdClassNrToPrimGrp" );
 #! <C>SmallClassNrGroup(<A>k</A>, <A>i</A>)</C>.
 #! @Arguments k, i
 DeclareGlobalFunction( "IdClassNrToTransGrp" );
-# @InsertChunk example_smallclassnrgroup
+#! @InsertChunk example_transgrp
 
 #! @Section atlasrep
 
@@ -41,4 +41,4 @@ DeclareGlobalFunction( "IdClassNrToTransGrp" );
 #! isomorphic to <C>SmallClassNrGroup(<A>k</A>, <A>i</A>)</C>.
 #! @Arguments k, i
 DeclareGlobalFunction( "IdClassNrToAtlasName" );
-# @InsertChunk example_smallclassnrgroup
+#! @InsertChunk example_atlasrep
