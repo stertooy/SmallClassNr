@@ -1,9 +1,11 @@
 #! @BeginChunk example_smallclassnrgroup
 #! @BeginExample
-G := SmallClassNrGroup( 5, 8 );
-#! Group([ (1,2,3), (1,4,5) ])
+SmallClassNrGroup( 4, 4 );
+#! <pc group of size 12 with 3 generators>
+G := SmallClassNrGroup( 4, 4 : AsPermGroup );
+#! Group([ (1,2,3), (1,4,2) ])
 NrConjugacyClasses( G );
-#! 5
+#! 4
 IsAlternatingGroup( G );
 #! true
 #! @EndExample
@@ -11,8 +13,8 @@ IsAlternatingGroup( G );
 
 #! @BeginChunk example_idclassnr
 #! @BeginExample
-IdClassNr( AlternatingGroup( 5 ) );
-#! [ 5, 8 ]
+IdClassNr( AlternatingGroup( 4 ) );
+#! [ 4, 4 ]
 #! @EndExample
 #! @EndChunk
 
@@ -33,6 +35,13 @@ AllSmallClassNrGroups( [ 3 .. 5 ], IsNilpotent );
 #!   <pc group of size 5 with 1 generator>,
 #!   <pc group of size 8 with 3 generators>,
 #!   <pc group of size 8 with 3 generators> ]
+AllSmallClassNrGroups( [ 3 .. 5 ], IsNilpotent : AsPermGroup );
+#! [ Group([ (1,2,3) ]),
+#!   Group([ (1,2,3,4) ]),
+#!   Group([ (1,2), (3,4) ]),
+#!   Group([ (1,2,3,4,5) ]),
+#!   Group([ (1,2), (1,3)(2,4) ]),
+#!   Group([ (1,2,3,4)(5,6,7,8), (1,5,3,7)(2,8,4,6) ]) ]
 #! @EndExample
 #! @EndChunk
 
@@ -42,6 +51,8 @@ OneSmallClassNrGroup( 6, IsSolvable, false );
 #! Group([ (1,2,3)(4,5,6), (1,4)(2,7) ])
 OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );
 #! <pc group of size 28 with 3 generators>
+OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false : AsPermGroup );
+#! TODO
 #! @EndExample
 #! @EndChunk
 
