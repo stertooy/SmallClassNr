@@ -57,7 +57,7 @@ jobs:
           } >> $GITHUB_OUTPUT
 
       - name: "Make release"
-        uses: gap-actions/release-pkg@v1
+        uses: stertooy/release-pkg@fix-body-text #gap-actions/release-pkg@v1
         with:
           dry-run: ${{ inputs.dry-run }}
           body-text: ${{ steps.changes.outputs.RELEASE_NOTES }} 
