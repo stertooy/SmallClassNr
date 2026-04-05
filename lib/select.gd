@@ -2,6 +2,7 @@
 
 #! @Section groupsbyprops
 
+#! @BeginGroup
 #! @Returns all finite groups with certain properties as specified by
 #! <A>arg</A>.
 #! @Description The option <C>AsPermGroup</C> can be added to ensure all groups
@@ -11,8 +12,10 @@ DeclareGlobalFunction( "AllSmallClassNrGroups" );
 #! @Label with AsPermGroup
 #! @Arguments arg...: AsPermGroup
 DeclareGlobalName( "AllSmallClassNrGroups" );
+#! @EndGroup
 #! @InsertChunk example_allsmallclassnrgroups
 
+#! @BeginGroup
 #! @Returns one finite group with certain properties as specified by
 #! <A>arg</A>.
 #! @Description The option <C>AsPermGroup</C> can be added to ensure that the
@@ -22,6 +25,7 @@ DeclareGlobalFunction( "OneSmallClassNrGroup" );
 #! @Label with AsPermGroup
 #! @Arguments arg...: AsPermGroup
 DeclareGlobalName( "OneSmallClassNrGroup" );
+#! @EndGroup
 #! @InsertChunk example_onesmallclassnrgroup
 
 #! @Returns the number of finite groups with certain properties as specified by
