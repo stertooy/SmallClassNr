@@ -3,7 +3,7 @@ SCN.Data.Gens := [];
 # MinimalGeneratingSet
 
 SCN.Data.Gens[ 1 ] := [
-    [ () ],
+    [],
 ];
 
 SCN.Data.Gens[ 2 ] := [
