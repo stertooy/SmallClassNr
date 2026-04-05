@@ -52,7 +52,7 @@ OneSmallClassNrGroup( 6, IsSolvable, false );
 OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false );
 #! <pc group of size 28 with 3 generators>
 OneSmallClassNrGroup( 10, IsSolvable, true, IsNilpotent, false : AsPermGroup );
-#! TODO
+#! Group([ (1,2,3,4,5,6,7), (2,7)(3,6)(4,5)(8,9,10,11) ])
 #! @EndExample
 #! @EndChunk
 
