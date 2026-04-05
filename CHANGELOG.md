@@ -1,8 +1,11 @@
 # CHANGELOG - GAP package SmallClassNr
 
-## 1.5.0 (2026-04-04)
+## 1.5.0 (2026-04-05)
 
 ### Added
+- Added option `AsPermGroup`, which can be given to `SmallClassNrGroup`,
+  `AllSmallClassNrGroups` and `OneSmallClassNrGroup`, to return groups as
+  PermGroups even if they are soluble.
 - Added functionality to convert `IdClassNr` to id's used by other group
   libraries:
   * The Small Groups Library (provided by the SmallGrp package).
