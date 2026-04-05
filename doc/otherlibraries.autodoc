@@ -1,2 +1,21 @@
 @Chapter otherlibraries
 @ChapterTitle Conversion to other group libraries
+
+@Section smallgrp
+@Sectiontitle The Small Groups Library
+Requires the <Package>SmallGrp</Package> package.
+
+@Section perfgrp
+@Sectiontitle The Library of Finite Perfect Groups
+
+@Section primgrp
+@Sectiontitle The Primitive Permutation Groups Library
+Requires the <Package>PrimGrp</Package> package.
+
+@Section transgrp
+@Sectiontitle The Library of Transitive Groups
+Requires the <Package>TransGrp</Package> package.
+
+@Section atlasrep
+@Sectiontitle The ATLAS of Group Representations
+Requires the <Package>AtlasRep</Package> package.
