@@ -7,8 +7,8 @@
   libraries:
   * The Small Groups Library (provided by the SmallGrp package).
   * The Library of Finite Perfect Groups.
-  * The Library of Transitive Groups (provided by the TransGrp package).
   * The Primitive Permutation Groups Library (provided by the PrimGrp package).
+  * The Library of Transitive Groups (provided by the TransGrp package).
   * The ATLAS of Group Representations (provided by the AtlasRep package).
 - Precomputed group sizes are now stored for all groups in the library, and are
   used to more efficiently determine `IdClassNr` for a given group.
