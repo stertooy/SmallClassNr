@@ -28,7 +28,7 @@ InstallGlobalFunction(
             SpecialPcgs( G );
         else
             gens := SCN.Data.Gens[ k ][ i ];
-            G := Group( gens );
+            G := Group( gens, () );
             SetSize( G, size );
             SetSmallGeneratingSet( G, gens );
             SetMinimalGeneratingSet( G, gens );
