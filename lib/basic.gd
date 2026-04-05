@@ -12,6 +12,7 @@
 #! with a minimal generating set.
 #! @Arguments k, i
 DeclareGlobalFunction( "SmallClassNrGroup" );
+#! @Label with AsPermGroup
 #! @Arguments k, i: AsPermGroup
 DeclareGlobalName( "SmallClassNrGroup" );
 #! @InsertChunk example_smallclassnrgroup
