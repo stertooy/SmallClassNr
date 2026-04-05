@@ -18,6 +18,8 @@ jobs:
             rules: "lib"
           - files: "examples/**/*.g*"
             rules: "examples"
+          - files: "data/**/*.g*"
+            rules: "data"
 
     steps:
     

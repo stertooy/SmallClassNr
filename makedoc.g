@@ -4,7 +4,11 @@ pkgName := info.PackageName;
 pkgsToLoad := [
     [ "GAPDoc", "1.6.7" ],
     [ "Autodoc", "2026.03.17" ],
-    [ pkgName, info.Version ]
+    [ pkgName, info.Version ],
+    [ "SmallGrp", "1.5.4" ],
+    [ "PrimGrp", "3.4.4" ],
+    [ "TransGrp", "3.6.5" ],
+    [ "AtlasRep", "2.1.9" ],
 ];
 if IsBound( info.Extensions ) then
     for ext in info.Extensions do
@@ -35,6 +39,10 @@ AutoDoc( rec(
         entities := rec(
             AutoDoc := "<Package>AutoDoc</Package>",
             PackageManager := "<Package>PackageManager</Package>",
+            SmallGrp := "<Package>SmallGrp</Package>",
+            PrimGrp := "<Package>PrimGrp</Package>",
+            TransGrp := "<Package>TransGrp</Package>",
+            AtlasRep := "<Package>AtlasRep</Package>",
             BibLaTeX := "Bib&LaTeX;",
             PackageName := pkgName,
             PACKAGENAME := Concatenation(

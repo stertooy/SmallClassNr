@@ -1,0 +1,10 @@
+indentation: 4
+disable:
+- W002
+- W003
+- W004
+- W010
+- W011
+- W012
+- W013
+- W014

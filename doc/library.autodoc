@@ -13,5 +13,10 @@ functions must be <K>NrConjugacyClasses</K>.
 Missing functions will be interpreted as <K>NrConjugacyClasses</K>, missing
 values as <K>true</K>.
 
+<P/>
+
+The option <C>AsPermGroup</C> can be added to the functions in this section to ensure
+that all groups are returned as PermGroups (instead of PcGroups if they are soluble).
+
 @Section availability
 @SectionTitle Availability of the library

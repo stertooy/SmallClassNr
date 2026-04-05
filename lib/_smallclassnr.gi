@@ -1,1 +1,1 @@
-BindGlobal( "SCN", rec() );
+BindGlobal( "SCN", rec( Data := rec() ) );

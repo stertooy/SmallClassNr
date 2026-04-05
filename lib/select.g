@@ -10,21 +10,21 @@ SCN.ConditionList := function( arg... )
     while i <= Length( arg ) do
 
         # Add function
-        if IsFunction( arg[i] ) then
-            Add( fnc, arg[i] );
+        if IsFunction( arg[ i ] ) then
+            Add( fnc, arg[ i ] );
             i := i + 1;
         else
             Add( fnc, NrConjugacyClasses );
         fi;
 
         # Add matching value
-        if not IsBound( arg[i] ) or IsFunction( arg[i] ) then
+        if not IsBound( arg[ i ] ) or IsFunction( arg[ i ] ) then
             Add( vls, [ true ] );
-        elif IsList( arg[i] ) then
-            Add( vls, arg[i] );
+        elif IsList( arg[ i ] ) then
+            Add( vls, arg[ i ] );
             i := i + 1;
         else
-            Add( vls, [ arg[i] ] );
+            Add( vls, [ arg[ i ] ] );
             i := i + 1;
         fi;
 
@@ -35,10 +35,13 @@ end;
 
 ###############################################################################
 ##
-## ExtractClassNumbers( fnc, vls )
+## ExtractClassNrsAndSizes( arg... )
 ##
-SCN.ExtractClassNumbers := function( fnc, vls )
-    local pos, kGs;
+SCN.ExtractClassNrsAndSizes := function( arg... )
+    local con, fnc, vls, pos, kGs, sZs;
+    con := CallFuncList( SCN.ConditionList, arg );
+    fnc := con[ 1 ];
+    vls := con[ 2 ];
     pos := Position( fnc, NrConjugacyClasses );
     kGs := PositiveIntegers;
     while pos <> fail do
@@ -46,7 +49,14 @@ SCN.ExtractClassNumbers := function( fnc, vls )
         kGs := Intersection( kGs, Remove( vls, pos ) );
         pos := Position( fnc, NrConjugacyClasses );
     od;
-    return [ kGs, fnc, vls ];
+    pos := Position( fnc, Size );
+    sZs := PositiveIntegers;
+    while pos <> fail do
+        Remove( fnc, pos );
+        sZs := Intersection( sZs, Remove( vls, pos ) );
+        pos := Position( fnc, Size );
+    od;
+    return [ kGs, sZs, fnc, vls ];
 end;
 
 ###############################################################################
@@ -54,27 +64,26 @@ end;
 ## NextSmallClassNrGroup( itr )
 ##
 SCN.NextSmallClassNrGroup := function( itr )
-    local kGs, fnc, vls, pos, i, j, kG, G;
+    local kGs, sZs, fnc, vls, pos, i, j, kG, G;
     kGs := itr!.kGs;
+    sZs := itr!.sZs;
     fnc := itr!.fnc;
     vls := itr!.vls;
     pos := itr!.pos;
-    i := pos[1];
-    j := pos[2];
+    i := pos[ 1 ];
+    j := pos[ 2 ];
     while i <= Length( kGs ) do
         kG := kGs[i];
-        if not SmallClassNrGroupsAvailable( kG ) then
-            Error(
-                "the library of groups of class number ",
-                kG, " is not available"
-            );
-        fi;
-        while j <= Length( SCN.DATA[kG] ) do
-            G := SmallClassNrGroup( kG, j );
+        SCN.ClassNrAvailable( kG );
+        while j <= Length( SCN.Data.Size[ kG ] ) do
             j := j + 1;
+            if not SCN.Data.Size[ kG ][ j - 1 ] in sZs then
+                continue;
+            fi;
+            G := SmallClassNrGroup( kG, j - 1 );
             if ForAll(
                 [ 1 .. Length( fnc ) ],
-                k -> fnc[k]( G ) in vls[k]
+                k -> fnc[ k ]( G ) in vls[ k ]
             ) then
                 return [ [ i, j ], G ];
             fi;
@@ -94,8 +103,8 @@ SCN.NextIterator := function( itr )
     if IsBool( itr!.nxt ) then
         itr!.nxt := SCN.NextSmallClassNrGroup( itr );
     fi;
-    itr!.pos := itr!.nxt[1];
-    G := itr!.nxt[2];
+    itr!.pos := itr!.nxt[ 1 ];
+    G := itr!.nxt[ 2 ];
     if not IsBool( G ) then
         itr!.nxt := fail;
     fi;
@@ -109,11 +118,11 @@ end;
 SCN.IsDoneIterator := function( itr )
     local nxt;
     if not IsBool( itr!.nxt ) then
-        return IsBool( itr!.nxt[2] );
+        return IsBool( itr!.nxt[ 2 ] );
     fi;
     nxt := SCN.NextSmallClassNrGroup( itr );
     itr!.nxt := nxt;
-    if IsBool( nxt[2] ) then
+    if IsBool( nxt[ 2 ] ) then
         return true;
     fi;
     return false;
@@ -125,6 +134,7 @@ end;
 ##
 SCN.ShallowCopy := itr -> rec(
     kGs := itr!.kGs,
+    sZs := itr!.sZs,
     fnc := itr!.fnc,
     vls := itr!.vls,
     pos := itr!.pos,

@@ -2,8 +2,8 @@ SetPackageInfo( rec(
 
 PackageName := "SmallClassNr",
 Subtitle := "Library of finite groups with small class number",
-Version := "1.4.4",
-Date := "04/04/2026",
+Version := "1.5.0",
+Date := "05/04/2026",
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -68,7 +68,8 @@ Dependencies := rec(
     TestPackages := [
         [ "primgrp",  "3.4.4" ],
         [ "smallgrp", "1.5.4" ],
-        [ "transgrp", "3.6.5" ]
+        [ "transgrp", "3.6.5" ],
+        [ "atlasrep", "2.1.9" ],
     ]
 ),
 
