@@ -5,14 +5,15 @@
 #! @Returns the <A>i</A>-th finite group of class number <A>k</A> in the
 #! library.
 #! @Description
-#! Alternatively, the pair <C>[<A>k</A>, <A>i</A>]</C> can be given as a
-#! single argument <A>id</A>.
-#! If the group is solvable, it is given as a PcGroup whose Pcgs is a
-#! SpecialPcgs.
-#! If the group is not solvable, it will be given as a permutation group of
-#! minimal permutation degree and with a minimal generating set.
+#! By default, if the group is solvable, it is given as a PcGroup whose Pcgs is
+#! a SpecialPcgs.
+#! If the group is not solvable, or if the option <C>AsPermGroup</C> is added,
+#! it will be given as a permutation group of minimal permutation degree and
+#! with a minimal generating set.
 #! @Arguments k, i
 DeclareGlobalFunction( "SmallClassNrGroup" );
+#! @Arguments k, i: AsPermGroup
+DeclareGlobalName( "SmallClassNrGroup" );
 #! @InsertChunk example_smallclassnrgroup
 
 #! @Returns the &PACKAGENAME; ID of <A>G</A>, i.e. a pair
