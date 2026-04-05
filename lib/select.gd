@@ -4,14 +4,24 @@
 
 #! @Returns all finite groups with certain properties as specified by
 #! <A>arg</A>.
+#! @Description The option <C>AsPermGroup</C> can be added to ensure all groups
+#! are returned as PermGroups (instead of PcGroups).
 #! @Arguments arg...
 DeclareGlobalFunction( "AllSmallClassNrGroups" );
+#! @Label with AsPermGroup
+#! @Arguments arg...: AsPermGroup
+DeclareGlobalName( "AllSmallClassNrGroups" );
 #! @InsertChunk example_allsmallclassnrgroups
 
 #! @Returns one finite group with certain properties as specified by
 #! <A>arg</A>.
+#! @Description The option <C>AsPermGroup</C> can be added to ensure that the
+#! group is returned as a PermGroup (instead of a PcGroup).
 #! @Arguments arg...
 DeclareGlobalFunction( "OneSmallClassNrGroup" );
+#! @Label with AsPermGroup
+#! @Arguments arg...: AsPermGroup
+DeclareGlobalName( "OneSmallClassNrGroup" );
 #! @InsertChunk example_onesmallclassnrgroup
 
 #! @Returns the number of finite groups with certain properties as specified by
