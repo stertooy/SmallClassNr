@@ -3,19 +3,20 @@
 
 @Section smallgrp
 @SectionTitle The Small Groups Library
-Requires the &SmallGrp; package.
+This library is provided by the &SmallGrp; package.
 
 @Section perfgrp
 @SectionTitle The Library of Finite Perfect Groups
+This library is provided by &GAP; itself.
 
 @Section primgrp
 @SectionTitle The Primitive Permutation Groups Library
-Requires the &PrimGrp; package.
+This library is provided by the &PrimGrp; package.
 
 @Section transgrp
 @SectionTitle The Library of Transitive Groups
-Requires the &TransGrp; package.
+This library is provided by the &TransGrp; package.
 
 @Section atlasrep
 @SectionTitle The ATLAS of Group Representations
-Requires the &AtlasRep; package.
+This library is provided by the &AtlasRep; package.
