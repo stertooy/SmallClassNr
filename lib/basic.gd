@@ -6,7 +6,7 @@
 #! @Returns the <A>i</A>-th finite group of class number <A>k</A> in the
 #! library.
 #! @Description
-#! By default, if the group is solvable, it is given as a PcGroup whose Pcgs is
+#! By default, if the group is soluble, it is given as a PcGroup whose Pcgs is
 #! a SpecialPcgs.
 #! If the group is not soluble, or if the option <C>AsPermGroup</C> is added,
 #! it will be given as a permutation group of minimal permutation degree and
