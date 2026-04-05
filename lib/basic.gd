@@ -2,6 +2,7 @@
 
 #! @Section groupsbyids
 
+#! @BeginGroup
 #! @Returns the <A>i</A>-th finite group of class number <A>k</A> in the
 #! library.
 #! @Description
@@ -15,6 +16,7 @@ DeclareGlobalFunction( "SmallClassNrGroup" );
 #! @Label with AsPermGroup
 #! @Arguments k, i: AsPermGroup
 DeclareGlobalName( "SmallClassNrGroup" );
+#! @EndGroup
 #! @InsertChunk example_smallclassnrgroup
 
 #! @Returns the &PACKAGENAME; ID of <A>G</A>, i.e. a pair
