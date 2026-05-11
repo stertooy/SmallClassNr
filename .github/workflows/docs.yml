@@ -24,6 +24,8 @@ jobs:
 
       - name: "Build manual"
         uses: gap-actions/build-pkg-docs@v2
+        with:
+          use-latex: true
 
       - name: "Validate PackageInfo.g"
         shell: bash
