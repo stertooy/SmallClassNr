@@ -1,5 +1,10 @@
 # CHANGELOG - GAP package SmallClassNr
 
+## 1.5.1 (2026-05-11)
+
+### Changed
+- `makedoc.g` now works when called from outside the package directory.
+
 ## 1.5.0 (2026-04-05)
 
 ### Added
