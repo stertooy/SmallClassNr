@@ -2,8 +2,8 @@ SetPackageInfo( rec(
 
 PackageName := "SmallClassNr",
 Subtitle := "Library of finite groups with small class number",
-Version := "1.5.1",
-Date := "11/05/2026",
+Version := "1.6.0",
+Date := "01/09/2026",
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -50,7 +50,7 @@ ArchiveURL      := Concatenation(
 
 ArchiveFormats := ".tar.gz",
 
-AbstractHTML := "Library of finite groups with small class number.",
+AbstractHTML := ~.Subtitle,
 
 PackageDoc := rec(
     BookName  := ~.PackageName,
