@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/stertooy/gda-image:master-full
+      image: ghcr.io/stertooy/gda-image:devel-full
 
     steps:
 
@@ -57,7 +57,7 @@ jobs:
           } >> $GITHUB_OUTPUT
 
       - name: "Make release"
-        uses: stertooy/release-pkg@fix-body-text #gap-actions/release-pkg@v1
+        uses: gap-actions/release-pkg@v1
         with:
           dry-run: ${{ inputs.dry-run }}
           body-text: ${{ steps.changes.outputs.RELEASE_NOTES }} 

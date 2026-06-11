@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/stertooy/gda-image:master-full
+      image: ghcr.io/stertooy/gda-image:devel-full
 
     steps:
 

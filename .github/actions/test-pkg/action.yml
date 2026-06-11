@@ -34,7 +34,7 @@ runs:
 
     - name: "Upload coverage"
       if: ${{ inputs.coverage == 'true' }}
-      uses: codecov/codecov-action@v6
+      uses: codecov/codecov-action@v7
       with:
         token: ${{ inputs.codecov-token }}
         fail_ci_if_error: true

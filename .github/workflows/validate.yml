@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/stertooy/gda-image:master-slim
+      image: ghcr.io/stertooy/gda-image:devel-slim
 
     steps:
     
