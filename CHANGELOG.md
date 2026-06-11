@@ -1,5 +1,10 @@
 # CHANGELOG - GAP package SmallClassNr
 
+## 1.6.0 (2026-09-01)
+
+### Added
+- Incomplete data available through some new function
+
 ## 1.5.1 (2026-05-11)
 
 ### Changed
