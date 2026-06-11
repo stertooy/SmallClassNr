@@ -23,7 +23,7 @@ jobs:
         uses: ./.github/actions/test-pkg
         with:
           warnings-as-errors: true
-          coverage: ${{ matrix.gap-version == 'master' }}
+          coverage: ${{ matrix.gap-version == 'devel' }}
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
 
   test-gap:
