@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.14.0", "4.15.0", "4.15.1", "4.16.0-beta1", "master" ]
+        gap-version: [ "4.14.0", "4.15.0", "4.15.1", "4.16.0", "devel" ]
     steps:
       - name: "Checkout"
         uses: actions/checkout@v6
@@ -34,7 +34,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.14.0", "4.15.0", "4.15.1", "4.16.0-beta1", "master" ]
+        gap-version: [ "4.14.0", "4.15.0", "4.15.1", "4.16.0", "devel" ]
     steps:
       - name: "Checkout"
         uses: actions/checkout@v6
