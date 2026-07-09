@@ -1,6 +1,9 @@
 gap> START_TEST( "Testing SmallClassNr - AtlasName checks" );
 
 #
+gap> LoadIncompleteSmallClassNrGroups();
+
+#
 gap> LoadPackage( "AtlasRep", false: OnlyNeeded );
 true
 gap> max := First( PositiveIntegers, x -> not SmallClassNrGroupsAvailable( x ) ) - 1;;
