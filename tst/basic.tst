@@ -19,14 +19,14 @@ gap> SmallClassNrGroup( 2, 2 );
 Error, there is just 1 group of class number 2
 gap> SmallClassNrGroup( 10, 38 );
 Error, there are just 37 groups of class number 10
-gap> SmallClassNrGroup( 15, 15 );
-Error, the library of groups of class number 15 is not available
+gap> SmallClassNrGroup( 21, 21 );
+Error, the library of groups of class number 21 is not available
 gap> IdClassNr( AlternatingGroup( 5 ) );
 [ 5, 8 ]
 gap> IdClassNr( MathieuGroup( 11 ) );
 [ 10, 35 ]
-gap> IdClassNr( PcGroupCode( 8322, 24 ) );
-Error, the library of groups of class number 15 is not available
+gap> IdClassNr( PcGroupCode( 8671, 42 ) );
+Error, the library of groups of class number 21 is not available
 
 #
 gap> grps1 := AllSmallClassNrGroups( [ 1..14 ] );;
@@ -45,8 +45,8 @@ gap> NrSmallClassNrGroups( [1..7] );
 36
 gap> NrSmallClassNrGroups( [13..14], IsNilpotentGroup, false );
 115
-gap> NrSmallClassNrGroups( 15 );
-Error, the library of groups of class number 15 is not available
+gap> NrSmallClassNrGroups( 21 );
+Error, the library of groups of class number 21 is not available
 
 
 #
@@ -65,8 +65,8 @@ fail
 gap> SL42 := OneSmallClassNrGroup( 14, IsSolvableGroup, false, IsSL  );;
 gap> IsomorphismGroups( SL42, SL(4,2) ) <> fail;
 true
-gap> OneSmallClassNrGroup( 15, IsSolvableGroup, false, IsSL  );
-Error, the library of groups of class number 15 is not available
+gap> OneSmallClassNrGroup( 21, IsSolvableGroup, false, IsSL  );
+Error, the library of groups of class number 21 is not available
 gap> AlternatingDegree( OneSmallClassNrGroup( 14, IsSolvableGroup, false, IsAlternatingGroup ) );
 8
 
