@@ -96,15 +96,12 @@ InstallMethod(
         
         grps := List( filt, i -> SmallClassNrGroup( kG, i ) );
         grps := Filtered( grps, H -> SCN.IsMaybeIsom( G, H ) );
-        if Length( grps ) = 1 then
-            return IdClassNr( grps[1] );
-        fi;
-        L := Remove( grps );
-        for K in grps do
-            if IsomorphismGroups( H, K ) <> fail then
-                return IdClassNr( K );
+        n := Length( grps );
+        for i in [ 1 .. n ] do
+            H := grps[ i ];
+            if i = n or IsomorphismGroups( G, H ) <> fail then
+                return IdClassNr( H );
             fi;
         od;
-        return IdClassNr( L );
     end
 );
