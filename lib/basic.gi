@@ -64,7 +64,7 @@ InstallMethod(
         kG := NrConjugacyClasses( G );
         SCN.ClassNrAvailable( kG );
         size := Size( G );
-        if ID_AVAILABLE( size ) then
+        if ID_AVAILABLE( size ) <> fail then
             idG := IdGroup( G );
             ind := First(
                 [ 1 .. NrSmallClassNrGroups( kG ) ],
