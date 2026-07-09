@@ -13,7 +13,9 @@ InstallGlobalFunction(
 ##
 InstallGlobalFunction(
     LoadIncompleteSmallClassNrGroups,
-    {} -> ReadPackage( "SmallClassNr", "data/incomplete/read.g" )
+    function()
+        ReadPackage( "SmallClassNr", "data/incomplete/read.g" );
+    end;
 );
 
 ###############################################################################
