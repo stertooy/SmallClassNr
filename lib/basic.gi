@@ -60,12 +60,21 @@ InstallMethod(
     "generic method",
     [ IsGroup ],
     function( G )
-        local kG, grps, H;
+        local kG, size, idG, ind, grps, H;
         kG := NrConjugacyClasses( G );
         SCN.ClassNrAvailable( kG );
+        size := Size( G );
+        if ID_AVAILABLE( size ) then
+            idG := IdGroup( G );
+            ind := First(
+                [ 1 .. NrSmallClassNrGroups( kG ) ],
+                i -> SCN.Data.IdGroup[ kG ][ i ] = idG
+            );
+            return [ kG, ind ];
+        fi;
         grps := AllSmallClassNrGroups(
             NrConjugacyClasses, kG,
-            Size, Size( G )
+            Size, size
         );
         if Length( grps ) = 1 then
             return IdClassNr( First( grps ) );
