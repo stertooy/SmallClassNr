@@ -55,12 +55,30 @@ InstallGlobalFunction(
 ##
 ## IdClassNr( G )
 ##
+SCN.IsMaybeIsom := function( G, H )
+    if AbelianInvariants( G ) <> AbelianInvariants( H ) then
+        return false;
+    fi;
+    if AbelianInvariants( Center( G ) ) <>
+        AbelianInvariants( Center( H ) ) then
+        return false;
+    fi;
+    if Collected( List( ConjugacyClasses( G ),
+        C -> [ Order( Representative( C ) ), Size( C ) ] ) ) <>
+       Collected( List( ConjugacyClasses( H ),
+        C -> [ Order( Representative( C ) ), Size( C ) ] ) ) then
+        return false;
+    fi;
+    return true;
+end;
+
+
 InstallMethod(
     IdClassNr,
     "generic method",
     [ IsGroup ],
     function( G )
-        local kG, size, filt, H, K, i, j;
+        local kG, size, filt, H, K, i, j, L, grps;
         kG := NrConjugacyClasses( G );
         SCN.ClassNrAvailable( kG );
         size := Size( G );
@@ -71,20 +89,22 @@ InstallMethod(
         if Length( filt ) = 1 then
             return [ kG, filt[ 1 ] ];
         fi;
-        if IsSolvableGroup( G ) and not IsPcGroup( G ) then
-            H := Range( IsomorphismPcGroup( G ) );
-        elif not IsSolvableGroup( G ) and not IsPermGroup( G ) then
-            H := Range( IsomorphismPermGroup( G ) );
-        else
-            H := G;
+        if ID_AVAILABLE( size ) <> fail then
+            return [ kG, First( filt,
+            i -> IdClassNrToIdGroup( kG, i ) = IdGroup( H ) ) ];
         fi;
-        j := Remove( filt );
-        for i in filt do
-            K := SmallClassNrGroup( kG, i );
+        
+        grps := List( filt, i -> SmallClassNrGroup( kG, i ) );
+        grps := Filtered( grps, K -> SCN.IsMaybeIsom( H, K ) );
+        if Length( grps ) = 1 then
+            return IdClassNr( grps[1] );
+        fi;
+        L := Remove( grps );
+        for K in grps do
             if IsomorphismGroups( H, K ) <> fail then
-                return [ kG, i ];
+                return IdClassNr( K );
             fi;
         od;
-        return [ kG, j ];
+        return IdClassNr( L );
     end
 );
