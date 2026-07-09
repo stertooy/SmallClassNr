@@ -60,25 +60,16 @@ InstallMethod(
     "generic method",
     [ IsGroup ],
     function( G )
-        local kG, size, idG, ind, grps, H;
+        local kG, size, filt, H, K, i, j;
         kG := NrConjugacyClasses( G );
         SCN.ClassNrAvailable( kG );
         size := Size( G );
-        if ID_AVAILABLE( size ) <> fail then
-            idG := IdGroup( G );
-            ind := First(
-                [ 1 .. NrSmallClassNrGroups( kG ) ],
-                i -> SCN.Data.Size   [ kG ][ i ] = size and
-                     SCN.Data.IdGroup[ kG ][ i ] = idG[ 2 ]
-            );
-            return [ kG, ind ];
-        fi;
-        grps := AllSmallClassNrGroups(
-            NrConjugacyClasses, kG,
-            Size, size
+        filt := Filtered(
+            [ 1 .. NrSmallClassNrGroups( kG ) ],
+            i -> SCN.Data.Size[ kG ][ i ] = size
         );
-        if Length( grps ) = 1 then
-            return IdClassNr( First( grps ) );
+        if Length( filt ) = 1 then
+            return SmallClassNrGroup( kG, filt[ 1 ] );
         fi;
         if IsSolvableGroup( G ) and not IsPcGroup( G ) then
             H := Range( IsomorphismPcGroup( G ) );
@@ -87,9 +78,13 @@ InstallMethod(
         else
             H := G;
         fi;
-        return IdClassNr( First(
-            grps,
-            K -> IsomorphismGroups( H, K ) <> fail
-        ));
+        j := Remove( filt );
+        for i in filt do
+            K := SmallClassNrGroup( kG, i );
+            if IsomorphismGroups( H, K ) <> fail then
+                return [ kG, i ];
+            fi;
+        od;
+        return [ kG, j ];
     end
 );
