@@ -91,11 +91,11 @@ InstallMethod(
         fi;
         if ID_AVAILABLE( size ) <> fail then
             return [ kG, First( filt,
-            i -> IdClassNrToIdGroup( kG, i ) = IdGroup( H ) ) ];
+            i -> SCN.Data.IdGroup[ kG ][ i ] = IdGroup( G )[ 2 ] ) ];
         fi;
         
         grps := List( filt, i -> SmallClassNrGroup( kG, i ) );
-        grps := Filtered( grps, K -> SCN.IsMaybeIsom( H, K ) );
+        grps := Filtered( grps, H -> SCN.IsMaybeIsom( G, H ) );
         if Length( grps ) = 1 then
             return IdClassNr( grps[1] );
         fi;
