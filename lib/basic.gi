@@ -69,7 +69,7 @@ InstallMethod(
             i -> SCN.Data.Size[ kG ][ i ] = size
         );
         if Length( filt ) = 1 then
-            return SmallClassNrGroup( kG, filt[ 1 ] );
+            return [ kG, filt[ 1 ] ];
         fi;
         if IsSolvableGroup( G ) and not IsPcGroup( G ) then
             H := Range( IsomorphismPcGroup( G ) );
