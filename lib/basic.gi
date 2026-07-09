@@ -68,7 +68,8 @@ InstallMethod(
             idG := IdGroup( G );
             ind := First(
                 [ 1 .. NrSmallClassNrGroups( kG ) ],
-                i -> SCN.Data.IdGroup[ kG ][ i ] = idG
+                i -> SCN.Data.Size   [ kG ][ i ] = size and
+                     SCN.Data.IdGroup[ kG ][ i ] = idG[ 2 ]
             );
             return [ kG, ind ];
         fi;
