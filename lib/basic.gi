@@ -78,7 +78,7 @@ InstallMethod(
     "generic method",
     [ IsGroup ],
     function( G )
-        local kG, size, filt, H, K, i, j, L, grps;
+        local kG, size, filt, i, H, grps, n;
         kG := NrConjugacyClasses( G );
         SCN.ClassNrAvailable( kG );
         size := Size( G );
