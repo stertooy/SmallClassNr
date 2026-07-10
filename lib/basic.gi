@@ -79,12 +79,15 @@ InstallMethod(
             fi;
         od;
 
-        if ID_AVAILABLE( Size( G ) ) <> fail then
+        if (
+            ID_AVAILABLE( Size( G ) ) <> fail and 
+            ForAll( cand, i -> IsBound( SCN.Data.IdGroup[ kG ][ i ] ) )
+        ) then
             return [ kG, First( cand,
                 i -> SCN.Data.IdGroup[ kG ][ i ] = IdGroup( G )[ 2 ]
             ) ];
         fi;
-
+        
         grps := List( cand, i -> SmallClassNrGroup( kG, i ) );
         tests := [
             AbelianInvariants,
