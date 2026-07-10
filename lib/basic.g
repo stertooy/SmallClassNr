@@ -27,3 +27,12 @@ SCN.GroupIdAvailable := function( k, i )
         fi;
     fi;
 end;
+
+###############################################################################
+##
+## ConjFingerPrint( G )
+##
+SCN.ConjFingerPrint := G -> Collected( List(
+    ConjugacyClasses( G ),
+    C -> [ Order( Representative( C ) ), Size( C ) ]
+) );

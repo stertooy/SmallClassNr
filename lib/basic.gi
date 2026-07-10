@@ -55,47 +55,56 @@ InstallGlobalFunction(
 ##
 ## IdClassNr( G )
 ##
-SCN.IsMaybeIsom := function( G, H )
-    if AbelianInvariants( G ) <> AbelianInvariants( H ) then
-        return false;
-    fi;
-    if AbelianInvariants( Center( G ) ) <>
-        AbelianInvariants( Center( H ) ) then
-        return false;
-    fi;
-    if Collected( List( ConjugacyClasses( G ),
-        C -> [ Order( Representative( C ) ), Size( C ) ] ) ) <>
-       Collected( List( ConjugacyClasses( H ),
-        C -> [ Order( Representative( C ) ), Size( C ) ] ) ) then
-        return false;
-    fi;
-    return true;
-end;
-
-
 InstallMethod(
     IdClassNr,
     "generic method",
     [ IsGroup ],
     function( G )
-        local kG, size, filt, i, H, grps, n;
+        local kG, cand, tests, i, test, grps, n, val, next, H;
         kG := NrConjugacyClasses( G );
         SCN.ClassNrAvailable( kG );
-        size := Size( G );
-        filt := Filtered(
-            [ 1 .. NrSmallClassNrGroups( kG ) ],
-            i -> SCN.Data.Size[ kG ][ i ] = size
-        );
-        if Length( filt ) = 1 then
-            return [ kG, filt[ 1 ] ];
+
+        cand := [ 1 .. NrSmallClassNrGroups( kG ) ];
+        tests := [
+            i -> Size( G ) = SCN.Data.Size[ kG ][ i ],
+            i -> Length( GeneratorsOfGroup( G ) ) >=
+                 Length( SCN.Data.Gens[ kG ][ i ] ),
+            i -> not IsPermGroup( G ) or NrMovedPoints( G ) >=
+                 NrMovedPoints( SCN.Data.Gens[ kG ][ i ] )
+        ];
+        for test in tests do
+            cand := Filtered( cand, test );
+            if Length( cand ) = 1 then
+                return [ kG, cand[ 1 ] ];
+            fi;
+        od;
+
+        if ID_AVAILABLE( Size( G ) ) <> fail then
+            return [ kG, First( cand,
+                i -> SCN.Data.IdGroup[ kG ][ i ] = IdGroup( G )[ 2 ]
+            ) ];
         fi;
-        if ID_AVAILABLE( size ) <> fail then
-            return [ kG, First( filt,
-            i -> SCN.Data.IdGroup[ kG ][ i ] = IdGroup( G )[ 2 ] ) ];
-        fi;
-        
-        grps := List( filt, i -> SmallClassNrGroup( kG, i ) );
-        grps := Filtered( grps, H -> SCN.IsMaybeIsom( G, H ) );
+
+        grps := List( cand, i -> SmallClassNrGroup( kG, i ) );
+        tests := [
+            AbelianInvariants,
+            SCN.ConjFingerPrint
+        ];
+        for test in tests do
+            val := test( G );
+            n := Length( grps );
+            next := [];
+            for i in [ 1 .. n ] do
+                H := grps[ i ];
+                if i = n and IsEmpty( next ) then
+                    return IdClassNr( H );
+                elif val = test( H ) then
+                    Add( next, H );
+                fi;
+            od;
+            grps := next;
+        od;
+
         n := Length( grps );
         for i in [ 1 .. n ] do
             H := grps[ i ];
