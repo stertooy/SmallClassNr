@@ -3,7 +3,11 @@
 ## 1.6.0 (2026-09-01)
 
 ### Added
-- Incomplete data available through some new function
+- An **incomplete** classification of the groups of class numbers 15 to 20 can
+  now be loaded using `LoadIncompleteSmallClassNrGroups()`.
+
+### Changed
+- `IdClassNr` is now more efficient.
 
 ## 1.5.1 (2026-05-11)
 
