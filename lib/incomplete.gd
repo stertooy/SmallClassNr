@@ -1,6 +1,6 @@
 #! @Chapter classification
 
-@Section incompleteclass
+#! @Section incompleteclass
 
 #! @Description Loads the known groups with class number 15 to 20.
 #! @Arguments
