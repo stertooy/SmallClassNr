@@ -34,7 +34,3 @@ DeclareAttribute( "IdClassNr", IsGroup );
 #! @Arguments k
 DeclareGlobalFunction( "SmallClassNrGroupsAvailable" );
 #! @InsertChunk example_smallclassnrgroupsavailable
-
-#! @Description Load incomplete data (TODO: explain this more)
-#! @Arguments
-DeclareGlobalFunction( "LoadIncompleteSmallClassNrGroups" );
