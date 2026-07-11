@@ -7,7 +7,8 @@
   now be loaded using `LoadIncompleteSmallClassNrGroups()`.
 
 ### Changed
-- `IdClassNr` is now more efficient.
+- `IdClassNr` is now (much) more efficient.
+- Changed various generating sets.
 
 ## 1.5.1 (2026-05-11)
 
