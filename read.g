@@ -6,6 +6,7 @@ ReadPackage( "SmallClassNr", "lib/select.g" );
 
 ReadPackage( "SmallClassNr", "lib/basic.gi" );
 ReadPackage( "SmallClassNr", "lib/convert.gi" );
+ReadPackage( "SmallClassNr", "lib/incomplete.gi" );
 ReadPackage( "SmallClassNr", "lib/select.gi" );
 
 ReadPackage( "SmallClassNr", "data/read.g" );
