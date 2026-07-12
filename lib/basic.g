@@ -41,16 +41,14 @@ SCN.ConjClassFingerPrint := G -> Collected( List(
 ##
 ## MinNormalFingerPrint( G )
 ##
-SCN.MinNormalFingerPrint :=  function( G )
+SCN.MinNormalFingerPrint := function( G )
     local fp, N, Q;
     fp := [];
     for N in MinimalNormalSubgroups( G ) do
-        if not ID_AVAILABLE( Size( G ) / Size( N ) ) <> fail then
-            Add( fp, fail );
-        else
+        if ID_AVAILABLE( Size( G ) / Size( N ) ) <> fail then
             Q := ImagesSource( NaturalHomomorphismByNormalSubgroupNC( G, N ) );
             Add( fp, IdGroup( Q ) );
         fi;
     od;
-    return fp;
+    return Collected( fp );
 end;
