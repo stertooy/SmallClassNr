@@ -49,7 +49,7 @@ InstallMethod(
     "generic method",
     [ IsGroup ],
     function( G )
-        local kG, cand, tests, i, test, grps, n, val, next, H;
+        local kG, cand, tests, i, test, grps, n, val, next, H, K;
         kG := NrConjugacyClasses( G );
         SCN.ClassNrAvailable( kG );
 
@@ -77,13 +77,28 @@ InstallMethod(
             ) ];
         fi;
 
-        grps := List( cand, i -> SmallClassNrGroup( kG, i ) );
+        if not IsSolvableGroup( G ) and not IsPermGroup( G ) then
+            K := Image( IsomorphismPermGroup( G ) );
+        elif IsSolvableGroup( G ) and not IsPcGroup( G ) then
+            K := Image( IsomorphismPcGroup( G ) );
+        else
+            K := G;
+        fi;
+
+        if IsPermGroup( K ) then
+            grps := List( cand, i -> SmallClassNrGroup( kG, i : AsPermGroup) );
+        else
+            grps := List( cand, i -> SmallClassNrGroup( kG, i ) );
+        fi;
+
         tests := [
             AbelianInvariants,
-            SCN.ConjFingerPrint
+            SCN.ConjClassFingerPrint,
+            SCN.MinNormalFingerPrint
         ];
+
         for test in tests do
-            val := test( G );
+            val := test( K );
             n := Length( grps );
             next := [];
             for i in [ 1 .. n ] do
@@ -100,7 +115,7 @@ InstallMethod(
         n := Length( grps );
         for i in [ 1 .. n ] do
             H := grps[ i ];
-            if i = n or IsomorphismGroups( G, H ) <> fail then
+            if i = n or IsomorphismGroups( K, H ) <> fail then
                 return IdClassNr( H );
             fi;
         od;

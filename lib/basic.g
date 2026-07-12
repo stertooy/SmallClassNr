@@ -30,9 +30,27 @@ end;
 
 ###############################################################################
 ##
-## ConjFingerPrint( G )
+## ConjClassFingerPrint( G )
 ##
-SCN.ConjFingerPrint := G -> Collected( List(
+SCN.ConjClassFingerPrint := G -> Collected( List(
     ConjugacyClasses( G ),
     C -> [ Order( Representative( C ) ), Size( C ) ]
 ) );
+
+###############################################################################
+##
+## MinNormalFingerPrint( G )
+##
+SCN.MinNormalFingerPrint :=  function( G )
+    local fp, N, Q;
+    fp := [];
+    for N in MinimalNormalSubgroups( G ) do
+        if not ID_AVAILABLE( Size( G ) / Size( N ) ) <> fail then
+            Add( fp, fail );
+        else
+            Q := ImagesSource( NaturalHomomorphismByNormalSubgroupNC( G, N ) );
+            Add( fp, IdGroup( Q ) );
+        fi;
+    od;
+    return fp;
+end;
