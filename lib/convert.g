@@ -9,10 +9,10 @@ SCN.IdClassNrToOtherId := function( old_id, arg... )
     SCN.GroupIdAvailable( k, i );
     new_id := [];
     for name in arg do
-        if not IsBound( SCN.Data.(name)[ k ][ i ] ) then
+        if not IsBound( SCN.Data.( name )[ k ][ i ] ) then
             return fail;
         fi;
-        Add( new_id, SCN.Data.(name)[ k ][ i ] );
+        Add( new_id, SCN.Data.( name )[ k ][ i ] );
     od;
     if Length( new_id ) = 1 then
         new_id := First( new_id );
