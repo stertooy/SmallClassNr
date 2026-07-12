@@ -62,6 +62,8 @@ gap> NrConjugacyClasses( H );
 10
 gap> OneSmallClassNrGroup( [ 4..11 ], IsSolvableGroup, IsNilpotentGroup, false, DerivedLength, [ 4 ], IsSupersolvableGroup );
 fail
+gap> OneSmallClassNrGroup( [ 1..14 ], Size, 67 );
+fail
 gap> SL42 := OneSmallClassNrGroup( 14, IsSolvableGroup, false, IsSL  );;
 gap> IsomorphismGroups( SL42, SL(4,2) ) <> fail;
 true
