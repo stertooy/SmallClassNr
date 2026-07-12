@@ -48,6 +48,6 @@ should be considered as an <B>incomplete</B> classification.
 
 <P/>
 
-Note that <Ref Attr="IdClassnr"> may not work properly for these groups. While
+Note that <Ref Attr="IdClassnr" /> may not work properly for these groups. While
 a <I>known</I> group of class number 15 to 20 will be correctly identified, an
 unknown group will produce an incorrect id or cause an error.
