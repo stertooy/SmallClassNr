@@ -30,25 +30,37 @@ end;
 
 ###############################################################################
 ##
-## ConjClassFingerPrint( G )
+## FingerPrint( G )
 ##
-SCN.ConjClassFingerPrint := G -> Collected( List(
+SCN.FingerPrint := rec();
+
+###############################################################################
+##
+## FingerPrint.DerInvs( G )
+##
+SCN.FingerPrint.DerInvs := G -> List(
+    DerivedSeries( G ),
+    AbelianInvariants
+);
+
+###############################################################################
+##
+## FingerPrint.ConjCls( G )
+##
+SCN.FingerPrint.ConjCls := G -> Collected( List(
     ConjugacyClasses( G ),
     C -> [ Order( Representative( C ) ), Size( C ) ]
 ) );
 
 ###############################################################################
 ##
-## MinNormalFingerPrint( G )
+## FingerPrint.Fitting( G )
 ##
-SCN.MinNormalFingerPrint := function( G )
-    local fp, N, Q;
-    fp := [];
-    for N in MinimalNormalSubgroups( G ) do
-        if ID_AVAILABLE( Size( G ) / Size( N ) ) <> fail then
-            Q := ImagesSource( NaturalHomomorphismByNormalSubgroupNC( G, N ) );
-            Add( fp, IdGroup( Q ) );
-        fi;
-    od;
-    return Collected( fp );
+SCN.FingerPrint.Fitting := function( G )
+    local F;
+    F := FittingSubgroup( G );
+    if ID_AVAILABLE( Size( F ) ) <> fail then
+        return IdGroup( F );
+    fi;
+    return fail;
 end;

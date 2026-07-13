@@ -92,9 +92,9 @@ InstallMethod(
         fi;
 
         tests := [
-            AbelianInvariants,
-            SCN.ConjClassFingerPrint,
-            SCN.MinNormalFingerPrint
+            SCN.FingerPrint.DerInvs,
+            SCN.FingerPrint.Fitting,
+            SCN.FingerPrint.ConjCls,
         ];
 
         for test in tests do
