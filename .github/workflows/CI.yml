@@ -17,8 +17,10 @@ jobs:
       matrix:
         gap-version: [ "4.14.0", "4.15.0", "4.15.1", "4.16.0", "devel" ]
     steps:
+    
       - name: "Checkout"
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
+        
       - name: "Test package"
         uses: ./.github/actions/test-pkg
         with:
@@ -36,8 +38,10 @@ jobs:
       matrix:
         gap-version: [ "4.14.0", "4.15.0", "4.15.1", "4.16.0", "devel" ]
     steps:
+    
       - name: "Checkout"
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
+        
       - name: "Test GAP"
         uses: ./.github/actions/test-gap
         with:
