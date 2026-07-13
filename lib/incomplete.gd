@@ -2,6 +2,6 @@
 
 #! @Section incompleteclass
 
-#! @Description Loads the known groups with class number 15 to 20.
+#! @Description Loads the known groups with class numbers 15 to 20.
 #! @Arguments
 DeclareGlobalFunction( "LoadIncompleteSmallClassNrGroups" );
