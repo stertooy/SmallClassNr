@@ -65,7 +65,7 @@ jobs:
       - name: "Setup"
         uses: ./.github/actions/setup
 
-      - name: "Verify that tests do not depend on GAPDoc/PrimGrp/SmallGrp/TransGrp"
+      - name: "Verify that tests do not depend on GAPDoc/PrimGrp/TransGrp"
         shell: bash
         run: gap --bare -c 'TestPackage("SmallClassNr");'
 
