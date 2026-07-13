@@ -50,7 +50,11 @@ ArchiveURL      := Concatenation(
 
 ArchiveFormats := ".tar.gz",
 
-AbstractHTML := ~.Subtitle,
+AbstractHTML := """
+    The SmallClassNr package provides access to finite groups with small class
+    number. Currently, the package contains all finite groups of class number
+    at most 14, and most finite groups with class numbers 15 to 20.
+""",
 
 PackageDoc := rec(
     BookName  := ~.PackageName,
