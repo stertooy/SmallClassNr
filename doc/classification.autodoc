@@ -29,7 +29,7 @@ Burnside in <Cite Key='burn11-a' /></Item>
 Remarks:
 <Enum>
 <Item> In <Cite Key='ll85-a' />, three distinct groups of the form
-$(C_5 \times C_5) \rtimes C_4$ order $100$ with class number $10$ are given.
+$(C_5 \times C_5) \rtimes C_4$ with class number $10$ are given.
 However, only two such groups exist, being the ones with <C>IdClassNr</C> equal
 to <C>[10,25]</C> and <C>[10,26]</C>.</Item>
 <Item> In <Cite Key='ll86-a' />, 48 groups with class number 12 are listed.
