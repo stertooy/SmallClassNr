@@ -71,7 +71,6 @@ Dependencies := rec(
     SuggestedOtherPackages := [],
     TestPackages := [
         [ "primgrp",  "3.4.4" ],
-        [ "smallgrp", "1.5.4" ],
         [ "transgrp", "3.6.5" ],
         [ "atlasrep", "2.1.9" ],
     ]
