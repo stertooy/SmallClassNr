@@ -78,10 +78,4 @@ Dependencies := rec(
 
 TestFile := "tst/testall.g",
 
-Keywords := [
-    "conjugacy",
-    "conjugacy class",
-    "class number"
-]
-
 ));
