@@ -67,8 +67,8 @@ PackageDoc := rec(
 
 Dependencies := rec(
     GAP := ">= 4.14",
-    NeededOtherPackages := [ [ "smallgrp", "1.5.4" ] ],
-    SuggestedOtherPackages := [],
+    NeededOtherPackages := [],
+    SuggestedOtherPackages := [ [ "smallgrp", "1.5.4" ] ],
     TestPackages := [
         [ "primgrp",  "3.4.4" ],
         [ "transgrp", "3.6.5" ],
