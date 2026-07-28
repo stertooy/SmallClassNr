@@ -8,7 +8,8 @@
 
 ### Changed
 - `IdClassNr` is now (much) more efficient.
-- The `SmallGrp` package is now a dependency, as `IdClassNr` depends on `IdGroup`.
+- The `SmallGrp` package is now a suggested package, as `IdClassNr` works much
+  faster if `IdGroup` is available.
 - Changed various generating sets.
 - Janitorial changes.
 
