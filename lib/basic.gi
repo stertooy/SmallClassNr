@@ -69,7 +69,7 @@ InstallMethod(
         od;
 
         if (
-            IdGroupsAvailable( Size( G ) ) and
+            ID_AVAILABLE( Size( G ) ) <> fail and
             ForAll( cand, i -> IsBound( SCN.Data.IdGroup[ kG ][ i ] ) )
         ) then
             return [ kG, First( cand,
