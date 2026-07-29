@@ -49,26 +49,75 @@ InstallMethod(
     "generic method",
     [ IsGroup ],
     function( G )
-        local kG, grps, H;
+        local kG, cand, tests, i, test, grps, n, val, next, H, K;
         kG := NrConjugacyClasses( G );
         SCN.ClassNrAvailable( kG );
-        grps := AllSmallClassNrGroups(
-            NrConjugacyClasses, kG,
-            Size, Size( G )
-        );
-        if Length( grps ) = 1 then
-            return IdClassNr( First( grps ) );
+
+        cand := [ 1 .. NrSmallClassNrGroups( kG ) ];
+        tests := [
+            i -> Size( G ) = SCN.Data.Size[ kG ][ i ],
+            i -> Length( GeneratorsOfGroup( G ) ) >=
+                 Length( SCN.Data.Gens[ kG ][ i ] ),
+            i -> not IsPermGroup( G ) or NrMovedPoints( G ) >=
+                 NrMovedPoints( SCN.Data.Gens[ kG ][ i ] )
+        ];
+        for test in tests do
+            cand := Filtered( cand, test );
+            if Length( cand ) = 1 then
+                return [ kG, cand[ 1 ] ];
+            fi;
+        od;
+
+        if (
+            ID_AVAILABLE( Size( G ) ) <> fail and
+            ForAll( cand, i -> IsBound( SCN.Data.IdGroup[ kG ][ i ] ) )
+        ) then
+            return [ kG, First( cand,
+                i -> SCN.Data.IdGroup[ kG ][ i ] = IdGroup( G )[ 2 ]
+            ) ];
         fi;
-        if IsSolvableGroup( G ) and not IsPcGroup( G ) then
-            H := Range( IsomorphismPcGroup( G ) );
-        elif not IsSolvableGroup( G ) and not IsPermGroup( G ) then
-            H := Range( IsomorphismPermGroup( G ) );
+
+        if not IsSolvableGroup( G ) and not IsPermGroup( G ) then
+            K := Image( IsomorphismPermGroup( G ) );
+        elif IsSolvableGroup( G ) and not IsPcGroup( G ) then
+            K := Image( IsomorphismPcGroup( G ) );
         else
-            H := G;
+            K := G;
         fi;
-        return IdClassNr( First(
-            grps,
-            K -> IsomorphismGroups( H, K ) <> fail
-        ));
+
+        if IsPermGroup( K ) then
+            grps := List( cand, i -> SmallClassNrGroup( kG, i : AsPermGroup) );
+        else
+            grps := List( cand, i -> SmallClassNrGroup( kG, i ) );
+        fi;
+
+        tests := [
+            SCN.FingerPrint.DerInvs,
+            SCN.FingerPrint.Fitting,
+            SCN.FingerPrint.ConjCls,
+        ];
+
+        for test in tests do
+            val := test( K );
+            n := Length( grps );
+            next := [];
+            for i in [ 1 .. n ] do
+                H := grps[ i ];
+                if i = n and IsEmpty( next ) then
+                    return IdClassNr( H );
+                elif val = test( H ) then
+                    Add( next, H );
+                fi;
+            od;
+            grps := next;
+        od;
+
+        n := Length( grps );
+        for i in [ 1 .. n ] do
+            H := grps[ i ];
+            if i = n or IsomorphismGroups( K, H ) <> fail then
+                return IdClassNr( H );
+            fi;
+        od;
     end
 );

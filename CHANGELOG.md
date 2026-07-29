@@ -1,5 +1,18 @@
 # CHANGELOG - GAP package SmallClassNr
 
+## 1.6.0 (2026-07-29)
+
+### Added
+- An **incomplete** classification of the groups of class numbers 15 to 20 can
+  now be loaded using `LoadIncompleteSmallClassNrGroups()`.
+
+### Changed
+- `IdClassNr` is now (much) more efficient.
+- The `SmallGrp` package is now a suggested package, as `IdClassNr` works much
+  faster if `IdGroup` is available.
+- Changed various generating sets.
+- Janitorial changes.
+
 ## 1.5.1 (2026-05-11)
 
 ### Changed

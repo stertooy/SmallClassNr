@@ -19,8 +19,10 @@ jobs:
         gap-version: [ "4.14.0", "4.15.0", "4.15.1", "4.16.0", "devel" ]
         mode: [ "onlyneeded", "default", "loadall" ]
     steps:
+    
       - name: "Checkout"
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
+        
       - name: "Test package"
         uses: ./.github/actions/test-pkg
         with:
@@ -39,8 +41,10 @@ jobs:
         gap-version: [ "4.14.0", "4.15.0", "4.15.1", "4.16.0", "devel" ]
         mode: [ "onlyneeded", "default", "loadall" ]
     steps:
+    
       - name: "Checkout"
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
+        
       - name: "Test package"
         uses: ./.github/actions/test-gap
         with:
@@ -60,12 +64,12 @@ jobs:
     steps:
 
       - name: "Checkout"
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: "Setup"
         uses: ./.github/actions/setup
 
-      - name: "Verify that tests do not depend on GAPDoc/PrimGrp/SmallGrp/TransGrp"
+      - name: "Verify that tests do not depend on GAPDoc/PrimGrp/TransGrp"
         shell: bash
         run: gap --bare -c 'TestPackage("SmallClassNr");'
 

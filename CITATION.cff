@@ -3,8 +3,8 @@ message: If you use this GAP package, please cite it using the metadata from thi
 type: software
 title: SmallClassNr
 abstract: Library of finite groups with small class number
-version: 1.5.1
-date-released: 2026-05-11
+version: 1.6.0
+date-released: 2026-09-01
 license: GPL-2.0-or-later
 doi: 10.5281/zenodo.14283157
 authors:
@@ -25,7 +25,3 @@ contact:
     website: https://github.com/stertooy/SmallClassNr/issues
 repository-code: https://github.com/stertooy/SmallClassNr
 url: https://stertooy.github.io/SmallClassNr
-keywords:
-  - conjugacy
-  - conjugacy class
-  - class number
