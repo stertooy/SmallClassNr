@@ -3,7 +3,7 @@ SetPackageInfo( rec(
 PackageName := "SmallClassNr",
 Subtitle := "Library of finite groups with small class number",
 Version := "1.6.0",
-Date := "01/09/2026",
+Date := "29/07/2026",
 License := "GPL-2.0-or-later",
 
 Persons := [
