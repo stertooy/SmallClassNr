@@ -1,6 +1,6 @@
 # CHANGELOG - GAP package SmallClassNr
 
-## 1.6.0 (2026-09-01)
+## 1.6.0 (2026-07-29)
 
 ### Added
 - An **incomplete** classification of the groups of class numbers 15 to 20 can
