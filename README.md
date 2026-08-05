@@ -28,7 +28,7 @@ Support
 -------
 
 Please report any problems you may encounter using SmallClassNr at
-<https://github.com/stertooy/SmallClassNr>
+<https://github.com/stertooy/SmallClassNr/issues>
 
 
 
