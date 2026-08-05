@@ -59,7 +59,7 @@ SCN.FingerPrint.ConjCls := G -> Collected( List(
 SCN.FingerPrint.Fitting := function( G )
     local F;
     F := FittingSubgroup( G );
-    if IdGroupsAvailable( Size( F ) ) then
+    if ID_AVAILABLE( Size( F ) ) <> fail then
         return IdGroup( F );
     fi;
     return fail;
