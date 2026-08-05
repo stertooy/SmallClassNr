@@ -35,7 +35,7 @@
   used to more efficiently determine `IdClassNr` for a given group.
 
 ### Changed
-- Improvemed the documentation.
+- Improved the documentation.
 - Expanded the test suite.
 - Renamed `CHANGES.md` to `CHANGELOG.md`.
 - Janitorial changes.
