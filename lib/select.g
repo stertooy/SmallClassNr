@@ -73,7 +73,7 @@ SCN.NextSmallClassNrGroup := function( itr )
     i := pos[ 1 ];
     j := pos[ 2 ];
     while i <= Length( kGs ) do
-        kG := kGs[i];
+        kG := kGs[ i ];
         SCN.ClassNrAvailable( kG );
         while j <= Length( SCN.Data.Size[ kG ] ) do
             j := j + 1;

@@ -1,6 +1,6 @@
 ###############################################################################
 ##
-## ClassAvailable( k )
+## ClassNrAvailable( k )
 ##
 SCN.ClassNrAvailable := function( k )
     if not SmallClassNrGroupsAvailable( k ) then
