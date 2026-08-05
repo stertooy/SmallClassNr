@@ -102,7 +102,7 @@ if not IsReadableFile( Filename( pkgPath, "doc/manual.six" ) ) then
     Print( "#W One or more files could not be created.\n" );
     QuitGap( 1 );
 else
-    Print( "#I Manual files sucessfully created.\n" );
+    Print( "#I Manual files successfully created.\n" );
 fi;
 
 # Check if all examples in the manual produce the expected output
