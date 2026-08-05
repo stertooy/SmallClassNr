@@ -22,7 +22,7 @@ jobs:
             rules: "data"
 
     steps:
-    
+
       - name: "Checkout"
         uses: actions/checkout@v7
 
