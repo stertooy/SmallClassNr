@@ -49,33 +49,17 @@ InstallMethod(
     "generic method",
     [ IsGroup ],
     function( G )
-        local kG, cand, tests, i, test, grps, n, val, next, H, K;
+        local kG, cand, i, test, grps, n, val, next, H, K;
         kG := NrConjugacyClasses( G );
         SCN.ClassNrAvailable( kG );
 
         cand := [ 1 .. NrSmallClassNrGroups( kG ) ];
-        tests := [
-            i -> Size( G ) = SCN.Data.Size[ kG ][ i ],
-            i -> Length( GeneratorsOfGroup( G ) ) >=
-                 Length( SCN.Data.Gens[ kG ][ i ] ),
-            i -> not IsPermGroup( G ) or NrMovedPoints( G ) >=
-                 NrMovedPoints( SCN.Data.Gens[ kG ][ i ] )
-        ];
-        for test in tests do
-            cand := Filtered( cand, test );
+        for test in SCN.FingerPrints1 do
+            cand := Filtered( cand, i -> test( G, kG, i ) );
             if Length( cand ) = 1 then
                 return [ kG, cand[ 1 ] ];
             fi;
         od;
-
-        if (
-            ID_AVAILABLE( Size( G ) ) <> fail and
-            ForAll( cand, i -> IsBound( SCN.Data.IdGroup[ kG ][ i ] ) )
-        ) then
-            return [ kG, First( cand,
-                i -> SCN.Data.IdGroup[ kG ][ i ] = IdGroup( G )[ 2 ]
-            ) ];
-        fi;
 
         if not IsSolvableGroup( G ) and not IsPermGroup( G ) then
             K := Image( IsomorphismPermGroup( G ) );
@@ -91,13 +75,7 @@ InstallMethod(
             grps := List( cand, i -> SmallClassNrGroup( kG, i ) );
         fi;
 
-        tests := [
-            SCN.FingerPrint.DerInvs,
-            SCN.FingerPrint.Fitting,
-            SCN.FingerPrint.ConjCls,
-        ];
-
-        for test in tests do
+        for test in SCN.FingerPrints2 do
             val := test( K );
             n := Length( grps );
             next := [];

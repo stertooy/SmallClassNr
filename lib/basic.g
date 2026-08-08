@@ -30,37 +30,37 @@ end;
 
 ###############################################################################
 ##
-## FingerPrint( G )
+## FingerPrints1( G, kG, i )
 ##
-SCN.FingerPrint := rec();
+SCN.FingerPrints1 := [];
 
-###############################################################################
-##
-## FingerPrint.DerInvs( G )
-##
-SCN.FingerPrint.DerInvs := G -> List(
-    DerivedSeries( G ),
-    AbelianInvariants
+Add( SCN.FingerPrints1, { G, kG, i } ->
+    Size( G ) = SCN.Data.Size[ kG ][ i ]
 );
 
-###############################################################################
-##
-## FingerPrint.ConjCls( G )
-##
-SCN.FingerPrint.ConjCls := G -> Collected( List(
-    ConjugacyClasses( G ),
-    C -> [ Order( Representative( C ) ), Size( C ) ]
-) );
+Add( SCN.FingerPrints1, { G, kG, i } ->
+    Length( GeneratorsOfGroup( G ) ) >= Length( SCN.Data.Gens[ kG ][ i ] )
+);
+
+Add( SCN.FingerPrints1, function( G, kG, i )
+    if IsPermGroup( G ) then
+        return NrMovedPoints( G ) >= NrMovedPoints( SCN.Data.Gens[ kG ][ i ] );
+    fi;
+    return true;
+end );
 
 ###############################################################################
 ##
-## FingerPrint.Fitting( G )
+## FingerPrints2( G )
 ##
-SCN.FingerPrint.Fitting := function( G )
-    local F;
-    F := FittingSubgroup( G );
-    if ID_AVAILABLE( Size( F ) ) <> fail then
-        return IdGroup( F );
-    fi;
-    return fail;
-end;
+SCN.FingerPrints2 := [];
+
+Add( SCN.FingerPrints2, G -> List(
+    DerivedSeries( G ),
+    AbelianInvariants
+) );
+
+Add( SCN.FingerPrints2, G -> Collected( List(
+    ConjugacyClasses( G ),
+    C -> [ Order( Representative( C ) ), Size( C ) ]
+) ) );
