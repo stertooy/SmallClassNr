@@ -2,7 +2,7 @@
 ##
 ## FingerPrints1( G, kG, i )
 ##
-Add( SCN.FingersPrints1, function( G, kG, i )
+Add( SCN.FingerPrints1, function( G, kG, i )
     if IdGroupsAvailable( Size( G ) ) then
         return SCN.Data.IdGroup[ kG ][ i ] = IdGroup( G )[ 2 ];
     fi;
