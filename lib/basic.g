@@ -30,15 +30,15 @@ end;
 
 ###############################################################################
 ##
-## FingerPrints1( G )
+## FingerPrints1( G, kG, i )
 ##
 SCN.FingerPrints1 := [];
 
-Add( SCN.FingerPrints1, { G, kG, i } -> 
+Add( SCN.FingerPrints1, { G, kG, i } ->
     Size( G ) = SCN.Data.Size[ kG ][ i ]
 );
 
-Add( SCN.FingerPrints1, { G, kG, i } -> 
+Add( SCN.FingerPrints1, { G, kG, i } ->
     Length( GeneratorsOfGroup( G ) ) >= Length( SCN.Data.Gens[ kG ][ i ] );
 );
 
