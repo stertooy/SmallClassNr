@@ -76,6 +76,13 @@ Dependencies := rec(
     ]
 ),
 
+Extensions := [
+    rec(
+        needed := [ [ "smallgrp", "1.5.4" ] ],
+        filename := "lib/idgroup/idgroup.g"
+    )
+],
+
 TestFile := "tst/testall.g",
 
 ));
