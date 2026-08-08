@@ -69,7 +69,7 @@ InstallMethod(
         od;
 
         if IsBound( SCN.ReduceViaIdGroup ) then
-            cands := SCN.ReduceViaIdGroup( cands );
+            cand := SCN.ReduceViaIdGroup( G, kG, cand );
         fi;
 
         if not IsSolvableGroup( G ) and not IsPermGroup( G ) then
