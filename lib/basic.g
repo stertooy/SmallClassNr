@@ -39,16 +39,7 @@ Add( SCN.FingerPrints, G -> List(
     AbelianInvariants
 ) );
 
-Add( SCN.FingerPrints,  G -> Collected( List(
+Add( SCN.FingerPrints, G -> Collected( List(
     ConjugacyClasses( G ),
     C -> [ Order( Representative( C ) ), Size( C ) ]
 ) ) );
-
-Add( SCN.FingerPrints, function( G )
-    local F;
-    F := FittingSubgroup( G );
-    if ID_AVAILABLE( Size( F ) ) <> fail then
-        return IdGroup( F );
-    fi;
-    return fail;
-end );
