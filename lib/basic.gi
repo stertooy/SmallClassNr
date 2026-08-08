@@ -61,10 +61,6 @@ InstallMethod(
             fi;
         od;
 
-        if IsBound( SCN.ReduceViaIdGroup ) then
-            cand := SCN.ReduceViaIdGroup( G, kG, cand );
-        fi;
-
         if not IsSolvableGroup( G ) and not IsPermGroup( G ) then
             K := Image( IsomorphismPermGroup( G ) );
         elif IsSolvableGroup( G ) and not IsPcGroup( G ) then
