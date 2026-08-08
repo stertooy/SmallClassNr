@@ -91,13 +91,7 @@ InstallMethod(
             grps := List( cand, i -> SmallClassNrGroup( kG, i ) );
         fi;
 
-        tests := [
-            SCN.FingerPrint.DerInvs,
-            SCN.FingerPrint.Fitting,
-            SCN.FingerPrint.ConjCls,
-        ];
-
-        for test in tests do
+        for test in SCN.FingerPrints do
             val := test( K );
             n := Length( grps );
             next := [];
