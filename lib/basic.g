@@ -39,7 +39,7 @@ Add( SCN.FingerPrints1, { G, kG, i } ->
 );
 
 Add( SCN.FingerPrints1, { G, kG, i } ->
-    Length( GeneratorsOfGroup( G ) ) >= Length( SCN.Data.Gens[ kG ][ i ] );
+    Length( GeneratorsOfGroup( G ) ) >= Length( SCN.Data.Gens[ kG ][ i ] )
 );
 
 Add( SCN.FingerPrints1, function( G, kG, i )
