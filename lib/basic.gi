@@ -55,7 +55,7 @@ InstallMethod(
 
         cand := [ 1 .. NrSmallClassNrGroups( kG ) ];
         for test in SCN.FingerPrints1 do
-            cand := Filtered( cand, test );
+            cand := Filtered( cand, i -> test( G, kG, i ) );
             if Length( cand ) = 1 then
                 return [ kG, cand[ 1 ] ];
             fi;
