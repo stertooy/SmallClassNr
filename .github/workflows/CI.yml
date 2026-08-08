@@ -8,7 +8,7 @@ on:
 jobs:
 
   test-pkg:
-    name: "Test package (version: ${{ matrix.gap-version }})"
+    name: "Test package (version: ${{ matrix.gap-version }}, mode: ${{ matrix.mode }})"
     container:
       image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-slim
     runs-on: ubuntu-latest
@@ -16,6 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         gap-version: [ "4.14.0", "4.16.0", "devel" ]
+        mode: [ "default", "onlyneeded" ]
     steps:
 
       - name: "Checkout"
@@ -24,12 +25,13 @@ jobs:
       - name: "Test package"
         uses: ./.github/actions/test-pkg
         with:
+          mode: ${{ matrix.mode }}
           warnings-as-errors: true
           coverage: ${{ matrix.gap-version == 'devel' }}
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
 
   test-gap:
-    name: "Test GAP (version: ${{ matrix.gap-version }})"
+    name: "Test GAP (version: ${{ matrix.gap-version }}, mode: ${{ matrix.mode }})"
     container:
       image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-slim
     runs-on: ubuntu-latest
@@ -37,6 +39,7 @@ jobs:
       fail-fast: false
       matrix:
         gap-version: [ "4.14.0", "4.16.0", "devel" ]
+        mode: [ "default", "onlyneeded" ]
     steps:
 
       - name: "Checkout"
@@ -45,4 +48,5 @@ jobs:
       - name: "Test GAP"
         uses: ./.github/actions/test-gap
         with:
+          mode: ${{ matrix.mode }}
           warnings-as-errors: true
