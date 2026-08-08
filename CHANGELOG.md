@@ -1,5 +1,15 @@
 # CHANGELOG - GAP package SmallClassNr
 
+## 1.6.1 (2026-08-08)
+
+### Fixed
+- Fixed a bug where errors could be triggered if the `SmallGrp` package was not
+  loaded.
+
+### Changed
+- Updated installation instructions.
+- Janitorial changes.
+
 ## 1.6.0 (2026-07-29)
 
 ### Added
