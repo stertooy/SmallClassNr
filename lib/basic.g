@@ -32,35 +32,23 @@ end;
 ##
 ## FingerPrint( G )
 ##
-SCN.FingerPrint := rec();
+SCN.FingerPrints := [];
 
-###############################################################################
-##
-## FingerPrint.DerInvs( G )
-##
-SCN.FingerPrint.DerInvs := G -> List(
+Add( SCN.FingerPrints, G -> List(
     DerivedSeries( G ),
     AbelianInvariants
-);
-
-###############################################################################
-##
-## FingerPrint.ConjCls( G )
-##
-SCN.FingerPrint.ConjCls := G -> Collected( List(
-    ConjugacyClasses( G ),
-    C -> [ Order( Representative( C ) ), Size( C ) ]
 ) );
 
-###############################################################################
-##
-## FingerPrint.Fitting( G )
-##
-SCN.FingerPrint.Fitting := function( G )
+Add( SCN.FingerPrints,  G -> Collected( List(
+    ConjugacyClasses( G ),
+    C -> [ Order( Representative( C ) ), Size( C ) ]
+) ) );
+
+Add( SCN.FingerPrints, function( G )
     local F;
     F := FittingSubgroup( G );
     if ID_AVAILABLE( Size( F ) ) <> fail then
         return IdGroup( F );
     fi;
     return fail;
-end;
+end );
