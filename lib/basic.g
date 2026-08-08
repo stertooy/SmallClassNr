@@ -30,16 +30,37 @@ end;
 
 ###############################################################################
 ##
-## FingerPrint( G )
+## FingerPrints1( G )
 ##
-SCN.FingerPrints := [];
+SCN.FingerPrints1 := [];
 
-Add( SCN.FingerPrints, G -> List(
+Add( SCN.FingerPrints1, { G, kG, i } -> 
+    Size( G ) = SCN.Data.Size[ kG ][ i ]
+);
+
+Add( SCN.FingerPrints1, { G, kG, i } -> 
+    Length( GeneratorsOfGroup( G ) ) >= Length( SCN.Data.Gens[ kG ][ i ] );
+);
+
+Add( SCN.FingerPrints1, function( G, kG, i )
+    if IsPermGroup( G ) then
+        return NrMovedPoints( G ) >= NrMovedPoints( SCN.Data.Gens[ kG ][ i ] );
+    fi;
+    return true;
+end );
+
+###############################################################################
+##
+## FingerPrints2( G )
+##
+SCN.FingerPrints2 := [];
+
+Add( SCN.FingerPrints2, G -> List(
     DerivedSeries( G ),
     AbelianInvariants
 ) );
 
-Add( SCN.FingerPrints, G -> Collected( List(
+Add( SCN.FingerPrints2, G -> Collected( List(
     ConjugacyClasses( G ),
     C -> [ Order( Representative( C ) ), Size( C ) ]
 ) ) );
