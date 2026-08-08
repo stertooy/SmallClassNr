@@ -68,13 +68,8 @@ InstallMethod(
             fi;
         od;
 
-        if (
-            ID_AVAILABLE( Size( G ) ) <> fail and
-            ForAll( cand, i -> IsBound( SCN.Data.IdGroup[ kG ][ i ] ) )
-        ) then
-            return [ kG, First( cand,
-                i -> SCN.Data.IdGroup[ kG ][ i ] = IdGroup( G )[ 2 ]
-            ) ];
+        if IsBound( SCN.ReduceViaIdGroup ) then
+            cands := SCN.ReduceViaIdGroup( cands );
         fi;
 
         if not IsSolvableGroup( G ) and not IsPermGroup( G ) then
