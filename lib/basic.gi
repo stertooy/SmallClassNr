@@ -49,19 +49,12 @@ InstallMethod(
     "generic method",
     [ IsGroup ],
     function( G )
-        local kG, cand, tests, i, test, grps, n, val, next, H, K;
+        local kG, cand, i, test, grps, n, val, next, H, K;
         kG := NrConjugacyClasses( G );
         SCN.ClassNrAvailable( kG );
 
         cand := [ 1 .. NrSmallClassNrGroups( kG ) ];
-        tests := [
-            i -> Size( G ) = SCN.Data.Size[ kG ][ i ],
-            i -> Length( GeneratorsOfGroup( G ) ) >=
-                 Length( SCN.Data.Gens[ kG ][ i ] ),
-            i -> not IsPermGroup( G ) or NrMovedPoints( G ) >=
-                 NrMovedPoints( SCN.Data.Gens[ kG ][ i ] )
-        ];
-        for test in tests do
+        for test in SCN.FingerPrints1 do
             cand := Filtered( cand, test );
             if Length( cand ) = 1 then
                 return [ kG, cand[ 1 ] ];
@@ -86,7 +79,7 @@ InstallMethod(
             grps := List( cand, i -> SmallClassNrGroup( kG, i ) );
         fi;
 
-        for test in SCN.FingerPrints do
+        for test in SCN.FingerPrints2 do
             val := test( K );
             n := Length( grps );
             next := [];
