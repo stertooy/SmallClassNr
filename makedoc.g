@@ -31,6 +31,7 @@ pkgsToLoad := [
     [ "SmallGrp", "1.5.4" ],
     [ "PrimGrp", "3.4.4" ],
     [ "TransGrp", "3.6.5" ],
+    [ "PerfGrp", "1.0.0" ],
     [ "AtlasRep", "2.1.9" ],
 ];
 if IsBound( info.Extensions ) then
@@ -66,6 +67,7 @@ AutoDoc(
                 PackageManager := "<Package>PackageManager</Package>",
                 SmallGrp := "<Package>SmallGrp</Package>",
                 PrimGrp := "<Package>PrimGrp</Package>",
+                PerfGrp := "<Package>PerfGrp</Package>",
                 TransGrp := "<Package>TransGrp</Package>",
                 AtlasRep := "<Package>AtlasRep</Package>",
                 BibLaTeX := "Bib&LaTeX;",
@@ -102,7 +104,7 @@ if not IsReadableFile( Filename( pkgPath, "doc/manual.six" ) ) then
     Print( "#W One or more files could not be created.\n" );
     QuitGap( 1 );
 else
-    Print( "#I Manual files sucessfully created.\n" );
+    Print( "#I Manual files successfully created.\n" );
 fi;
 
 # Check if all examples in the manual produce the expected output

@@ -2,8 +2,8 @@ SetPackageInfo( rec(
 
 PackageName := "SmallClassNr",
 Subtitle := "Library of finite groups with small class number",
-Version := "1.6.0",
-Date := "29/07/2026",
+Version := "1.7.0",
+Date := "14/08/2026",
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -53,7 +53,7 @@ ArchiveFormats := ".tar.gz",
 AbstractHTML := """
     The SmallClassNr package provides access to finite groups with small class
     number. Currently, the package contains all finite groups of class number
-    at most 14, and most finite groups with class numbers 15 to 20.
+    at most 20.
 """,
 
 PackageDoc := rec(
@@ -66,13 +66,15 @@ PackageDoc := rec(
 ),
 
 Dependencies := rec(
-    GAP := ">= 4.14",
+    GAP := ">= 4.15",
     NeededOtherPackages := [],
-    SuggestedOtherPackages := [ [ "smallgrp", "1.5.4" ] ],
+    SuggestedOtherPackages := [],
     TestPackages := [
-        [ "primgrp",  "3.4.4" ],
-        [ "transgrp", "3.6.5" ],
         [ "atlasrep", "2.1.9" ],
+        [ "perfgrp",  "1.0.0" ],
+        [ "primgrp",  "3.4.4" ],
+        [ "smallgrp", "1.5.4" ],
+        [ "transgrp", "3.6.5" ],
     ]
 ),
 

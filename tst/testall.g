@@ -1,5 +1,5 @@
 LoadPackage( "SmallClassNr" );
-LoadIncompleteSmallClassNrGroups();
+LoadUnverifiedSmallClassNrGroups();
 
 pass := TestDirectory(
     DirectoriesPackageLibrary( "SmallClassNr", "tst" ),

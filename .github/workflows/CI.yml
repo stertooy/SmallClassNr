@@ -8,41 +8,45 @@ on:
 jobs:
 
   test-pkg:
-    name: "Test package (version: ${{ matrix.gap-version }})"
+    name: "Test package (version: ${{ matrix.gap-version }}, mode: ${{ matrix.mode }})"
     container:
       image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-slim
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.14.0", "4.15.0", "4.15.1", "4.16.0", "devel" ]
+        gap-version: [ "4.15.0", "4.16.0", "devel" ]
+        mode: [ "default" ]
     steps:
-    
+
       - name: "Checkout"
         uses: actions/checkout@v7
-        
+
       - name: "Test package"
         uses: ./.github/actions/test-pkg
         with:
+          mode: ${{ matrix.mode }}
           warnings-as-errors: true
           coverage: ${{ matrix.gap-version == 'devel' }}
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
 
   test-gap:
-    name: "Test GAP (version: ${{ matrix.gap-version }})"
+    name: "Test GAP (version: ${{ matrix.gap-version }}, mode: ${{ matrix.mode }})"
     container:
       image: ghcr.io/stertooy/gda-image:${{ matrix.gap-version }}-slim
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.14.0", "4.15.0", "4.15.1", "4.16.0", "devel" ]
+        gap-version: [ "4.15.0", "4.16.0", "devel" ]
+        mode: [ "default" ]
     steps:
-    
+
       - name: "Checkout"
         uses: actions/checkout@v7
-        
+
       - name: "Test GAP"
         uses: ./.github/actions/test-gap
         with:
+          mode: ${{ matrix.mode }}
           warnings-as-errors: true

@@ -1,6 +1,6 @@
 ###############################################################################
 ##
-## ClassAvailable( k )
+## ClassNrAvailable( k )
 ##
 SCN.ClassNrAvailable := function( k )
     if not SmallClassNrGroupsAvailable( k ) then
@@ -26,41 +26,4 @@ SCN.GroupIdAvailable := function( k, i )
             Error( "there are just ", len, " groups of class number ", k );
         fi;
     fi;
-end;
-
-###############################################################################
-##
-## FingerPrint( G )
-##
-SCN.FingerPrint := rec();
-
-###############################################################################
-##
-## FingerPrint.DerInvs( G )
-##
-SCN.FingerPrint.DerInvs := G -> List(
-    DerivedSeries( G ),
-    AbelianInvariants
-);
-
-###############################################################################
-##
-## FingerPrint.ConjCls( G )
-##
-SCN.FingerPrint.ConjCls := G -> Collected( List(
-    ConjugacyClasses( G ),
-    C -> [ Order( Representative( C ) ), Size( C ) ]
-) );
-
-###############################################################################
-##
-## FingerPrint.Fitting( G )
-##
-SCN.FingerPrint.Fitting := function( G )
-    local F;
-    F := FittingSubgroup( G );
-    if IdGroupsAvailable( Size( F ) ) then
-        return IdGroup( F );
-    fi;
-    return fail;
 end;
