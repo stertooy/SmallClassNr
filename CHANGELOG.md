@@ -10,7 +10,8 @@
 
 ### Changed
 - `IdClassNr` is now even faster for most groups, and no longer relies on
-  `IdGroup`.
+  `IdGroup` / `SmallGrp`.
+- Now requires GAP version >= 4.15.
 - Updated installation instructions.
 - Janitorial changes.
 
