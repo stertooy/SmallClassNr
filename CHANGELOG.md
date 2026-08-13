@@ -1,12 +1,16 @@
 # CHANGELOG - GAP package SmallClassNr
 
-## 1.6.1 (2026-08-08)
+## 1.7.0 (2026-08-14)
 
-### Fixed
-- Fixed a bug where errors could be triggered if the `SmallGrp` package was not
-  loaded.
+### Added
+- A complete, but as of yet **unverified** classification of the groups of
+  class numbers 15 to 20 (by T. Breuer) can now be loaded using
+  `LoadUnverifiedSmallClassNrGroups()`. The old command
+  `LoadIncompleteSmallClassNrGroups()` has been disabled accordingly.
 
 ### Changed
+- `IdClassNr` is now even faster for most groups, and no longer relies on
+  `IdGroup`.
 - Updated installation instructions.
 - Janitorial changes.
 
