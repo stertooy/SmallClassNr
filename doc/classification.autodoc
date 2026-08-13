@@ -38,11 +38,7 @@ There are actually 51 such groups, the three groups missing in
 <Cite Key='ll86-a' /> are provided in the appendix of <Cite Key='vs07-a' />.
 These are the groups with <C>IdClassNr</C> equal to <C>[12,13]</C>,
 <C>[12,16]</C> and <C>[12,39]</C>.</Item>
+<Item>The classification of groups with 15 to 20 conjugacy classes has not been
+refereed yet, and is therefore <B>disabled</B> by default. It can still be
+accessed via the command below.</Item>
 </Enum>
-
-@Section incompleteclass
-@SectionTitle Unverified classification for 15 to 20 conjugacy classes
-
-The classification of groups with 15 to 20 conjugacy classes has not been
-refereed yet. Thus, it is <B>disabled</B> by default, but it can still be
-accessed if so desired.

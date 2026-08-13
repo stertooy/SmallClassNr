@@ -5,8 +5,8 @@
 ### Added
 - A complete, but as of yet **unverified** classification of the groups of
   class numbers 15 to 20 (by T. Breuer) can now be loaded using
-  `LoadUnverifiedSmallClassNrGroups()`. The old command
-  `LoadIncompleteSmallClassNrGroups()` has been disabled accordingly.
+  `LoadUnverifiedSmallClassNrGroups()` (which replaces the old command
+  `LoadIncompleteSmallClassNrGroups()`).
 
 ### Changed
 - `IdClassNr` is now even faster for most groups, and no longer relies on
