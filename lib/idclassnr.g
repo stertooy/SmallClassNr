@@ -68,9 +68,8 @@ end;
 ##
 ## NormsSize( G, s )
 ##
-SCN.IdClassNr.Helper.NormsSize := function( G, s )
-    return Filtered( NormalSubgroups( G ), H -> Size( H ) = s );
-end;
+SCN.IdClassNr.Helper.NormsSize := { G, s } ->
+    Filtered( NormalSubgroups( G ), H -> Size( H ) = s );
 
 ###############################################################################
 ##
@@ -1787,7 +1786,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 17, 384 ], function( G )
     if val1 = [ 2, 2 ] then
         val2 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 24 );
         if val2 = 1 then
-            if ForAny( ConjugacyClasses( G ), C -> 
+            if ForAny( ConjugacyClasses( G ), C ->
                 Order( Representative( C ) ) = 2 and
                 Size( C ) = 24 and
                 Exponent( Centralizer( G, Representative( C ) ) ) = 2
@@ -3697,7 +3696,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 20, 896 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 20, 972 ], function( G )
-    local val1, val2, classes, g, h, k;
+    local val1, val2, g, h, k;
     val1 := SCN.IdClassNr.Helper.CCOSCount( G, 3, 36 );
     if val1 = 3 then
         return 156;
