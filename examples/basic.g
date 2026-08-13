@@ -22,7 +22,7 @@ IdClassNr( AlternatingGroup( 4 ) );
 #! @BeginExample
 SmallClassNrGroupsAvailable( 14 );
 #! true
-SmallClassNrGroupsAvailable( 15 );
+SmallClassNrGroupsAvailable( 21 );
 #! false
 #! @EndExample
 #! @EndChunk

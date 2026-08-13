@@ -7,7 +7,7 @@ This library is provided by the &SmallGrp; package.
 
 @Section perfgrp
 @SectionTitle The Library of Finite Perfect Groups
-This library is provided by &GAP; itself.
+This library is provided by the &PerfGrp; package.
 
 @Section primgrp
 @SectionTitle The Primitive Permutation Groups Library
