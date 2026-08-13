@@ -1,11 +1,3 @@
-##### TODO
-# Add headers to functions
-# Reorganise file structure (idclassnr.gi, etc)
-# Remove smallgrp from dependencies
-# Improve distinguishing functions when not covered by a helper?
-# Rename variables (e.g. z -> g )
-# Ensure proper indentation and no superfluous whitespace or linebreaks
-
 ###############################################################################
 ##
 ## IdClassNr
@@ -58,8 +50,6 @@ end;
 ## CCOSPTCount( G, o, s, p, t )
 ##
 SCN.IdClassNr.Helper.CCOSPTCount := function( G, o, s, p, t )
-    local classes;
-    classes := ConjugacyClasses( G );
     return Number( ConjugacyClasses( G ), function( C )
         local g, h;
         if Size( C ) <> s then
