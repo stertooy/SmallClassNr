@@ -16,13 +16,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.14.0", "4.15.0", "4.15.1", "4.16.0", "devel" ]
+        gap-version: [ "4.15.0", "4.15.1", "4.16.0", "devel" ]
         mode: [ "onlyneeded", "default", "loadall" ]
     steps:
-    
+
       - name: "Checkout"
         uses: actions/checkout@v7
-        
+
       - name: "Test package"
         uses: ./.github/actions/test-pkg
         with:
@@ -38,14 +38,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.14.0", "4.15.0", "4.15.1", "4.16.0", "devel" ]
+        gap-version: [ "4.15.0", "4.15.1", "4.16.0", "devel" ]
         mode: [ "onlyneeded", "default", "loadall" ]
     steps:
-    
+
       - name: "Checkout"
         uses: actions/checkout@v7
-        
-      - name: "Test package"
+
+      - name: "Test GAP"
         uses: ./.github/actions/test-gap
         with:
           mode: ${{ matrix.mode }}
@@ -69,9 +69,9 @@ jobs:
       - name: "Setup"
         uses: ./.github/actions/setup
 
-      - name: "Verify that tests do not depend on GAPDoc/PrimGrp/TransGrp"
+      - name: "Verify that tests do not depend on GAPDoc/PrimGrp/SmallGrp/TransGrp"
         shell: bash
-        run: gap --bare -c 'TestPackage("SmallClassNr");'
+        run: gap --bare -c 'LoadPackage("SmallClassNr":OnlyNeeded);TestPackage("SmallClassNr");'
 
   lint:
     name: "Run gaplint"

@@ -8,7 +8,7 @@ conjugacy classes. Thus, it is possible to classify finite groups according to
 their class number.
 
 @Section completeclass
-@SectionTitle Groups with at most 14 conjugacy classes
+@SectionTitle Groups with at most 20 conjugacy classes
 
 The &PACKAGENAME; package provides access to the finite groups with class
 number at most $14$.
@@ -25,6 +25,7 @@ Burnside in <Cite Key='burn11-a' /></Item>
 <Cite Key='ll86-a' /></Item>
 <Item> $k(G) = 13, 14$, by Vera López and Sangroniz in
 <Cite Key='vs07-a' /></Item>
+<Item> $k(G) = 15, \dots, 20$, by Breuer in <Cite Key='breu26-a' /></Item>
 </List>
 Remarks:
 <Enum>
@@ -37,17 +38,7 @@ There are actually 51 such groups, the three groups missing in
 <Cite Key='ll86-a' /> are provided in the appendix of <Cite Key='vs07-a' />.
 These are the groups with <C>IdClassNr</C> equal to <C>[12,13]</C>,
 <C>[12,16]</C> and <C>[12,39]</C>.</Item>
+<Item>The classification of groups with 15 to 20 conjugacy classes has not been
+refereed yet, and is therefore <B>disabled</B> by default. It can still be
+accessed via the command below.</Item>
 </Enum>
-
-@Section incompleteclass
-@SectionTitle Groups with 15 to 20 conjugacy classes
-
-The &PACKAGENAME; package also provides access to many (but probably not all)
-of the finite groups with class number 15 to 20. Although quite extensive, this
-should be considered as an <B>incomplete</B> classification.
-
-<P/>
-
-Note that <Ref Attr="IdClassNr" /> may not work properly for these groups. While
-a <E>known</E> group of class number 15 to 20 will be correctly identified, an
-unknown group will produce an incorrect id or cause an error.

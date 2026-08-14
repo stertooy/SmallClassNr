@@ -13,7 +13,7 @@ jobs:
       image: ghcr.io/stertooy/gda-image:devel-slim
 
     steps:
-    
+
       - name: "Checkout"
         uses: actions/checkout@v7
 

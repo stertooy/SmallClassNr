@@ -60,7 +60,7 @@ jobs:
         uses: gap-actions/release-pkg@v1
         with:
           dry-run: ${{ inputs.dry-run }}
-          body-text: ${{ steps.changes.outputs.RELEASE_NOTES }} 
+          body-text: ${{ steps.changes.outputs.RELEASE_NOTES }}
           force: ${{ inputs.force }}
 
       - name: "Update GitHub Pages"

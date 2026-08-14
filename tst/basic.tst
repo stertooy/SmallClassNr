@@ -29,10 +29,10 @@ gap> IdClassNr( PcGroupCode( 8671, 42 ) );
 Error, the library of groups of class number 21 is not available
 
 #
-gap> grps1 := AllSmallClassNrGroups( [ 1..14 ] );;
+gap> grps1 := AllSmallClassNrGroups( [ 1 .. 14 ] );;
 gap> Collected( List( grps1, NrConjugacyClasses ) );
 [ [ 1, 1 ], [ 2, 1 ], [ 3, 2 ], [ 4, 4 ], [ 5, 8 ], [ 6, 8 ], [ 7, 12 ], [ 8, 21 ], [ 9, 26 ], [ 10, 37 ], [ 11, 35 ], [ 12, 51 ], [ 13, 53 ], [ 14, 93 ] ]
-gap> grps2 := AllSmallClassNrGroups( [ 1..14 ], IsSolvable : AsPermGroup );;
+gap> grps2 := AllSmallClassNrGroups( [ 1 .. 14 ], IsSolvable : AsPermGroup );;
 gap> ForAll( grps2, IsPermGroup );
 true
 
@@ -41,39 +41,39 @@ gap> NrSmallClassNrGroups( 10 );
 37
 gap> NrSmallClassNrGroups( 10, Size, 100 );
 3
-gap> NrSmallClassNrGroups( [1..7] );
+gap> NrSmallClassNrGroups( [ 1 .. 7 ] );
 36
-gap> NrSmallClassNrGroups( [13..14], IsNilpotentGroup, false );
+gap> NrSmallClassNrGroups( [ 13 .. 14 ], IsNilpotentGroup, false );
 115
 gap> NrSmallClassNrGroups( 21 );
 Error, the library of groups of class number 21 is not available
 
 
 #
-gap> G := OneSmallClassNrGroup( [ 4..11 ], IsSolvableGroup, IsNilpotentGroup, false, DerivedLength, [ 3, 4 ], IsSupersolvableGroup );;
+gap> G := OneSmallClassNrGroup( [ 4 .. 11 ], IsSolvableGroup, IsNilpotentGroup, false, DerivedLength, [ 3, 4 ], IsSupersolvableGroup );;
 gap> IsPcGroup( G );
 true
 gap> Size( G );
 54
-gap> H := OneSmallClassNrGroup( [ 4..11 ], IsSolvableGroup, IsNilpotentGroup, false, DerivedLength, [ 3, 4 ], IsSupersolvableGroup : AsPermGroup );;
+gap> H := OneSmallClassNrGroup( [ 4 .. 11 ], IsSolvableGroup, IsNilpotentGroup, false, DerivedLength, [ 3, 4 ], IsSupersolvableGroup : AsPermGroup );;
 gap> IsPermGroup( H );
 true
 gap> NrConjugacyClasses( H );
 10
-gap> OneSmallClassNrGroup( [ 4..11 ], IsSolvableGroup, IsNilpotentGroup, false, DerivedLength, [ 4 ], IsSupersolvableGroup );
+gap> OneSmallClassNrGroup( [ 4 .. 11 ], IsSolvableGroup, IsNilpotentGroup, false, DerivedLength, [ 4 ], IsSupersolvableGroup );
 fail
-gap> OneSmallClassNrGroup( [ 1..14 ], Size, 67 );
+gap> OneSmallClassNrGroup( [ 1 .. 14 ], Size, 67 );
 fail
-gap> SL42 := OneSmallClassNrGroup( 14, IsSolvableGroup, false, IsSL  );;
-gap> IsomorphismGroups( SL42, SL(4,2) ) <> fail;
+gap> SL42 := OneSmallClassNrGroup( 14, IsSolvableGroup, false, IsSL );;
+gap> IsomorphismGroups( SL42, SL( 4, 2 ) ) <> fail;
 true
-gap> OneSmallClassNrGroup( 21, IsSolvableGroup, false, IsSL  );
+gap> OneSmallClassNrGroup( 21, IsSolvableGroup, false, IsSL );
 Error, the library of groups of class number 21 is not available
 gap> AlternatingDegree( OneSmallClassNrGroup( 14, IsSolvableGroup, false, IsAlternatingGroup ) );
 8
 
 #
-gap> itr := IteratorSmallClassNrGroups( [ 4..11 ], IsSolvableGroup, IsNilpotentGroup, false, DerivedLength, [ 3, 4 ], IsSupersolvableGroup );;
+gap> itr := IteratorSmallClassNrGroups( [ 4 .. 11 ], IsSolvableGroup, IsNilpotentGroup, false, DerivedLength, [ 3, 4 ], IsSupersolvableGroup );;
 gap> Size( NextIterator( itr ) );
 54
 gap> IsDoneIterator( itr );
