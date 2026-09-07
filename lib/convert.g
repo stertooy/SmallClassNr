@@ -17,5 +17,5 @@ SCN.IdClassNrToOtherId := function( old_id, arg... )
     if Length( new_id ) = 1 then
         new_id := First( new_id );
     fi;
-    return new_id;
+    return ShallowCopy( new_id );
 end;
