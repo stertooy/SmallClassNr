@@ -15,7 +15,7 @@ DeclareGlobalName( "AllSmallClassNrGroups" );
 
 #! @BeginGroup
 #! @Returns one finite group with certain properties as specified by
-#! <A>arg</A>.
+#! <A>arg</A>, or <K>fail</K> if no group matches.
 #! @Arguments arg...
 DeclareGlobalFunction( "OneSmallClassNrGroup" );
 #! @Label with AsPermGroup

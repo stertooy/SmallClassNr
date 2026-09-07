@@ -34,7 +34,7 @@ $(C_5 \times C_5) \rtimes C_4$ with class number $10$ are given.
 However, only two such groups exist, being the ones with <C>IdClassNr</C> equal
 to <C>[10,25]</C> and <C>[10,26]</C>.</Item>
 <Item> In <Cite Key='ll86-a' />, 48 groups with class number 12 are listed.
-There are actually 51 such groups, the three groups missing in
+There are actually 51 such groups; the three groups missing in
 <Cite Key='ll86-a' /> are provided in the appendix of <Cite Key='vs07-a' />.
 These are the groups with <C>IdClassNr</C> equal to <C>[12,13]</C>,
 <C>[12,16]</C> and <C>[12,39]</C>.</Item>

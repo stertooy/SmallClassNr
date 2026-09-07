@@ -39,7 +39,7 @@
 - Added option `AsPermGroup`, which can be given to `SmallClassNrGroup`,
   `AllSmallClassNrGroups` and `OneSmallClassNrGroup`, to return groups as
   PermGroups even if they are soluble.
-- Added functionality to convert `IdClassNr` to id's used by other group
+- Added functionality to convert `IdClassNr` to IDs used by other group
   libraries:
   * The Small Groups Library (provided by the SmallGrp package).
   * The Library of Finite Perfect Groups.
