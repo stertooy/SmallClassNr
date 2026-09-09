@@ -36,6 +36,6 @@ DeclareGlobalFunction( "NrSmallClassNrGroups" );
 DeclareGlobalFunction( "IteratorSmallClassNrGroups" );
 #! @Label with AsPermGroup
 #! @Arguments arg...: AsPermGroup
-DeclareGlobalFunction( "IteratorSmallClassNrGroups" );
+DeclareGlobalName( "IteratorSmallClassNrGroups" );
 #! @EndGroup
 #! @InsertChunk example_iteratorsmallclassnrgroups
