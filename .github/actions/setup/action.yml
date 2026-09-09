@@ -5,11 +5,11 @@ runs:
   using: "composite"
   steps:
 
+    - name: "Add custom GAP root"
+      shell: bash
+      run: ln -f -s $PWD /tmp/gaproot/pkg/
+
     - name: "Install perfgrp"
       uses: gap-actions/install-pkg@v1
       with:
         packages: gap-packages/perfgrp@1.0.0
-
-    - name: "Add custom GAP root"
-      shell: bash
-      run: ln -f -s $PWD /tmp/gaproot/pkg/
