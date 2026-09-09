@@ -61,9 +61,9 @@ end;
 
 ###############################################################################
 ##
-## NextSmallClassNrGroup( itr )
+## NextSmallClassNrGroup( itr, apg )
 ##
-SCN.NextSmallClassNrGroup := function( itr )
+SCN.NextSmallClassNrGroup := function( itr, apg )
     local kGs, sZs, fnc, vls, pos, i, j, kG, G;
     kGs := itr!.kGs;
     sZs := itr!.sZs;
@@ -80,7 +80,7 @@ SCN.NextSmallClassNrGroup := function( itr )
             if not SCN.Data.Size[ kG ][ j - 1 ] in sZs then
                 continue;
             fi;
-            G := SmallClassNrGroup( kG, j - 1 );
+            G := SmallClassNrGroup( kG, j - 1 : AsPermGroup := apg );
             if ForAll(
                 [ 1 .. Length( fnc ) ],
                 k -> fnc[ k ]( G ) in vls[ k ]
@@ -99,9 +99,15 @@ end;
 ## NextIterator( itr )
 ##
 SCN.NextIterator := function( itr )
-    local G;
-    if IsBool( itr!.nxt ) then
-        itr!.nxt := SCN.NextSmallClassNrGroup( itr );
+    local apg, G;
+    apg := ValueOption( "AsPermGroup" );
+    if apg = fail then
+        apg := itr!.apg;
+    else
+        apg := apg = true;
+    fi;
+    if IsBool( itr!.nxt ) or apg <> itr!.apg then
+        itr!.nxt := SCN.NextSmallClassNrGroup( itr, apg );
     fi;
     itr!.pos := itr!.nxt[ 1 ];
     G := itr!.nxt[ 2 ];
@@ -120,7 +126,7 @@ SCN.IsDoneIterator := function( itr )
     if not IsBool( itr!.nxt ) then
         return IsBool( itr!.nxt[ 2 ] );
     fi;
-    nxt := SCN.NextSmallClassNrGroup( itr );
+    nxt := SCN.NextSmallClassNrGroup( itr, itr!.apg );
     itr!.nxt := nxt;
     if IsBool( nxt[ 2 ] ) then
         return true;
@@ -137,6 +143,7 @@ SCN.ShallowCopy := itr -> rec(
     sZs := itr!.sZs,
     fnc := itr!.fnc,
     vls := itr!.vls,
+    apg := itr!.apg,
     pos := itr!.pos,
     nxt := itr!.nxt
 );

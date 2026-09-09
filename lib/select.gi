@@ -12,6 +12,7 @@ InstallGlobalFunction(
             sZs := ksfv[ 2 ],
             fnc := ksfv[ 3 ],
             vls := ksfv[ 4 ],
+            apg := ValueOption( "AsPermGroup" ) = true,
             pos := [ 1, 1 ],
             nxt := fail,
             IsDoneIterator := SCN.IsDoneIterator,

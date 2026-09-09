@@ -2,8 +2,8 @@ SetPackageInfo( rec(
 
 PackageName := "SmallClassNr",
 Subtitle := "Library of finite groups with small class number",
-Version := "1.7.0",
-Date := "14/08/2026",
+Version := "1.7.1",
+Date := "09/09/2026",
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -31,7 +31,7 @@ SourceRepository := rec(
     Type := "git",
     URL := Concatenation(
         "https://github.com/",
-        ~.Persons[1].GitHubUsername,
+        ~.Persons[ 1 ].GitHubUsername,
         "/",
         ~.PackageName
     )
@@ -39,7 +39,7 @@ SourceRepository := rec(
 SupportEmail := ~.Persons[1].Email,
 
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
-PackageWWWHome  := Concatenation( ~.Persons[1].WWWHome, ~.PackageName ),
+PackageWWWHome  := Concatenation( ~.Persons[ 1 ].WWWHome, ~.PackageName ),
 PackageInfoURL  := Concatenation( ~.PackageWWWHome, "/PackageInfo.g" ),
 README_URL      := Concatenation( ~.PackageWWWHome, "/README.md" ),
 ArchiveURL      := Concatenation(
@@ -58,7 +58,7 @@ AbstractHTML := """
 
 PackageDoc := rec(
     BookName  := ~.PackageName,
-    ArchiveURLSubset := ["doc"],
+    ArchiveURLSubset := [ "doc" ],
     HTMLStart := "doc/chap0_mj.html",
     PDFFile   := "doc/manual.pdf",
     SixFile   := "doc/manual.six",
@@ -80,4 +80,4 @@ Dependencies := rec(
 
 TestFile := "tst/testall.g",
 
-));
+) );

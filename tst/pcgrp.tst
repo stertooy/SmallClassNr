@@ -1,4 +1,4 @@
-gap> START_TEST( "Testing SmallClassNr - PcGroup  checks" );
+gap> START_TEST( "Testing SmallClassNr - PcGroup checks" );
 
 #
 gap> max := First( PositiveIntegers, x -> not SmallClassNrGroupsAvailable( x ) ) - 1;;

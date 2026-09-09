@@ -1,5 +1,16 @@
 # CHANGELOG - GAP package SmallClassNr
 
+## 1.7.1 (2026-09-09)
+
+### Added
+- `IteratorSmallClassNrGroups` can now be given the option `AsPermGroup`.
+
+### Changed
+- Janitorial changes.
+
+### Fixed
+- External IDs can no longer be overwritten.
+
 ## 1.7.0 (2026-08-14)
 
 ### Added
@@ -39,7 +50,7 @@
 - Added option `AsPermGroup`, which can be given to `SmallClassNrGroup`,
   `AllSmallClassNrGroups` and `OneSmallClassNrGroup`, to return groups as
   PermGroups even if they are soluble.
-- Added functionality to convert `IdClassNr` to id's used by other group
+- Added functionality to convert `IdClassNr` to IDs used by other group
   libraries:
   * The Small Groups Library (provided by the SmallGrp package).
   * The Library of Finite Perfect Groups.
