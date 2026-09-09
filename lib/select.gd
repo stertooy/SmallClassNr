@@ -29,9 +29,13 @@ DeclareGlobalName( "OneSmallClassNrGroup" );
 #! @Arguments arg...
 DeclareGlobalFunction( "NrSmallClassNrGroups" );
 #! @InsertChunk example_nrsmallclassnrgroups
-
+#! @BeginGroup
 #! @Returns an iterator that iterates over the finite groups with properties as
 #! specified by <A>arg</A>.
 #! @Arguments arg...
 DeclareGlobalFunction( "IteratorSmallClassNrGroups" );
+#! @Label with AsPermGroup
+#! @Arguments arg...: AsPermGroup
+DeclareGlobalFunction( "IteratorSmallClassNrGroups" );
+#! @EndGroup
 #! @InsertChunk example_iteratorsmallclassnrgroups
