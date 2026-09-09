@@ -1,5 +1,16 @@
 # CHANGELOG - GAP package SmallClassNr
 
+## 1.7.1 (2026-09-09)
+
+### Added
+- `IteratorSmallClassNrGroups` can now be given the option `AsPermGroup`.
+
+### Changed
+- Janitorial changes.
+
+### Fixed
+- External IDs can no longer be overwritten.
+
 ## 1.7.0 (2026-08-14)
 
 ### Added
