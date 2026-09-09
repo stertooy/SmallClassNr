@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.15.0", "4.15.1", "4.16.0", "devel" ]
+        gap-version: [ "4.15.0", "4.15.1", "4.16.0", "4.16.1", "devel" ]
         mode: [ "onlyneeded", "default", "loadall" ]
     steps:
 
@@ -38,7 +38,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.15.0", "4.15.1", "4.16.0", "devel" ]
+        gap-version: [ "4.15.0", "4.15.1", "4.16.0", "4.16.1", "devel" ]
         mode: [ "onlyneeded", "default", "loadall" ]
     steps:
 
@@ -69,7 +69,7 @@ jobs:
       - name: "Setup"
         uses: ./.github/actions/setup
 
-      - name: "Verify that tests do not depend on GAPDoc/PrimGrp/SmallGrp/TransGrp"
+      - name: "Verify that tests work with --bare"
         shell: bash
         run: gap --bare -c 'LoadPackage("SmallClassNr":OnlyNeeded);TestPackage("SmallClassNr");'
 
