@@ -40,4 +40,4 @@ jobs:
         run: |
           shopt -s globstar extglob
           FILES="${{ matrix.files }}"
-          gaplint $FILES --config-file=.github/gaplint-${{ matrix.rules }}.yml
+          gaplint $FILES --github-annotations --config-file=.github/gaplint-${{ matrix.rules }}.yml
