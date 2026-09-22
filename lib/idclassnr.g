@@ -66,6 +66,21 @@ end;
 
 ###############################################################################
 ##
+## CCOSMCount( G, o, s, m )
+##
+SCN.IdClassNr.Helper.CCOSMCount := function( G, o, s, m )
+    local ctbl, ords, size;
+    ctbl := CharacterTable( G );
+    ords := OrdersClassRepresentatives( ctbl );
+    size := SizesConjugacyClasses( ctbl );
+    return Number( [ 1 .. Length( ords ) ], i ->
+        ords[ i ] = o and size[ i ] = s and
+        ClassMultiplicationCoefficient( ctbl, i, i, i ) = m
+    );
+end;
+
+###############################################################################
+##
 ## NormsSize( G, s )
 ##
 SCN.IdClassNr.Helper.NormsSize := { G, s } ->
@@ -1838,19 +1853,19 @@ AddDictionary( SCN.IdClassNr.Select, [ 17, 1176 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 17, 3584 ], function( G )
-    local val1, val2, val3, normal, A, B;
+    local val1, val2, val3, normal, B;
     val1 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 56 );
     normal := SCN.IdClassNr.Helper.NormsSize( G, 64 );
     val2 := Length( normal );
     if val1 = 0 then
         if val2 = 2 then
-            A := First( normal, IsAbelian );
             B := First( normal, H -> not IsAbelian( H ) );
-            if ForAny( Elements( A ), a -> ForAny(
-                Elements( B ), b ->
-                    a ^ 2 <> One( G ) and a ^ 2 <> b ^ 2 and
-                    Comm( a, b ) = a ^ 2
-            ) ) then
+            val3 := Number( ConjugacyClasses( G ), C ->
+                Order( Representative( C ) ) = 4 and
+                Size( Normalizer( B,
+                    Subgroup( G, [ Representative( C ) ] ) ) ) = 64
+            );
+            if val3 = 0 then
                 return 81;
             else
                 return 83;
@@ -2898,7 +2913,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 588 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 19, 768 ], function( G )
-    local val1, val2, val3, F, S, s, f, g, h, H;
+    local val1, val2, val3;
     val1 := SCN.IdClassNr.Helper.DerAbInv( G, 3 );
     val2 := SCN.IdClassNr.Helper.CCOSCount( G, 4, 48 );
     if val1 = [ 2, 2, 2 ] then
@@ -2907,24 +2922,12 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 768 ], function( G )
         elif val2 = 2 then
             return 104;
         else
-            F := FittingSubgroup( G );
-            S := SylowSubgroup( G, 3 );
-            s := First( GeneratorsOfGroup( S ), x -> not IsOne( x ) );
-            for f in Elements( F ) do
-                g := f ^ s;
-                h := g ^ s;
-                if Size( Subgroup( F, [ f, g, h ] ) ) = Size( F ) then
-                    H := Subgroup( F, [
-                        Comm( f, g ),
-                        Comm( f, h ),
-                        Comm( g, h )
-                    ] );
-                    if f ^ 2 in H then
-                        return 105;
-                    fi;
-                fi;
-            od;
-            return 106;
+            val3 := Size( AutomorphismGroup( FittingSubgroup( G ) ) );
+            if val3 = 12288 then
+                return 105;
+            else
+                return 106;
+            fi;
         fi;
     elif val1 = [ 4, 4 ] then
         if val2 = 4 then
@@ -3015,18 +3018,15 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 1944 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 19, 2500 ], function( G )
-    local val, C, c;
+    local val;
     val := SCN.IdClassNr.Helper.CCOSCount( G, 5, 20 );
     if val = 5 then
         return 136;
     elif val = 6 then
         return 137;
     else
-        C := First( ConjugacyClasses( G ), D ->
-            Order( Representative( D ) ) = 25 and Size( D ) = 20
-        );
-        c := Representative( C );
-        if ForAny( AsList( C ), d -> d ^ -1 * c in C ) then
+        val := SCN.IdClassNr.Helper.CCOSMCount( G, 25, 20, 6 );
+        if val = 5 then
             return 138;
         else
             return 139;
@@ -3668,7 +3668,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 20, 780 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 20, 896 ], function( G )
-    local val1, val2, val3, C, c;
+    local val1, val2, val3;
     val1 := SCN.IdClassNr.Helper.DerAbInv( G, 2 );
     if val1 = [ 2, 2, 2 ] then
         return 149;
@@ -3677,11 +3677,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 20, 896 ], function( G )
     elif val1 = [ 4, 4, 4 ] then
         val2 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 56 );
         if val2 = 0 then
-            C := First( ConjugacyClasses( G ), D ->
-                Order( Representative( D ) ) = 4 and Size( D ) = 14
-            );
-            c := Representative( C );
-            val3 := Number( AsList( C ), d -> d ^ -1 * c in C );
+            val3 := SCN.IdClassNr.Helper.CCOSMCount( G, 4, 14, 4 );
             if val3 = 4 then
                 return 151;
             else
@@ -3696,7 +3692,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 20, 896 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 20, 972 ], function( G )
-    local val1, val2, g, h, k;
+    local val1, val2;
     val1 := SCN.IdClassNr.Helper.CCOSCount( G, 3, 36 );
     if val1 = 3 then
         return 156;
@@ -3705,14 +3701,9 @@ AddDictionary( SCN.IdClassNr.Select, [ 20, 972 ], function( G )
         if val2 = 3 then
             return 157;
         else
-            g := Representative( First( ConjugacyClasses( G ), C ->
-                Order( Representative( C ) ) = 4
-            ) );
-            h := Representative( First( ConjugacyClasses( G ), C ->
-                Order( Representative( C ) ) = 9
-            ) );
-            k := Comm( h, g );
-            if h ^ 3 = Comm( Comm( k, h ), h ) * k ^ 3 then
+            if ForAny( MaximalSubgroups( FittingSubgroup( G ) ), H ->
+                IsConjugate( G, DerivedSubgroup( H ), Agemo( H, 3 ) )
+            ) then
                 return 158;
             else
                 return 159;
