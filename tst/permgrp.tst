@@ -1,9 +1,5 @@
 gap> START_TEST( "Testing SmallClassNr - PermGroup checks" );
 
-# Lower assertion level
-gap> assert := AssertionLevel();;
-gap> SetAssertionLevel( 1 );;
-
 #
 gap> max := First( PositiveIntegers, x -> not SmallClassNrGroupsAvailable( x ) ) - 1;;
 gap> grps := AllSmallClassNrGroups( [ 1 .. max ] : AsPermGroup );;
@@ -34,9 +30,6 @@ gap> LoadPackage( "PerfGrp", false: OnlyNeeded );
 true
 gap> ForAll( grps, G -> NrMovedPoints( G ) = NrMovedPoints( Image( SmallerDegreePermutationRepresentation( G ) ) ) );
 true
-
-# Restore assertion level
-gap> SetAssertionLevel( assert );;
 
 #
 gap> STOP_TEST( "permgrp.tst" );

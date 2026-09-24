@@ -71,6 +71,9 @@ end;
 SCN.IdClassNr.Helper.CCOSMCount := function( G, o, s, m )
     local ctbl, ords, size;
     ctbl := CharacterTable( G );
+    if not HasIrr( ctbl ) then
+        SetIrr( ctbl, IrrDixonSchneider( G ) );
+    fi;
     ords := OrdersClassRepresentatives( ctbl );
     size := SizesConjugacyClasses( ctbl );
     return Number( [ 1 .. Length( ords ) ], i ->
