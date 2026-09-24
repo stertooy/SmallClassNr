@@ -1,5 +1,11 @@
 # CHANGELOG - GAP package SmallClassNr
 
+## 1.7.2 (2026-09-24)
+
+### Changed
+- Improved various generating sets.
+- Changed the `IdClassNr` identification for a few groups.
+
 ## 1.7.1 (2026-09-09)
 
 ### Added
