@@ -83,7 +83,7 @@
 ## 1.4.2 (2025-10-11)
 
 ### Changed
-- Updated license text to latest version (by @jamesjer).
+- Updated licence text to latest version (by @jamesjer).
 - Updated installation instructions in manual.
 - Janitorial changes.
 

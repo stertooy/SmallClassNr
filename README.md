@@ -1,6 +1,6 @@
 [![Build Status](https://custom-icon-badges.demolab.com/github/actions/workflow/status/stertooy/SmallClassNr/CI.yml?branch=main&logo=bug&logoColor=white&label=tests)](https://github.com/stertooy/SmallClassNr/actions/workflows/CI.yml?query=branch%3Amain)
 [![Code Coverage](https://custom-icon-badges.demolab.com/codecov/c/github/stertooy/SmallClassNr?logo=code&logoColor=white)](https://codecov.io/gh/sTertooy/SmallClassNr)
-[![License](https://custom-icon-badges.demolab.com/badge/license-GPLv2%2B-blue.svg?logo=law&logoColor=white)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+[![Licence](https://custom-icon-badges.demolab.com/badge/licence-GPLv2%2B-blue.svg?logo=law&logoColor=white)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Manual](https://custom-icon-badges.demolab.com/badge/manual-html-blue?logo=browser&logoColor=white)](https://stertooy.github.io/SmallClassNr/doc/chap0_mj.html)
 [![Manual](https://custom-icon-badges.demolab.com/badge/manual-pdf-blue?logo=book&logoColor=white)](https://github.com/stertooy/SmallClassNr/releases/latest/download/manual.pdf)
 [![Release](https://custom-icon-badges.demolab.com/github/release/stertooy/smallclassnr.svg?logo=tag&logoColor=white)](https://github.com/stertooy/smallclassnr/releases/latest)
@@ -32,8 +32,8 @@ Please report any problems you may encounter using SmallClassNr at
 
 
 
-License
+Licence
 -------
 
 The SmallClassNr package is licensed under the GNU General Public License
-v2.0 or later. A copy of this license is included.
+v2.0 or later. A copy of this licence is included.
