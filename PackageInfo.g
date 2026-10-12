@@ -66,7 +66,7 @@ PackageDoc := rec(
 ),
 
 Dependencies := rec(
-    GAP := ">= 4.15",
+    GAP := ">= 4.17",
     NeededOtherPackages := [],
     SuggestedOtherPackages := [],
     TestPackages := [
@@ -77,6 +77,29 @@ Dependencies := rec(
         [ "transgrp", "3.6.5" ],
     ]
 ),
+
+Extensions := [
+    rec(
+        needed := [ [ "smallgrp", "1.5.4" ] ],
+        testfiles := [ "tst/idgroup.tst" ]
+    ),
+    rec(
+        needed := [ [ "primgrp", "3.4.4" ] ],
+        testfiles := [ "tst/primgrp.tst" ]
+    ),
+    rec(
+        needed := [ [ "transgrp", "3.6.5" ] ],
+        testfiles := [ "tst/transgrp.tst" ]
+    ),
+    rec(
+        needed := [ [ "perfgrp", "1.0.0" ] ],
+        testfiles := [ "tst/perfgrp.tst" ]
+    ),
+    rec(
+        needed := [ [ "atlasrep", "2.1.9" ] ],
+        testfiles := [ "tst/atlasname.tst" ]
+    ),
+],
 
 TestFile := "tst/testall.g",
 

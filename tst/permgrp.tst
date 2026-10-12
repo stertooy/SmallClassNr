@@ -20,14 +20,6 @@ gap> check( G -> Size( MinimalGeneratingSet( G ) ) );
 true
 
 #
-gap> LoadPackage( "SmallGrp", false: OnlyNeeded );
-true
-gap> LoadPackage( "TransGrp", false: OnlyNeeded );
-true
-gap> LoadPackage( "PrimGrp", false: OnlyNeeded );
-true
-gap> LoadPackage( "PerfGrp", false: OnlyNeeded );
-true
 gap> ForAll( grps, G -> NrMovedPoints( G ) = NrMovedPoints( Image( SmallerDegreePermutationRepresentation( G ) ) ) );
 true
 
