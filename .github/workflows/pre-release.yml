@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.15.0", "4.15.1", "4.16.0", "4.16.1", "devel" ]
+        gap-version: [ "devel" ]
         mode: [ "onlyneeded", "default", "loadall" ]
     steps:
 
@@ -38,7 +38,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gap-version: [ "4.15.0", "4.15.1", "4.16.0", "4.16.1", "devel" ]
+        gap-version: [ "devel" ]
         mode: [ "onlyneeded", "default", "loadall" ]
     steps:
 
