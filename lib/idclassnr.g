@@ -12,11 +12,15 @@ SCN.IdClassNr.Helper := rec();
 
 ###############################################################################
 ##
-## CCOCount( G, o )
+## CCOCount( G, o[, test] )
 ##
-SCN.IdClassNr.Helper.CCOCount := function( G, o )
+SCN.IdClassNr.Helper.CCOCount := function( G, o, test... )
+    if IsEmpty( test ) then
+        test := [ ReturnTrue ];
+    fi;
     return Number( ConjugacyClasses( G ), C ->
-        Order( Representative( C ) ) = o
+        Order( Representative( C ) ) = o and
+        test[ 1 ]( Representative( C ) )
     );
 end;
 
@@ -26,13 +30,15 @@ end;
 ##
 SCN.IdClassNr.Helper.CCOSCount := function( G, o, s )
     return Number( ConjugacyClasses( G ), C ->
-        Order( Representative( C ) ) = o and Size( C ) = s
+        Size( C ) = s and
+        Order( Representative( C ) ) = o
     );
 end;
 
 SCN.IdClassNr.Helper.CCOSCCount := function( G, o, s, test )
     return Number( ConjugacyClasses( G ), C ->
-        Size( C ) = s and Order( Representative( C ) ) = o and
+        Size( C ) = s and
+        Order( Representative( C ) ) = o and
         test( Centralizer( C ) )
     );
 end;
@@ -52,37 +58,29 @@ SCN.IdClassNr.Helper.CCOSPCount := function( G, o, s, p )
     end );
 end;
 
-###############################################################################
-##
-## CCOSPTCount( G, o, s, p, t )
-##
-SCN.IdClassNr.Helper.CCOSPTCount := function( G, o, s, p, t )
-    return Number( ConjugacyClasses( G ), function( C )
-        local g, h;
-        if Size( C ) <> s then
-            return false;
-        fi;
-        g := Representative( C );
-        if Order( g ) <> o then
-            return false;
-        fi;
-        h := g ^ p;
-        return Size( First( ConjugacyClasses( G ), D -> h in D ) ) = t;
-    end );
+SCN.IdClassNr.Helper.CentralSquareCount := function( G, s )
+    return Number( ConjugacyClasses( G ), C ->
+        Size( C ) = s and
+        IsCentral( G, Representative( C ) ^ 2 )
+    );
 end;
 
 SCN.IdClassNr.Helper.ClClSize := function( G, s, n )
-    return ForAny( ConjugacyClasses( G ), C -> Size( C ) = s and
+    return ForAny( ConjugacyClasses( G ), C ->
+        Size( C ) = s and
         Size( NormalClosure( G, [ Representative( C ) ] ) ) = n
     );
 end;
 
-###############################################################################
-##
-## NormsSize( G, s )
-##
-SCN.IdClassNr.Helper.NormsSize := { G, s } ->
-    Filtered( NormalSubgroups( G ), H -> Size( H ) = s );
+SCN.IdClassNr.Helper.CommRepCount := function( G, C, o )
+    local x, elements;
+    x := Representative( C );
+    elements := AsList( C );
+    return Number( ConjugacyClasses( G ), D ->
+        Order( Representative( D ) ) = o and
+        Comm( x, Representative( D ) ) in elements
+    );
+end;
 
 ###############################################################################
 ##
@@ -291,39 +289,32 @@ AddDictionary( SCN.IdClassNr.Select, [ 10, 48 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 10, 54 ], function( G )
-    local val1, val2;
-    val1 := Size( DerivedSubgroup( G ) );
-    if val1 = 9 then
-        val2 := SCN.IdClassNr.Helper.DerAbInv( G, 2 );
-        if val2 = [ 3, 3 ] then
-            return 16;
-        else
-            return 17;
-        fi;
+    local val;
+    val := SCN.IdClassNr.Helper.CCOSCount( G, 3, 6 );
+    if val = 3 then
+        return 16;
+    elif val = 0 then
+        return 17;
     else
         return 18;
     fi;
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 10, 96 ], function( G )
-    local val1, val2;
-    val1 := SCN.IdClassNr.Helper.DerAbInv( G, 2 );
-    if val1 = [ 3 ] then
-        val2 := SCN.IdClassNr.Helper.DerAbInv( G, 3 );
-        if val2 = [ 4, 4 ] then
+    local val;
+    val := SCN.IdClassNr.Helper.CCOCount( G, 2 );
+    if val = 2 then
+        if SCN.IdClassNr.Helper.CCOCount( G, 4 ) = 4 then
             return 19;
         else
-            return 23;
-        fi;
-    elif val1 = [ 2, 2, 2, 2 ] then
-        return 20;
-    else
-        val2 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 12 );
-        if val2 = 0 then
             return 21;
-        else
-            return 22;
         fi;
+    elif val = 4 then
+        return 20;
+    elif val = 3 then
+        return 22;
+    else
+        return 23;
     fi;
 end );
 
@@ -592,31 +583,25 @@ AddDictionary( SCN.IdClassNr.Select, [ 13, 96 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 13, 162 ], function( G )
-    local val1, val2, val3;
-    val1 := SCN.IdClassNr.Helper.DerAbInv( G, 2 );
-    if val1 = [ 3, 3, 3 ] then
+    local D, val;
+    D := DerivedSubgroup( G );
+    val := SCN.IdClassNr.Helper.CCOCount( G, 3, x -> x in D );
+    if val = 5 then
         return 22;
-    elif val1 = [ 3, 9 ] then
-        val2 := SCN.IdClassNr.Helper.CCOSCount( G, 3, 18 );
-        if val2 = 0 then
+    elif val = 2 then
+        if SCN.IdClassNr.Helper.CCOCount( G, 3 ) = 4 then
             return 23;
         else
             return 24;
         fi;
+    elif val = 7 then
+        return 25;
+    elif val = 4 then
+        return 26;
+    elif val = 6 then
+        return 27;
     else
-        val2 := SCN.IdClassNr.Helper.CCOSCount( G, 3, 18 );
-        if val2 = 1 then
-            val3 := SCN.IdClassNr.Helper.CCOSCount( G, 3, 6 );
-            if val3 = 3 then
-                return 25;
-            else
-                return 26;
-            fi;
-        elif val2 = 3 then
-            return 27;
-        else
-            return 28;
-        fi;
+        return 28;
     fi;
 end );
 
@@ -845,15 +830,12 @@ AddDictionary( SCN.IdClassNr.Select, [ 14, 200 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 14, 240 ], function( G )
-    local val1, val2;
-    val1 := DerivedLength( G );
-    if val1 = 1 then
-        val2 := SCN.IdClassNr.Helper.DerAbInv( G, 1 );
-        if val2 = [ 4 ] then
-            return 50;
-        else
-            return 51;
-        fi;
+    local val;
+    val := SCN.IdClassNr.Helper.CCOSCount( G, 6, 20 );
+    if val = 1 then
+        return 50;
+    elif val = 3 then
+        return 51;
     else
         return 52;
     fi;
@@ -924,7 +906,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 14, 384 ], function( G )
         if val2 = 2 then
             return 65;
         else
-            val3 := SCN.IdClassNr.Helper.CCOSPTCount( G, 4, 24, 2, 1 );
+            val3 := SCN.IdClassNr.Helper.CentralSquareCount( G, 24 );
             if val3 = 2 then
                 return 66;
             else
@@ -1098,22 +1080,10 @@ AddDictionary( SCN.IdClassNr.Select, [ 15, 180 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 15, 192 ], function( G )
-    local val1, val2;
-    val1 := SCN.IdClassNr.Helper.DerAbInv( G, 3 );
-    val2 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 24 );
-    if val1 = [ 4, 4 ] then
-        if val2 = 0 then
-            return 39;
-        else
-            return 40;
-        fi;
-    else
-        if val2 = 0 then
-            return 41;
-        else
-            return 42;
-        fi;
-    fi;
+    local C, N;
+    C := First( ConjugacyClasses( G ), C -> Size( C ) = 6 );
+    N := NormalClosure( G, [ Representative( C ) ] );
+    return 39 + SCN.IdClassNr.Helper.CCOCount( G, 2, x -> not x in N );
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 15, 216 ], function( G )
@@ -1222,30 +1192,26 @@ AddDictionary( SCN.IdClassNr.Select, [ 16, 52 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 16, 64 ], function( G )
-    local val1, val2, val3, val4;
-    val1 := SCN.IdClassNr.Helper.DerAbInv( G, 2 );
+    local D, val1, val2, val3, val4;
+    D := DerivedSubgroup( G );
+    val1 := AbelianInvariants( D );
     if val1 = [ 8 ] then
-        val2 := SCN.IdClassNr.Helper.DerAbInv( G, 1 );
+        val2 := Number( ConjugacyClasses( G ), C -> Representative( C ) in D );
         val3 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 8 );
-        if val2 = [ 2, 4 ] then
+        if val2 = 4 then
             if val3 = 1 then
                 return 15;
             elif val3 = 2 then
                 return 16;
             else
-                val4 := SCN.IdClassNr.Helper.CCOSPTCount( G, 4, 8, 2, 1 );
-                if val4 = 2 then
-                    return 17;
-                else
-                    return 18;
-                fi;
+                return 17;
             fi;
+        elif val3 = 3 then
+            return 35;
+        elif val3 = 1 then
+            return 36;
         else
-            if val3 = 3 then
-                return 35;
-            else
-                return 36;
-            fi;
+            return 18;
         fi;
     elif val1 = [ 2, 4 ] then
         val2 := SCN.IdClassNr.Helper.CCOSCount( G, 4, 8 );
@@ -1404,7 +1370,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 16, 384 ], function( G )
         elif val2 = 2 then
             return 67;
         else
-            val3 := SCN.IdClassNr.Helper.CCOSPTCount( G, 4, 24, 2, 1 );
+            val3 := SCN.IdClassNr.Helper.CentralSquareCount( G, 24 );
             if val3 = 0 then
                 return 68;
             else
@@ -1587,11 +1553,12 @@ AddDictionary( SCN.IdClassNr.Select, [ 16, 2400 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 16, 2688 ], function( G )
-    local val;
-    val := SCN.IdClassNr.Helper.CCOCount( DerivedSubgroup( G ), 8 );
-    if val = 0 then
+    local D, val;
+    D := DerivedSubgroup( G );
+    val := SCN.IdClassNr.Helper.CCOCount( G, 4, x -> x in D );
+    if val = 2 then
         return 117;
-    elif val = 1 then
+    elif val = 3 then
         return 118;
     else
         return 119;
@@ -1664,7 +1631,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 17, 81 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 17, 128 ], function( G )
-    local val1, val2, val3, val4;
+    local val1, val2, val3, val4, C;
     val1 := DerivedLength( G );
     if val1 = 3 then
         val2 := SCN.IdClassNr.Helper.DerAbInv( G, 1 );
@@ -1690,11 +1657,8 @@ AddDictionary( SCN.IdClassNr.Select, [ 17, 128 ], function( G )
             elif val3 = 2 then
                 return 27;
             else
-                val4 := Number(
-                    SCN.IdClassNr.Helper.NormsSize( G, 16 ),
-                    IsElementaryAbelian
-                );
-                if val4 = 2 then
+                C := First( ConjugacyClasses( G ), C -> Size( C ) = 2 );
+                if IdClassNr( Centralizer( C ) ) = [ 19, 40 ] then
                     return 28;
                 else
                     return 29;
@@ -1781,24 +1745,20 @@ AddDictionary( SCN.IdClassNr.Select, [ 17, 324 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 17, 384 ], function( G )
-    local val1, val2;
-    val1 := SCN.IdClassNr.Helper.DerAbInv( G, 1 );
-    if val1 = [ 2, 2 ] then
-        val2 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 24 );
-        if val2 = 1 then
-            if SCN.IdClassNr.Helper.CCOSCCount( G, 2, 24,
-                IsElementaryAbelian ) = 1 then
-                return 54;
-            else
-                return 50;
-            fi;
-        elif val2 = 0 then
-            return 51;
-        else
-            return 53;
-        fi;
-    else
+    local val;
+    val := SCN.IdClassNr.Helper.CCOSCount( G, 2, 24 );
+    if val = 0 then
+        return 51;
+    elif val = 2 then
+        return 53;
+    elif SCN.IdClassNr.Helper.CCOCount( G, 2 ) = 3 then
         return 52;
+    fi;
+    val := SCN.IdClassNr.Helper.CCOSCCount( G, 2, 24, IsElementaryAbelian );
+    if val = 1 then
+        return 54;
+    else
+        return 50;
     fi;
 end );
 
@@ -1835,7 +1795,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 17, 1176 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 17, 3584 ], function( G )
-    local count, x, N, B;
+    local count, C, x, N, z;
     count := SCN.IdClassNr.Helper.CCOSCCount( G, 2, 56, IsElementaryAbelian );
     if count = 1 then
         if SCN.IdClassNr.Helper.CCOSCCount( G, 2, 56, IsAbelian ) = 2 then
@@ -1844,8 +1804,9 @@ AddDictionary( SCN.IdClassNr.Select, [ 17, 3584 ], function( G )
             return 85;
         fi;
     elif count = 2 then
-        x := Representative( First( ConjugacyClasses( G ),
-            C -> Order( Representative( C ) ) = 4 ) );
+        x := Representative( First( ConjugacyClasses( G ), C ->
+            Order( Representative( C ) ) = 4
+        ) );
         N := NormalClosure( G, [ x ] );
         if Size( N ) = 512 then
             return 86;
@@ -1864,13 +1825,14 @@ AddDictionary( SCN.IdClassNr.Select, [ 17, 3584 ], function( G )
     elif count = 9 then
         return 89;
     fi;
-    B := First( SCN.IdClassNr.Helper.NormsSize( G, 64 ),
-        N -> not IsAbelian( N ) );
-    if Number( ConjugacyClasses( G ), function( C )
-        local g;
-        g := Representative( C );
-        return IsConjugate( B, g, g ^ -1 );
-    end ) = 8 then
+    C := First( ConjugacyClasses( G ), C ->
+        Size( C ) = 56 and
+        Representative( C ) ^ 2 in DerivedSubgroup( Centralizer( C ) )
+    );
+    x := Representative( C );
+    N := Normalizer( G, Group( x ) );
+    z := x ^ 2;
+    if SCN.IdClassNr.Helper.CCOCount( N, 4, y -> y ^ 2 = z ) = 4 then
         return 81;
     else
         return 83;
@@ -2122,7 +2084,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 18, 192 ], function( G )
                 return 54;
             fi;
         else
-            val4 := SCN.IdClassNr.Helper.CCOSPTCount( G, 4, 12, 2, 1 );
+            val4 := SCN.IdClassNr.Helper.CentralSquareCount( G, 12 );
             if val4 = 0 then
                 return 55;
             else
@@ -2241,8 +2203,8 @@ end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 18, 360 ], function( G )
     local val;
-    val := DerivedLength( G );
-    if val = 2 then
+    val := SCN.IdClassNr.Helper.CCOCount( G, 2 );
+    if val = 3 then
         return 86;
     else
         return 87;
@@ -2250,7 +2212,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 18, 360 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 18, 384 ], function( G )
-    local val1, val2, val3;
+    local val1, val2, val3, D;
     val1 := DerivedLength( G );
     if val1 = 4 then
         val2 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 48 );
@@ -2286,25 +2248,25 @@ AddDictionary( SCN.IdClassNr.Select, [ 18, 384 ], function( G )
             return 96;
         elif val2 = 9 then
             return 97;
-        elif SCN.IdClassNr.Helper.CCOCount( DerivedSubgroup( G ), 2 ) = 3 then
-            return 98;
         else
-            return 99;
+            D := DerivedSubgroup( G );
+            if SCN.IdClassNr.Helper.CCOCount( G, 2, x -> x in D ) = 1 then
+                return 98;
+            else
+                return 99;
+            fi;
         fi;
     fi;
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 18, 432 ], function( G )
-    local val1, val2;
-    val1 := SCN.IdClassNr.Helper.DerAbInv( G, 1 );
-    if val1 = [ 2, 2 ] then
-        val2 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 12 );
-        if val2 = 1 then
-            return 101;
-        else
-            return 102;
-        fi;
-    elif val1 = [ 2, 2, 2 ] then
+    local val;
+    val := SCN.IdClassNr.Helper.CCOCount( G, 12 );
+    if val = 1 then
+        return 101;
+    elif val = 2 then
+        return 102;
+    elif val = 3 then
         return 103;
     else
         return 104;
@@ -2312,19 +2274,16 @@ AddDictionary( SCN.IdClassNr.Select, [ 18, 432 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 18, 480 ], function( G )
-    local val1, val2;
-    val1 := DerivedLength( G );
-    if val1 = 1 then
-        val2 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 20 );
-        if val2 = 0 then
-            return 106;
-        elif val2 = 1 then
-            return 107;
-        else
-            return 109;
-        fi;
-    else
+    local val;
+    val := SCN.IdClassNr.Helper.CCOCount( G, 2, x -> not IsCentral( G, x ) );
+    if val = 1 then
+        return 106;
+    elif val = 2 then
+        return 107;
+    elif val = 4 then
         return 108;
+    else
+        return 109;
     fi;
 end );
 
@@ -2375,7 +2334,7 @@ end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 18, 1008 ], function( G )
     local val;
-    val := DerivedLength( G );
+    val := SCN.IdClassNr.Helper.CCOCount( G, 3 );
     if val = 1 then
         return 127;
     else
@@ -2482,7 +2441,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 18, 7056 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 19, 64 ], function( G )
-    local val1, val2, val3, val4, val5, val6, Q;
+    local val1, val2, val3, val4, val5, val6, z, roots, N;
     val1 := SCN.IdClassNr.Helper.DerAbInv( G, 1 );
     if val1 = [ 2, 4 ] then
         val2 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 8 );
@@ -2502,8 +2461,10 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 64 ], function( G )
                 if val4 = 0 then
                     return 5;
                 else
-                    Q := G / FrattiniSubgroup( DerivedSubgroup( G ) );
-                    if SCN.IdClassNr.Helper.CCOCount( Q, 2 ) = 2 then
+                    N := FrattiniSubgroup( DerivedSubgroup( G ) );
+                    if SCN.IdClassNr.Helper.CCOCount( G, 4, x ->
+                        x ^ 2 in N
+                    ) = 1 then
                         return 7;
                     else
                         return 8;
@@ -2565,8 +2526,10 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 64 ], function( G )
                 elif val4 = 0 then
                     val5 := SCN.IdClassNr.Helper.CCOSPCount( G, 8, 4, 3 );
                     if val5 = 0 then
-                        Q := G / FrattiniSubgroup( DerivedSubgroup( G ) );
-                        if SCN.IdClassNr.Helper.CCOCount( Q, 2 ) = 7 then
+                        N := FrattiniSubgroup( DerivedSubgroup( G ) );
+                        if SCN.IdClassNr.Helper.CCOCount( G, 4, x ->
+                            x ^ 2 in N
+                        ) = 6 then
                             return 20;
                         else
                             return 26;
@@ -2594,8 +2557,10 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 64 ], function( G )
             elif val3 = 0 then
                 val4 := SCN.IdClassNr.Helper.CCOSPCount( G, 8, 4, 3 );
                 if val4 = 4 then
-                    Q := G / FrattiniSubgroup( DerivedSubgroup( G ) );
-                    if SCN.IdClassNr.Helper.CCOCount( Q, 2 ) = 7 then
+                    N := FrattiniSubgroup( DerivedSubgroup( G ) );
+                    if SCN.IdClassNr.Helper.CCOCount( G, 4, x ->
+                        x ^ 2 in N
+                    ) = 4 then
                         return 19;
                     else
                         return 25;
@@ -2619,9 +2584,12 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 64 ], function( G )
     else
         val2 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 4 );
         if val2 = 6 then
-            val3 := Number( SCN.IdClassNr.Helper.NormsSize( G, 16 ),
-                IsElementaryAbelian );
-            if val3 = 1 then
+            z := First( Centre( G ), z -> not IsOne( z ) );
+            roots := Filtered( ConjugacyClasses( G ), C ->
+                Representative( C ) ^ 2 = z
+            );
+            N := NormalClosure( G, List( roots, Representative ) );
+            if Size( N ) = 32 then
                 return 35;
             else
                 return 40;
@@ -2725,29 +2693,23 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 192 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 19, 216 ], function( G )
-    local val1, val2, val3;
-    val1 := SCN.IdClassNr.Helper.DerAbInv( G, 1 );
-    if val1 = [ 2, 2 ] then
-        val2 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 18 );
-        if val2 = 0 then
-            return 63;
-        else
-            val3 := SCN.IdClassNr.Helper.CCOSPTCount( G, 6, 18, 2, 2 );
-            if val3 = 0 then
-                return 64;
-            else
-                return 65;
-            fi;
-        fi;
-    elif val1 = [ 2, 3 ] then
-        val2 := SCN.IdClassNr.Helper.DerAbInv( G, 2 );
-        if val2 = [ 9 ] then
-            return 66;
-        else
-            return 68;
-        fi;
-    else
+    local D, val, y;
+    D := DerivedSubgroup( G );
+    val := SCN.IdClassNr.Helper.CCOCount( G, 3, x -> x in D );
+    if val = 1 then
+        return 66;
+    elif val = 6 then
         return 67;
+    elif val = 2 then
+        return 68;
+    elif SCN.IdClassNr.Helper.CCOSCount( G, 2, 18 ) = 0 then
+        return 63;
+    fi;
+    y := Representative( First( ConjugacyClasses( G ), C -> Size( C ) = 2 ) );
+    if SCN.IdClassNr.Helper.CCOCount( G, 4, x -> y ^ x = y ) = 1 then
+        return 64;
+    else
+        return 65;
     fi;
 end );
 
@@ -2820,18 +2782,9 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 378 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 19, 384 ], function( G )
-    local val1, val2;
-    val1 := DerivedLength( G );
-    if val1 = 4 then
-        val2 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 48 );
-        if val2 = 0 then
-            return 88;
-        else
-            return 89;
-        fi;
-    else
-        return 90;
-    fi;
+    return 87 + SCN.IdClassNr.Helper.CCOCount( G, 2, x ->
+        not IsCentral( G, x )
+    );
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 19, 480 ], function( G )
@@ -2871,8 +2824,9 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 768 ], function( G )
         elif val2 = 2 then
             return 104;
         fi;
-        t := Representative( First( ConjugacyClasses( G ),
-            C -> Order( Representative( C ) ) = 3 ) );
+        t := Representative( First( ConjugacyClasses( G ), C ->
+            Order( Representative( C ) ) = 3
+        ) );
         classes := Filtered( ConjugacyClasses( G ), C -> Size( C ) = 48 );
         for x in List( classes, Representative ) do
             H := Group( t, x ^ 2, Comm( x, t ) ^ 2 );
@@ -2891,33 +2845,29 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 768 ], function( G )
         else
             return 110;
         fi;
-    else
-        if val2 = 4 then
-            return 111;
-        elif val2 = 2 then
-            val3 := SCN.IdClassNr.Helper.CCOSPTCount( G, 4, 24, 2, 1 );
-            if val3 = 2 then
-                return 112;
-            else
-                return 113;
-            fi;
-        elif val2 = 5 then
-            return 114;
+    elif val2 = 4 then
+        return 111;
+    elif val2 = 5 then
+        return 114;
+    fi;
+    val3 := SCN.IdClassNr.Helper.CentralSquareCount( G, 24 );
+    if val2 = 2 then
+        if val3 = 2 then
+            return 112;
         else
-            val3 := SCN.IdClassNr.Helper.CCOSPTCount( G, 4, 24, 2, 1 );
-            if val3 = 2 then
-                return 115;
-            else
-                return 116;
-            fi;
+            return 113;
         fi;
+    elif val3 = 2 then
+        return 115;
+    else
+        return 116;
     fi;
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 19, 784 ], function( G )
     local val;
-    val := DerivedLength( G );
-    if val = 2 then
+    val := SCN.IdClassNr.Helper.CCOCount( G, 2 );
+    if val = 1 then
         return 117;
     else
         return 118;
@@ -2970,18 +2920,18 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 1944 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 19, 2500 ], function( G )
-    local val, C, x;
+    local val, C;
     val := SCN.IdClassNr.Helper.CCOSCount( G, 5, 20 );
     if val = 5 then
         return 136;
     elif val = 6 then
         return 137;
     fi;
-    C := First( ConjugacyClasses( G ), C -> Size( C ) = 20 and
-        Order( Representative( C ) ) = 25 );
-    x := Representative( C );
-    if ForAny( ConjugacyClasses( G ), D -> Order( Representative( D ) ) = 10
-        and Comm( x, Representative( D ) ) in C ) then
+    C := First( ConjugacyClasses( G ), C ->
+        Size( C ) = 20 and
+        Order( Representative( C ) ) = 25
+    );
+    if SCN.IdClassNr.Helper.CommRepCount( G, C, 10 ) = 1 then
         return 138;
     else
         return 139;
@@ -3000,7 +2950,7 @@ end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 19, 2688 ], function( G )
     local val;
-    val := SCN.IdClassNr.Helper.CCOSPTCount( G, 4, 84, 2, 1 );
+    val := SCN.IdClassNr.Helper.CentralSquareCount( G, 84 );
     if val = 2 then
         return 142;
     else
@@ -3377,7 +3327,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 20, 192 ], function( G )
     elif val1 = [ 4, 4 ] then
         val2 := SCN.IdClassNr.Helper.DerAbInv( G, 1 );
         if val2 = [ 3, 4 ] then
-            val3 := SCN.IdClassNr.Helper.CCOSPTCount( G, 4, 12, 2, 1 );
+            val3 := SCN.IdClassNr.Helper.CentralSquareCount( G, 12 );
             if val3 = 0 then
                 return 83;
             else
@@ -3575,19 +3525,13 @@ AddDictionary( SCN.IdClassNr.Select, [ 20, 780 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 20, 896 ], function( G )
-    local val, P, x, V, classes, M;
+    local val, C;
     val := SCN.IdClassNr.Helper.CCOCount( G, 2 );
     if val = 6 then
         return 150;
     elif val = 2 then
-        P := SylowSubgroup( G, 2 );
-        x := Representative( First( ConjugacyClasses( G ),
-            C -> Size( C ) = 14 ) );
-        V := CommutatorSubgroup( P, Group( x ) );
-        classes := Filtered( ConjugacyClasses( P ),
-            C -> Representative( C ) ^ 2 in V );
-        M := NormalClosure( P, List( classes, Representative ) );
-        if NrConjugacyClasses( M / Group( x ^ 2 ) ) = 20 then
+        C := First( ConjugacyClasses( G ), C -> Size( C ) = 14 );
+        if SCN.IdClassNr.Helper.CommRepCount( G, C, 14 ) = 3 then
             return 151;
         else
             return 152;
@@ -3610,8 +3554,9 @@ AddDictionary( SCN.IdClassNr.Select, [ 20, 972 ], function( G )
     elif SCN.IdClassNr.Helper.CCOSPCount( G, 9, 36, 2 ) = 3 then
         return 157;
     fi;
-    x := Representative( First( ConjugacyClasses( G ),
-        C -> Order( Representative( C ) ) = 9 ) );
+    x := Representative( First( ConjugacyClasses( G ), C ->
+        Order( Representative( C ) ) = 9
+    ) );
     N := NormalClosure( DerivedSubgroup( G ), [ x ] );
     if IsConjugate( G, DerivedSubgroup( N ), Group( x ^ 3 ) ) then
         return 158;
@@ -3690,37 +3635,30 @@ AddDictionary( SCN.IdClassNr.Select, [ 20, 1728 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 20, 2688 ], function( G )
-    local val1, val2;
-    val1 := SCN.IdClassNr.Helper.DerAbInv( G, 3 );
-    if val1 = [ 2, 2, 2, 2, 2, 2 ] then
-        val2 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 8 );
-        if val2 = 0 then
-            return 181;
-        else
-            return 182;
-        fi;
+    local val;
+    val := SCN.IdClassNr.Helper.CCOCount( G, 2 );
+    if val = 5 then
+        return 181;
+    elif val = 4 then
+        return 182;
     else
         return 183;
     fi;
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 20, 3072 ], function( G )
-    local val1, val2;
-    val1 := SCN.IdClassNr.Helper.DerAbInv( G, 3 );
-    if val1 = [ 2, 2, 2, 2 ] then
-        val2 := SCN.IdClassNr.Helper.CCOSCount( G, 4, 192 );
-        if val2 = 5 then
+    local val;
+    val := SCN.IdClassNr.Helper.CCOCount( G, 4 );
+    if val = 8 then
+        if SCN.IdClassNr.Helper.CCOSCount( G, 2, 24 ) = 0 then
             return 184;
         else
-            return 185;
-        fi;
-    else
-        val2 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 24 );
-        if val2 = 2 then
             return 186;
-        else
-            return 187;
         fi;
+    elif val = 6 then
+        return 185;
+    else
+        return 187;
     fi;
 end );
 
