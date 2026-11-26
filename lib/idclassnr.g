@@ -1163,9 +1163,9 @@ end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 16, 64 ], function( G )
     local D, val1, val2, val3, val4;
-    D := DerivedSubgroup( G );
-    val1 := AbelianInvariants( D );
+    val1 := SCN.IdClassNr.Helper.DerAbInv( G, 2 );
     if val1 = [ 8 ] then
+        D := DerivedSubgroup( G );
         val2 := SCN.IdClassNr.Helper.CCOCount( G, 8, x -> x in D );
         val3 := SCN.IdClassNr.Helper.CCOSCount( G, 2, 8 );
         if val2 = 1 then
@@ -2964,13 +2964,12 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 9408 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 19, 10752 ], function( G )
-    local D, val1, val2;
-    D := DerivedSubgroup( G );
-    val1 := Size( D ) = Size( G );
+    local val1, val2;
+    val1 := IsPerfectGroup( G );
     if val1 then
         return 163;
     fi;
-    val2 := IdClassNr( D )[ 2 ];
+    val2 := IdClassNr( DerivedSubgroup( G ) )[ 2 ];
     return 155 + Position( [ 83, 84, 85, 86, 88, 89, 90 ], val2 );
 end );
 
