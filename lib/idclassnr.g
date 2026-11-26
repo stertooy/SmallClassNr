@@ -12,39 +12,56 @@ SCN.IdClassNr.Helper := rec();
 
 ###############################################################################
 ##
-## CCOCount( G, o[, test] )
+## CCOCount( G, o[, tests...] )
 ##
-SCN.IdClassNr.Helper.CCOCount := function( G, o, test... )
-    if IsEmpty( test ) then
-        test := [ ReturnTrue ];
-    fi;
+SCN.IdClassNr.Helper.CCOCount := function( G, o, tests... )
+    tests := Flat( tests );
     return Number( ConjugacyClasses( G ), C ->
         Order( Representative( C ) ) = o and
-        test[ 1 ]( Representative( C ) )
+        ForAll( tests, test -> test( Representative( C ) ) )
     );
 end;
 
 ###############################################################################
 ##
-## CCOSCount( G, o, s )
+## CCOSCount( G, o, s[, tests...] )
 ##
-SCN.IdClassNr.Helper.CCOSCount := function( G, o, s )
+SCN.IdClassNr.Helper.CCOSCount := function( G, o, s, tests... )
+    tests := Flat( tests );
     return Number( ConjugacyClasses( G ), C ->
         Size( C ) = s and
-        Order( Representative( C ) ) = o
+        Order( Representative( C ) ) = o and
+        ForAll( tests, test -> test( Representative( C ) ) )
     );
 end;
 
 ###############################################################################
 ##
-## CCOSCCount( G, o, s, test )
+## CCOSCCount( G, o, s[, tests...] )
 ##
-SCN.IdClassNr.Helper.CCOSCCount := function( G, o, s, test )
+SCN.IdClassNr.Helper.CCOSCCount := function( G, o, s, tests... )
+    tests := Flat( tests );
     return Number( ConjugacyClasses( G ), C ->
         Size( C ) = s and
         Order( Representative( C ) ) = o and
-        test( Centraliser( C ) )
+        ForAll( tests, test -> test( Centraliser( C ) ) )
     );
+end;
+
+###############################################################################
+##
+## CCProdTests( G, o, s )
+##
+SCN.IdClassNr.Helper.CCProdTests := function( G, o, s )
+    local classes;
+    classes := Filtered( ConjugacyClasses( G ), C ->
+        Size( C ) = s and Order( Representative( C ) ) = o
+    );
+    return List( classes, function( C )
+        local x;
+        x := Representative( C );
+        return y -> x * x ^ y in C;
+    end );
 end;
 
 ###############################################################################
@@ -2802,7 +2819,7 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 588 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 19, 768 ], function( G )
-    local count, squares;
+    local count, squares, t;
     count := SCN.IdClassNr.Helper.CCOSCount( G, 4, 48 );
     if SCN.IdClassNr.Helper.CCOCount( G, 3 ) = 2 then
         if count = 1 then
@@ -2810,9 +2827,11 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 768 ], function( G )
         elif count = 2 then
             return 104;
         fi;
-        if IsCharacteristicSubgroup(
-            FittingSubgroup( G ), DerivedSubgroup( G )
-        ) then
+        t := First( List( ConjugacyClasses( G ), Representative ),
+                    x -> Order( x ) = 3 );
+        if SCN.IdClassNr.Helper.CCOSCount( G, 4, 48,
+            x -> x ^ 2 in Group( t, Comm( x, t ) ^ 2 )
+        ) = 1 then
             return 105;
         else
             return 106;
@@ -2902,17 +2921,15 @@ AddDictionary( SCN.IdClassNr.Select, [ 19, 1944 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 19, 2500 ], function( G )
-    local val, gens;
+    local val, tests;
     val := SCN.IdClassNr.Helper.CCOSCount( G, 5, 20 );
     if val = 5 then
         return 136;
     elif val = 6 then
         return 137;
     fi;
-    gens := GeneratorsOfGroup( DerivedSubgroup( G ) );
-    val := SCN.IdClassNr.Helper.CCOCount( G, 5, y ->
-        ForAll( gens, x -> Comm( Comm( x, y ), y ) = x ^ 5 )
-    );
+    tests := SCN.IdClassNr.Helper.CCProdTests( G, 25, 20 );
+    val := SCN.IdClassNr.Helper.CCOSCount( G, 5, 50, tests );
     if val = 1 then
         return 138;
     else
@@ -3507,19 +3524,14 @@ AddDictionary( SCN.IdClassNr.Select, [ 20, 780 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 20, 896 ], function( G )
-    local val, D, basis;
+    local val, tests;
     val := SCN.IdClassNr.Helper.CCOCount( G, 2 );
     if val = 6 then
         return 150;
     elif val = 2 then
-        D := DerivedSubgroup( G );
-        basis := IndependentGeneratorsOfAbelianGroup( D );
-        val := SCN.IdClassNr.Helper.CCOCount( G, 2, y ->
-            DeterminantMat( List( basis, x ->
-                IndependentGeneratorExponents( D, x ^ y )
-            ) ) mod 4 = 3
-        );
-        if val = 0 then
+        tests := SCN.IdClassNr.Helper.CCProdTests( G, 4, 14 );
+        val := SCN.IdClassNr.Helper.CCOSCount( G, 7, 64, tests );
+        if val = 2 then
             return 151;
         else
             return 152;
@@ -3536,15 +3548,17 @@ AddDictionary( SCN.IdClassNr.Select, [ 20, 896 ], function( G )
 end );
 
 AddDictionary( SCN.IdClassNr.Select, [ 20, 972 ], function( G )
-    local M, N;
+    local classes, C, y, N;
     if SCN.IdClassNr.Helper.CCOSCount( G, 3, 36 ) = 3 then
         return 156;
     elif SCN.IdClassNr.Helper.CCOSPCount( G, 9, 36, 2 ) = 3 then
         return 157;
     fi;
-    M := MaximalSubgroupClassReps( DerivedSubgroup( G ) )[ 1 ];
-    N := DerivedSubgroup( M );
-    if ForAny( ConjugateSubgroups( G, M ), H -> Exponent( H / N ) = 3 ) then
+    classes := ConjugacyClasses( G );
+    C := First( classes, c -> Size( c ) = 4 );
+    y := Representative( First( classes, c -> Size( c ) = 9 ) );
+    N := Normaliser( G, Group( Representative( C ), y ) );
+    if SCN.IdClassNr.Helper.CCOCount( N, 9, x -> x ^ 3 in C ) = 9 then
         return 158;
     else
         return 159;
