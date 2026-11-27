@@ -6,10 +6,7 @@ This is the manual for the &GAP; 4 package &PACKAGENAME; version
 
 @Section installation
 @SectionTitle Installation
-If you are using &GAP; version 4.15.0 or newer, then &PACKAGENAME; should
-be installed by default.
-
-If this is not the case, but the &PackageManager; package is installed and
+If the &PackageManager; package is installed and
 loaded, you can install &PACKAGENAME; from within a &GAP; session using
 <Ref Func="InstallPackage" BookName="PackageManager" Style="Number"/>.
 @BeginLog

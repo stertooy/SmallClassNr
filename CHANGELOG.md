@@ -1,5 +1,11 @@
 # CHANGELOG - GAP package SmallClassNr
 
+## 1.7.3 (2026-11-27)
+
+### Changed
+- Reworked the `IdClassNr` identification for many groups.
+- Janitorial changes.
+
 ## 1.7.2 (2026-09-24)
 
 ### Changed
@@ -83,7 +89,7 @@
 ## 1.4.2 (2025-10-11)
 
 ### Changed
-- Updated license text to latest version (by @jamesjer).
+- Updated licence text to latest version (by @jamesjer).
 - Updated installation instructions in manual.
 - Janitorial changes.
 
