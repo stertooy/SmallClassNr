@@ -1,5 +1,11 @@
 # CHANGELOG - GAP package SmallClassNr
 
+## 1.8.0 (2026-12-31)
+
+### Changed
+- Now requires GAP version >= 4.17.
+- Janitorial changes.
+
 ## 1.7.3 (2026-11-27)
 
 ### Changed
